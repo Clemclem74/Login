@@ -23,7 +23,7 @@ public class LoginFacade {
 		User user = userDao.find(username);
 	
 		if(user.getPassworduser().equals(password)) {
-			System.out.println("Connected");
+			System.out.println(user.getUsername() +" Connected");
 			this.ConnectedUser = user;
 		}
 		else {
