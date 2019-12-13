@@ -22,3 +22,7 @@ $RECYCLE.BIN/
 # Operating System Files
 # =========================
 /.metadata/
+/.classpath/
+.\BDEvent\.classpath
+*.classpath
+*.classpath
