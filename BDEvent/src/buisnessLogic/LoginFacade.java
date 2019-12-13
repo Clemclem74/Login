@@ -1,6 +1,8 @@
 package buisnessLogic;
 
-import ClassDiagram.*;
+
+
+import dao.*;
 
 public class LoginFacade {
 
@@ -11,9 +13,22 @@ public class LoginFacade {
 	 * @param username
 	 * @param password
 	 */
-	public LoginFacade LoginFacade(String username, String password) {
+	public LoginFacade(String username, String password) {
 		// TODO - implement LoginFacade.LoginFacade
-		throw new UnsupportedOperationException();
+		
+		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+		
+		DAO<User> userDao = adf.getUserDAO();
+		
+		User user = userDao.find(username);
+	
+		if(user.getPassworduser().equals(password)) {
+			System.out.println("Connected");
+			this.ConnectedUser = user;
+		}
+		else {
+			System.out.println("Email or Password Incorrect");
+		}
 	}
 
 	public void sendError() {

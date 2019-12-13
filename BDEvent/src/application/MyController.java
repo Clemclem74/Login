@@ -1,5 +1,6 @@
 package application;
 
+import buisnessLogic.LoginFacade;
 import java.net.URL;
 import java.util.ResourceBundle;
  
@@ -18,11 +19,12 @@ public class MyController implements Initializable {
 	   @FXML
 	   private PasswordField passwordField;
 	  
+	   
+	   
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
 	 
 	       // TODO (don't really need to do anything here).
-	      
 	   }
 	 
 	   // When user click on myButton
@@ -30,5 +32,8 @@ public class MyController implements Initializable {
 	   public void loginAction(ActionEvent event) {
 	       System.out.println(emailField.getText());
 	       System.out.println(passwordField.getText());
+	       
+	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
+	       
 	   }	
 }
