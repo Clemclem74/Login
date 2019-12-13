@@ -1,0 +1,24 @@
+--------------------------------------------------------
+--  Fichier créé - vendredi-décembre-13-2019   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table USERS
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."USERS" 
+   (	"ID_USER" NUMBER, 
+	"USERNAME" VARCHAR2(20 BYTE), 
+	"EMAILUSER" VARCHAR2(20 BYTE), 
+	"PASSWORDUSER" VARCHAR2(20 BYTE), 
+	"FIRSTNAME" VARCHAR2(20 BYTE), 
+	"LASTNAME" VARCHAR2(20 BYTE), 
+	"PHONENUMBERUSER" VARCHAR2(20 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into SYSTEM.USERS
+SET DEFINE OFF;
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('1','Clemclem74','test','test',null,null,null);
