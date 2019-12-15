@@ -2,24 +2,18 @@ package buisnessLogic;
 
 
 
-import java.io.IOException;
-
 import dao.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-public class LoginFacade {
+public class HomePageFacade {
 
-	User connectedUser;
+	User ConnectedUser;
 
 	/**
 	 * 
 	 * @param username
 	 * @param password
 	 */
-	public LoginFacade(String username, String password) {
+	public HomePageFacade(String username, String password) {
 		// TODO - implement LoginFacade.LoginFacade
 		
 		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
@@ -30,18 +24,11 @@ public class LoginFacade {
 	
 		if(user.getPassworduser().equals(password)) {
 			System.out.println(user.getUsername() +" Connected");
-			this.connectedUser = user;
-			gotoHomePage();
+			this.ConnectedUser = user;
 		}
 		else {
 			System.out.println("Email or Password Incorrect");
 		}
-	}
-
-	private void gotoHomePage() {
-		Routing root = new Routing();
-		root.login_action(this.connectedUser);
-		
 	}
 
 	public void sendError() {

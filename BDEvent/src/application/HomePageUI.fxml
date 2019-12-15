@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
+   <children>
+      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Pane layoutX="4.0" layoutY="-3.0">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="402.0" prefWidth="185.0" style="-fx-background-color: f7b4b4;">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <Button fx:id="events_buton" layoutX="25.0" layoutY="272.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="162.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="215.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Label layoutX="200.0" layoutY="93.0" prefHeight="39.0" prefWidth="159.0" text="Your informations : " />
+      <Label layoutX="225.0" layoutY="154.0" text="Username : " />
+      <Label layoutX="225.0" layoutY="201.0" text="Email : " />
+      <Label layoutX="225.0" layoutY="249.0" text="Phone Number : " />
+      <Label fx:id="username_text" layoutX="339.0" layoutY="154.0" />
+      <Label fx:id="email_text" layoutX="339.0" layoutY="201.0" />
+      <Label fx:id="phone_number_text" layoutX="371.0" layoutY="249.0" />
+      <Label fx:id="name_text" layoutX="311.0" layoutY="16.0">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

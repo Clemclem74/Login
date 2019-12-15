@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  Fichier créé - vendredi-décembre-13-2019   
+--  Fichier créé - dimanche-décembre-15-2019   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table USERS
@@ -21,4 +21,7 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into SYSTEM.USERS
 SET DEFINE OFF;
-Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('1','Clemclem74','test','test',null,null,null);
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('1','ClemLeBG','CT','CT','Clement','Temil','0670220473');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('2','JujuLPB','JF','JF','Justine','Foulquier','0645658983');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('3','MattBoMal','MH','MH','Matthew','Haas','0769193310');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER) values ('4','AlexSexy','AA','AA','Alexis','Andre','0672791302');
