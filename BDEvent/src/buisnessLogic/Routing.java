@@ -1,15 +1,70 @@
 package buisnessLogic;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class Routing {
+
+	private static Stage stage;
+	private static User currentUser;
+	
+	
+	
+	public static Stage getStage() {
+		return stage;
+	}
+
+	public static void setStage(Stage stage) {
+		Routing.stage = stage;
+	}
+
+	public static User getCurrentUser() {
+		return currentUser;
+	}
+
+	public static void setCurrentUser(User currentUser) {
+		Routing.currentUser = currentUser;
+	}
+
+	public Routing(Stage primaryStage) {
+		Routing.stage=primaryStage;
+		// TODO Auto-generated constructor stub
+	}
+
+	public Routing() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public void loginForm() {
 		// TODO - implement Routing.loginForm
-		throw new UnsupportedOperationException();
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void login_action() {
+	public void login_action(User user) {
+		Parent root;
+		Routing.setCurrentUser(user);
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/HomePageUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// TODO - implement Routing.login_action
-		throw new UnsupportedOperationException();
+
 	}
 
 }

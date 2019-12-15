@@ -1,5 +1,6 @@
 package application;
 	
+import buisnessLogic.Routing;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,8 @@ public class Main extends Application {
         try {
             // Read file fxml and draw interface.
         	
-            Parent root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
- 
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+        	Routing root = new Routing(primaryStage);
+        	root.loginForm();
          
         } catch(Exception e) {
             e.printStackTrace();

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class MyController implements Initializable {
+public class LoginUI implements Initializable {
 	 @FXML
 	   private Button loginButton;
 	  
@@ -30,8 +30,6 @@ public class MyController implements Initializable {
 	   // When user click on myButton
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
-	       System.out.println(emailField.getText());
-	       System.out.println(passwordField.getText());
 	       
 	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
 	       
