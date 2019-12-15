@@ -66,5 +66,17 @@ public class Routing {
 		// TODO - implement Routing.login_action
 
 	}
+	
+	public void logout() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

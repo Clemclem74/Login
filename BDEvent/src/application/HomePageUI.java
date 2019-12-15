@@ -49,4 +49,10 @@ public class HomePageUI extends Routing implements Initializable {
 //	      this.phone_number_text.setText(user.getPhonenumberuser());
 //		  this.name_text.setText(user.getFirstname() +" "+ user.getLastname());
 	   }
+	   
+	   public void logout(ActionEvent event) {
+		   Routing.setCurrentUser(null);
+		   Routing root = new Routing();
+		   root.logout();
+	   }
 }
