@@ -27,7 +27,7 @@ public class LoginFacade {
 			this.ConnectedUser = user;
 		}
 		else {
-			System.out.println("Email or Password Incorrect");
+			System.out.println(user.getPassworduser() + " Email or Password Incorrect");
 		}
 	}
 

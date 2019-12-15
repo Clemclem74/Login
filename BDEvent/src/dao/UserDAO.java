@@ -40,10 +40,10 @@ public User find(String id) {
 
           int id_user = resultSet.getInt("ID_USER");
           String username = resultSet.getString("USERNAME");
-          String lastname = resultSet.getString("LASTNAME");
-          String firstname = resultSet.getString("FIRSTNAME");
           String emailuser = resultSet.getString("EMAILUSER");
           String passworduser = resultSet.getString("PASSWORDUSER");
+          String lastname = resultSet.getString("LASTNAME");
+          String firstname = resultSet.getString("FIRSTNAME");
           String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
 
           obj.setId_user(id_user);
@@ -56,6 +56,7 @@ public User find(String id) {
           
 
       }
+      System.out.println(obj.getPassworduser());
       return obj;
 
   } catch (SQLException e) {
