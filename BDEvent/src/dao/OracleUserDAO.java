@@ -50,8 +50,35 @@ public boolean delete(User obj) {
   return false;
 }
  
-public boolean update(User obj) {
-  return false;
+public boolean update(int iduser, User obj) {
+	
+	int id = iduser;
+	
+	  String SQL_UPDATE = "Update USERS " + "SET USERNAME='" + obj.getUsername() + "',EMAILUSER='"
+			  + obj.getEmailuser() + "',PASSWORDUSER="
+					  +"'" + obj.getPassworduser() + "',FIRSTNAME="
+							  +"'" + obj.getFirstname() + "',LASTNAME="
+									  +"'" + obj.getLastname() + "',PHONENUMBERUSER="
+											  +"'" + obj.getPhonenumberuser() + "'"+" WHERE ID_USER="+id + ";";
+	  System.out.println(SQL_UPDATE);
+	  // auto close connection and preparedStatement
+	  try {
+		  
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Statement st = conn.createStatement();
+
+	      st.executeUpdate(SQL_UPDATE);
+		  
+		  conn.close();
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
 }
 
 private int getLastId() {
@@ -122,5 +149,11 @@ public User find(String id) {
       e.printStackTrace();
   }
 return obj;
+}
+
+@Override
+public boolean update(User obj) {
+	// TODO Auto-generated method stub
+	return false;
 }
 }

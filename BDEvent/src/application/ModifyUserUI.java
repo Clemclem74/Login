@@ -47,7 +47,8 @@ public class ModifyUserUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void saveAction(ActionEvent event) {
 		   LoginFacade userFacade = new LoginFacade();
-	       userFacade.modify(usernameField.getText(),emailField.getText(),super.getCurrentUser().getPassworduser(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
+		   System.out.println(super.getCurrentUser().getPassworduser());
+	       int res = userFacade.modify(super.getCurrentUser().getId_user(),usernameField.getText(),emailField.getText(),super.getCurrentUser().getPassworduser(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
 	       super.homePage();
 	   }
 }

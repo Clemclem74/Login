@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyUserUI">
    <children>
       <TextField fx:id="phoneNumberField" layoutX="139.0" layoutY="527.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
-      <Button fx:id="registerButton" layoutX="358.0" layoutY="94.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Button fx:id="saveButton" layoutX="358.0" layoutY="94.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
       <Text layoutX="210.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
          <font>
             <Font size="16.0" />
