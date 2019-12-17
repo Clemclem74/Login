@@ -41,6 +41,7 @@ public class RegisterUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void registerAction(ActionEvent event) {
 	       if (passwordField.getText().contentEquals(passwordField2.getText())) {
+	    	   System.out.println("Registration detected");
 		       LoginFacade userFacade = new LoginFacade();
 		       userFacade.register(firstNameField.getText(),lastNameField.getText(),usernameField.getText(),emailField.getText(),phoneNumberField.getText(),passwordField.getText());
 	       }

@@ -33,10 +33,10 @@ public class LoginUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
 	       LoginFacade loginFacade = new LoginFacade();
-	       loginFacade.login(emailField.getText(),passwordField.getText())
+	       loginFacade.login(emailField.getText(),passwordField.getText());
 	   }	
 	   
-	   public void registerButton(ActionEvent event) {
+	   public void registerAction(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.goToRegister();
 	   }

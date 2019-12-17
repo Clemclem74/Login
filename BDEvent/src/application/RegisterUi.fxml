@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginUI">
+<AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterUI">
    <children>
       <TextField fx:id="phoneNumberField" layoutX="139.0" layoutY="527.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
       <PasswordField fx:id="passwordField" layoutX="135.0" layoutY="623.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" />
-      <Button fx:id="registerButton" layoutX="213.0" layoutY="797.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="106.0" text="Register" />
+      <Button fx:id="registerButton" layoutX="403.0" layoutY="378.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="106.0" text="Register" />
       <Text layoutX="210.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
          <font>
             <Font size="16.0" />
@@ -45,17 +45,18 @@
          </font>
       </Text>
       <TextField fx:id="firstNameField" layoutX="134.0" layoutY="159.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
-      <Text layoutX="180.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation">
+      <Text layoutX="307.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <PasswordField fx:id="passwordField2" layoutX="138.0" layoutY="714.0" prefHeight="34.0" prefWidth="255.0" promptText="Password Confirmation" />
+      <PasswordField fx:id="passwordField2" layoutX="296.0" layoutY="94.0" prefHeight="34.0" prefWidth="255.0" promptText="Password Confirmation" />
       <Text layoutX="227.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
       <TextField fx:id="usernameField" layoutX="135.0" layoutY="338.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
+      <ScrollBar layoutX="487.0" layoutY="15.0" orientation="VERTICAL" prefHeight="860.0" prefWidth="22.0" />
    </children>
 </AnchorPane>

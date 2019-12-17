@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 public class LoginFacade {
 
 	User connectedUser;
-	AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
-	
+
 
 	AbstractDAOFactory adf;
 	
@@ -23,18 +22,14 @@ public class LoginFacade {
 	 * @param username
 	 * @param password
 	 */
-<<<<<<< HEAD
-	public LoginFacade(String username, String password) {
-		// TODO - implement LoginFacade.LoginFacade
-		
-=======
+
 	public LoginFacade() {
-		AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
->>>>>>> 258623a7bc505030521cfd1231d50eb20f7aafaf
+		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
+
 		
 	}
 	
-	private void register(String username,String lastname,String firstname,String emailuser, String passworduser,String phonenumberuser) {
+	public void register(String firstname,String lastname,String username,String emailuser, String phonenumberuser,String passworduser) {
 		
 		User obj = new User();
 
@@ -49,15 +44,17 @@ public class LoginFacade {
         
         if(userDao.create(obj)) {
         	System.out.println("User created");
+        	 gotoHomePage();
         }
         else {
         	System.out.println("Error while creating user");
         }
+       
         
 	}
 	
-	private void login(String username, String password) {
-		OracleDAO<User> userDao = adf.getUserDAO();
+	public void login(String username, String password) {
+		OracleDAO<User> userDao = this.adf.getUserDAO();
 		User user = userDao.find(username);
 	
 		if(user.getPassworduser().equals(password)) {
