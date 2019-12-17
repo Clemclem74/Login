@@ -27,5 +27,6 @@
             <Font size="43.0" />
          </font>
       </Text>
+      <Button fx:id="registerButton" layoutX="395.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerAction" style="-fx-background-color: orange;" text="Register" />
    </children>
 </AnchorPane>

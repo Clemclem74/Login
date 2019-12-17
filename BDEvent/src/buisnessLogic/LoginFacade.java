@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 public class LoginFacade {
 
 	User connectedUser;
+	AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+	
 
 	/**
 	 * 
@@ -22,7 +24,6 @@ public class LoginFacade {
 	public LoginFacade(String username, String password) {
 		// TODO - implement LoginFacade.LoginFacade
 		
-		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
 		
 		DAO<User> userDao = adf.getUserDAO();
 		

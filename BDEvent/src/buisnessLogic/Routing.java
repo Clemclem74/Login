@@ -78,5 +78,17 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
+	
+	public void goToRegister() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/RegisterUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

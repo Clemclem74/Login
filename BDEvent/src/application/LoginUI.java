@@ -1,6 +1,8 @@
 package application;
 
 import buisnessLogic.LoginFacade;
+import buisnessLogic.Routing;
+
 import java.net.URL;
 import java.util.ResourceBundle;
  
@@ -9,8 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class LoginUI implements Initializable {
-	 @FXML
+public class LoginUI extends Routing implements Initializable {
+		@FXML
 	   private Button loginButton;
 	  
 	   @FXML
@@ -30,8 +32,12 @@ public class LoginUI implements Initializable {
 	   // When user click on myButton
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
-	       
-	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
-	       
+	       LoginFacade loginFacade = new LoginFacade();
+	       loginFacade.login(emailField.getText(),passwordField.getText())
 	   }	
+	   
+	   public void registerButton(ActionEvent event) {
+		   Routing root = new Routing();
+		   root.goToRegister();
+	   }
 }
