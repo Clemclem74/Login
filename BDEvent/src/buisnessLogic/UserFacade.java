@@ -3,6 +3,17 @@ package buisnessLogic;
 
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.AlgorithmParameters;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
 
 import dao.*;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginFacade {
+public class UserFacade {
 
 	User connectedUser;
 
@@ -23,19 +34,44 @@ public class LoginFacade {
 	 * @param password
 	 */
 
-	public LoginFacade() {
+	public UserFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
 
 	}
 
+	public static String hash(String input) {
+		StringBuilder hash = new StringBuilder();
+
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			byte[] hashedBytes = sha.digest(input.getBytes());
+			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+					'a', 'b', 'c', 'd', 'e', 'f' };
+			for (int idx = 0; idx < hashedBytes.length;   idx++) {
+				byte b = hashedBytes[idx];
+				hash.append(digits[(b & 0xf0) >> 4]);
+				hash.append(digits[b & 0x0f]);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// handle error here.
+		}
+
+		return hash.toString();
+	}
+
+
+
+
 	public int register(String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
+		String hashedpassword = hash(passworduser);
+
 
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
-        obj.setPassworduser(passworduser);
+        obj.setPassworduser(hashedpassword);
         obj.setFirstname(firstname);
         obj.setLastname(lastname);
         obj.setPhonenumberuser(phonenumberuser);
@@ -51,12 +87,16 @@ public class LoginFacade {
         	return -1;
         }
 	}
-	
-	
-	
+
+
+
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
+
+
+
+
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
@@ -75,7 +115,7 @@ public class LoginFacade {
         	return -1;
         }
 	}
-	
+
 	public int delete(User user) {
 
         OracleDAO<User> userDao = adf.getUserDAO();
@@ -97,7 +137,7 @@ public class LoginFacade {
 			return -1;
 		}
 		else {
-			if(user.getPassworduser().equals(password)) {
+			if(user.getPassworduser().equals(hash(password))) {
 				System.out.println(user.getUsername() +" Connected");
 				this.connectedUser = user;
 				sendUserRooter();
@@ -109,6 +149,7 @@ public class LoginFacade {
 				return -1;
 			}
 		}
+
 	}
 
 

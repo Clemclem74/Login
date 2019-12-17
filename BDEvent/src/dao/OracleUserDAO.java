@@ -162,7 +162,6 @@ public User find(String id) {
           
 
       }
-      System.out.println(obj.getPassworduser());
 	  conn.close();
       return obj;
 

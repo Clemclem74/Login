@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 
 import java.net.URL;
@@ -36,7 +36,7 @@ public class LoginUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
 	       
-	       LoginFacade loginFacade = new LoginFacade();
+	       UserFacade loginFacade = new UserFacade();
 	       
 	       int res = loginFacade.login(emailField.getText(),passwordField.getText());
 	       if (res>0) {
@@ -51,7 +51,7 @@ public class LoginUI extends Routing implements Initializable {
 	   
 	   public void wrongConnection() {
 		   this.errorMessage.setText("Wrong email or wrong Password");
-	       LoginFacade loginFacade = new LoginFacade();
+	       UserFacade loginFacade = new UserFacade();
 	       loginFacade.login(emailField.getText(),passwordField.getText());
 	   }	
 	   

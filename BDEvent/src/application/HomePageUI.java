@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
