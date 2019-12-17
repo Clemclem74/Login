@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class LoginFacade {
 
 	User connectedUser;
+	
 
 	/**
 	 * 
@@ -34,6 +35,7 @@ public class LoginFacade {
 			gotoHomePage();
 		}
 		else {
+			//COMMENT JE FAIT ??
 			System.out.println(user.getPassworduser() + " Email or Password Incorrect");
 		}
 	}
@@ -43,6 +45,8 @@ public class LoginFacade {
 		root.login_action(this.connectedUser);
 		
 	}
+	
+	
 
 	public void sendError() {
 		// TODO - implement LoginFacade.sendError

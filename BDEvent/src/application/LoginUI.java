@@ -18,6 +18,9 @@ public class LoginUI implements Initializable {
 	   
 	   @FXML
 	   private PasswordField passwordField;
+	   
+	   @FXML
+	   private Label errorMessage;
 	  
 	   
 	   
@@ -33,5 +36,9 @@ public class LoginUI implements Initializable {
 	       
 	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
 	       
-	   }	
+	   }
+	   
+	   public void wrongConnection() {
+		   this.errorMessage.setText("Wrong email or wrong Password");
+	   }
 }
