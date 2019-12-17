@@ -2,6 +2,7 @@ package application;
 
 import buisnessLogic.LoginFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class RegisterUI extends Routing implements Initializable {
+public class ModifyUserUI extends Routing implements Initializable {
 		@FXML
 		private Button registerButton;
 		@FXML
@@ -33,17 +34,20 @@ public class RegisterUI extends Routing implements Initializable {
 	   
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
-	 
+		   User user = super.getCurrentUser();
+		   firstNameField.setText(user.getFirstname());
+		   emailField.setText(user.getEmailuser());
+		   lastNameField.setText(user.getLastname());
+		   usernameField.setText(user.getUsername());
+		   phoneNumberField.setText(user.getPhonenumberuser());
 	       // TODO (don't really need to do anything here).
 	   }
 	 
 	   // When user click on myButton
 	   // this method will be called.
-	   public void registerAction(ActionEvent event) {
-	       if (passwordField.getText().contentEquals(passwordField2.getText())) {
-		       LoginFacade userFacade = new LoginFacade();
-		       userFacade.register(usernameField.getText(),emailField.getText(),passwordField.getText(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
-		       super.loginForm();
-	       }
+	   public void saveAction(ActionEvent event) {
+		   LoginFacade userFacade = new LoginFacade();
+	       userFacade.modify(usernameField.getText(),emailField.getText(),super.getCurrentUser().getPassworduser(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
+	       super.homePage();
 	   }
 }

@@ -36,8 +36,16 @@ public class LoginUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
 	       
-	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
-	       
+	       LoginFacade loginFacade = new LoginFacade();
+	       int res = loginFacade.login(emailField.getText(),passwordField.getText());
+	       if (res>0) {
+	    	   Routing root = new Routing();
+	    	   root.homePage();
+	       }
+	       else {
+	    	   this.passwordField.clear();
+	    	   this.errorMessage.setText("Wrong Password or Username");
+	       }
 	   }
 	   
 	   public void wrongConnection() {
