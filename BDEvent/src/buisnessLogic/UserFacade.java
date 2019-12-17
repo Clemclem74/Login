@@ -21,7 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginFacade {
+public class UserFacade {
 
 	User connectedUser;
 
@@ -34,7 +34,7 @@ public class LoginFacade {
 	 * @param password
 	 */
 
-	public LoginFacade() {
+	public UserFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
 
@@ -60,15 +60,15 @@ public class LoginFacade {
 		return hash.toString();
 	}
 
-	
+
 
 
 	public int register(String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
 		String hashedpassword = hash(passworduser);
-		
-        
+
+
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(hashedpassword);
@@ -87,16 +87,16 @@ public class LoginFacade {
         	return -1;
         }
 	}
-	
-	
-	
+
+
+
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
 
-		
-		
-		
+
+
+
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
@@ -105,32 +105,49 @@ public class LoginFacade {
         obj.setPhonenumberuser(phonenumberuser);
         OracleDAO<User> userDao = adf.getUserDAO();
         if(userDao.update(idUser,obj)) {
-        	System.out.println("User created");
+        	System.out.println("User modified");
+        	this.connectedUser=obj;
+            sendUserRooter();
         	return 1;
         }
         else {
-        	System.out.println("Error while creating user");
+        	System.out.println("Error while modifing user");
         	return -1;
         }
 	}
-	
-	
+
+	public int delete(User user) {
+
+        OracleDAO<User> userDao = adf.getUserDAO();
+        if(userDao.delete(user)) {
+        	System.out.println("User deleted");
+        	return 1;
+        }
+        else {
+        	System.out.println("Error while deleting user");
+        	return -1;
+        }
+	}
 
 	public int login(String username, String password) {
 		OracleDAO<User> userDao = this.adf.getUserDAO();
 		User user = userDao.find(username);
-		
-		System.out.println(hash(password));
-		System.out.println(user.getPassworduser());
-		if(user.getPassworduser().equals(hash(password))) {
-			System.out.println(user.getUsername() +" Connected");
-			this.connectedUser = user;
-			sendUserRooter();
-			return 1;
+		if (user.getId_user()==0) {
+			System.out.println("user null");
+			return -1;
 		}
 		else {
-			System.out.println(" Email or Password Incorrect");
-			return -1;
+			if(user.getPassworduser().equals(hash(password))) {
+				System.out.println(user.getUsername() +" Connected");
+				this.connectedUser = user;
+				sendUserRooter();
+				return 1;
+			}
+			else {
+				//COMMENT JE FAIT ??
+				System.out.println(user.getPassworduser() + " Email or Password Incorrect");
+				return -1;
+			}
 		}
 
 	}

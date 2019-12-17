@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
+
+
 <AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterUI">
    <children>
       <TextField fx:id="phoneNumberField" layoutX="139.0" layoutY="527.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
@@ -57,6 +59,6 @@
          </font>
       </Text>
       <TextField fx:id="usernameField" layoutX="135.0" layoutY="338.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
-      <ScrollBar layoutX="487.0" layoutY="15.0" orientation="VERTICAL" prefHeight="860.0" prefWidth="22.0" />
    </children>
 </AnchorPane>
+

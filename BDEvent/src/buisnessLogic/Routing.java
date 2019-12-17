@@ -78,6 +78,16 @@ public class Routing {
 		}
 	}
 	
+	public void deleteUser() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/DeleteUserUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 //	public void display_error(String msg) {
 //		Parent root;

@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
@@ -59,5 +59,10 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void modifyUser(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.modifyUser();
+	   }
+	   
+	   public void deleteUser(ActionEvent event) {
+		   Routing root = new Routing();
+		   root.deleteUser();
 	   }
 }
