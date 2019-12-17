@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
@@ -35,7 +35,7 @@ public class DeleteUserUI extends Routing implements Initializable {
 	   
 	
 	   public void deleteAccount(ActionEvent event) {
-		   LoginFacade userFacade = new LoginFacade();
+		   UserFacade userFacade = new UserFacade();
 		   System.out.println(super.getCurrentUser().getPassworduser());
 	       int res = userFacade.delete(super.getCurrentUser());
 	       super.logout();
