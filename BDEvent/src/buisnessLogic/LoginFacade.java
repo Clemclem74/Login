@@ -14,18 +14,42 @@ public class LoginFacade {
 
 	User connectedUser;
 
+	AbstractDAOFactory adf;
+	
 	/**
 	 * 
 	 * @param username
 	 * @param password
 	 */
-	public LoginFacade(String username, String password) {
-		// TODO - implement LoginFacade.LoginFacade
+	public LoginFacade() {
+		AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 		
-		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
+	}
+	
+	private void register(String username,String lastname,String firstname,String emailuser, String passworduser,String phonenumberuser) {
 		
-		DAO<User> userDao = adf.getUserDAO();
-		
+		User obj = new User();
+
+        obj.setUsername(username);
+        obj.setFirstname(firstname);
+        obj.setLastname(lastname);
+        obj.setEmailuser(emailuser);
+        obj.setPassworduser(passworduser);
+        obj.setPhonenumberuser(phonenumberuser);
+        
+        OracleDAO<User> userDao = adf.getUserDAO();
+        
+        if(userDao.create(obj)) {
+        	System.out.println("User created");
+        }
+        else {
+        	System.out.println("Error while creating user");
+        }
+        
+	}
+	
+	private void login(String username, String password) {
+		OracleDAO<User> userDao = adf.getUserDAO();
 		User user = userDao.find(username);
 	
 		if(user.getPassworduser().equals(password)) {
@@ -37,6 +61,7 @@ public class LoginFacade {
 			System.out.println(user.getPassworduser() + " Email or Password Incorrect");
 		}
 	}
+	
 
 	private void gotoHomePage() {
 		Routing root = new Routing();

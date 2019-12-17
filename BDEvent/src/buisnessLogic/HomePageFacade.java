@@ -14,21 +14,7 @@ public class HomePageFacade {
 	 * @param password
 	 */
 	public HomePageFacade(String username, String password) {
-		// TODO - implement LoginFacade.LoginFacade
 		
-		AbstractDAOFactory adf = AbstractDAOFactory.getFactory(AbstractDAOFactory.DAO_FACTORY);
-		
-		DAO<User> userDao = adf.getUserDAO();
-		
-		User user = userDao.find(username);
-	
-		if(user.getPassworduser().equals(password)) {
-			System.out.println(user.getUsername() +" Connected");
-			this.ConnectedUser = user;
-		}
-		else {
-			System.out.println("Email or Password Incorrect");
-		}
 	}
 
 	public void sendError() {

@@ -1,10 +1,10 @@
 package dao;
 import java.sql.Connection;
 
-public abstract class DAO<T> {
+public abstract class OracleDAO<T> {
   protected Connection connect = null;
    
-  public DAO(Connection conn){
+  public OracleDAO(Connection conn){
     this.connect = conn;
   }
    
