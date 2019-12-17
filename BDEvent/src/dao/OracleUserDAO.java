@@ -54,22 +54,29 @@ public boolean update(int iduser, User obj) {
 	
 	int id = iduser;
 	
-	  String SQL_UPDATE = "Update USERS " + "SET USERNAME='" + obj.getUsername() + "',EMAILUSER='"
-			  + obj.getEmailuser() + "',PASSWORDUSER="
-					  +"'" + obj.getPassworduser() + "',FIRSTNAME="
-							  +"'" + obj.getFirstname() + "',LASTNAME="
-									  +"'" + obj.getLastname() + "',PHONENUMBERUSER="
-											  +"'" + obj.getPhonenumberuser() + "'"+" WHERE ID_USER="+id + ";";
-	  System.out.println(SQL_UPDATE);
-	  // auto close connection and preparedStatement
+	  
+	  
+	  
 	  try {
-		  
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
-		  Statement st = conn.createStatement();
-
-	      st.executeUpdate(SQL_UPDATE);
 		  
-		  conn.close();
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=? WHERE ID_USER = ? ");
+
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getUsername());
+			    ps.setString(2,obj.getEmailuser());
+			    ps.setString(3,obj.getPassworduser());
+			    ps.setString(4,obj.getFirstname());
+			    ps.setString(5,obj.getLastname());
+			    ps.setString(6,obj.getPhonenumberuser());
+			    ps.setInt(7,id);
+
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
 		  return true;
 
 	  } catch (SQLException e) {
