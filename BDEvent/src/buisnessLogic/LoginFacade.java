@@ -74,7 +74,18 @@ public class LoginFacade {
         }
 	}
 	
-	
+	public int delete(User user) {
+
+        OracleDAO<User> userDao = adf.getUserDAO();
+        if(userDao.delete(user)) {
+        	System.out.println("User deleted");
+        	return 1;
+        }
+        else {
+        	System.out.println("Error while deleting user");
+        	return -1;
+        }
+	}
 
 	public int login(String username, String password) {
 		OracleDAO<User> userDao = this.adf.getUserDAO();

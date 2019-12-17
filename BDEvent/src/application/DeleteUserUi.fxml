@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+
+<AnchorPane prefHeight="244.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeleteUserUI">
+   <children>
+      <Button fx:id="discardDeleteButton" layoutX="321.0" layoutY="151.0" mnemonicParsing="false" onAction="#discardDelete" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: red;" text="Discard Delete" />
+      <Button fx:id="deleteAccountButton" layoutX="102.0" layoutY="151.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="43.0" prefWidth="137.0" style="-fx-background-color: green;" text="Delete my account" />
+      <Text fill="RED" layoutX="102.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to definitely delete your account?" textAlignment="CENTER" wrappingWidth="341.083984375">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

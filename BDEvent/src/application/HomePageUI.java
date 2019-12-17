@@ -60,4 +60,9 @@ public class HomePageUI extends Routing implements Initializable {
 		   Routing root = new Routing();
 		   root.modifyUser();
 	   }
+	   
+	   public void deleteUser(ActionEvent event) {
+		   Routing root = new Routing();
+		   root.deleteUser();
+	   }
 }

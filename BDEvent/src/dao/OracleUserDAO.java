@@ -46,16 +46,32 @@ public boolean create(User obj) {
 	
 }
 
-public boolean delete(User obj) {
-  return false;
+public boolean delete(User user) {
+	int id = user.getId_user();
+	String SQL_DELETE = "DELETE from Users WHERE ID_USER='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
 }
+    
  
 public boolean update(int iduser, User obj) {
 	
 	int id = iduser;
-	
-	  
-	  
 	  
 	  try {
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
