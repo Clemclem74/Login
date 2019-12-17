@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import buisnessLogic.BDE;
 import buisnessLogic.User;
 
 public class OracleDAOFactory extends AbstractDAOFactory{
@@ -11,5 +12,9 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	  public OracleDAO<User> getUserDAO(){
 	    return new OracleUserDAO(conn);
 	  }
+	  
+	  public OracleDAO<BDE> getBDEDAO(){
+		    return new OracleBDEDAO(conn);
+		  }
 
 	}

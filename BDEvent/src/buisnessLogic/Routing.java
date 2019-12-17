@@ -122,5 +122,18 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void createBDE() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/CreateBDEUI.fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

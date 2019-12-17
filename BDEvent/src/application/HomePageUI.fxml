@@ -41,6 +41,7 @@
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
+                  <Button layoutX="22.0" layoutY="95.0" mnemonicParsing="false" onAction="#createBDE" text="+BDE" />
                </children>
             </AnchorPane>
          </children>

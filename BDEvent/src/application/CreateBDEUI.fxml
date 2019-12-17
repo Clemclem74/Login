@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateBDEUI">
+   <children>
+      <Button fx:id="createButton" layoutX="205.0" layoutY="335.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Create" />
+      <Text layoutX="177.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <TextField fx:id="schoolBDEField" layoutX="134.0" layoutY="248.0" prefHeight="34.0" prefWidth="255.0" promptText="School BDE" />
+      <Text layoutX="226.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="School BDE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="220.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name BDE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameBDEField" layoutX="134.0" layoutY="159.0" prefHeight="34.0" prefWidth="255.0" promptText="Name BDE" />
+   </children>
+</AnchorPane>
