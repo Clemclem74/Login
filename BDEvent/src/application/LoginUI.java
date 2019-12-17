@@ -37,6 +37,7 @@ public class LoginUI extends Routing implements Initializable {
 	   public void loginAction(ActionEvent event) {
 	       
 	       LoginFacade loginFacade = new LoginFacade();
+	       
 	       int res = loginFacade.login(emailField.getText(),passwordField.getText());
 	       if (res>0) {
 	    	   Routing root = new Routing();
