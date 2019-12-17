@@ -65,11 +65,13 @@ public class LoginFacade {
         obj.setPhonenumberuser(phonenumberuser);
         OracleDAO<User> userDao = adf.getUserDAO();
         if(userDao.update(idUser,obj)) {
-        	System.out.println("User created");
+        	System.out.println("User modified");
+        	this.connectedUser=obj;
+            sendUserRooter();
         	return 1;
         }
         else {
-        	System.out.println("Error while creating user");
+        	System.out.println("Error while modifing user");
         	return -1;
         }
 	}
@@ -90,17 +92,22 @@ public class LoginFacade {
 	public int login(String username, String password) {
 		OracleDAO<User> userDao = this.adf.getUserDAO();
 		User user = userDao.find(username);
-
-		if(user.getPassworduser().equals(password)) {
-			System.out.println(user.getUsername() +" Connected");
-			this.connectedUser = user;
-			sendUserRooter();
-			return 1;
+		if (user.getId_user()==0) {
+			System.out.println("user null");
+			return -1;
 		}
 		else {
-			//COMMENT JE FAIT ??
-			System.out.println(user.getPassworduser() + " Email or Password Incorrect");
-			return -1;
+			if(user.getPassworduser().equals(password)) {
+				System.out.println(user.getUsername() +" Connected");
+				this.connectedUser = user;
+				sendUserRooter();
+				return 1;
+			}
+			else {
+				//COMMENT JE FAIT ??
+				System.out.println(user.getPassworduser() + " Email or Password Incorrect");
+				return -1;
+			}
 		}
 	}
 
