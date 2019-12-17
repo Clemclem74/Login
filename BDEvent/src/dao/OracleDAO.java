@@ -15,6 +15,8 @@ public abstract class OracleDAO<T> {
   public abstract boolean delete(T obj);
 
   
+  public abstract boolean update(int i, T obj);
+  
   public abstract boolean update(T obj);
 
 

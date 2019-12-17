@@ -54,20 +54,17 @@ public class LoginFacade {
 	
 	
 	
-	public int update(String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
+	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
-
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
         obj.setFirstname(firstname);
         obj.setLastname(lastname);
         obj.setPhonenumberuser(phonenumberuser);
-
         OracleDAO<User> userDao = adf.getUserDAO();
-
-        if(userDao.create(obj)) {
+        if(userDao.update(idUser,obj)) {
         	System.out.println("User created");
         	return 1;
         }
