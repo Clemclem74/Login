@@ -20,6 +20,9 @@ public class LoginUI extends Routing implements Initializable {
 	   
 	   @FXML
 	   private PasswordField passwordField;
+	   
+	   @FXML
+	   private Label errorMessage;
 	  
 	   
 	   
@@ -32,6 +35,13 @@ public class LoginUI extends Routing implements Initializable {
 	   // When user click on myButton
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
+	       
+	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
+	       
+	   }
+	   
+	   public void wrongConnection() {
+		   this.errorMessage.setText("Wrong email or wrong Password");
 	       LoginFacade loginFacade = new LoginFacade();
 	       loginFacade.login(emailField.getText(),passwordField.getText());
 	   }	

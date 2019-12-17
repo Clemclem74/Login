@@ -27,6 +27,11 @@
             <Font size="43.0" />
          </font>
       </Text>
+      <Label fx:id="errorMessage" layoutX="200.0" layoutY="92.0" prefHeight="17.0" prefWidth="136.0" textAlignment="CENTER" textFill="#ff2d2d">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
       <Button fx:id="registerButton" layoutX="395.0" layoutY="325.0" mnemonicParsing="false" onAction="#registerAction" style="-fx-background-color: orange;" text="Register" />
    </children>
 </AnchorPane>

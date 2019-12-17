@@ -67,6 +67,16 @@ public class Routing {
 
 	}
 	
+//	public void display_error(String msg) {
+//		Parent root;
+//		try {
+//			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+//			Routing.stage.setScene(new Scene(root));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public void logout() {
 		Parent root;
 		try {
