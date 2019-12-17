@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
@@ -46,7 +46,7 @@ public class ModifyUserUI extends Routing implements Initializable {
 	   // When user click on myButton
 	   // this method will be called.
 	   public void saveAction(ActionEvent event) {
-		   LoginFacade userFacade = new LoginFacade();
+		   UserFacade userFacade = new UserFacade();
 		   System.out.println(super.getCurrentUser().getPassworduser());
 	       int res = userFacade.modify(super.getCurrentUser().getId_user(),usernameField.getText(),emailField.getText(),super.getCurrentUser().getPassworduser(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
 	       super.homePage();

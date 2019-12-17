@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LoginFacade {
+public class UserFacade {
 
 	User connectedUser;
 
@@ -23,7 +23,7 @@ public class LoginFacade {
 	 * @param password
 	 */
 
-	public LoginFacade() {
+	public UserFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
 

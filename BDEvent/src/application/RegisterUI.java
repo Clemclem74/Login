@@ -1,6 +1,6 @@
 package application;
 
-import buisnessLogic.LoginFacade;
+import buisnessLogic.UserFacade;
 import buisnessLogic.Routing;
 
 import java.net.URL;
@@ -41,7 +41,7 @@ public class RegisterUI extends Routing implements Initializable {
 	   // this method will be called.
 	   public void registerAction(ActionEvent event) {
 	       if (passwordField.getText().contentEquals(passwordField2.getText())) {
-		       LoginFacade userFacade = new LoginFacade();
+		       UserFacade userFacade = new UserFacade();
 		       userFacade.register(usernameField.getText(),emailField.getText(),passwordField.getText(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
 		       super.loginForm();
 	       }
