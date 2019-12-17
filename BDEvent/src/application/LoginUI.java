@@ -1,6 +1,8 @@
 package application;
 
 import buisnessLogic.LoginFacade;
+import buisnessLogic.Routing;
+
 import java.net.URL;
 import java.util.ResourceBundle;
  
@@ -9,8 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class LoginUI implements Initializable {
-	 @FXML
+public class LoginUI extends Routing implements Initializable {
+		@FXML
 	   private Button loginButton;
 	  
 	   @FXML
@@ -18,6 +20,9 @@ public class LoginUI implements Initializable {
 	   
 	   @FXML
 	   private PasswordField passwordField;
+	   
+	   @FXML
+	   private Label errorMessage;
 	  
 	   
 	   
@@ -31,7 +36,26 @@ public class LoginUI implements Initializable {
 	   // this method will be called.
 	   public void loginAction(ActionEvent event) {
 	       
-	       LoginFacade loginFacade = new LoginFacade(emailField.getText(),passwordField.getText());
-	       
+	       LoginFacade loginFacade = new LoginFacade();
+	       int res = loginFacade.login(emailField.getText(),passwordField.getText());
+	       if (res>0) {
+	    	   Routing root = new Routing();
+	    	   root.homePage();
+	       }
+	       else {
+	    	   this.passwordField.clear();
+	    	   this.errorMessage.setText("Wrong Password or Username");
+	       }
+	   }
+	   
+	   public void wrongConnection() {
+		   this.errorMessage.setText("Wrong email or wrong Password");
+	       LoginFacade loginFacade = new LoginFacade();
+	       loginFacade.login(emailField.getText(),passwordField.getText());
 	   }	
+	   
+	   public void registerAction(ActionEvent event) {
+		   Routing root = new Routing();
+		   root.goToRegister();
+	   }
 }

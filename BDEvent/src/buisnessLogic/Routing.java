@@ -52,9 +52,8 @@ public class Routing {
 		}
 	}
 
-	public void login_action(User user) {
+	public void homePage() {
 		Parent root;
-		Routing.setCurrentUser(user);
 		try {
 			root = FXMLLoader.load(getClass().getResource("/application/HomePageUi.fxml"));
 			Routing.stage.setScene(new Scene(root));
@@ -67,10 +66,45 @@ public class Routing {
 
 	}
 	
+	
+	public void modifyUser() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/ModifyUserUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+//	public void display_error(String msg) {
+//		Parent root;
+//		try {
+//			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+//			Routing.stage.setScene(new Scene(root));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	public void logout() {
 		Parent root;
 		try {
 			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void goToRegister() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/RegisterUi.fxml"));
 			Routing.stage.setScene(new Scene(root));
 	        Routing.stage.show();
 		} catch (IOException e) {

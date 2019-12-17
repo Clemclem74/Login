@@ -14,17 +14,18 @@ public OracleUserDAO(Connection conn) {
 }
 
 public boolean create(User obj) {
-  
-	int id = getLastId();
-	
-	
-	  String SQL_INSERT = "Insert into Users " + "Values (" + id +"'" + obj.getUsername() + "'"
-			  +"'" + obj.getLastname() + "'"
-					  +"'" + obj.getFirstname() + "'"
-							  +"'" + obj.getEmailuser() + "'"
-									  +"'" + obj.getPassworduser() + "'"
-											  +"'" + obj.getPhonenumberuser() + "'"+")";
+	System.out.println("Before");
+	int id = getLastId()+1;
+	System.out.println("Before");
 
+	
+	  String SQL_INSERT = "Insert into Users " + "Values (" + id +",'" + obj.getUsername() + "',"
+			  +"'" + obj.getEmailuser() + "',"
+					  +"'" + obj.getPassworduser() + "',"
+							  +"'" + obj.getFirstname() + "',"
+									  +"'" + obj.getLastname() + "',"
+											  +"'" + obj.getPhonenumberuser() + "'"+")";
+	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
 		  
@@ -56,7 +57,7 @@ public boolean update(User obj) {
 private int getLastId() {
 	
 	int id_user=0;
-	String SQL_SELECT = "Select max(id_user) from Users";
+	String SQL_SELECT = "Select MAX(ID_USER)from Users";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -64,11 +65,8 @@ private int getLastId() {
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
-	      
 	      while (resultSet.next()) {
-
-	          id_user = resultSet.getInt("ID_USER"); 
-
+	          id_user = resultSet.getInt("MAX(ID_USER)"); 
 	      }
 	      return id_user;
 

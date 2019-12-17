@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyUserUI">
+   <children>
+      <TextField fx:id="phoneNumberField" layoutX="139.0" layoutY="527.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
+      <Button fx:id="registerButton" layoutX="358.0" layoutY="94.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Text layoutX="210.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Text layoutX="248.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="emailField" layoutX="136.0" layoutY="432.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
+      <TextField fx:id="lastNameField" layoutX="134.0" layoutY="248.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
+      <Text layoutX="226.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="220.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="firstNameField" layoutX="134.0" layoutY="159.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
+      <Text layoutX="227.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="usernameField" layoutX="135.0" layoutY="338.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
+   </children>
+</AnchorPane>

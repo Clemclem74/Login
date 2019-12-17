@@ -55,4 +55,9 @@ public class HomePageUI extends Routing implements Initializable {
 		   Routing root = new Routing();
 		   root.logout();
 	   }
+	   
+	   public void modifyUser(ActionEvent event) {
+		   Routing root = new Routing();
+		   root.modifyUser();
+	   }
 }
