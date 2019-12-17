@@ -9,41 +9,41 @@
 
 <AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyUserUI">
    <children>
-      <TextField fx:id="phoneNumberField" layoutX="139.0" layoutY="527.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
-      <Button fx:id="saveButton" layoutX="358.0" layoutY="94.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
-      <Text layoutX="210.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+      <TextField fx:id="phoneNumberField" layoutX="142.0" layoutY="503.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
+      <Button fx:id="saveButton" layoutX="208.0" layoutY="554.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Text layoutX="213.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="177.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER">
+      <Text layoutX="118.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify your infos">
          <font>
             <Font size="43.0" />
          </font>
       </Text>
-      <Text layoutX="248.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text layoutX="251.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="emailField" layoutX="136.0" layoutY="432.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
-      <TextField fx:id="lastNameField" layoutX="134.0" layoutY="248.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
-      <Text layoutX="226.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
+      <TextField fx:id="emailField" layoutX="139.0" layoutY="408.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
+      <TextField fx:id="lastNameField" layoutX="137.0" layoutY="224.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
+      <Text layoutX="229.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="220.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+      <Text layoutX="223.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNameField" layoutX="134.0" layoutY="159.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
-      <Text layoutX="227.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <TextField fx:id="firstNameField" layoutX="137.0" layoutY="135.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
+      <Text layoutX="230.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" layoutX="135.0" layoutY="338.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
+      <TextField fx:id="usernameField" layoutX="138.0" layoutY="314.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
    </children>
 </AnchorPane>
