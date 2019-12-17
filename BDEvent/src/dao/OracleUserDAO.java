@@ -4,16 +4,45 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import buisnessLogic.User;
 
-public class UserDAO extends DAO<User> {
-public UserDAO(Connection conn) {
+public class OracleUserDAO extends OracleDAO<User> {
+public OracleUserDAO(Connection conn) {
   super(conn);
 }
 
 public boolean create(User obj) {
-  return false;
+  
+	int id = getLastId();
+	
+	
+	  String SQL_INSERT = "Insert into Users " + "Values (" + id +"'" + obj.getUsername() + "'"
+			  +"'" + obj.getLastname() + "'"
+					  +"'" + obj.getFirstname() + "'"
+							  +"'" + obj.getEmailuser() + "'"
+									  +"'" + obj.getPassworduser() + "'"
+											  +"'" + obj.getPhonenumberuser() + "'"+")";
+
+	  // auto close connection and preparedStatement
+	  try {
+		  
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Statement st = conn.createStatement();
+
+	      st.executeUpdate(SQL_INSERT);
+		  
+		  conn.close();
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
 }
 
 public boolean delete(User obj) {
@@ -23,6 +52,35 @@ public boolean delete(User obj) {
 public boolean update(User obj) {
   return false;
 }
+
+private int getLastId() {
+	
+	int id_user=0;
+	String SQL_SELECT = "Select max(id_user) from Users";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      
+	      while (resultSet.next()) {
+
+	          id_user = resultSet.getInt("ID_USER"); 
+
+	      }
+	      return id_user;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id_user;
+	
+}
+
  
 public User find(String id) {
   User obj = new User();      
@@ -57,6 +115,7 @@ public User find(String id) {
 
       }
       System.out.println(obj.getPassworduser());
+	  conn.close();
       return obj;
 
   } catch (SQLException e) {

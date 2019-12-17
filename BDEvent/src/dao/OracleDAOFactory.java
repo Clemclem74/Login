@@ -4,12 +4,12 @@ import java.sql.DriverManager;
 
 import buisnessLogic.User;
 
-public class DAOFactory extends AbstractDAOFactory{
+public class OracleDAOFactory extends AbstractDAOFactory{
 	
 	  protected static final Connection conn = null;
 
-	  public DAO<User> getUserDAO(){
-	    return new UserDAO(conn);
+	  public OracleDAO<User> getUserDAO(){
+	    return new OracleUserDAO(conn);
 	  }
 
 	}

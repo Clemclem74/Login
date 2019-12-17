@@ -2,7 +2,7 @@ package dao;
 
 public class XMLDAOFactory extends AbstractDAOFactory {
 	  
-	public DAO getUserDAO() {      
+	public OracleDAO getUserDAO() {      
 	    return null;
 	}
 	
