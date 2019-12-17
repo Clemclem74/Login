@@ -3,6 +3,17 @@ package buisnessLogic;
 
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.AlgorithmParameters;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
 
 import dao.*;
 import javafx.fxml.FXMLLoader;
@@ -29,13 +40,38 @@ public class LoginFacade {
 
 	}
 
+	public static String hash(String input) {
+		StringBuilder hash = new StringBuilder();
+
+		try {
+			MessageDigest sha = MessageDigest.getInstance("SHA-1");
+			byte[] hashedBytes = sha.digest(input.getBytes());
+			char[] digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+					'a', 'b', 'c', 'd', 'e', 'f' };
+			for (int idx = 0; idx < hashedBytes.length;   idx++) {
+				byte b = hashedBytes[idx];
+				hash.append(digits[(b & 0xf0) >> 4]);
+				hash.append(digits[b & 0x0f]);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			// handle error here.
+		}
+
+		return hash.toString();
+	}
+
+	
+
+
 	public int register(String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
-
+		String hashedpassword = hash(passworduser);
+		
+        
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
-        obj.setPassworduser(passworduser);
+        obj.setPassworduser(hashedpassword);
         obj.setFirstname(firstname);
         obj.setLastname(lastname);
         obj.setPhonenumberuser(phonenumberuser);
@@ -57,6 +93,10 @@ public class LoginFacade {
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
 		User obj = new User();
+
+		
+		
+		
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
@@ -79,18 +119,20 @@ public class LoginFacade {
 	public int login(String username, String password) {
 		OracleDAO<User> userDao = this.adf.getUserDAO();
 		User user = userDao.find(username);
-
-		if(user.getPassworduser().equals(password)) {
+		
+		System.out.println(hash(password));
+		System.out.println(user.getPassworduser());
+		if(user.getPassworduser().equals(hash(password))) {
 			System.out.println(user.getUsername() +" Connected");
 			this.connectedUser = user;
 			sendUserRooter();
 			return 1;
 		}
 		else {
-			//COMMENT JE FAIT ??
-			System.out.println(user.getPassworduser() + " Email or Password Incorrect");
+			System.out.println(" Email or Password Incorrect");
 			return -1;
 		}
+
 	}
 
 
