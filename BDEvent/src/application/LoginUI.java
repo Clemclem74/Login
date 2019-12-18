@@ -49,12 +49,16 @@ public class LoginUI extends Routing implements Initializable {
 	       }
 	   }
 	   
+	   //Display an error message when the informations don't allow the user to connect
+	   //The email stay on the field.
 	   public void wrongConnection() {
 		   this.errorMessage.setText("Wrong email or wrong Password");
 	       UserFacade loginFacade = new UserFacade();
 	       loginFacade.login(emailField.getText(),passwordField.getText());
 	   }	
 	   
+	   // When user click on Register
+	   // this method will be called. And redirect the user to the register scene.
 	   public void registerAction(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.goToRegister();

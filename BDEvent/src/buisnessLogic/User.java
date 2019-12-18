@@ -10,6 +10,7 @@ public class User {
 	private String passworduser;
 	private String phonenumberuser;
 	
+	//User constructor
 	public User(){
 		this.id_user=0;
 		this.username="";

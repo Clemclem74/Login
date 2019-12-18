@@ -27,13 +27,14 @@ public class DeleteUserUI extends Routing implements Initializable {
 	       // TODO (don't really need to do anything here).
 	   }
 	 
-	   // When user click on myButton
+	   // When user click on discardDeleteButton
 	   // this method will be called.
 	   public void discardDelete(ActionEvent event) {
 	       super.homePage();
 	   }
 	   
-	
+	   // When user click on deleteAccountButton
+	   // this method will be called.
 	   public void deleteAccount(ActionEvent event) {
 		   UserFacade userFacade = new UserFacade();
 		   System.out.println(super.getCurrentUser().getPassworduser());

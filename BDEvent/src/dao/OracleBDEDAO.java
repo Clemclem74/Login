@@ -46,7 +46,7 @@ public boolean delete(BDE obj) {
  
 public boolean update(int idBde, BDE obj) {
 	
-	int id = iduser;
+	int id = idBde;
 	
 	  
 	  

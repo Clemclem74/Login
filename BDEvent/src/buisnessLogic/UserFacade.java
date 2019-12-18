@@ -37,9 +37,9 @@ public class UserFacade {
 	public UserFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
-
 	}
 
+	//Hashage Function for hash the password when a user register.
 	public static String hash(String input) {
 		StringBuilder hash = new StringBuilder();
 

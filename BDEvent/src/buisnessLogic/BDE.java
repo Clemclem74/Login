@@ -10,8 +10,6 @@ public class BDE {
 	private Member[] listOfMembers;
 
 	
-	
-	
 	public User getCreator() {
 		return creator;
 	}

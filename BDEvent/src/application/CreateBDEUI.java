@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 public class CreateBDEUI extends Routing implements Initializable {
+	//Declaration of component of the fxml file.
 		@FXML
 		private Button createButton;
 		@FXML
