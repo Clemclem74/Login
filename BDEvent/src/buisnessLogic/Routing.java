@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class Routing {
 
 	private static Stage stage;
+	private static Stage confirmMessage;
 	private static User currentUser;
 	
 	
@@ -22,6 +23,14 @@ public class Routing {
 		Routing.stage = stage;
 	}
 
+	public static Stage getConfirmMessage() {
+		return confirmMessage;
+	}
+
+	public static void setConfirmMessage(Stage stage) {
+		Routing.confirmMessage = stage;
+	}
+	
 	public static User getCurrentUser() {
 		return currentUser;
 	}
@@ -134,6 +143,24 @@ public class Routing {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void confirmBDEMessage() {
+		Parent root;
+		
+		try {
+			Routing.confirmMessage=new Stage();
+			root = FXMLLoader.load(getClass().getResource("/application/ConfirmMessageBDE.fxml"));
+			Routing.confirmMessage.setScene(new Scene(root));
+	        Routing.confirmMessage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void hideConfirmMessage() {
+		Routing.confirmMessage.hide();
 	}
 
 }

@@ -1,13 +1,16 @@
 package buisnessLogic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BDE {
 
 	private int idBDE;
 	private String nameBDE;
 	private String schoolBDE;
 	private User creator; 
-	private Member[] listOfMemberAppliance;
-	private Member[] listOfMembers;
+	private List<Member> listOfMemberAppliance;
+	private List<Member> listOfMembers = new ArrayList();
 
 	
 	
@@ -48,11 +51,11 @@ public class BDE {
 		this.schoolBDE = schoolBDE;
 	}
 
-	public Member[] getListOfMemberAppliance() {
+	public List<Member> getListOfMemberAppliance() {
 		return this.listOfMemberAppliance;
 	}
 
-	public Member[] getListOfMembers() {
+	public List<Member> getListOfMembers() {
 		return this.listOfMembers;
 	}
 
@@ -78,6 +81,12 @@ public class BDE {
 	 * 
 	 * @param Member
 	 */
+	
+	public void addMember(Member member) {
+		this.listOfMembers.add(member);
+	}
+	
+	
 	public void deleteMember(int Member) {
 		// TODO - implement BDE.deleteMember
 		throw new UnsupportedOperationException();

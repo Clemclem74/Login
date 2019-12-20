@@ -9,6 +9,7 @@ public class User {
 	private String emailuser;
 	private String passworduser;
 	private String phonenumberuser;
+	private int currentBDE;
 	
 	public User(){
 		this.id_user=0;
@@ -17,8 +18,23 @@ public class User {
 		this.firstname="";
 		this.emailuser="";
 		this.passworduser="";
-		this.phonenumberuser="";	
+		this.phonenumberuser="";
+		this.currentBDE=-1;
 	}
+
+	
+	
+	public int getCurrentBDE() {
+		return currentBDE;
+	}
+
+
+
+	public void setCurrentBDE(int currentBDE) {
+		this.currentBDE = currentBDE;
+	}
+
+
 
 	public int getId_user() {
 		return id_user;
@@ -74,6 +90,15 @@ public class User {
 
 	public void setPhonenumberuser(String phonenumberuser) {
 		this.phonenumberuser = phonenumberuser;
+	}
+	
+	public boolean isPartOfBDE() {
+		if (this.currentBDE == -1) {
+			return false;
+		}
+		else {
+			return true;
+		}	
 	}
 	
 }

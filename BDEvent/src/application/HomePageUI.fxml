@@ -24,9 +24,9 @@
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_buton" layoutX="25.0" layoutY="272.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="162.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="215.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="25.0" layoutY="293.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="182.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="240.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -41,7 +41,10 @@
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="22.0" layoutY="95.0" mnemonicParsing="false" onAction="#createBDE" text="+BDE" />
+                  <Button fx:id="createBDE" layoutX="40.0" layoutY="144.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
+                  <Button fx:id="joinBDE" layoutX="51.0" layoutY="210.0" mnemonicParsing="false" onAction="#createBDE" text="Join BDE" />
+                  <Button fx:id="showBDE" layoutX="57.0" layoutY="124.0" mnemonicParsing="false" text="MyBDE" />
+                  <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
                </children>
             </AnchorPane>
          </children>

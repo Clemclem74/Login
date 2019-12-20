@@ -9,7 +9,7 @@ public abstract class OracleDAO<T> {
   }
    
 
-  public abstract boolean create(T obj);
+  public abstract int create(T obj);
 
 
   public abstract boolean delete(T obj);

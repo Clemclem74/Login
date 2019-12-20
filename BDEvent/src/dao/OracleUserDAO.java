@@ -78,7 +78,7 @@ public boolean update(int iduser, User obj) {
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=? WHERE ID_USER = ? ");
+			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
 
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getUsername());
@@ -87,7 +87,8 @@ public boolean update(int iduser, User obj) {
 			    ps.setString(4,obj.getFirstname());
 			    ps.setString(5,obj.getLastname());
 			    ps.setString(6,obj.getPhonenumberuser());
-			    ps.setInt(7,id);
+			    ps.setInt(7, obj.getCurrentBDE());
+			    ps.setInt(8,id);
 
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
@@ -151,6 +152,7 @@ public User find(String id) {
           String lastname = resultSet.getString("LASTNAME");
           String firstname = resultSet.getString("FIRSTNAME");
           String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
+          int idbde = resultSet.getInt("ID_BDE");
 
           obj.setId_user(id_user);
           obj.setUsername(username);
@@ -159,6 +161,7 @@ public User find(String id) {
           obj.setEmailuser(emailuser);
           obj.setPassworduser(passworduser);
           obj.setPhonenumberuser(phonenumberuser);
+          obj.setCurrentBDE(idbde);
           
 
       }

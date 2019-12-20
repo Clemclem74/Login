@@ -13,30 +13,49 @@ public OracleBDEDAO(Connection conn) {
   super(conn);
 }
 
-public boolean create(BDE obj) {
+public int create(BDE obj) {
 	int id = getLastId()+1;
 	
 	  String SQL_INSERT = "Insert into BDE " + "Values (" + id +",'" + obj.getCreator().getId_user() + "',"
 			  +"'" + obj.getNameBDE() + "',"
 					  +"'" + obj.getSchoolBDE() + "'"+")";
 	  System.out.println(SQL_INSERT);
+	  
 	  // auto close connection and preparedStatement
 	  try {
 		  
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
 		  Statement st = conn.createStatement();
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
 
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getCreator().getUsername());
+			    ps.setString(2,obj.getCreator().getEmailuser());
+			    ps.setString(3,obj.getCreator().getPassworduser());
+			    ps.setString(4,obj.getCreator().getFirstname());
+			    ps.setString(5,obj.getCreator().getLastname());
+			    ps.setString(6,obj.getCreator().getPhonenumberuser());
+			    ps.setInt(7, obj.getIdBDE());
+			    ps.setInt(8,obj.getCreator().getId_user());
+
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+	  
+		  
+		  
 	      st.executeUpdate(SQL_INSERT);
 		  
 		  conn.close();
-		  return true;
+		  return id;
 
 	  } catch (SQLException e) {
 	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 	  } catch (Exception e) {
 	      e.printStackTrace();
 	  }
-	return false;
+	return -1;
 	
 }
 
@@ -47,10 +66,7 @@ public boolean delete(BDE obj) {
 public boolean update(int idBde, BDE obj) {
 	
 	int id = iduser;
-	
-	  
-	  
-	  
+
 	  try {
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
 		  
@@ -84,8 +100,8 @@ public boolean update(int idBde, BDE obj) {
 
 private int getLastId() {
 	
-	int id_user=0;
-	String SQL_SELECT = "Select MAX(ID_USER)from Users";
+	int id_bde=0;
+	String SQL_SELECT = "Select MAX(ID_BDE)from BDE";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -94,16 +110,16 @@ private int getLastId() {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      while (resultSet.next()) {
-	          id_user = resultSet.getInt("MAX(ID_USER)"); 
+	          id_bde = resultSet.getInt("MAX(ID_BDE)"); 
 	      }
-	      return id_user;
+	      return id_bde;
 
 	  } catch (SQLException e) {
 	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 	  } catch (Exception e) {
 	      e.printStackTrace();
 	  }
-	  return id_user;
+	  return id_bde;
 	
 }
 

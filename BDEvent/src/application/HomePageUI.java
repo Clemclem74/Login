@@ -18,7 +18,15 @@ public class HomePageUI extends Routing implements Initializable {
 	 @FXML
 	 private Button communication_button;
 	 @FXML
+	 private Button quitBDEbutton;
+	 @FXML
 	 private Button events_button;
+	 @FXML
+	 private Button createBDE;
+	 @FXML
+	 private Button showBDE;
+	 @FXML
+	 private Button joinBDE;
 	 @FXML
 	 private Label username_text;
 	 @FXML
@@ -36,20 +44,24 @@ public class HomePageUI extends Routing implements Initializable {
 		  this.email_text.setText(user.getEmailuser());
 	      this.phone_number_text.setText(user.getPhonenumberuser());
 		  this.name_text.setText(user.getFirstname() +" "+ user.getLastname());
+		  if (super.getCurrentUser().isPartOfBDE()) {
+			  createBDE.setVisible(false);
+			  joinBDE.setVisible(false);
+		  }
+		  else {
+			  showBDE.setVisible(false);
+			  fees_button.setVisible(false);
+			  events_button.setVisible(false);
+			  quitBDEbutton.setVisible(false);
+			  communication_button.setVisible(false);
+			  
+		  }
 	       // TODO (don't really need to do anything here).
 	   }
 	 
 	   // When user click on myButton
 	   // this method will be called.S
-	   public void HomePageAction(ActionEvent event) {
-//		  User user=super.getCurrentUser();
-//		  System.out.println("Email : " + user.getEmailuser());
-//	      this.username_text.setText(user.getUsername());
-//		  this.email_text.setText(user.getEmailuser());
-//	      this.phone_number_text.setText(user.getPhonenumberuser());
-//		  this.name_text.setText(user.getFirstname() +" "+ user.getLastname());
-	   }
-	   
+	  
 	   public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
 		   Routing root = new Routing();
@@ -69,5 +81,11 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void createBDE(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.createBDE();
+	   }
+	   
+	   public void quitBDE(ActionEvent event) {
+		   UserFacade userfacade = new UserFacade();
+		   userfacade.setBDEnull(super.getCurrentUser());
+		   super.homePage();
 	   }
 }

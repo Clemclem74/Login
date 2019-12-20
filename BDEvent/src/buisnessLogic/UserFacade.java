@@ -75,6 +75,7 @@ public class UserFacade {
         obj.setFirstname(firstname);
         obj.setLastname(lastname);
         obj.setPhonenumberuser(phonenumberuser);
+        obj.setCurrentBDE(-1);
 
         OracleDAO<User> userDao = adf.getUserDAO();
 
@@ -90,19 +91,15 @@ public class UserFacade {
 
 
 
-	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
-
+	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser,int idBDE) {
 		User obj = new User();
-
-
-
-
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
         obj.setFirstname(firstname);
         obj.setLastname(lastname);
         obj.setPhonenumberuser(phonenumberuser);
+        obj.setCurrentBDE(idBDE);
         OracleDAO<User> userDao = adf.getUserDAO();
         if(userDao.update(idUser,obj)) {
         	System.out.println("User modified");
@@ -163,6 +160,12 @@ public class UserFacade {
 		// TODO - implement LoginFacade.sendError
 		throw new UnsupportedOperationException();
 	}
+	
+	public void setBDEnull(User user) {
+		modify(user.getId_user(),user.getUsername(),user.getEmailuser(),user.getPassworduser(),user.getFirstname(), user.getLastname(),user.getPhonenumberuser(),-1);
+	}
+	
+	
 
 	/**
 	 *

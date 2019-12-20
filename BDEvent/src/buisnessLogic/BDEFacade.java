@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 
 public class BDEFacade {
 
-	User connectedUser;
-
-
 	AbstractDAOFactory adf;
 
 	/**
@@ -36,10 +33,11 @@ public class BDEFacade {
 		obj.setSchoolBDE(schoolBDE);
         obj.setCreator(current_user);
         OracleDAO<BDE> bdeDao = adf.getBDEDAO();
-
-        if(bdeDao.create(obj)) {
+        int res = bdeDao.create(obj);
+        if(res>=0) {
         	System.out.println(nameBDE + schoolBDE + " created");
-        	return 1;
+        	current_user.setCurrentBDE(obj.getIdBDE());
+        	return res;
         }
         else {
         	System.out.println("Error while creating BDE");
