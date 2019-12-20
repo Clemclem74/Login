@@ -48,3 +48,8 @@ Insert into SYSTEM.BDE (ID_BDE,IDCREATOR,NAMEBDE,SCHOOLBDE) values ('2','1','BDE
 --------------------------------------------------------
 
   ALTER TABLE "SYSTEM"."BDE" MODIFY ("IDCREATOR" NOT NULL ENABLE);
+  
+--------------------------------------------------------
+
+ALTER TABLE USERS MODIFY (PASSWORDUSER VARCHAR2(50 BYTE));
+ALTER TABLE USERS MODIFY (EMAILUSER VARCHAR2(50 BYTE));

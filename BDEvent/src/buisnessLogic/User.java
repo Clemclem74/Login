@@ -11,6 +11,7 @@ public class User {
 	private String phonenumberuser;
 	private int currentBDE;
 	
+	//User constructor
 	public User(){
 		this.id_user=0;
 		this.username="";

@@ -61,23 +61,43 @@ public class HomePageUI extends Routing implements Initializable {
 	 
 	   // When user click on myButton
 	   // this method will be called.S
+<<<<<<< HEAD
 	  
+=======
+	   public void HomePageAction(ActionEvent event) {
+//		  User user=super.getCurrentUser();
+//		  System.out.println("Email : " + user.getEmailuser());
+//	      this.username_text.setText(user.getUsername());
+//		  this.email_text.setText(user.getEmailuser());
+//	      this.phone_number_text.setText(user.getPhonenumberuser());
+//		  this.name_text.setText(user.getFirstname() +" "+ user.getLastname());
+	   }
+	   
+	   // When user click on logoutButton
+	   // this method will be called.
+>>>>>>> origin/master
 	   public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
 		   Routing root = new Routing();
 		   root.logout();
 	   }
 	   
+	   // When user click on modifyUserButton
+	   // this method will be called.
 	   public void modifyUser(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.modifyUser();
 	   }
 	   
+	   // When user click on deleteAccountButton
+	   // this method will be called.
 	   public void deleteUser(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.deleteUser();
 	   }
 	   
+	   // When user click on createBdeButton
+	   // this method will be called.
 	   public void createBDE(ActionEvent event) {
 		   Routing root = new Routing();
 		   root.createBDE();

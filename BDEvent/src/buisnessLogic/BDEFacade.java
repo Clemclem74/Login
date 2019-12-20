@@ -22,8 +22,6 @@ public class BDEFacade {
 
 	public BDEFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
-
-
 	}
 
 	public int create(User current_user , String nameBDE, String schoolBDE) {

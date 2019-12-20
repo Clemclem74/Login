@@ -13,8 +13,6 @@ public class BDE {
 	private List<Member> listOfMembers = new ArrayList();
 
 	
-	
-	
 	public User getCreator() {
 		return creator;
 	}

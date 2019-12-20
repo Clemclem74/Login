@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	@Override
+	
+	
     public void start(Stage primaryStage) {
         try {
             // Read file fxml and draw interface.

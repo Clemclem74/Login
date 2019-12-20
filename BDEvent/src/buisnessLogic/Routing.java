@@ -39,6 +39,7 @@ public class Routing {
 		Routing.currentUser = currentUser;
 	}
 
+	//Function which change the current stage with the stage enter in parameters
 	public Routing(Stage primaryStage) {
 		Routing.stage=primaryStage;
 		// TODO Auto-generated constructor stub
@@ -48,6 +49,7 @@ public class Routing {
 		// TODO Auto-generated constructor stub
 	}
 
+		//change the scene with the LoginUI scene
 	public void loginForm() {
 		// TODO - implement Routing.loginForm
 		Parent root;
@@ -60,7 +62,8 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//change the scene with the homePageUI scene
 	public void homePage() {
 		Parent root;
 		try {
@@ -75,7 +78,7 @@ public class Routing {
 
 	}
 	
-	
+	//change the scene with the ModifyUserUI scene
 	public void modifyUser() {
 		Parent root;
 		try {
@@ -87,6 +90,7 @@ public class Routing {
 		}
 	}
 	
+	//change the scene with the deleteUserUI scene
 	public void deleteUser() {
 		Parent root;
 		try {
@@ -97,17 +101,8 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
-	
-//	public void display_error(String msg) {
-//		Parent root;
-//		try {
-//			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
-//			Routing.stage.setScene(new Scene(root));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
+
+	//change the scene with the LoginUI scene
 	public void logout() {
 		Parent root;
 		try {
@@ -120,6 +115,7 @@ public class Routing {
 		}
 	}
 	
+	//change the scene with the RegisterUI scene
 	public void goToRegister() {
 		Parent root;
 		try {
@@ -132,7 +128,7 @@ public class Routing {
 		}
 	}
 	
-	
+	//change the scene with the CreateBDEUI scene
 	public void createBDE() {
 		Parent root;
 		try {

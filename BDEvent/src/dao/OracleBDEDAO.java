@@ -15,15 +15,15 @@ public OracleBDEDAO(Connection conn) {
 
 public int create(BDE obj) {
 	int id = getLastId()+1;
-	
+
 	  String SQL_INSERT = "Insert into BDE " + "Values (" + id +",'" + obj.getCreator().getId_user() + "',"
 			  +"'" + obj.getNameBDE() + "',"
 					  +"'" + obj.getSchoolBDE() + "'"+")";
 	  System.out.println(SQL_INSERT);
-	  
+
 	  // auto close connection and preparedStatement
 	  try {
-		  
+
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
 		  Statement st = conn.createStatement();
 		  PreparedStatement ps = conn.prepareStatement(
@@ -42,11 +42,11 @@ public int create(BDE obj) {
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
 			    ps.close();
-	  
-		  
-		  
+
+
+
 	      st.executeUpdate(SQL_INSERT);
-		  
+
 		  conn.close();
 		  return id;
 
@@ -56,21 +56,24 @@ public int create(BDE obj) {
 	      e.printStackTrace();
 	  }
 	return -1;
-	
+
 }
 
 public boolean delete(BDE obj) {
   return false;
 }
- 
+
 public boolean update(int idBde, BDE obj) {
-	
-	int id = iduser;
+
+	int id = idBde;
+
+
+
 
 	  try {
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
-		  
-		  
+
+
 		  PreparedStatement ps = conn.prepareStatement(
 			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=? WHERE ID_USER = ? ");
 
@@ -86,7 +89,7 @@ public boolean update(int idBde, BDE obj) {
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
 			    ps.close();
-		  
+
 		  return true;
 
 	  } catch (SQLException e) {
@@ -95,11 +98,11 @@ public boolean update(int idBde, BDE obj) {
 	      e.printStackTrace();
 	  }
 	return false;
-	
+
 }
 
 private int getLastId() {
-	
+
 	int id_bde=0;
 	String SQL_SELECT = "Select MAX(ID_BDE)from BDE";
 
@@ -110,7 +113,7 @@ private int getLastId() {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      while (resultSet.next()) {
-	          id_bde = resultSet.getInt("MAX(ID_BDE)"); 
+	          id_bde = resultSet.getInt("MAX(ID_BDE)");
 	      }
 	      return id_bde;
 
@@ -120,13 +123,13 @@ private int getLastId() {
 	      e.printStackTrace();
 	  }
 	  return id_bde;
-	
+
 }
 
- 
+
 public BDE find(String id) {
-  BDE obj = new BDE();      
-    
+  BDE obj = new BDE();
+
   String SQL_SELECT = "Select * from Users where emailuser='"+id+"'";
 
   // auto close connection and preparedStatement
@@ -135,7 +138,7 @@ public BDE find(String id) {
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
-      
+
       while (resultSet.next()) {
 
           int id_user = resultSet.getInt("ID_USER");
@@ -153,7 +156,7 @@ public BDE find(String id) {
           obj.setEmailuser(emailuser);
           obj.setPassworduser(passworduser);
           obj.setPhonenumberuser(phonenumberuser);
-          
+
 
       }
       System.out.println(obj.getPassworduser());
