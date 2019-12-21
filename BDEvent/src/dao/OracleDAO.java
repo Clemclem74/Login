@@ -21,4 +21,6 @@ public abstract class OracleDAO<T> {
 
 
   public abstract T find(String id);
+  
+  public abstract T findById(int id);
 }

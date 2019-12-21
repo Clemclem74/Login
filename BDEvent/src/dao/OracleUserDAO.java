@@ -13,7 +13,7 @@ public OracleUserDAO(Connection conn) {
   super(conn);
 }
 
-public boolean create(User obj) {
+public int create(User obj) {
 	System.out.println("Before");
 	int id = getLastId()+1;
 	System.out.println("Before");
@@ -35,14 +35,14 @@ public boolean create(User obj) {
 	      st.executeUpdate(SQL_INSERT);
 		  
 		  conn.close();
-		  return true;
+		  return 1;
 
 	  } catch (SQLException e) {
 	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 	  } catch (Exception e) {
 	      e.printStackTrace();
 	  }
-	return false;
+	return -1;
 	
 }
 
@@ -131,10 +131,10 @@ private int getLastId() {
 }
 
  
-public User find(String id) {
+public User find(String email) {
   User obj = new User();      
     
-  String SQL_SELECT = "Select * from Users where emailuser='"+id+"'";
+  String SQL_SELECT = "Select * from Users where emailuser='"+email+"'";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -175,6 +175,52 @@ public User find(String id) {
   }
 return obj;
 }
+
+
+public User findById(int id) {
+	  User obj = new User();      
+	    
+	  String SQL_SELECT = "Select * from Users where ID_USER='"+id+"'";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      
+	      while (resultSet.next()) {
+
+	          int id_user = resultSet.getInt("ID_USER");
+	          String username = resultSet.getString("USERNAME");
+	          String emailuser = resultSet.getString("EMAILUSER");
+	          String passworduser = resultSet.getString("PASSWORDUSER");
+	          String lastname = resultSet.getString("LASTNAME");
+	          String firstname = resultSet.getString("FIRSTNAME");
+	          String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
+	          int idbde = resultSet.getInt("ID_BDE");
+
+	          obj.setId_user(id_user);
+	          obj.setUsername(username);
+	          obj.setFirstname(firstname);
+	          obj.setLastname(lastname);
+	          obj.setEmailuser(emailuser);
+	          obj.setPassworduser(passworduser);
+	          obj.setPhonenumberuser(phonenumberuser);
+	          obj.setCurrentBDE(idbde);
+	          
+
+	      }
+		  conn.close();
+	      return obj;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return obj;
+	}
 
 @Override
 public boolean update(User obj) {

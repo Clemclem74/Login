@@ -79,7 +79,7 @@ public class UserFacade {
 
         OracleDAO<User> userDao = adf.getUserDAO();
 
-        if(userDao.create(obj)) {
+        if(userDao.create(obj)>=0) {
         	System.out.println("User created");
         	return 1;
         }
@@ -90,6 +90,23 @@ public class UserFacade {
 	}
 
 
+	
+	public int join(User user, int idbde) {
+		OracleDAO<User> userDao = adf.getUserDAO();
+		user.setCurrentBDE(idbde);
+		if(userDao.update(user.getId_user(),user)) {
+        	System.out.println("User modified");
+        	this.connectedUser=user;
+            sendUserRooter();
+        	return 1;
+        }
+        else {
+        	System.out.println("Error while modifing user");
+        	return -1;
+        }
+	}
+	
+	
 
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser,int idBDE) {
 		User obj = new User();
@@ -146,7 +163,19 @@ public class UserFacade {
 				return -1;
 			}
 		}
+	}
 
+	
+	public User findById(int iduser) {
+		OracleDAO<User> userDao = this.adf.getUserDAO();
+		User user = userDao.findById(iduser);
+		if (user.getId_user()==0) {
+			System.out.println("user null facade");
+			return null;
+		}
+		else {
+			return user;
+		}
 	}
 
 

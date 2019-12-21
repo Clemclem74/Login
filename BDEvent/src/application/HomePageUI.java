@@ -1,6 +1,8 @@
 package application;
 
 import buisnessLogic.UserFacade;
+import buisnessLogic.BDE;
+import buisnessLogic.BDEFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
@@ -35,7 +37,11 @@ public class HomePageUI extends Routing implements Initializable {
 	 private Label phone_number_text;
 	 @FXML
 	 private Label name_text;
-
+	 @FXML
+	 private Label noBDE;
+	 @FXML
+	 private Label BDELabel;
+	 
 
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +53,12 @@ public class HomePageUI extends Routing implements Initializable {
 		  if (super.getCurrentUser().isPartOfBDE()) {
 			  createBDE.setVisible(false);
 			  joinBDE.setVisible(false);
+			  noBDE.setVisible(false);
+			  BDEFacade bdefacade = new BDEFacade();
+			  BDE bdeuser = bdefacade.findById(user.getCurrentBDE());
+			  System.out.println(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
+			  BDELabel.setText(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
+
 		  }
 		  else {
 			  showBDE.setVisible(false);
@@ -54,6 +66,7 @@ public class HomePageUI extends Routing implements Initializable {
 			  events_button.setVisible(false);
 			  quitBDEbutton.setVisible(false);
 			  communication_button.setVisible(false);
+			  BDELabel.setVisible(false);
 
 		  }
 	       // TODO (don't really need to do anything here).
@@ -93,4 +106,11 @@ public class HomePageUI extends Routing implements Initializable {
 		   userfacade.setBDEnull(super.getCurrentUser());
 		   super.homePage();
 	   }
+	   
+	   public void joinBDE(ActionEvent event) {
+    	   super.joinBDE();
+	    	   //this.idBDELabel.setText("8");
+	   }
+	       
+   
 }

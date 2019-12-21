@@ -155,6 +155,20 @@ public class Routing {
 		}
 	}
 	
+	public void joinBDE() {
+		Parent root;
+		
+		try {
+			Routing.confirmMessage=new Stage();
+			root = FXMLLoader.load(getClass().getResource("/application/JoinBDE.fxml"));
+			Routing.confirmMessage.setScene(new Scene(root));
+	        Routing.confirmMessage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void hideConfirmMessage() {
 		Routing.confirmMessage.hide();
 	}

@@ -44,6 +44,11 @@ public class BDEFacade {
 	}
 	
 	
+
+	
+	
+	
+	
 	
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
 
@@ -67,46 +72,32 @@ public class BDEFacade {
         }
 	}
 	
-	public int delete(User user) {
+	public int delete(BDE bde) {
 
-        OracleDAO<User> userDao = adf.getUserDAO();
-        if(userDao.delete(user)) {
-        	System.out.println("User deleted");
+        OracleDAO<User> bdeDao = adf.getBDEDAO();
+        if(bdeDao.delete(bde)) {
+        	System.out.println("BDE deleted");
         	return 1;
         }
         else {
-        	System.out.println("Error while deleting user");
+        	System.out.println("Error while deleting BDE");
         	return -1;
         }
 	}
 
-	public int login(String username, String password) {
-		OracleDAO<User> userDao = this.adf.getUserDAO();
-		User user = userDao.find(username);
-		if (user.getId_user()==0) {
-			System.out.println("user null");
-			return -1;
+	public BDE findById(int idBDE) {
+		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
+		BDE bde = bdeDao.findById(idBDE);
+		if (bde.getIdBDE()==0) {
+			System.out.println("BDE null");
+			return null;
 		}
 		else {
-			if(user.getPassworduser().equals(password)) {
-				System.out.println(user.getUsername() +" Connected");
-				this.connectedUser = user;
-				sendUserRooter();
-				return 1;
-			}
-			else {
-				//COMMENT JE FAIT ??
-				System.out.println(user.getPassworduser() + " Email or Password Incorrect");
-				return -1;
-			}
+			return bde;
 		}
 	}
 
 
-
-	private void sendUserRooter() {
-		Routing.setCurrentUser(this.connectedUser);
-	}
 
 
 	public void sendError() {

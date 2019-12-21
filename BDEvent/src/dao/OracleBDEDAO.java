@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import buisnessLogic.BDE;
+import buisnessLogic.User;
+import buisnessLogic.UserFacade;
 
 public class OracleBDEDAO extends OracleDAO<BDE> {
 public OracleBDEDAO(Connection conn) {
@@ -67,9 +69,6 @@ public boolean update(int idBde, BDE obj) {
 
 	int id = idBde;
 
-
-
-
 	  try {
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
 
@@ -127,10 +126,10 @@ private int getLastId() {
 }
 
 
-public BDE find(String id) {
+public BDE findById(int id) {
   BDE obj = new BDE();
 
-  String SQL_SELECT = "Select * from Users where emailuser='"+id+"'";
+  String SQL_SELECT = "Select * from BDE where ID_BDE='"+id+"'";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -138,28 +137,20 @@ public BDE find(String id) {
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
-
+      UserFacade userfacade = new UserFacade();
+      
       while (resultSet.next()) {
 
-          int id_user = resultSet.getInt("ID_USER");
-          String username = resultSet.getString("USERNAME");
-          String emailuser = resultSet.getString("EMAILUSER");
-          String passworduser = resultSet.getString("PASSWORDUSER");
-          String lastname = resultSet.getString("LASTNAME");
-          String firstname = resultSet.getString("FIRSTNAME");
-          String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
+          int id_BDE = resultSet.getInt("ID_BDE");
+          User creator = userfacade.findById(Integer.parseInt(resultSet.getString("IDCREATOR")));
+          String nameBDE = resultSet.getString("NAMEBDE");
+          String schoolBDE = resultSet.getString("SCHOOLBDE");
 
-          obj.setId_user(id_user);
-          obj.setUsername(username);
-          obj.setFirstname(firstname);
-          obj.setLastname(lastname);
-          obj.setEmailuser(emailuser);
-          obj.setPassworduser(passworduser);
-          obj.setPhonenumberuser(phonenumberuser);
-
-
+          obj.setIdBDE(id_BDE);
+          obj.setCreator(creator);
+          obj.setNameBDE(nameBDE);
+          obj.setSchoolBDE(schoolBDE);
       }
-      System.out.println(obj.getPassworduser());
 	  conn.close();
       return obj;
 

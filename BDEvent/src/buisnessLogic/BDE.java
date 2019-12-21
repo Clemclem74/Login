@@ -24,6 +24,10 @@ public class BDE {
 	public int getIdBDE() {
 		return this.idBDE;
 	}
+	
+	public void setIdBDE(int idBDE) {
+		this.idBDE=idBDE;
+	}
 
 	public String getNameBDE() {
 		return this.nameBDE;
