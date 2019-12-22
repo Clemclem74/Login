@@ -77,34 +77,34 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
 		   Routing root = new Routing();
-		   root.logout();
+		   root.goTo("LoginUi");
 	   }
 
 	   // When user click on modifyUserButton
 	   // this method will be called.
 	   public void modifyUser(ActionEvent event) {
 		   Routing root = new Routing();
-		   root.modifyUser();
+		   root.goTo("ModifyUserUi");
 	   }
 
 	   // When user click on deleteAccountButton
 	   // this method will be called.
 	   public void deleteUser(ActionEvent event) {
 		   Routing root = new Routing();
-		   root.deleteUser();
+		   root.goTo("DeleteUserUi");
 	   }
 
 	   // When user click on createBdeButton
 	   // this method will be called.
 	   public void createBDE(ActionEvent event) {
 		   Routing root = new Routing();
-		   root.createBDE();
+		   root.goTo("CreateBDEUI");
 	   }
 
 	   public void quitBDE(ActionEvent event) {
 		   UserFacade userfacade = new UserFacade();
 		   userfacade.setBDEnull(super.getCurrentUser());
-		   super.homePage();
+		   super.goTo("HomePageUI");
 	   }
 	   
 	   public void joinBDE(ActionEvent event) {

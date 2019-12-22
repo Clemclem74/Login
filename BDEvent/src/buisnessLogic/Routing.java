@@ -49,12 +49,14 @@ public class Routing {
 		// TODO Auto-generated constructor stub
 	}
 
-		//change the scene with the LoginUI scene
-	public void loginForm() {
+		
+	//change the scene with the UiScene in parameter 
+	
+	public void goTo(String UiScene) {
 		// TODO - implement Routing.loginForm
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/application/"+UiScene+".fxml"));
 			Routing.stage.setScene(new Scene(root));
 	        Routing.stage.show();
 		} catch (IOException e) {
@@ -63,11 +65,12 @@ public class Routing {
 		}
 	}
 	
+
 	//change the scene with the homePageUI scene
 	public void homePage() {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/application/HomePageUi.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/application/HomePageUI.fxml"));
 			Routing.stage.setScene(new Scene(root));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -78,68 +81,9 @@ public class Routing {
 
 	}
 	
-	//change the scene with the ModifyUserUI scene
-	public void modifyUser() {
-		Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("/application/ModifyUserUi.fxml"));
-			Routing.stage.setScene(new Scene(root));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	//change the scene with the deleteUserUI scene
-	public void deleteUser() {
-		Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("/application/DeleteUserUi.fxml"));
-			Routing.stage.setScene(new Scene(root));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	//change the scene with the LoginUI scene
-	public void logout() {
-		Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("/application/LoginUi.fxml"));
-			Routing.stage.setScene(new Scene(root));
-	        Routing.stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	//change the scene with the RegisterUI scene
-	public void goToRegister() {
-		Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("/application/RegisterUi.fxml"));
-			Routing.stage.setScene(new Scene(root));
-	        Routing.stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	//change the scene with the CreateBDEUI scene
-	public void createBDE() {
-		Parent root;
-		try {
-			root = FXMLLoader.load(getClass().getResource("/application/CreateBDEUI.fxml"));
-			Routing.stage.setScene(new Scene(root));
-	        Routing.stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	public void confirmBDEMessage() {
 		Parent root;

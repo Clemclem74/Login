@@ -38,7 +38,7 @@ public class JoinBDEUI extends Routing implements Initializable {
 		       }
 		       else {
 		    	   //Confirm message
-		    	   super.homePage();
+		    	   super.goTo("HomePageUI");
 		    	   super.hideConfirmMessage();
 		       }
 		       
