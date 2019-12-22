@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  Fichier créé - vendredi-décembre-20-2019   
+--  Fichier créé - dimanche-décembre-22-2019   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table BDE
@@ -16,20 +16,34 @@
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
-REM INSERTING into SYSTEM.BDE
-SET DEFINE OFF;
-
 --------------------------------------------------------
---  Constraints for Table BDE
+--  DDL for Table TEAM
 --------------------------------------------------------
 
-  ALTER TABLE "SYSTEM"."BDE" MODIFY ("IDCREATOR" NOT NULL ENABLE);
-
-
-
+  CREATE TABLE "SYSTEM"."TEAM" 
+   (	"ID_TEAM" NUMBER, 
+	"NAME_TEAM" VARCHAR2(50 BYTE), 
+	"ID_BDE" NUMBER
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
 --------------------------------------------------------
---  Fichier créé - vendredi-décembre-20-2019   
+--  DDL for Table TEAM_MEMBER
 --------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."TEAM_MEMBER" 
+   (	"ID_TEAM" NUMBER, 
+	"ID_USER" NUMBER, 
+	"IS_CHIEF" NUMBER
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
 --------------------------------------------------------
 --  DDL for Table USERS
 --------------------------------------------------------
@@ -49,5 +63,32 @@ SET DEFINE OFF;
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
+REM INSERTING into SYSTEM.BDE
+SET DEFINE OFF;
+Insert into SYSTEM.BDE (ID_BDE,IDCREATOR,NAMEBDE,SCHOOLBDE) values ('1','1','BDE','Polytech Sorbonne');
+Insert into SYSTEM.BDE (ID_BDE,IDCREATOR,NAMEBDE,SCHOOLBDE) values ('3','2','BDE','La chatte de justine');
+Insert into SYSTEM.BDE (ID_BDE,IDCREATOR,NAMEBDE,SCHOOLBDE) values ('2','3','BDE','Polytech Marseille');
+REM INSERTING into SYSTEM.TEAM
+SET DEFINE OFF;
+Insert into SYSTEM.TEAM (ID_TEAM,NAME_TEAM,ID_BDE) values ('3','Soirée','1');
+Insert into SYSTEM.TEAM (ID_TEAM,NAME_TEAM,ID_BDE) values ('1','Communication','1');
+Insert into SYSTEM.TEAM (ID_TEAM,NAME_TEAM,ID_BDE) values ('2','Partenariat','1');
+REM INSERTING into SYSTEM.TEAM_MEMBER
+SET DEFINE OFF;
 REM INSERTING into SYSTEM.USERS
 SET DEFINE OFF;
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER,ID_BDE) values ('1','Clemclem74','CT','adca1294358f0b5c66365bb19a06486a0ad3f0a5','Clément','Temil','0670220473','1');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER,ID_BDE) values ('2','Juju','JF','e45dd25c0ce536af6461f04bb8ade7c3f3d937e0','Justine','Foulquier','1234567890','3');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER,ID_BDE) values ('4','MattLaMenace','MH','d99da0f7f12c2d9bc427a8ed48d417693384ea49','Matthew','Haas','1234567890','3');
+Insert into SYSTEM.USERS (ID_USER,USERNAME,EMAILUSER,PASSWORDUSER,FIRSTNAME,LASTNAME,PHONENUMBERUSER,ID_BDE) values ('3','Alexiiis','AA','801c34269f74ed383fc97de33604b8a905adb635','Alexis','Andre','1234567890','2');
+--------------------------------------------------------
+--  Constraints for Table BDE
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."BDE" MODIFY ("IDCREATOR" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table TEAM_MEMBER
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."TEAM_MEMBER" MODIFY ("ID_USER" NOT NULL ENABLE);
+  ALTER TABLE "SYSTEM"."TEAM_MEMBER" MODIFY ("ID_TEAM" NOT NULL ENABLE);
