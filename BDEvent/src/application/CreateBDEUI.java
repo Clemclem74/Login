@@ -38,6 +38,8 @@ public class CreateBDEUI extends Routing implements Initializable {
 		       UserFacade userFacade = new UserFacade();
 		       User user = super.getCurrentUser();
 		       int res = bdeFacade.create(user, nameBDEField.getText(),schoolBDEField.getText());
+		       userFacade.join(user, res);
+		       super.getCurrentUser().setCurrentBDE(res);
 		       if (res < 0 ) {
 		    	   //ERROR MESSAGE 
 		       }

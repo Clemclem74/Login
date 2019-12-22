@@ -56,6 +56,7 @@ public class HomePageUI extends Routing implements Initializable {
 			  noBDE.setVisible(false);
 			  BDEFacade bdefacade = new BDEFacade();
 			  BDE bdeuser = bdefacade.findById(user.getCurrentBDE());
+			  System.out.println(bdeuser);
 			  System.out.println(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
 			  BDELabel.setText(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
 
