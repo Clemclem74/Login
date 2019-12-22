@@ -61,6 +61,6 @@ public class LoginUI extends Routing implements Initializable {
 	   // this method will be called. And redirect the user to the register scene.
 	   public void registerAction(ActionEvent event) {
 		   Routing root = new Routing();
-		   root.goTo("RegisterUi");
+		   root.goTo("RegisterUI");
 	   }
 }

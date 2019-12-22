@@ -28,25 +28,7 @@ public int create(BDE obj) {
 
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
 		  Statement st = conn.createStatement();
-		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
-
-			    // set the preparedstatement parameters
-			    ps.setString(1,obj.getCreator().getUsername());
-			    ps.setString(2,obj.getCreator().getEmailuser());
-			    ps.setString(3,obj.getCreator().getPassworduser());
-			    ps.setString(4,obj.getCreator().getFirstname());
-			    ps.setString(5,obj.getCreator().getLastname());
-			    ps.setString(6,obj.getCreator().getPhonenumberuser());
-			    ps.setInt(7, obj.getIdBDE());
-			    ps.setInt(8,obj.getCreator().getId_user());
-
-			    // call executeUpdate to execute our sql update statement
-			    ps.executeUpdate();
-			    ps.close();
-
-
-
+		
 	      st.executeUpdate(SQL_INSERT);
 
 		  conn.close();
@@ -74,16 +56,13 @@ public boolean update(int idBde, BDE obj) {
 
 
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=? WHERE ID_USER = ? ");
+			      "UPDATE BDE SET IDCREATOR = ?, NAMEBDE = ?, SCHOOLBDE= ? WHERE ID_BDE = ? ");
 
 			    // set the preparedstatement parameters
-			    ps.setString(1,obj.getUsername());
-			    ps.setString(2,obj.getEmailuser());
-			    ps.setString(3,obj.getPassworduser());
-			    ps.setString(4,obj.getFirstname());
-			    ps.setString(5,obj.getLastname());
-			    ps.setString(6,obj.getPhonenumberuser());
-			    ps.setInt(7,id);
+			    ps.setInt(1,obj.getCreator().getId_user());
+			    ps.setString(2,obj.getNameBDE());
+			    ps.setString(3,obj.getSchoolBDE());
+			    ps.setInt(4,id);
 
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
@@ -166,5 +145,11 @@ return obj;
 public boolean update(BDE obj) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+@Override
+public BDE find(String id) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

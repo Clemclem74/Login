@@ -35,6 +35,8 @@ public class BDEFacade {
         if(res>=0) {
         	System.out.println(nameBDE + schoolBDE + " created");
         	current_user.setCurrentBDE(obj.getIdBDE());
+        	UserFacade userFacade = new UserFacade();
+        	userFacade.join(current_user, obj.getIdBDE());
         	return res;
         }
         else {
@@ -50,20 +52,17 @@ public class BDEFacade {
 	
 	
 	
-	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser) {
+	public int modify(int idBDE, String nameBDE , String schoolBDE) {
 
-		User obj = new User();
-        obj.setUsername(username);
-        obj.setEmailuser(emailuser);
-        obj.setPassworduser(passworduser);
-        obj.setFirstname(firstname);
-        obj.setLastname(lastname);
-        obj.setPhonenumberuser(phonenumberuser);
-        OracleDAO<User> userDao = adf.getUserDAO();
-        if(userDao.update(idUser,obj)) {
-        	System.out.println("User modified");
-        	this.connectedUser=obj;
-            sendUserRooter();
+		BDE obj = new BDE();
+		obj.setCreator(Routing.getCurrentUser());
+		obj.setNameBDE(nameBDE);
+		obj.setSchoolBDE(schoolBDE);
+		obj.setIdBDE(idBDE);
+     
+        OracleDAO<BDE> bdeDao = adf.getBDEDAO();
+        if(bdeDao.update(idBDE,obj)) {
+        	System.out.println("BDE modified");
         	return 1;
         }
         else {

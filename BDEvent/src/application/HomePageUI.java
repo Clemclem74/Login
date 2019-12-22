@@ -56,9 +56,14 @@ public class HomePageUI extends Routing implements Initializable {
 			  noBDE.setVisible(false);
 			  BDEFacade bdefacade = new BDEFacade();
 			  BDE bdeuser = bdefacade.findById(user.getCurrentBDE());
-			  System.out.println(bdeuser);
-			  System.out.println(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
 			  BDELabel.setText(bdeuser.getNameBDE() + " " + bdeuser.getSchoolBDE());
+			  if (user.isAdminOfHisBDE()) {
+				  showBDE.setVisible(true);
+				  quitBDEbutton.setVisible(false);
+			  }
+			  else {
+				  showBDE.setVisible(false);
+			  }
 
 		  }
 		  else {
@@ -70,36 +75,32 @@ public class HomePageUI extends Routing implements Initializable {
 			  BDELabel.setVisible(false);
 
 		  }
-	       // TODO (don't really need to do anything here).
+	     
 	   }
 
 	   // When user click on myButton
 	   // this method will be called.S
 	   public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
-		   Routing root = new Routing();
-		   root.goTo("LoginUi");
+		   super.goTo("LoginUI");
 	   }
 
 	   // When user click on modifyUserButton
 	   // this method will be called.
 	   public void modifyUser(ActionEvent event) {
-		   Routing root = new Routing();
-		   root.goTo("ModifyUserUi");
+		   super.goTo("ModifyUserUI");
 	   }
 
 	   // When user click on deleteAccountButton
 	   // this method will be called.
 	   public void deleteUser(ActionEvent event) {
-		   Routing root = new Routing();
-		   root.goTo("DeleteUserUi");
+		   super.goTo("DeleteUserUI");
 	   }
 
 	   // When user click on createBdeButton
 	   // this method will be called.
 	   public void createBDE(ActionEvent event) {
-		   Routing root = new Routing();
-		   root.goTo("CreateBDEUI");
+		   super.goTo("CreateBDEUI");
 	   }
 
 	   public void quitBDE(ActionEvent event) {
@@ -109,8 +110,12 @@ public class HomePageUI extends Routing implements Initializable {
 	   }
 	   
 	   public void joinBDE(ActionEvent event) {
-    	   super.joinBDE();
+		   super.joinBDE();
 	    	   //this.idBDELabel.setText("8");
+	   }
+	   
+	   public void manageBDEAction(ActionEvent envent) {
+		   super.goTo("ManageBDEUI");
 	   }
 	       
    

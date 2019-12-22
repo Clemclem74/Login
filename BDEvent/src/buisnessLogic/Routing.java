@@ -90,7 +90,7 @@ public class Routing {
 		
 		try {
 			Routing.confirmMessage=new Stage();
-			root = FXMLLoader.load(getClass().getResource("/application/ConfirmMessageBDE.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/application/ConfirmMessageBDEUI.fxml"));
 			Routing.confirmMessage.setScene(new Scene(root));
 	        Routing.confirmMessage.show();
 		} catch (IOException e) {
@@ -104,7 +104,7 @@ public class Routing {
 		
 		try {
 			Routing.confirmMessage=new Stage();
-			root = FXMLLoader.load(getClass().getResource("/application/JoinBDE.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/application/JoinBDEUI.fxml"));
 			Routing.confirmMessage.setScene(new Scene(root));
 	        Routing.confirmMessage.show();
 		} catch (IOException e) {

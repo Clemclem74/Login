@@ -43,7 +43,7 @@ public class RegisterUI extends Routing implements Initializable {
 	       if (passwordField.getText().contentEquals(passwordField2.getText())) {
 		       UserFacade userFacade = new UserFacade();
 		       userFacade.register(usernameField.getText(),emailField.getText(),passwordField.getText(),firstNameField.getText(),lastNameField.getText(),phoneNumberField.getText());
-		       super.goTo("LoginUi");
+		       super.goTo("LoginUI");
 	       }
 	   }
 }
