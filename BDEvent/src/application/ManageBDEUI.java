@@ -64,7 +64,9 @@ public class ManageBDEUI extends Routing implements Initializable {
 	   // When user click on createBdeButton
 	   // this method will be called.
 	  
-
+	   public void manageTeams(ActionEvent event) {
+		   super.goTo("ManageTeamsUI");
+	   }
 	       
    
 }

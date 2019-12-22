@@ -1,5 +1,6 @@
 package dao;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
@@ -23,4 +24,8 @@ public abstract class OracleDAO<T> {
   public abstract T find(String id);
   
   public abstract T findById(int id);
+
+
+  public abstract ArrayList<Integer> findTeams(int idBDE);
+  
 }

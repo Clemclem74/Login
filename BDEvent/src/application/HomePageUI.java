@@ -110,7 +110,7 @@ public class HomePageUI extends Routing implements Initializable {
 	   }
 	   
 	   public void joinBDE(ActionEvent event) {
-		   super.joinBDE();
+		   super.goToLittleWindow("JoinBDEUI");
 	    	   //this.idBDELabel.setText("8");
 	   }
 	   

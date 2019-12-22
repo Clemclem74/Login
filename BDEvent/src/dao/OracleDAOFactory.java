@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import buisnessLogic.BDE;
+import buisnessLogic.Team;
 import buisnessLogic.User;
 
 public class OracleDAOFactory extends AbstractDAOFactory{
@@ -15,6 +16,10 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	  
 	  public OracleDAO<BDE> getBDEDAO(){
 		    return new OracleBDEDAO(conn);
-		  }
+	  }
+	  
+	  public OracleDAO<Team> getTeamDAO(){
+		  return new OracleTeamDAO(conn);
+	  }
 
 	}

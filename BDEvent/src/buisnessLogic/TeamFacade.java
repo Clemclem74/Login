@@ -3,7 +3,6 @@ package buisnessLogic;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import dao.*;
 import javafx.fxml.FXMLLoader;
@@ -11,33 +10,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class BDEFacade {
+public class TeamFacade {
 
 	AbstractDAOFactory adf;
 
-	/**
-	 *
-	 * @param username
-	 * @param password
-	 */
 
-	public BDEFacade() {
+	public TeamFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 	}
 
-	public int create(User current_user , String nameBDE, String schoolBDE) {
+	public int create(BDE bde, String nameTeam) {
 
-		BDE obj = new BDE();
-		obj.setNameBDE(nameBDE);
-		obj.setSchoolBDE(schoolBDE);
-        obj.setCreator(current_user);
-        OracleDAO<BDE> bdeDao = adf.getBDEDAO();
-        int res = bdeDao.create(obj);
+		Team obj = new Team();
+		obj.setBde(bde);
+		obj.setNameTeam(nameTeam);
+        OracleDAO<Team> teamDao = adf.getTeamDAO();
+        int res = teamDao.create(obj);
         if(res>=0) {
-        	System.out.println(nameBDE + schoolBDE + " created");
-        	current_user.setCurrentBDE(obj.getIdBDE());
-        	UserFacade userFacade = new UserFacade();
-        	userFacade.join(current_user, obj.getIdBDE());
+        	System.out.println(nameTeam + " created");
         	return res;
         }
         else {
@@ -85,23 +75,16 @@ public class BDEFacade {
         }
 	}
 
-	public BDE findById(int idBDE) {
-		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
-		BDE bde = bdeDao.findById(idBDE);
-		if (bde.getIdBDE()==0) {
-			System.out.println("BDE null");
+	public Team findById(int idTeam) {
+		OracleDAO<Team> teamDao = this.adf.getTeamDAO();
+		Team team = teamDao.findById(idTeam);
+		if (team.getIdTeam()==0) {
+			System.out.println("Team null");
 			return null;
 		}
 		else {
-			return bde;
+			return team;
 		}
-	}
-	
-	
-	public ArrayList<Integer> getListTeams(int idBDE) {
-		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
-		ArrayList<Integer> idTeams = bdeDao.findTeams(idBDE);
-		return idTeams;
 	}
 
 

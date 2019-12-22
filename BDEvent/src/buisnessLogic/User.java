@@ -105,9 +105,6 @@ public class User {
 	public boolean isAdminOfHisBDE() {
 		BDEFacade bdeFacade = new BDEFacade();
 		BDE bde = bdeFacade.findById(this.currentBDE);
-		System.out.println("Entree dans is admin");
-		System.out.println("ID CREATOR : " + bde.getCreator().getId_user());
-		System.out.println("ID USER " + this.id_user);
 		if (bde.getCreator().getId_user() == this.id_user) {
 			return true;
 		}

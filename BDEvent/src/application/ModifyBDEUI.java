@@ -36,8 +36,10 @@ public class ModifyBDEUI extends Routing implements Initializable {
 	   // When user click on myButton
 	   // this method will be called.
 	   public void modifyAction(ActionEvent event) {
-		       BDEFacade bdeFacade = new BDEFacade();
-		       bdeFacade.modify(super.getCurrentUser().getCurrentBDE(), nameBDEField.getText(),schoolBDEField.getText());
-		       super.goTo("ManageBDEUI");
+	       BDEFacade bdeFacade = new BDEFacade();
+	       bdeFacade.modify(super.getCurrentUser().getCurrentBDE(), nameBDEField.getText(),schoolBDEField.getText());
+	       super.goTo("ManageBDEUI");
 	   }
+	   
+	   
 }

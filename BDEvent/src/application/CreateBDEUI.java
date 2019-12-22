@@ -47,7 +47,7 @@ public class CreateBDEUI extends Routing implements Initializable {
 		       }
 		       else {
 		    	   ConfirmMessageUI.setParams(Integer.toString(res));
-		    	   super.confirmBDEMessage();
+		    	   super.goToLittleWindow("ConfirmMessageBDEUI");
 		    	   //this.idBDELabel.setText("8");
 		       }
 		       
