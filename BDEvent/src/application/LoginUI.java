@@ -41,7 +41,7 @@ public class LoginUI extends Routing implements Initializable {
 	       int res = loginFacade.login(emailField.getText(),passwordField.getText());
 	       if (res>0) {
 	    	   Routing root = new Routing();
-	    	   root.homePage();
+	    	   root.goTo("HomePageUI");
 	       }
 	       else {
 	    	   this.passwordField.clear();
@@ -61,6 +61,6 @@ public class LoginUI extends Routing implements Initializable {
 	   // this method will be called. And redirect the user to the register scene.
 	   public void registerAction(ActionEvent event) {
 		   Routing root = new Routing();
-		   root.goToRegister();
+		   root.goTo("RegisterUi");
 	   }
 }

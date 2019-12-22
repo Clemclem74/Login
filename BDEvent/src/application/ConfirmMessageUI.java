@@ -42,6 +42,6 @@ public class ConfirmMessageUI extends Routing implements Initializable {
 	   
 	   public void confirmCreation(ActionEvent event) {
 		   super.hideConfirmMessage();
-		   super.homePage();
+		   super.goTo("HomePageUI");
 	   }
 }

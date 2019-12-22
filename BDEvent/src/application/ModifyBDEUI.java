@@ -35,6 +35,6 @@ public class ModifyBDEUI extends Routing implements Initializable {
 	   public void modifyAction(ActionEvent event) {
 		       BDEFacade bdeFacade = new BDEFacade();
 		       bdeFacade.create(super.getCurrentUser(), nameBDEField.getText(),schoolBDEField.getText());
-		       super.homePage();
+		       super.goTo("HomePageUI");
 	   }
 }

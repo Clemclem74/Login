@@ -30,7 +30,7 @@ public class DeleteUserUI extends Routing implements Initializable {
 	   // When user click on discardDeleteButton
 	   // this method will be called.
 	   public void discardDelete(ActionEvent event) {
-	       super.homePage();
+	       super.goTo("HomePageUI");
 	   }
 	   
 	   // When user click on deleteAccountButton
@@ -39,6 +39,6 @@ public class DeleteUserUI extends Routing implements Initializable {
 		   UserFacade userFacade = new UserFacade();
 		   System.out.println(super.getCurrentUser().getPassworduser());
 	       int res = userFacade.delete(super.getCurrentUser());
-	       super.logout();
+	       super.goTo("LoginUi");
 	   }
 }
