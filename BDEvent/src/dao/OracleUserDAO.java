@@ -24,7 +24,8 @@ public int create(User obj) {
 					  +"'" + obj.getPassworduser() + "',"
 							  +"'" + obj.getFirstname() + "',"
 									  +"'" + obj.getLastname() + "',"
-											  +"'" + obj.getPhonenumberuser() + "'"+")";
+											  +"'" + obj.getPhonenumberuser() + "',"
+											  		+ -1 +")";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {

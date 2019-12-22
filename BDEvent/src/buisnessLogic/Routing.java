@@ -50,6 +50,20 @@ public class Routing {
 	}
 
 		//change the scene with the LoginUI scene
+	
+	public void goTo(String Uipage) {
+		// TODO - implement Routing.loginForm
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/"+Uipage+".fxml"));
+			Routing.stage.setScene(new Scene(root));
+	        Routing.stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void loginForm() {
 		// TODO - implement Routing.loginForm
 		Parent root;
@@ -67,7 +81,7 @@ public class Routing {
 	public void homePage() {
 		Parent root;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/application/HomePageUi.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/application/HomePageUI.fxml"));
 			Routing.stage.setScene(new Scene(root));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
