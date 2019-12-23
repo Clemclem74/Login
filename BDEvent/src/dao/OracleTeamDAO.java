@@ -132,4 +132,10 @@ public ArrayList<Integer> findTeams(int idBDE) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public ArrayList<Team> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

@@ -204,5 +204,11 @@ public BDE find(String id) {
 	return null;
 }
 
+@Override
+public ArrayList<BDE> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 
 }

@@ -235,4 +235,10 @@ public ArrayList<Integer> findTeams(int idBDE) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public ArrayList<User> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
