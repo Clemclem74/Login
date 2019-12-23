@@ -30,6 +30,8 @@ public class HomePageUI extends Routing implements Initializable {
 	 @FXML
 	 private Button joinBDE;
 	 @FXML
+	 private Button goToBB;
+	 @FXML
 	 private Label username_text;
 	 @FXML
 	 private Label email_text;
@@ -116,6 +118,9 @@ public class HomePageUI extends Routing implements Initializable {
 	   
 	   public void manageBDEAction(ActionEvent envent) {
 		   super.goTo("ManageBDEUI");
+	   }
+	   public void goToBB(ActionEvent envent) {
+		   super.goTo("BlackBoardUI");
 	   }
 	       
    

@@ -24,9 +24,9 @@
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_button" layoutX="25.0" layoutY="293.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="182.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="240.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="25.0" layoutY="252.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="162.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="207.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -41,10 +41,11 @@
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="createBDE" layoutX="40.0" layoutY="144.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
-                  <Button fx:id="joinBDE" layoutX="51.0" layoutY="210.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
-                  <Button fx:id="showBDE" layoutX="57.0" layoutY="124.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
+                  <Button fx:id="createBDE" layoutX="71.0" layoutY="129.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
+                  <Button fx:id="joinBDE" layoutX="77.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
+                  <Button fx:id="showBDE" layoutX="81.0" layoutY="98.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
                   <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
+                  <Button fx:id="goToBB" layoutX="25.0" layoutY="299.0" mnemonicParsing="false"  onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
                </children>
             </AnchorPane>
          </children>

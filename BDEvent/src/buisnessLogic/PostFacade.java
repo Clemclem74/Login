@@ -1,0 +1,66 @@
+package buisnessLogic;
+
+
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.AlgorithmParameters;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+
+import dao.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class PostFacade {
+
+	User connectedUser;
+
+
+	AbstractDAOFactory adf;
+
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 */
+
+	public PostFacade() {
+		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
+
+	}
+
+	public int create(int idUser , String Title, String text, int idBde) {
+		System.out.println("create dans postfacade debut");
+		Post obj = new Post();
+		
+		obj.setId_user_publisher(idUser);
+		obj.setTitle_postBB(Title);
+		obj.setText_postBB(text);
+		obj.setId_BDE_postBB(idBde);
+        
+        OracleDAO<Post> postDao = adf.getPostDAO();
+       
+        
+        int res = postDao.create(obj);
+        System.out.println("creation obj database");
+        if(res>=0) {
+        	System.out.println( "the post : " + Title + " created");
+        	return res;
+        }
+        else {
+        	System.out.println("Error while creating the post");
+        	return -1;
+        }
+	}
+
+}

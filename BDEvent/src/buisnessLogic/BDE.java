@@ -11,6 +11,7 @@ public class BDE {
 	private User creator; 
 	private List<Member> listOfMemberAppliance;
 	private List<Member> listOfMembers = new ArrayList();
+	private BlackBoard blackboard;
 
 	
 	public User getCreator() {
