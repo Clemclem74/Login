@@ -27,3 +27,6 @@ $RECYCLE.BIN/
 *.classpath
 *.classpath
 BDEvent/.classpath
+.classpath
+BDEvent/.classpath
+BDEvent/.classpath
