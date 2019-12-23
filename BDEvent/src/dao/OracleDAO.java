@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
   
-  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:xe";
+  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:orcl";
    
   public OracleDAO(Connection conn){
     this.connect = conn;

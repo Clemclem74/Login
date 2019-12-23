@@ -29,7 +29,7 @@ public int create(Team obj) {
 	  // auto close connection and preparedStatement
 	  try {
 
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  Statement st = conn.createStatement();
 		
 	      st.executeUpdate(SQL_INSERT);
@@ -61,7 +61,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	          ORACLE_DB_PATH, "system", "oose");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -87,7 +87,7 @@ public Team findById(int id) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+          ORACLE_DB_PATH, "system", "oose");
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();

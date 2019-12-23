@@ -38,7 +38,7 @@ public int create(TeamMember obj) {
 	  // auto close connection and preparedStatement
 	  try {
 
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  Statement st = conn.createStatement();
 		
 	      st.executeUpdate(SQL_INSERT);
@@ -60,7 +60,7 @@ public boolean delete(TeamMember teamMember) {
 	int idTeam = teamMember.getTeam().getIdTeam();
 	String SQL_DELETE = "DELETE from TEAM_MEMBER WHERE ID_USER='"+idUser+"' AND ID_TEAM='"+idTeam+"'";
 	 try {
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -95,7 +95,7 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	          ORACLE_DB_PATH, "system", "oose");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -123,7 +123,7 @@ public ArrayList<Integer> findMembersByTeam(int idTeam){
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	          ORACLE_DB_PATH, "system", "oose");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();

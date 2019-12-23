@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateEventUI">
+   <children>
+      <Button fx:id="saveButton" layoutX="205.0" layoutY="354.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Text layoutX="149.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Event">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <TextField fx:id="descriptionEventField" layoutX="134.0" layoutY="211.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Description" />
+      <Text layoutX="218.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="222.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Title">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="titleEventField" layoutX="134.0" layoutY="128.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Title" />
+      <Text layoutX="240.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="dateEventField" layoutX="151.0" layoutY="287.0" />
+   </children>
+</AnchorPane>

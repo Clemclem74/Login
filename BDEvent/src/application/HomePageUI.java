@@ -124,6 +124,10 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void manageMyTeamsAction(ActionEvent event) {
 		   super.goTo("ManageMyTeamsUI");
 	   }
+	   
+	   public void manageMyEventsAction(ActionEvent event) {
+		   super.goTo("EventUI");
+	   }
 	       
    
 }

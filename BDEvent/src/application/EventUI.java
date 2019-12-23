@@ -18,20 +18,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class EventUI extends Routing implements Initializable {
 	 
 	ArrayList<Event> list = new ArrayList<Event>();
+	private Event theEvent = new Event();
 	
 	@FXML
 	 private ListView<String> eventList;
-
+	
+	@FXML
+	 private Label event_title;
+	 @FXML
+	 private Label description;
+	 @FXML
+	 private Label event_date;
 
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
 			
 	       loadData();
-	       System.out.println("test");
+	       System.out.println("eventList");
 	   }
 
 	private void loadData() {
@@ -48,5 +56,42 @@ public class EventUI extends Routing implements Initializable {
 		
 		eventList.getItems().addAll(eventName);
 	}
+	
+	public void logout(ActionEvent event) {
+		   Routing.setCurrentUser(null);
+		   super.goTo("LoginUI");
+	   }
+	
+	
+	
+	@FXML
+	private void displaySelected(MouseEvent event) {
+		EventFacade eventFacade = new EventFacade();
+		
+		String event1 = eventList.getSelectionModel().getSelectedItem();
+		theEvent = eventFacade.find(event1.split(" : ")[0]);
+		if(event1 != null) {
+			this.description.setText(theEvent.getDescription());
+			this.event_title.setText(theEvent.getTitle());
+			this.event_date.setText(theEvent.getEvent_date());	
+		}
+		
+	}
+	
+	public void delete(ActionEvent event) {
+		EventFacade eventFacade = new EventFacade();
+		eventFacade.delete(this.theEvent);
+		eventList.getItems().removeAll(eventList.getItems()); 
+		loadData();
+	}
+	
+	public void create(ActionEvent event) {
+		super.goTo("CreateEventUI");
+	}
+	
+	public void home(ActionEvent event) {
+		super.goTo("HomePageUI");
+	}
+	
    
 }

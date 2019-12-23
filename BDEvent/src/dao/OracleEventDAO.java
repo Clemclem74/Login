@@ -17,11 +17,11 @@ public OracleEventDAO(Connection conn) {
 public int create(Event obj) {
 	System.out.println("Before");
 
-
+	int id = getLastId()+1;
 	
-	  String SQL_INSERT = "Insert into Event " + "Values (" + obj.getId_event() +",'" + obj.getTitle() + "',"
+	  String SQL_INSERT = "Insert into Event " + "Values (" + id +",'" + obj.getTitle() + "',"
 			  +"'" + obj.getDescription() + "',"
-					  +"'" + obj.getEvent_date() + ")";
+					  +"'" + obj.getEvent_date() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -43,9 +43,9 @@ public int create(Event obj) {
 	
 }
 
-public boolean delete(Event user) {
-	int id = user.getId_user();
-	String SQL_DELETE = "DELETE from Users WHERE ID_USER='"+id+"'";
+public boolean delete(Event event) {
+	int id = event.getId_event();
+	String SQL_DELETE = "DELETE from EVENT WHERE EVENT='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  
@@ -66,26 +66,22 @@ public boolean delete(Event user) {
 }
     
  
-public boolean update(int iduser, Event obj) {
+public boolean update(int id_event, Event obj) {
 	
-	int id = iduser;
+	int id = id_event;
 	  
 	  try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
+			      "UPDATE Users SET TITLE = ?, DESCRIPTION= ?, DATE=? WHERE EVENT = ?");
 
 			    // set the preparedstatement parameters
-			    ps.setString(1,obj.getUsername());
-			    ps.setString(2,obj.getEmailuser());
-			    ps.setString(3,obj.getPassworduser());
-			    ps.setString(4,obj.getFirstname());
-			    ps.setString(5,obj.getLastname());
-			    ps.setString(6,obj.getPhonenumberuser());
-			    ps.setInt(7, obj.getCurrentBDE());
-			    ps.setInt(8,id);
+			    ps.setString(1,obj.getTitle());
+			    ps.setString(2,obj.getDescription());
+			    ps.setString(3,obj.getEvent_date());
+			    ps.setInt(4,id);
 
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
@@ -145,10 +141,10 @@ return ret;
 }
 
 
-public User findById(int id) {
+public Event findById(int id) {
 	  Event obj = new Event();      
 	    
-	  String SQL_SELECT = "Select * from Users where ID_USER='"+id+"'";
+	  String SQL_SELECT = "Select * from Event where EVENT='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -159,23 +155,15 @@ public User findById(int id) {
 	      
 	      while (resultSet.next()) {
 
-	          int id_user = resultSet.getInt("ID_USER");
-	          String username = resultSet.getString("USERNAME");
-	          String emailuser = resultSet.getString("EMAILUSER");
-	          String passworduser = resultSet.getString("PASSWORDUSER");
-	          String lastname = resultSet.getString("LASTNAME");
-	          String firstname = resultSet.getString("FIRSTNAME");
-	          String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
-	          int idbde = resultSet.getInt("ID_BDE");
+	          int id_event = resultSet.getInt("EVENT");
+	          String title = resultSet.getString("TITLE");
+	          String description = resultSet.getString("DESCRIPTION");
+	          String event_date = resultSet.getString("DATE");
 
-	          obj.setId_user(id_user);
-	          obj.setUsername(username);
-	          obj.setFirstname(firstname);
-	          obj.setLastname(lastname);
-	          obj.setEmailuser(emailuser);
-	          obj.setPassworduser(passworduser);
-	          obj.setPhonenumberuser(phonenumberuser);
-	          obj.setCurrentBDE(idbde);
+	          obj.setId_event(id_event);
+	          obj.setTitle(title);
+	          obj.setDescription(description);
+	          obj.setEvent_date(event_date);
 	          
 
 	      }
@@ -194,5 +182,75 @@ public User findById(int id) {
 public boolean update(Event obj) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+@Override
+public Event find(String id) {
+	Event obj = new Event();      
+    
+	  String SQL_SELECT = "Select * from Event where TITLE='"+id+"'";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      
+	      while (resultSet.next()) {
+
+	          int id_event = resultSet.getInt("EVENT");
+	          String title = resultSet.getString("TITLE");
+	          String description = resultSet.getString("DESCRIPTION");
+	          String event_date = resultSet.getString("DATE");
+
+	          obj.setId_event(id_event);
+	          obj.setTitle(title);
+	          obj.setDescription(description);
+	          obj.setEvent_date(event_date);
+	          
+
+	      }
+		  conn.close();
+	      return obj;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return obj;
+}
+
+private int getLastId() {
+	
+	int id_event=0;
+	String SQL_SELECT = "Select MAX(EVENT)from Event";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          id_event = resultSet.getInt("MAX(EVENT)"); 
+	      }
+	      return id_event;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id_event;
+	
+}
+
+
+@Override
+public ArrayList<Integer> findTeams(int idBDE) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

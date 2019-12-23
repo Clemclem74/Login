@@ -48,6 +48,34 @@ public class EventFacade {
 		}
 	}
 	
+	public Event find(String event_name) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		Event event = eventDao.find(event_name);
+		if (event == null) {
+			System.out.println("event null facade");
+			return null;
+		}
+		else {
+			return event;
+		}
+	}
+	
+	public void delete(Event event) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		Boolean bool = eventDao.delete(event);
+		if (bool == false) {
+			System.out.println("event null facade");
+		}
+	}
+	
+	public void create(Event event) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		int bool = eventDao.create(event);
+		if (bool == -1) {
+			System.out.println("event null facade");
+		}
+	}
+	
 
 
 	public void sendError() {
