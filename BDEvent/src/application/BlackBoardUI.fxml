@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
+   <children>
+      <Text layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BLACKBOARD" textAlignment="CENTER" wrappingWidth="328.5625">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Pane layoutX="4.0" layoutY="-3.0">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: f7b4b4;">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="42.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button  fx:id="homePage" layoutX="46.0" layoutY="121.0" mnemonicParsing="false" onAction="#homePage" text="HomePage" />
+                  <Button  fx:id="newPost" layoutX="29.0" layoutY="202.0" mnemonicParsing="false" onAction="#newPost" text="Create a new Post" />
+                  <Button  fx:id="seePost" layoutX="41.0" layoutY="263.0" mnemonicParsing="false" text="See my Posts" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      
+      <ListView layoutX="289.0" layoutY="103.0" prefHeight="466.0" prefWidth="577.0" />
+   </children>
+</AnchorPane>

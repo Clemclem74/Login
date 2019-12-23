@@ -9,6 +9,10 @@ public class BDE {
 	private String nameBDE;
 	private String schoolBDE;
 	private User creator; 
+	//temil jsp si il faut garder ces list la ya un conflit je laisse au cas ou :*
+	private List<Member> listOfMemberAppliance;
+	private List<Member> listOfMembers = new ArrayList();
+	private BlackBoard blackboard;
 	private List<TeamMember> listOfMemberAppliance;
 	private List<TeamMember> listOfMembers = new ArrayList();
 

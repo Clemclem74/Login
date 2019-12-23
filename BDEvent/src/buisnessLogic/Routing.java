@@ -2,6 +2,7 @@ package buisnessLogic;
 
 import java.io.IOException;
 
+import application.PopUp;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,12 @@ public class Routing {
 
 	private static Stage stage;
 	private static Stage confirmMessage;
+	private static Stage popUp;
 	private static User currentUser;
+	
+	
+	
+	
 
 
 
@@ -116,6 +122,33 @@ public class Routing {
 	public void hideConfirmMessage() {
 		Routing.confirmMessage.hide();
 	}
+	
+	public void openPopUp(String title, String text) {
+		Parent root;
+		
+		try {
+			PopUp.setTitle(title);
+	        PopUp.setText(text);
+			Routing.popUp=new Stage();
+			root = FXMLLoader.load(getClass().getResource("/application/PopUp.fxml"));
+			Routing.popUp.setScene(new Scene(root));
+	        Routing.popUp.show();
+	        
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public void hidePopUp() {
+		Routing.popUp.hide();
+	}
+	
+	
+	
 
 
 }
