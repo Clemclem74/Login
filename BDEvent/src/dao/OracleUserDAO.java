@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import buisnessLogic.User;
 
@@ -227,5 +228,11 @@ public User findById(int id) {
 public boolean update(User obj) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+@Override
+public ArrayList<Integer> findTeams(int idBDE) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

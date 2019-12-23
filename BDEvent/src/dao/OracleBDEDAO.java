@@ -45,8 +45,26 @@ public int create(BDE obj) {
 
 }
 
-public boolean delete(BDE obj) {
-  return false;
+public boolean delete(BDE bde) {
+	int id = bde.getIdBDE();
+	String SQL_DELETE = "DELETE from BDE WHERE ID_BDE='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	 return false;
 }
 
 public boolean update(int idBde, BDE obj) {

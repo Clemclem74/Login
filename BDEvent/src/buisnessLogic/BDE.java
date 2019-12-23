@@ -9,8 +9,8 @@ public class BDE {
 	private String nameBDE;
 	private String schoolBDE;
 	private User creator; 
-	private List<Member> listOfMemberAppliance;
-	private List<Member> listOfMembers = new ArrayList();
+	private List<TeamMember> listOfMemberAppliance;
+	private List<TeamMember> listOfMembers = new ArrayList();
 
 	
 	public User getCreator() {
@@ -53,11 +53,11 @@ public class BDE {
 		this.schoolBDE = schoolBDE;
 	}
 
-	public List<Member> getListOfMemberAppliance() {
+	public List<TeamMember> getListOfMemberAppliance() {
 		return this.listOfMemberAppliance;
 	}
 
-	public List<Member> getListOfMembers() {
+	public List<TeamMember> getListOfMembers() {
 		return this.listOfMembers;
 	}
 
@@ -81,10 +81,10 @@ public class BDE {
 
 	/**
 	 * 
-	 * @param Member
+	 * @param TeamMember
 	 */
 	
-	public void addMember(Member member) {
+	public void addMember(TeamMember member) {
 		this.listOfMembers.add(member);
 	}
 	

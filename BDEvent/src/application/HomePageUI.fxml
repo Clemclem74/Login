@@ -24,9 +24,9 @@
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_button" layoutX="25.0" layoutY="293.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="182.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="240.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="25.0" layoutY="309.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" text="Events" />
+                  <Button fx:id="fees_button" layoutX="26.0" layoutY="210.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="258.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -43,8 +43,9 @@
                   </Button>
                   <Button fx:id="createBDE" layoutX="40.0" layoutY="144.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
                   <Button fx:id="joinBDE" layoutX="51.0" layoutY="210.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
-                  <Button fx:id="showBDE" layoutX="57.0" layoutY="124.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
-                  <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
+                  <Button fx:id="showBDE" layoutX="56.0" layoutY="105.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
+                  <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="105.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
+                  <Button fx:id="manageMyTeams" layoutX="51.0" layoutY="164.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
                </children>
             </AnchorPane>
          </children>
@@ -61,7 +62,7 @@
             <Font size="23.0" />
          </font></Label>
       <Button layoutX="359.0" layoutY="84.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify" />
-      <Button layoutX="427.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: red;" text="Delete my account" AnchorPane.topAnchor="84.0" />
+      <Button layoutX="448.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="84.0" />
       <Label layoutX="225.0" layoutY="299.0" text="BDE : " />
       <Label fx:id="noBDE" layoutX="280.0" layoutY="294.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet">
          <font>

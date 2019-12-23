@@ -3,6 +3,7 @@ package buisnessLogic;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import dao.*;
 import javafx.fxml.FXMLLoader;
@@ -10,24 +11,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class TeamFacade {
+public class TeamMemberFacade {
 
 	AbstractDAOFactory adf;
 
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 */
 
-	public TeamFacade() {
+	public TeamMemberFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 	}
 
-	public int create(BDE bde, String nameTeam) {
+	public int add_member(User current_user , int idTeam, boolean chief) {
 
-		Team obj = new Team();
-		obj.setBde(bde);
-		obj.setNameTeam(nameTeam);
-        OracleDAO<Team> teamDao = adf.getTeamDAO();
-        int res = teamDao.create(obj);
+		TeamMember obj = new TeamMember();
+		TeamFacade teamFacade = new TeamFacade();
+		obj.setUser(current_user);
+		obj.setTeam(teamFacade.findById(idTeam));
+		obj.setChief(chief);
+		
+        OracleDAO<TeamMember> teamMemberDao = adf.getTeamMemberDAO();
+        int res = teamMemberDao.create(obj);
         if(res>=0) {
-        	System.out.println(nameTeam + " created");
+        	System.out.println(current_user.getUsername() + " Add in " + obj.getTeam().getNameTeam());
         	return res;
         }
         else {
@@ -44,47 +53,39 @@ public class TeamFacade {
 	
 	
 	public int modify(int idBDE, String nameBDE , String schoolBDE) {
-
-		BDE obj = new BDE();
-		obj.setCreator(Routing.getCurrentUser());
-		obj.setNameBDE(nameBDE);
-		obj.setSchoolBDE(schoolBDE);
-		obj.setIdBDE(idBDE);
-     
-        OracleDAO<BDE> bdeDao = adf.getBDEDAO();
-        if(bdeDao.update(idBDE,obj)) {
-        	System.out.println("BDE modified");
-        	return 1;
-        }
-        else {
-        	System.out.println("Error while modifing user");
-        	return -1;
-        }
+		return 0;
 	}
 	
-	public int delete(Team team) {
+	public int delete(TeamMember teamMember) {
 
-        OracleDAO<Team> teamDao = adf.getTeamDAO();
-        if(teamDao.delete(team)) {
-        	System.out.println("Team deleted");
+        OracleDAO<TeamMember> teamMemberDao = adf.getTeamMemberDAO();
+        if(teamMemberDao.delete(teamMember)) {
+        	System.out.println("TeamMember deleted");
         	return 1;
         }
         else {
-        	System.out.println("Error while deleting Team");
+        	System.out.println("Error while deleting BDE");
         	return -1;
         }
 	}
 
-	public Team findById(int idTeam) {
-		OracleDAO<Team> teamDao = this.adf.getTeamDAO();
-		Team team = teamDao.findById(idTeam);
-		if (team.getIdTeam()==0) {
-			System.out.println("Team null");
+	public BDE findById(int idBDE) {
+		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
+		BDE bde = bdeDao.findById(idBDE);
+		if (bde.getIdBDE()==0) {
+			System.out.println("BDE null");
 			return null;
 		}
 		else {
-			return team;
+			return bde;
 		}
+	}
+	
+	
+	public ArrayList<Integer> getListTeams(int idBDE) {
+		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
+		ArrayList<Integer> idTeams = bdeDao.findTeams(idBDE);
+		return idTeams;
 	}
 
 

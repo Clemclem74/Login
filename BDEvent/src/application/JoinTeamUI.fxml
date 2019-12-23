@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.JoinTeamUI">
+   <children>
+      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Veuillez rentrer l'ID svp :">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="65.0" prefHeight="27.0" prefWidth="141.0" text="Id's Team :" />
+      <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button layoutX="326.0" layoutY="110.0" mnemonicParsing="false" onAction="#joinAction" prefHeight="39.0" prefWidth="101.0" text="OK" />
+      <TextField fx:id="idTeamField" layoutX="150.0" layoutY="64.0" prefHeight="39.0" prefWidth="110.0" promptText="ID" />
+      <Label layoutX="26.0" layoutY="116.0" prefHeight="27.0" prefWidth="141.0" text="Chief : " />
+      <CheckBox fx:id="isChief" layoutX="95.0" layoutY="116.0" mnemonicParsing="false" text="Yes" />
+      <CheckBox fx:id="isNotChief" layoutX="182.0" layoutY="116.0" mnemonicParsing="false" text="No" />
+   </children>
+</AnchorPane>

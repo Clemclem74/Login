@@ -41,6 +41,8 @@ public class HomePageUI extends Routing implements Initializable {
 	 private Label noBDE;
 	 @FXML
 	 private Label BDELabel;
+	 @FXML
+	 private Button manageMyTeams;
 	 
 
 	@Override
@@ -67,6 +69,7 @@ public class HomePageUI extends Routing implements Initializable {
 
 		  }
 		  else {
+			  manageMyTeams.setVisible(false);
 			  showBDE.setVisible(false);
 			  fees_button.setVisible(false);
 			  events_button.setVisible(false);
@@ -116,6 +119,10 @@ public class HomePageUI extends Routing implements Initializable {
 	   
 	   public void manageBDEAction(ActionEvent envent) {
 		   super.goTo("ManageBDEUI");
+	   }
+	   
+	   public void manageMyTeamsAction(ActionEvent event) {
+		   super.goTo("ManageMyTeamsUI");
 	   }
 	       
    
