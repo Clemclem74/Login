@@ -2,6 +2,7 @@ package dao;
 import buisnessLogic.User;
 import buisnessLogic.BDE;
 import buisnessLogic.Event;
+import buisnessLogic.Team;
 
 public abstract class AbstractDAOFactory {
 	  public static final int ORACLE_DAO_FACTORY = 0;
@@ -11,14 +12,16 @@ public abstract class AbstractDAOFactory {
 	  public abstract OracleDAO<User> getUserDAO();
 	  public abstract OracleDAO<BDE> getBDEDAO();
 	  public abstract OracleDAO<Event> getEventDAO();
-	   
-	  
-	  //Méthode permettant de récupérer les Factory
+
+		public abstract OracleDAO<Team> getTeamDAO();
+
+
+	  //Mï¿½thode permettant de rï¿½cupï¿½rer les Factory
 	  public static AbstractDAOFactory getFactory(int type){
 	    switch(type){
 	      case ORACLE_DAO_FACTORY:
 	        return new OracleDAOFactory();
-	      case XML_DAO_FACTORY: 
+	      case XML_DAO_FACTORY:
 	        return new XMLDAOFactory();
 	      default:
 	        return null;

@@ -29,4 +29,8 @@ public abstract class OracleDAO<T> {
   
   
   public abstract T findById(int id);
+
+
+  public abstract ArrayList<Integer> findTeams(int idBDE);
+  
 }
