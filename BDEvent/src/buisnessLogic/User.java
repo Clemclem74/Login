@@ -102,4 +102,15 @@ public class User {
 		}	
 	}
 	
+	public boolean isAdminOfHisBDE() {
+		BDEFacade bdeFacade = new BDEFacade();
+		BDE bde = bdeFacade.findById(this.currentBDE);
+		if (bde.getCreator().getId_user() == this.id_user) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 }

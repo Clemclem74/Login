@@ -5,27 +5,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-import buisnessLogic.User;
+import buisnessLogic.Event;
 
-public class OracleUserDAO extends OracleDAO<User> {
-public OracleUserDAO(Connection conn) {
+public class OracleEventDAO extends OracleDAO<Event> {
+public OracleEventDAO(Connection conn) {
   super(conn);
 }
 
-public int create(User obj) {
-	System.out.println("Before");
-	int id = getLastId()+1;
+public int create(Event obj) {
 	System.out.println("Before");
 
+
 	
-	  String SQL_INSERT = "Insert into Users " + "Values (" + id +",'" + obj.getUsername() + "',"
-			  +"'" + obj.getEmailuser() + "',"
-					  +"'" + obj.getPassworduser() + "',"
-							  +"'" + obj.getFirstname() + "',"
-									  +"'" + obj.getLastname() + "',"
-											  +"'" + obj.getPhonenumberuser() + "',"
-											  		+ -1 +")";
+	  String SQL_INSERT = "Insert into Event " + "Values (" + obj.getId_event() +",'" + obj.getTitle() + "',"
+			  +"'" + obj.getDescription() + "',"
+					  +"'" + obj.getEvent_date() + ")";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -47,7 +43,7 @@ public int create(User obj) {
 	
 }
 
-public boolean delete(User user) {
+public boolean delete(Event user) {
 	int id = user.getId_user();
 	String SQL_DELETE = "DELETE from Users WHERE ID_USER='"+id+"'";
 	 try {
@@ -70,7 +66,7 @@ public boolean delete(User user) {
 }
     
  
-public boolean update(int iduser, User obj) {
+public boolean update(int iduser, Event obj) {
 	
 	int id = iduser;
 	  
@@ -106,36 +102,12 @@ public boolean update(int iduser, User obj) {
 	
 }
 
-private int getLastId() {
-	
-	int id_user=0;
-	String SQL_SELECT = "Select MAX(ID_USER)from Users";
-
-	  // auto close connection and preparedStatement
-	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
-	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
-
-	      ResultSet resultSet = preparedStatement.executeQuery();
-	      while (resultSet.next()) {
-	          id_user = resultSet.getInt("MAX(ID_USER)"); 
-	      }
-	      return id_user;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	  return id_user;
-	
-}
-
  
-public User find(String email) {
-  User obj = new User();      
+public ArrayList<Event> findAll() {
+  
+	ArrayList<Event> ret = new ArrayList<Event>();
     
-  String SQL_SELECT = "Select * from Users where emailuser='"+email+"'";
+  String SQL_SELECT = "Select * from EVENT";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -145,41 +117,36 @@ public User find(String email) {
       ResultSet resultSet = preparedStatement.executeQuery();
       
       while (resultSet.next()) {
+    	  
+    	  Event obj = new Event();
+          int id_event = resultSet.getInt("EVENT");
+          String title = resultSet.getString("TITLE");
+          String description = resultSet.getString("DESCRIPTION");
+          String event_date = resultSet.getString("DATE");
 
-          int id_user = resultSet.getInt("ID_USER");
-          String username = resultSet.getString("USERNAME");
-          String emailuser = resultSet.getString("EMAILUSER");
-          String passworduser = resultSet.getString("PASSWORDUSER");
-          String lastname = resultSet.getString("LASTNAME");
-          String firstname = resultSet.getString("FIRSTNAME");
-          String phonenumberuser = resultSet.getString("PHONENUMBERUSER");
-          int idbde = resultSet.getInt("ID_BDE");
+          obj.setId_event(id_event);
+          obj.setTitle(title);
+          obj.setDescription(description);
+          obj.setEvent_date(event_date);
 
-          obj.setId_user(id_user);
-          obj.setUsername(username);
-          obj.setFirstname(firstname);
-          obj.setLastname(lastname);
-          obj.setEmailuser(emailuser);
-          obj.setPassworduser(passworduser);
-          obj.setPhonenumberuser(phonenumberuser);
-          obj.setCurrentBDE(idbde);
-          
+          ret.add(obj);
 
       }
 	  conn.close();
-      return obj;
+
+      return ret;
 
   } catch (SQLException e) {
       System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
   } catch (Exception e) {
       e.printStackTrace();
   }
-return obj;
+return ret;
 }
 
 
 public User findById(int id) {
-	  User obj = new User();      
+	  Event obj = new Event();      
 	    
 	  String SQL_SELECT = "Select * from Users where ID_USER='"+id+"'";
 
@@ -224,7 +191,7 @@ public User findById(int id) {
 	}
 
 @Override
-public boolean update(User obj) {
+public boolean update(Event obj) {
 	// TODO Auto-generated method stub
 	return false;
 }

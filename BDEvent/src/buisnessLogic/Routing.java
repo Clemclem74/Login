@@ -82,7 +82,19 @@ public class Routing {
 	}
 	
 
-	
+	public void Event() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/EventUI.fxml"));
+			Routing.stage.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// TODO - implement Routing.login_action
+
+	}
 
 	
 	public void confirmBDEMessage() {

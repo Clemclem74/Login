@@ -1,6 +1,7 @@
 package application;
 
 import buisnessLogic.UserFacade;
+import buisnessLogic.BDE;
 import buisnessLogic.BDEFacade;
 import buisnessLogic.Routing;
 
@@ -14,7 +15,7 @@ import javafx.scene.control.*;
 
 public class ModifyBDEUI extends Routing implements Initializable {
 		@FXML
-		private Button createButton;
+		private Button saveButton;
 		@FXML
 		private TextField nameBDEField;
 		@FXML
@@ -25,16 +26,20 @@ public class ModifyBDEUI extends Routing implements Initializable {
 	   
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
-		   this.nameBDEField.setText("Nom du BDE");
-		   this.schoolBDEField.setText("Nom de l'école");
+		   BDEFacade bdeFacade = new BDEFacade();
+		   BDE bde = bdeFacade.findById(super.getCurrentUser().getCurrentBDE());
+		   this.nameBDEField.setText(bde.getNameBDE());
+		   this.schoolBDEField.setText(bde.getSchoolBDE());
 	       // TODO (don't really need to do anything here).
 	   }
 	 
 	   // When user click on myButton
 	   // this method will be called.
 	   public void modifyAction(ActionEvent event) {
-		       BDEFacade bdeFacade = new BDEFacade();
-		       bdeFacade.create(super.getCurrentUser(), nameBDEField.getText(),schoolBDEField.getText());
-		       super.goTo("HomePageUI");
+	       BDEFacade bdeFacade = new BDEFacade();
+	       bdeFacade.modify(super.getCurrentUser().getCurrentBDE(), nameBDEField.getText(),schoolBDEField.getText());
+	       super.goTo("ManageBDEUI");
 	   }
+	   
+	   
 }

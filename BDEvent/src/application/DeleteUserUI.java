@@ -39,6 +39,6 @@ public class DeleteUserUI extends Routing implements Initializable {
 		   UserFacade userFacade = new UserFacade();
 		   System.out.println(super.getCurrentUser().getPassworduser());
 	       int res = userFacade.delete(super.getCurrentUser());
-	       super.goTo("LoginUi");
+	       super.goTo("LoginUI");
 	   }
 }

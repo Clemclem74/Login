@@ -110,6 +110,7 @@ public class UserFacade {
 
 	public int modify(int idUser,String username,String emailuser,String passworduser,String firstname, String lastname,String phonenumberuser,int idBDE) {
 		User obj = new User();
+		obj.setId_user(idUser);
         obj.setUsername(username);
         obj.setEmailuser(emailuser);
         obj.setPassworduser(passworduser);
