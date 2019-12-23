@@ -74,7 +74,7 @@ public class BDEFacade {
 	
 	public int delete(BDE bde) {
 
-        OracleDAO<User> bdeDao = adf.getBDEDAO();
+        OracleDAO<BDE> bdeDao = adf.getBDEDAO();
         if(bdeDao.delete(bde)) {
         	System.out.println("BDE deleted");
         	return 1;

@@ -18,6 +18,9 @@ public class Routing {
 	
 	
 	
+
+
+
 	public static Stage getStage() {
 		return stage;
 	}
@@ -33,7 +36,7 @@ public class Routing {
 	public static void setConfirmMessage(Stage stage) {
 		Routing.confirmMessage = stage;
 	}
-	
+
 	public static User getCurrentUser() {
 		return currentUser;
 	}
@@ -52,9 +55,9 @@ public class Routing {
 		// TODO Auto-generated constructor stub
 	}
 
-		
-	//change the scene with the UiScene in parameter 
-	
+
+	//change the scene with the UiScene in parameter
+
 	public void goTo(String UiScene) {
 		// TODO - implement Routing.loginForm
 		Parent root;
@@ -67,7 +70,7 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	//change the scene with the homePageUI scene
 	public void homePage() {
@@ -79,16 +82,30 @@ public class Routing {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// TODO - implement Routing.login_action
 
 	}
-	
 
-	
+
+	public void Event() {
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("/application/EventUI.fxml"));
+			Routing.stage.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// TODO - implement Routing.login_action
+
+	}
+
+
 	public void goToLittleWindow(String UiScene) {
 		Parent root;
-		
+
 		try {
 			Routing.confirmMessage=new Stage();
 			root = FXMLLoader.load(getClass().getResource("/application/"+UiScene+".fxml"));
@@ -99,9 +116,9 @@ public class Routing {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+
+
 	public void hideConfirmMessage() {
 		Routing.confirmMessage.hide();
 	}
@@ -132,5 +149,6 @@ public class Routing {
 	
 	
 	
+
 
 }

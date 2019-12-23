@@ -5,7 +5,7 @@ public class Team {
 	private int idTeam;
 	private String nameTeam;
 	private BDE bde;
-	private Member[] listMemberTeam;
+	private TeamMember[] listMemberTeam;
 
 	
 	
@@ -31,7 +31,7 @@ public class Team {
 
 
 
-	public Member[] getListMemberTeam() {
+	public TeamMember[] getListMemberTeam() {
 		return this.listMemberTeam;
 	}
 	

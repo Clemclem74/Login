@@ -46,6 +46,7 @@
                   <Button fx:id="showBDE" layoutX="81.0" layoutY="98.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
                   <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
                   <Button fx:id="goToBB" layoutX="25.0" layoutY="299.0" mnemonicParsing="false"  onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
+                  <Button fx:id="manageMyTeams" layoutX="51.0" layoutY="164.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
                </children>
             </AnchorPane>
          </children>
@@ -62,7 +63,7 @@
             <Font size="23.0" />
          </font></Label>
       <Button layoutX="359.0" layoutY="84.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify" />
-      <Button layoutX="427.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: red;" text="Delete my account" AnchorPane.topAnchor="84.0" />
+      <Button layoutX="448.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="84.0" />
       <Label layoutX="225.0" layoutY="299.0" text="BDE : " />
       <Label fx:id="noBDE" layoutX="280.0" layoutY="294.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet">
          <font>

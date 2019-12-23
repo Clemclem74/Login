@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import buisnessLogic.BDE;
 import buisnessLogic.BDEFacade;
@@ -50,35 +51,7 @@ public boolean delete(Team obj) {
 }
 
 public boolean update(int idtTeam, Team obj) {
-
-	int id = idBde;
-
-	  try {
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
-
-
-		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE BDE SET IDCREATOR = ?, NAMEBDE = ?, SCHOOLBDE= ? WHERE ID_BDE = ? ");
-
-			    // set the preparedstatement parameters
-			    ps.setInt(1,obj.getCreator().getId_user());
-			    ps.setString(2,obj.getNameBDE());
-			    ps.setString(3,obj.getSchoolBDE());
-			    ps.setInt(4,id);
-
-			    // call executeUpdate to execute our sql update statement
-			    ps.executeUpdate();
-			    ps.close();
-
-		  return true;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return false;
-
+	return true;
 }
 
 private int getLastId() {
@@ -150,6 +123,18 @@ public boolean update(Team obj) {
 
 @Override
 public Team find(String id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ArrayList<Integer> findTeams(int idBDE) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ArrayList<Team> findAll() {
 	// TODO Auto-generated method stub
 	return null;
 }
