@@ -28,9 +28,9 @@ public int create(BDE obj) {
 	  // auto close connection and preparedStatement
 	  try {
 
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 		  Statement st = conn.createStatement();
-		
+
 	      st.executeUpdate(SQL_INSERT);
 
 		  conn.close();
@@ -72,7 +72,7 @@ public boolean update(int idBde, BDE obj) {
 	int id = idBde;
 
 	  try {
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
 
 
 		  PreparedStatement ps = conn.prepareStatement(
@@ -106,7 +106,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+			  ORACLE_DB_PATH, "system", "oose");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -132,12 +132,12 @@ public BDE findById(int id) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  ORACLE_DB_PATH, "system", "oose");
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
       UserFacade userfacade = new UserFacade();
-      
+
       while (resultSet.next()) {
 
           int id_BDE = resultSet.getInt("ID_BDE");
@@ -176,7 +176,7 @@ public ArrayList<Integer> findTeams(int idBDE){
 	    	  team.add( resultSet.getInt("ID_TEAM"));
 	      }
 	      System.out.println(team.toString());
-	      
+
 		  conn.close();
 	      return team;
 
