@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
@@ -61,6 +62,42 @@ public class PostFacade {
         	System.out.println("Error while creating the post");
         	return -1;
         }
+	}
+	
+	public ArrayList<Post> findAllPostBDE(User user) {
+		OracleDAO<Post> postDao = this.adf.getPostDAO();
+		ArrayList<Post> allpost = postDao.findAllPostByBDE(user);
+		if (allpost == null) {
+			System.out.println("event null facade");
+			return null;
+		}
+		else {
+			return allpost;
+		}
+	}
+	
+	public ArrayList<Post> findAllPostUser(User user) {
+		OracleDAO<Post> postDao = this.adf.getPostDAO();
+		ArrayList<Post> allpost = postDao.findAllPostByUser(user);
+		if (allpost == null) {
+			System.out.println("event null facade");
+			return null;
+		}
+		else {
+			return allpost;
+		}
+	}
+	
+	public Post find(String post_name) {
+		OracleDAO<Post> postDao = this.adf.getPostDAO();
+		Post post = postDao.find(post_name);
+		if (post == null) {
+			System.out.println("event null facade");
+			return null;
+		}
+		else {
+			return post;
+		}
 	}
 
 }

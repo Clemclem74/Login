@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
    <children>
-      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
+      <Text layoutX="250.0" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="402.0" prefWidth="185.0" style="-fx-background-color: f7b4b4;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: f7b4b4;">
                <effect>
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_button" layoutX="25.0" layoutY="309.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="26.0" layoutY="210.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="258.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="349.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -36,17 +36,17 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="558.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="createBDE" layoutX="71.0" layoutY="129.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
-                  <Button fx:id="joinBDE" layoutX="77.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
-                  <Button fx:id="showBDE" layoutX="81.0" layoutY="98.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
-                  <Button fx:id="quitBDEbutton" layoutX="10.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
-                  <Button fx:id="goToBB" layoutX="25.0" layoutY="299.0" mnemonicParsing="false"  onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
-                  <Button fx:id="manageMyTeams" layoutX="51.0" layoutY="164.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
+                  <Button fx:id="createBDE" layoutX="59.0" layoutY="145.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
+                  <Button fx:id="joinBDE" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
+                  <Button fx:id="showBDE" layoutX="108.0" layoutY="110.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
+                  <Button fx:id="quitBDEbutton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
+                  <Button fx:id="goToBB" layoutX="25.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
+                  <Button fx:id="manageMyTeams" layoutX="17.0" layoutY="182.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
                </children>
             </AnchorPane>
          </children>
@@ -58,12 +58,12 @@
       <Label fx:id="username_text" layoutX="339.0" layoutY="154.0" />
       <Label fx:id="email_text" layoutX="339.0" layoutY="201.0" />
       <Label fx:id="phone_number_text" layoutX="371.0" layoutY="249.0" />
-      <Label fx:id="name_text" layoutX="311.0" layoutY="16.0">
+      <Label fx:id="name_text" layoutX="414.0" layoutY="25.0">
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Button layoutX="359.0" layoutY="84.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify" />
-      <Button layoutX="448.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="84.0" />
+      <Button layoutX="655.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify my account" />
+      <Button layoutX="799.0" layoutY="29.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="29.0" />
       <Label layoutX="225.0" layoutY="299.0" text="BDE : " />
       <Label fx:id="noBDE" layoutX="280.0" layoutY="294.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet">
          <font>

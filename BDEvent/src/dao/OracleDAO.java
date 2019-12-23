@@ -2,10 +2,13 @@ package dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import buisnessLogic.Post;
+import buisnessLogic.User;
+
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
   
-  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:orcl";
+  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:xe";
    
   public OracleDAO(Connection conn){
     this.connect = conn;
@@ -32,5 +35,17 @@ public abstract class OracleDAO<T> {
 
 
   public abstract ArrayList<Integer> findTeams(int idBDE);
+
+
+public  ArrayList<Post> findAllPostByBDE(User user){
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public ArrayList<Post> findAllPostByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
+}
   
 }

@@ -22,6 +22,8 @@ public class CreatePostUI extends Routing implements Initializable {
 		@FXML
 		private Button createPostButton;
 		@FXML
+		private Button backButton;
+		@FXML
 		private TextField titlePost;
 		@FXML
 		private TextArea textPost;
@@ -52,5 +54,9 @@ public class CreatePostUI extends Routing implements Initializable {
 	    	   super.openPopUp("Your post has been created", "Your post has been added to list of waiting post, he will be visible when the administrator has valided it");
 	    	   //this.idBDELabel.setText("8");
 	       }
+	   }
+	   
+	   public void backBB(ActionEvent event) {
+		   super.goTo("BlackBoardUI");
 	   }
 }

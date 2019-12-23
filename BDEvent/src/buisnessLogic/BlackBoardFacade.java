@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
@@ -37,6 +38,18 @@ public class BlackBoardFacade {
 	public BlackBoardFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
+	}
+	
+	public ArrayList<Post> findAll(User user) {
+		OracleDAO<Post> postDao = this.adf.getPostDAO();
+		ArrayList<Post> allpost = postDao.findAllPostByBDE(user);
+		if (allpost == null) {
+			System.out.println("event null facade");
+			return null;
+		}
+		else {
+			return allpost;
+		}
 	}
 
 	
