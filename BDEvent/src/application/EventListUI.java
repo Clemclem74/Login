@@ -20,7 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
-public class EventUI extends Routing implements Initializable {
+public class EventListUI extends Routing implements Initializable {
 	 
 	ArrayList<Event> list = new ArrayList<Event>();
 	private Event theEvent = new Event();
@@ -34,8 +34,7 @@ public class EventUI extends Routing implements Initializable {
 	 private Label description;
 	 @FXML
 	 private Label event_date;
-	 @FXML
-	 private Button join_button;
+
 	 
 
 	@Override
@@ -46,17 +45,17 @@ public class EventUI extends Routing implements Initializable {
 	   }
 
 	private void loadData() {
+		
 		list.removeAll(list);
+		
 		EventFacade eventFacade = new EventFacade();
 		
-		list = eventFacade.findAll();
+		list = eventFacade.getEventbyUser(super.getCurrentUser());
 		
 		ArrayList<String> eventName = new ArrayList<String>();
 		
 		list.forEach((n)-> eventName.add(n.getTitle() + " : " + n.getEvent_date())); 
-		
-		
-		
+
 		eventList.getItems().addAll(eventName);
 	}
 	
@@ -81,16 +80,6 @@ public class EventUI extends Routing implements Initializable {
 		
 	}
 	
-	public void delete(ActionEvent event) {
-		EventFacade eventFacade = new EventFacade();
-		eventFacade.delete(this.theEvent);
-		eventList.getItems().removeAll(eventList.getItems()); 
-		loadData();
-	}
-	
-	public void create(ActionEvent event) {
-		super.goTo("CreateEventUI");
-	}
 	
 	public void home(ActionEvent event) {
 		super.goTo("HomePageUI");
@@ -98,21 +87,7 @@ public class EventUI extends Routing implements Initializable {
 	
 	
 	public void list(ActionEvent event) {
-		super.goTo("EventListUI");
-	}
-	
-	
-	public void join(ActionEvent event) {
-		EventFacade eventFacade = new EventFacade();
-		int res=eventFacade.join(this.theEvent,super.getCurrentUser());
-		if(res == 0) {
-			System.out.println("You succesfully join " + this.theEvent.getTitle());
-			
-		}
-		
-		if(res == -2) {
-			System.out.println("You already participate to this event");
-		}
+		super.goTo("EventUI");
 	}
 	
    

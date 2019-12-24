@@ -174,6 +174,12 @@ public ArrayList<TeamMember> findAll() {
 	return null;
 }
 
+@Override
+public int join(TeamMember obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 
 
 

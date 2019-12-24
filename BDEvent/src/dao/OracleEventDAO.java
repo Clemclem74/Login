@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.Event;
+import buisnessLogic.User;
 
 public class OracleEventDAO extends OracleDAO<Event> {
 public OracleEventDAO(Connection conn) {
@@ -222,6 +223,8 @@ public Event find(String id) {
 	return obj;
 }
 
+
+
 private int getLastId() {
 	
 	int id_event=0;
@@ -246,6 +249,97 @@ private int getLastId() {
 	  return id_event;
 	
 }
+
+
+
+public int join(Event obj,User user) {
+	System.out.println("Before");
+
+	if(this.alreadyEventbyUser(obj.getId_event(),user.getId_user())==-1) {
+		
+		String SQL_INSERT = "Insert into USEREVENT " + "Values (" + obj.getId_event() +",'" + user.getId_user() + "')";
+		  System.out.println(SQL_INSERT);
+		  // auto close connection and preparedStatement
+		  try {
+			  
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Statement st = conn.createStatement();
+
+		      st.executeUpdate(SQL_INSERT);
+			  
+			  conn.close();
+			  return 1;
+
+		  } catch (SQLException e) {
+		      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		  } catch (Exception e) {
+		      e.printStackTrace();
+		  }
+		return -1;	
+		
+	}
+	else {
+		return -2;
+	}
+	
+	
+}
+
+
+public ArrayList<Integer> getEventByUser(User user) {
+	ArrayList<Integer> id_list = new ArrayList<Integer>();
+    
+	  String SQL_SELECT = "Select * from USEREVENT where id_user="+user.getId_user();
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      
+	      while (resultSet.next()) {
+	    	  
+	    	  id_list.add(resultSet.getInt("ID_EVENT"));
+	    	  
+	      }
+	      conn.close();
+	      return id_list;
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return id_list;
+}
+
+
+
+private int alreadyEventbyUser(int id_event,int id_user) {
+	
+	String SQL_SELECT = "Select * from USEREVENT where id_user = "+id_user+" AND id_event = "+id_event;
+
+	int id = -1;
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, "system", "oose");
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          id = resultSet.getInt("id_event"); 
+	      }
+	      return id;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id;
+	
+}
+
 
 
 @Override

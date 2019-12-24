@@ -76,6 +76,30 @@ public class EventFacade {
 		}
 	}
 	
+	public int join(Event event,User user) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		int bool = eventDao.join(event,user);
+		if (bool == -1) {
+			System.out.println("event null facade");
+			return -1;
+		}
+		if(bool == -2) {
+			return -2;
+		}
+		return 0;
+	}
+	
+	
+	public ArrayList<Event> getEventbyUser(User user) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		
+		ArrayList<Integer> event_id = eventDao.getEventByUser(user);
+		ArrayList<Event> event = new ArrayList<Event>();
+		event_id.forEach((n) -> System.out.println(n));
+		event_id.forEach((n) -> event.add(eventDao.findById(n)));
+		
+		return event;
+	}
 
 
 	public void sendError() {

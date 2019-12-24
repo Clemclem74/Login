@@ -210,5 +210,11 @@ public ArrayList<BDE> findAll() {
 	return null;
 }
 
+@Override
+public int join(BDE obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 
 }

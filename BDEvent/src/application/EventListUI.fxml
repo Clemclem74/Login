@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
+<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventListUI">
    <children>
-      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Events : " wrappingWidth="328.5625">
+      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Events : " textAlignment="CENTER" wrappingWidth="328.5625">
          <font>
             <Font size="23.0" />
          </font>
@@ -35,21 +35,17 @@
                      </font>
                   </Button>
                   <Button layoutX="56.0" layoutY="122.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
-                  <Button layoutX="50.0" layoutY="192.0" mnemonicParsing="false" onAction="#list" text="My Events" />
+                  <Button layoutX="52.0" layoutY="192.0" mnemonicParsing="false" onAction="#list" text="All Events" />
                </children>
             </AnchorPane>
          </children>
       </Pane>
-      <ListView fx:id="eventList" layoutX="303.0" layoutY="24.0" onMouseClicked="#displaySelected" prefHeight="173.0" prefWidth="200.0" />
-      <Button layoutX="286.0" layoutY="348.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="359.0" layoutY="348.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Button layoutX="211.0" layoutY="348.0" mnemonicParsing="false" text="Modify" />
-      <Label layoutX="221.0" layoutY="225.0" text="Title :" />
-      <Label layoutX="421.0" layoutY="225.0" text="Date :" />
-      <Label layoutX="221.0" layoutY="257.0" text="Description :" />
-      <Label fx:id="event_title" layoutX="278.0" layoutY="225.0" />
-      <Label fx:id="description" layoutX="222.0" layoutY="285.0" />
-      <Label fx:id="event_date" layoutX="471.0" layoutY="225.0" />
-      <Button fx:id="button_join" layoutX="460.0" layoutY="348.0" mnemonicParsing="false" onAction="#join" text="Join" />
+      <ListView fx:id="eventList" layoutX="246.0" layoutY="77.0" onMouseClicked="#displaySelected" prefHeight="173.0" prefWidth="200.0" />
+      <Label layoutX="219.0" layoutY="274.0" text="Title :" />
+      <Label layoutX="419.0" layoutY="274.0" text="Date :" />
+      <Label layoutX="219.0" layoutY="306.0" text="Description :" />
+      <Label fx:id="event_title" layoutX="276.0" layoutY="274.0" />
+      <Label fx:id="description" layoutX="220.0" layoutY="334.0" />
+      <Label fx:id="event_date" layoutX="469.0" layoutY="274.0" />
    </children>
 </AnchorPane>

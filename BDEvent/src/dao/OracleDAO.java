@@ -8,7 +8,7 @@ import buisnessLogic.User;
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
   
-  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:xe";
+  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:orcl";
    
   public OracleDAO(Connection conn){
     this.connect = conn;
@@ -16,6 +16,8 @@ public abstract class OracleDAO<T> {
    
 
   public abstract int create(T obj);
+  
+  public abstract int join(T obj,User user);
 
 
   public abstract boolean delete(T obj);
@@ -33,6 +35,7 @@ public abstract class OracleDAO<T> {
   
   public abstract T findById(int id);
 
+  public abstract ArrayList<Integer> getEventByUser(User user);
 
   public abstract ArrayList<Integer> findTeams(int idBDE);
 

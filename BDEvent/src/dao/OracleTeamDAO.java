@@ -138,4 +138,10 @@ public ArrayList<Team> findAll() {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public int join(Team obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }
