@@ -113,4 +113,10 @@ public class User {
 		}
 	}
 	
+
+	
+	public boolean isPublisherPost(Post post) {
+		return this.id_user == post.getId_user_publisher();
+	}
+	
 }

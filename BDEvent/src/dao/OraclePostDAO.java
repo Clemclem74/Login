@@ -52,21 +52,62 @@ public int create(Post obj) {
 }
 
 @Override
-public boolean delete(Post obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
+public boolean delete(Post post) {
+	int id = post.getId_postBB();
+	String SQL_DELETE = "DELETE from POSTBB WHERE ID_POSTBB='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
 
-@Override
-public boolean update(int i, Post obj) {
-	// TODO Auto-generated method stub
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
 }
 
 @Override
 public boolean update(Post obj) {
-	// TODO Auto-generated method stub
+	
+	int id = obj.getId_postBB();
+	  
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  System.out.println(id);
+		  System.out.println(obj.getTitle_postBB());
+		  System.out.println(obj.getText_postBB());
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE POSTBB SET TITLE_POSTBB = ?, TEXT_POSTBB = ? WHERE ID_POSTBB = ? ");
+		  
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getTitle_postBB());
+			    ps.setString(2,obj.getText_postBB());
+			    ps.setInt(3,id);
+			  
+			   System.out.println(obj.getTitle_postBB());
+			   
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
+	
 }
 
 @Override
@@ -275,5 +316,24 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	  }
 	return ret;
 	}
+
+@Override
+public int join(Post obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean update(int i, Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }

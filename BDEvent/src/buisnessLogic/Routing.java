@@ -14,6 +14,7 @@ public class Routing {
 	private static Stage confirmMessage;
 	private static Stage popUp;
 	private static User currentUser;
+	private static Post currentPost;
 	
 	
 	
@@ -27,6 +28,14 @@ public class Routing {
 
 	public static void setStage(Stage stage) {
 		Routing.stage = stage;
+	}
+	
+	public static Post getCurrentPost() {
+		return currentPost;
+	}
+
+	public static void setCurrentPost(Post post) {
+		Routing.currentPost = post;
 	}
 
 	public static Stage getConfirmMessage() {

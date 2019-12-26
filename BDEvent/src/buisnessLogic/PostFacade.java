@@ -64,6 +64,40 @@ public class PostFacade {
         }
 	}
 	
+	public int delete(Post post) {
+        OracleDAO<Post> postDao = adf.getPostDAO();
+        if(postDao.delete(post)) {
+        	System.out.println("post deleted");
+        	return 1;
+        }
+        else {
+        	System.out.println("Error while deleting post");
+        	return -1;
+        }
+	} 
+	
+	public int modify(int idPost, int idUser , String Title, String text, int idBde) {
+		System.out.println("modify dans postfacade debut");
+		Post obj = new Post();
+		
+		obj.setId_postBB(idPost);
+		obj.setId_user_publisher(idUser);
+		obj.setTitle_postBB(Title);
+		obj.setText_postBB(text);
+		obj.setId_BDE_postBB(idBde);
+        
+        OracleDAO<Post> postDao = adf.getPostDAO();
+        
+        if(postDao.update(obj)) {
+        	System.out.println("post modified");
+        	return 1;
+        }
+        else {
+        	System.out.println("Error while modifing post");
+        	return -1;
+        }
+	}
+	
 	public ArrayList<Post> findAllPostBDE(User user) {
 		OracleDAO<Post> postDao = this.adf.getPostDAO();
 		ArrayList<Post> allpost = postDao.findAllPostByBDE(user);

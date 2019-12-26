@@ -26,11 +26,14 @@ public class BlackBoardUI extends Routing implements Initializable {
 	
 	 @FXML
 	 private Button homePage;
-	 
+	 @FXML
+	 private Button manageButton;
 	 @FXML
 	 private Button newPost; 
 	 @FXML
 	 private Button seePost;
+	 @FXML
+	 private Button buttonSeeBB;
 	 @FXML
 	 private Button logoutButton;
 	 @FXML
@@ -48,15 +51,21 @@ public class BlackBoardUI extends Routing implements Initializable {
 
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
-		  User user=super.getCurrentUser();
-		  BlackBoardFacade blackboardFacade = new BlackBoardFacade();
-		  BlackBoard bb = new BlackBoard();
-		  displayPost();
-		  
+		super.setCurrentPost(null);
+		displayPost();
+		buttonSeeBB.setVisible(false);
+		modifyPost.setVisible(false);
+		deletePost.setVisible(false);
+		manageButton.setVisible(false);
+		if (super.getCurrentUser().isAdminOfHisBDE()){
+			manageButton.setVisible(true);
+		}
+		
 	   }
 
 	private void displayPost() {
 		list.removeAll(list);
+		super.setCurrentPost(null);
 		User user=super.getCurrentUser();
 		PostFacade postFacade = new PostFacade();
 		list = postFacade.findAllPostBDE(user);
@@ -85,31 +94,79 @@ public class BlackBoardUI extends Routing implements Initializable {
 			PostFacade postFacade = new PostFacade();
 			String post1 = postList.getSelectionModel().getSelectedItem();
 			Post postSelected = postFacade.find(post1.split(" : ")[0]);
+			super.setCurrentPost(postSelected);
 			if(post1 != null) {
 				this.titrePostSelected.setText(postSelected.getTitle_postBB());
 				this.textPostSelected.setText(postSelected.getText_postBB());
+				if (super.getCurrentUser().isPublisherPost(Routing.getCurrentPost())){
+					modifyPost.setVisible(true);
+					deletePost.setVisible(true);
+				}
+				
 			}
 			
 	   }
 		@FXML	
 		private void seeMyPost(ActionEvent event) {
-			System.out.println("debut see my post");
+			super.setCurrentPost(null);
+			this.titrePostSelected.setText("");
+			this.textPostSelected.setText("");
 			postList.getItems().clear();
 			list.removeAll(list);
 			User user=super.getCurrentUser();
 			PostFacade postFacade = new PostFacade();
-			System.out.println("avant fct findalluser");
 			list = postFacade.findAllPostUser(user);
-			System.out.println("apres fct findalluser");
 			ArrayList<String> titlePost = new ArrayList<String>();
 			list.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
 			postList.getItems().addAll(titlePost);
+			buttonSeeBB.setVisible(true);
+			seePost.setVisible(false);
 			
 			
 		}
 	   
-	  
-	
+		@FXML	
+		private void seeBB(ActionEvent event) {
+			super.goTo("BlackBoardUI");
+		}
+		
+		@FXML	
+		private void deleteSelected(ActionEvent event) {
+			PostFacade postFacade = new PostFacade();
+			postFacade.delete(super.getCurrentPost());
+			postList.getItems().clear();
+			list.removeAll(list);
+			super.openPopUp("You're post has been deleted", "congratulations, you can continue to the application");
+			 displayPost();
+			 this.titrePostSelected.setText("");
+			this.textPostSelected.setText("");
+			
+			 
+		}
+		
+		@FXML	
+		private void modifySelected(ActionEvent event) {
+			super.goTo("ModifyPostUI");
+			 
+		}
+		
+		@FXML	
+		private void manageBB(ActionEvent event) {
+			super.goTo("ManageBlackBoardUI");
+		}
+		
+		//---------------------------------------------CONTROLEUR MANAGE BB--------------------
+		
+		 @FXML
+		 private ListView<String> appliancePostList;
+		 @FXML
+		 private Button acceptButton;
+		 @FXML
+		 private Button refusedButton;
+		 
+		 
+		 
+		 
 	       
    
 }
