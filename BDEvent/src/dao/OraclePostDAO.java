@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
 import buisnessLogic.Event;
 import buisnessLogic.Post;
 import buisnessLogic.Team;

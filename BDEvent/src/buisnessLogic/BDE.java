@@ -9,7 +9,6 @@ public class BDE {
 	private String nameBDE;
 	private String schoolBDE;
 	private User creator; 
-	private BlackBoard blackboard;
 	private List<TeamMember> listOfMemberAppliance;
 	private List<TeamMember> listOfMembers = new ArrayList();
 

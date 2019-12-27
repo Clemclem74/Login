@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
@@ -26,9 +25,7 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 		  return new OracleTeamDAO(conn);
 	  }
 	  
-	  public OracleDAO<BlackBoard> getBlackBoardDAO(){
-		  return new OracleBlackBoardDAO(conn);
-	  }
+	  
 
 	@Override
 	public OracleDAO<Post> getPostDAO() {

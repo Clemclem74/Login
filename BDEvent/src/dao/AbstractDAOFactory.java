@@ -1,7 +1,6 @@
 package dao;
 import buisnessLogic.User;
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
 import buisnessLogic.Post;
 import buisnessLogic.Event;
 import buisnessLogic.Team;
@@ -16,7 +15,6 @@ public abstract class AbstractDAOFactory {
 	  public abstract OracleDAO<BDE> getBDEDAO();
 	  public abstract OracleDAO<Team> getTeamDAO();
 	  public abstract OracleDAO<Post> getPostDAO();
-	  public abstract OracleDAO<BlackBoard> getBlackBoardDAO();
 	   
 	  
 	  //M�thode permettant de r�cup�rer les Factory

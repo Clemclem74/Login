@@ -1,7 +1,5 @@
 package application;
 
-import buisnessLogic.BlackBoard;
-import buisnessLogic.BlackBoardFacade;
 import buisnessLogic.Event;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Post;
