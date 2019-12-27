@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 
 public class BlackBoardUI extends Routing implements Initializable {
 	
-	ArrayList<Post> list = new ArrayList<Post>();
+	ArrayList<Post> valideList = new ArrayList<Post>();
 	
 	 @FXML
 	 private Button homePage;
@@ -47,6 +47,20 @@ public class BlackBoardUI extends Routing implements Initializable {
 	 @FXML
 	 private Label titrePostSelected;
 	 
+	//---------------------------------------------CONTROLEUR MANAGE BB--------------------
+		
+	 @FXML
+	 private ListView<String> appliancePostList;
+	 @FXML
+	 private Button acceptButton;
+	 @FXML
+	 private Button refusedButton;
+	 
+	 ArrayList<Post> waitingList = new ArrayList<Post>();
+	 private static String mode = "Normal";
+	 
+	 //-----------------------------------------------------------------------------------
+	 
 	 
 
 	@Override
@@ -59,18 +73,23 @@ public class BlackBoardUI extends Routing implements Initializable {
 		manageButton.setVisible(false);
 		if (super.getCurrentUser().isAdminOfHisBDE()){
 			manageButton.setVisible(true);
+			if (mode.contentEquals("Manage")) {
+				System.out.println(mode +"ds if");
+				displayWaitingPost();
+			}
 		}
+		
 		
 	   }
 
 	private void displayPost() {
-		list.removeAll(list);
+		valideList.removeAll(valideList);
 		super.setCurrentPost(null);
 		User user=super.getCurrentUser();
 		PostFacade postFacade = new PostFacade();
-		list = postFacade.findAllPostBDE(user);
+		valideList = postFacade.findAllValidatePostBDE(user);
 		ArrayList<String> titlePost = new ArrayList<String>();
-		list.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
+		valideList.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
 		
 		postList.getItems().addAll(titlePost);
 	}
@@ -90,7 +109,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 	   }
 	   
 	   @FXML
-		private void displaySelected(MouseEvent event) {
+		private void displaySelectedList(MouseEvent event) {
 			PostFacade postFacade = new PostFacade();
 			String post1 = postList.getSelectionModel().getSelectedItem();
 			Post postSelected = postFacade.find(post1.split(" : ")[0]);
@@ -106,18 +125,22 @@ public class BlackBoardUI extends Routing implements Initializable {
 			}
 			
 	   }
+	   
+	   
+	   
+	   
 		@FXML	
 		private void seeMyPost(ActionEvent event) {
 			super.setCurrentPost(null);
 			this.titrePostSelected.setText("");
 			this.textPostSelected.setText("");
 			postList.getItems().clear();
-			list.removeAll(list);
+			valideList.removeAll(valideList);
 			User user=super.getCurrentUser();
 			PostFacade postFacade = new PostFacade();
-			list = postFacade.findAllPostUser(user);
+			valideList = postFacade.findAllPostUser(user);
 			ArrayList<String> titlePost = new ArrayList<String>();
-			list.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
+			valideList.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
 			postList.getItems().addAll(titlePost);
 			buttonSeeBB.setVisible(true);
 			seePost.setVisible(false);
@@ -135,7 +158,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 			PostFacade postFacade = new PostFacade();
 			postFacade.delete(super.getCurrentPost());
 			postList.getItems().clear();
-			list.removeAll(list);
+			valideList.removeAll(valideList);
 			super.openPopUp("You're post has been deleted", "congratulations, you can continue to the application");
 			 displayPost();
 			 this.titrePostSelected.setText("");
@@ -150,20 +173,50 @@ public class BlackBoardUI extends Routing implements Initializable {
 			 
 		}
 		
-		@FXML	
-		private void manageBB(ActionEvent event) {
-			super.goTo("ManageBlackBoardUI");
-		}
+		 @FXML	
+			private void manageBB(ActionEvent event) {
+				this.mode= "Manage";
+				super.goTo("ManageBlackBoardUI");
+				this.mode= "Manage";
+				System.out.println(mode);
+			}
+		 
 		
 		//---------------------------------------------CONTROLEUR MANAGE BB--------------------
-		
-		 @FXML
-		 private ListView<String> appliancePostList;
-		 @FXML
-		 private Button acceptButton;
-		 @FXML
-		 private Button refusedButton;
 		 
+		 private void displayWaitingPost() {
+			 waitingList.removeAll(waitingList);
+				super.setCurrentPost(null);
+				User user=super.getCurrentUser();
+				PostFacade postFacade = new PostFacade();
+				waitingList = postFacade.findAllWaitingPostBDE(user);
+				ArrayList<String> titlePost = new ArrayList<String>();
+				waitingList.forEach((n)-> titlePost.add(n.getTitle_postBB())); 
+				
+				appliancePostList.getItems().addAll(titlePost);
+			}
+		 
+		 
+		 @FXML
+			private void displaySelectedWaitingList(MouseEvent event) {
+				PostFacade postFacade = new PostFacade();
+				String post1 = appliancePostList.getSelectionModel().getSelectedItem();
+				Post postSelected = postFacade.find(post1.split(" : ")[0]);
+				super.setCurrentPost(postSelected);
+				if(post1 != null) {
+					this.titrePostSelected.setText(postSelected.getTitle_postBB());
+					this.textPostSelected.setText(postSelected.getText_postBB());
+					if (super.getCurrentUser().isPublisherPost(Routing.getCurrentPost())){
+						modifyPost.setVisible(true);
+						deletePost.setVisible(true);
+					}
+					
+				}
+				
+		   }
+		
+		 
+		
 		 
 		 
 		 

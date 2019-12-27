@@ -30,7 +30,7 @@ public int create(Post obj) {
 	  String SQL_INSERT = "Insert into POSTBB " + "Values (" + id +"," + obj.getId_user_publisher() + ","
 			  +"'" + obj.getTitle_postBB() + "',"
 					  +"'" + obj.getText_postBB() + "',"+
-					  	+ obj.getId_BDE_postBB() + ")";
+					  	+ obj.getId_BDE_postBB() + "," + 0 + ")";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -86,7 +86,7 @@ public boolean update(Post obj) {
 		  System.out.println(obj.getTitle_postBB());
 		  System.out.println(obj.getText_postBB());
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE POSTBB SET TITLE_POSTBB = ?, TEXT_POSTBB = ? WHERE ID_POSTBB = ? ");
+			      "UPDATE POSTBB SET TITLE_POSTBB = ?, TEXT_POSTBB = ?, STATE = 0 WHERE ID_POSTBB = ? ");
 		  
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getTitle_postBB());
@@ -131,6 +131,8 @@ public Post find(String titrePost) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
+
 
 	          
 	          obj.setId_postBB(id_postbb);
@@ -138,6 +140,8 @@ public Post find(String titrePost) {
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
+	          
 	          
 
 	      }
@@ -210,6 +214,8 @@ public ArrayList<Post> findAll() {
           String title = resultSet.getString("TITLE_POSTBB");
           String text = resultSet.getString("TEXT_POSTBB");
           int bde = resultSet.getInt("ID_BDE");
+          int state = resultSet.getInt("STATE");
+
 
           
           obj.setId_postBB(id_postbb);
@@ -217,6 +223,7 @@ public ArrayList<Post> findAll() {
           obj.setTitle_postBB(title);
           obj.setText_postBB(text);
           obj.setId_BDE_postBB(bde);
+          obj.setState(state);
           
 
           ret.add(obj);
@@ -254,12 +261,15 @@ public ArrayList<Post> findAllPostByBDE(User user) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
+
 
 	          obj.setId_postBB(id_postbb);
 	          obj.setId_user_publisher(id_publisher);
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
 
 	          ret.add(obj);
 
@@ -295,12 +305,14 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
 
 	          obj.setId_postBB(id_postbb);
 	          obj.setId_user_publisher(id_publisher);
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
 
 	          ret.add(obj);
 

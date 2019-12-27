@@ -44,7 +44,7 @@
          </children>
       </Pane>
       
-      <ListView fx:id="postList" layoutX="289.0" layoutY="103.0" onMouseClicked="#displaySelected" prefHeight="242.0" prefWidth="577.0" />
+      <ListView fx:id="postList" layoutX="289.0" layoutY="103.0" onMouseClicked="#displaySelectedList" prefHeight="242.0" prefWidth="577.0" />
       <Text fx:id="textPostSelected" layoutX="311.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="533.13671875" />
       <Label fx:id="titrePostSelected" layoutX="584.0" layoutY="380.0">
          <font>

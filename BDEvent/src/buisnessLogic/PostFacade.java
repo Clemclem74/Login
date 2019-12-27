@@ -110,6 +110,35 @@ public class PostFacade {
 		}
 	}
 	
+	public ArrayList<Post> findAllValidatePostBDE(User user) {
+		
+		ArrayList<Post> allpost = findAllPostBDE(user);
+		ArrayList<Post> validatePost = new ArrayList<Post>();
+		
+		for ( int i = 0 ; i < allpost.size(); i++) {
+			if (allpost.get(i).getState() == 1) {
+				validatePost.add(allpost.get(i));
+			}
+		}
+		System.out.println(validatePost);
+		return validatePost;
+		
+	}
+	
+public ArrayList<Post> findAllWaitingPostBDE(User user) {
+		
+		ArrayList<Post> allpost = findAllPostBDE(user);
+		ArrayList<Post> waitingPost = new ArrayList<Post>();
+		for ( int i = 0 ; i < allpost.size(); i++) {
+			if (allpost.get(i).getState() == 0) {
+				waitingPost.add(allpost.get(i));
+			}
+		}
+		
+		return waitingPost;
+		
+	}
+	
 	public ArrayList<Post> findAllPostUser(User user) {
 		OracleDAO<Post> postDao = this.adf.getPostDAO();
 		ArrayList<Post> allpost = postDao.findAllPostByUser(user);
