@@ -43,25 +43,30 @@ public class PostFacade {
 	public int create(int idUser , String Title, String text, int idBde) {
 		System.out.println("create dans postfacade debut");
 		Post obj = new Post();
-		
-		obj.setId_user_publisher(idUser);
-		obj.setTitle_postBB(Title);
-		obj.setText_postBB(text);
-		obj.setId_BDE_postBB(idBde);
-        
-        OracleDAO<Post> postDao = adf.getPostDAO();
+		if ((Title.length()>0) && (text.length()>0)){
+			obj.setId_user_publisher(idUser);
+			obj.setTitle_postBB(Title);
+			obj.setText_postBB(text);
+			obj.setId_BDE_postBB(idBde);
+	        
+	        OracleDAO<Post> postDao = adf.getPostDAO();
        
-        
-        int res = postDao.create(obj);
-        System.out.println("creation obj database");
-        if(res>=0) {
-        	System.out.println( "the post : " + Title + " created");
-        	return res;
-        }
-        else {
-        	System.out.println("Error while creating the post");
-        	return -1;
-        }
+	        int res = postDao.create(obj);
+	        
+	        System.out.println("creation obj database");
+	        if(res>=0) {
+	        	System.out.println( "the post : " + Title + " created");
+	        	return res;
+	        }
+	        else {
+	        	System.out.println("Error while creating the post");
+	        	return -1;
+	        }
+		}
+		else {
+			return -1;
+		}
+       
 	}
 	
 	public int delete(Post post) {
@@ -79,21 +84,45 @@ public class PostFacade {
 	public int modify(int idPost, int idUser , String Title, String text, int idBde) {
 		System.out.println("modify dans postfacade debut");
 		Post obj = new Post();
+		if ((Title.length()>0) && (text.length()>0)){
+			obj.setId_postBB(idPost);
+			obj.setId_user_publisher(idUser);
+			obj.setTitle_postBB(Title);
+			obj.setText_postBB(text);
+			obj.setId_BDE_postBB(idBde);
+	        
+	        OracleDAO<Post> postDao = adf.getPostDAO();
+	        
+	        if(postDao.update(obj)) {
+	        	System.out.println("post modified");
+	        	return 1;
+	        }
+	        else {
+	        	System.out.println("Error while modifing post");
+	        	return -1;
+	        }
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	public int accept(int idPost) {
+		System.out.println("accept dans postfacade debut");
+		Post obj = new Post();
 		
 		obj.setId_postBB(idPost);
-		obj.setId_user_publisher(idUser);
-		obj.setTitle_postBB(Title);
-		obj.setText_postBB(text);
-		obj.setId_BDE_postBB(idBde);
+		
         
         OracleDAO<Post> postDao = adf.getPostDAO();
+        System.out.println("apres creation dao");
         
-        if(postDao.update(obj)) {
-        	System.out.println("post modified");
+        if(postDao.acceptPost(obj)) {
+        	System.out.println("post accepted");
         	return 1;
         }
         else {
-        	System.out.println("Error while modifing post");
+        	System.out.println("Error while accepting post");
         	return -1;
         }
 	}

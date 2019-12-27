@@ -50,5 +50,17 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+
+public boolean acceptPost(Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+public boolean accept(Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
   
 }

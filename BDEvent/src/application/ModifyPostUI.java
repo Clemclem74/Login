@@ -27,7 +27,8 @@ public class ModifyPostUI extends Routing implements Initializable {
 		private TextField titlePost;
 		@FXML
 		private TextArea textPost;
-		
+		@FXML
+		private Label errorMessage;
 	  
 	   
 	   
@@ -46,11 +47,12 @@ public class ModifyPostUI extends Routing implements Initializable {
 		   PostFacade postFacade = new PostFacade();
 	       System.out.println("modification de poste en cours");
 	       int res = postFacade.modify(post.getId_postBB(),post.getId_user_publisher(),titlePost.getText(), textPost.getText(),post.getId_BDE_postBB());
-		   super.goTo("BlackBoardUI");
+		   
 		   if (res < 0 ) {
-	    	   //ERROR MESSAGE 
+			   this.errorMessage.setText("Please make sure the post have a title and a text non null");
 	       }
 	       else {
+	    	   super.goTo("BlackBoardUI");
 	    	   ConfirmMessageUI.setParams(Integer.toString(res));
 	    	   super.openPopUp("Your post has been modified", "Your post has been added to list of waiting post, he will be visible when the administrator has valided it");
 	    	   super.setCurrentPost(null);

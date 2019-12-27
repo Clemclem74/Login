@@ -330,6 +330,38 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	}
 
 @Override
+public boolean acceptPost(Post obj) {
+	int id = obj.getId_postBB();
+	System.out.println("id : "+ id);
+	  
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE POSTBB SET STATE = 1 WHERE ID_POSTBB =? ");
+		  
+			    // set the preparedstatement parameters
+			    
+			    ps.setInt(1,id);
+			    System.out.println("id : "+ id);
+
+			   
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
+}
+@Override
 public int join(Post obj, User user) {
 	// TODO Auto-generated method stub
 	return 0;

@@ -27,6 +27,8 @@ public class CreatePostUI extends Routing implements Initializable {
 		private TextField titlePost;
 		@FXML
 		private TextArea textPost;
+		@FXML
+		private Label errorMessage;
 		
 	  
 	   
@@ -45,11 +47,11 @@ public class CreatePostUI extends Routing implements Initializable {
 	       int res = postFacade.create( user.getId_user() ,titlePost.getText(),textPost.getText(),user.getCurrentBDE());
 	       System.out.println("L'ID du nouveau post est le : " + res);
 	       //userFacade.join(user, res);
-		   super.goTo("BlackBoardUI");
 		   if (res < 0 ) {
-	    	   //ERROR MESSAGE 
+	    	   this.errorMessage.setText("Please make sure the post have a title and a text non null");
 	       }
 	       else {
+	    	   super.goTo("BlackBoardUI");
 	    	   ConfirmMessageUI.setParams(Integer.toString(res));
 	    	   super.openPopUp("Your post has been created", "Your post has been added to list of waiting post, he will be visible when the administrator has valided it");
 	    	   //this.idBDELabel.setText("8");
