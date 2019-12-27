@@ -67,37 +67,63 @@ public class BlackBoardUI extends Routing implements Initializable {
 	
 	 
 	 ArrayList<Post> waitingList = new ArrayList<Post>();
-	 private static String mode = "Normal";
 	 
-	 //-----------------------------------------------------------------------------------
 	 
+	 //--------------------------------------CONTROLEUR Create and Modiy Post BB----------------------------------------------
+	 @FXML
+		private Button createPostButton;
+		@FXML
+		private Button backButton;
+		@FXML
+		private TextField titlePost;
+		@FXML
+		private TextArea textPost;
+		@FXML
+		private Label errorMessage;
+		@FXML
+		private Button modifyButton;
 	 
 
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
-		super.setCurrentPost(null);
-		displayPost();
-		buttonSeeBB.setVisible(false);
-		modifyPost.setVisible(false);
-		deletePost.setVisible(false);
-		manageButton.setVisible(false);
-		textName.setVisible(false);
-		stateText.setVisible(false);
-		
-		if (super.getCurrentUser().isAdminOfHisBDE()){
-			manageButton.setVisible(true);
-			if (mode.contentEquals("Manage")) {
-				System.out.println(mode +"ds if");
-				displayWaitingPost();
-				acceptButton.setVisible(false);
-				seePost.setVisible(false);
-				buttonSeeBB.setVisible(true);
-				manageButton.setVisible(false);
-				stateText.setVisible(false);
-				
-			}
-		}
-		
+		 System.out.println("Vue actuelle" + super.getVue());
+		   
+	       if (super.getVue().contentEquals("ModifyPost")){
+	    	   System.out.println("if modify");
+	    	   Post post = super.getCurrentPost();
+			   titlePost.setText(post.getTitle_postBB());
+			   textPost.setText(post.getText_postBB());
+	       }
+	       else 
+	    	   if (super.getVue().contentEquals("CreatePost")){
+	    		   //NOTHING TO DO 
+	    		   }
+	    	   else {
+	    		   super.setCurrentPost(null);
+	    			displayPost();
+	    			buttonSeeBB.setVisible(false);
+	    			modifyPost.setVisible(false);
+	    			deletePost.setVisible(false);
+	    			manageButton.setVisible(false);
+	    			textName.setVisible(false);
+	    			stateText.setVisible(false);
+	    			
+	    			
+	    			if (super.getCurrentUser().isAdminOfHisBDE()){
+	    				manageButton.setVisible(true);
+	    				if (super.getVue().contentEquals("ManagePost")) {
+	    					displayWaitingPost();
+	    					acceptButton.setVisible(false);
+	    					seePost.setVisible(false);
+	    					buttonSeeBB.setVisible(true);
+	    					manageButton.setVisible(false);
+	    					stateText.setVisible(false);
+	    					
+	    				}
+	    			}
+	    		   
+	    		   
+	    	   }
 		
 	   }
 
@@ -114,19 +140,19 @@ public class BlackBoardUI extends Routing implements Initializable {
 	}
 	   
 	   public void homePage(ActionEvent event) {
-		   this.mode= "Normal";
+		   super.setVue("HomePage");
 		   super.goTo("HomePageUI");
 	   }
 	   
 	   
 	   public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
-		   this.mode= "Normal";
+		   super.setVue("Login");
 		   super.goTo("LoginUI");
 	   }
 	   
 	   public void newPost(ActionEvent event) {
-		   this.mode= "Normal";
+		   super.setVue("CreatePost");
 		   super.goTo("CreatePostUI");
 	   }
 	   
@@ -139,7 +165,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 			Post postSelected = postFacade.find(post1.split(" : ")[0]);
 			super.setCurrentPost(postSelected);
 			if(post1 != null) {
-				if (mode.contentEquals("Manage")|| mode.contentEquals("SeePost") ) {
+				if (super.getVue().contentEquals("ManagePost")|| super.getVue().contentEquals("SeeMyPost") ) {
 					this.stateText.setVisible(true);
 					if (postSelected.getState() == 0) {
 						state = "Waiting state";
@@ -160,7 +186,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 				if (super.getCurrentUser().isPublisherPost(Routing.getCurrentPost()) || super.getCurrentUser().isAdminOfHisBDE()){
 					modifyPost.setVisible(true);
 					deletePost.setVisible(true);
-					if (mode.contentEquals("Manage")) {
+					if (super.getVue().contentEquals("ManagePost")) {
 						acceptButton.setVisible(false);
 					}
 				}
@@ -174,7 +200,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 	   
 		@FXML	
 		private void seeMyPost(ActionEvent event) {
-			BlackBoardUI.mode= "SeePost";
+			super.setVue("SeeMyPost");
 			super.setCurrentPost(null);
 			this.titrePostSelected.setText("");
 			this.textPostSelected.setText("");
@@ -196,7 +222,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 	   
 		@FXML	
 		private void seeBB(ActionEvent event) {
-			BlackBoardUI.mode= "Normal";
+			super.setVue("BasicBB");
 
 			super.goTo("BlackBoardUI");
 		}
@@ -208,7 +234,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 			postList.getItems().clear();
 			valideList.removeAll(valideList);
 			
-			if (mode.equals("Manage")) {
+			if (super.getVue().equals("ManagePost")) {
 				appliancePostList.getItems().clear();
 				waitingList.removeAll(waitingList);
 				
@@ -216,7 +242,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 			
 			super.openPopUp("You're post has been deleted", "congratulations, you can continue to the application");
 			displayPost();
-			if (mode.contentEquals("Manage")) {
+			if (super.getVue().contentEquals("ManagePost")) {
 				displayWaitingPost();
 			}
 			this.titrePostSelected.setText("");
@@ -230,16 +256,15 @@ public class BlackBoardUI extends Routing implements Initializable {
 		
 		@FXML	
 		private void modifySelected(ActionEvent event) {
-			BlackBoardUI.mode= "Normal";
+			super.setVue("ModifyPost");
 			super.goTo("ModifyPostUI");
 			 
 		}
 		
 		 @FXML	
 			private void manageBB(ActionEvent event) {
-				BlackBoardUI.mode= "Manage";
+				super.setVue("ManagePost");
 				super.goTo("ManageBlackBoardUI");
-				BlackBoardUI.mode= "Manage";
 
 			}
 		 
@@ -262,7 +287,6 @@ public class BlackBoardUI extends Routing implements Initializable {
 		 @FXML
 			private void displaySelectedWaitingList(MouseEvent event) {
 			 	String state;
-			 	String color ="Color.";
 				PostFacade postFacade = new PostFacade();
 				UserFacade userFacade = new UserFacade();
 				String post1 = appliancePostList.getSelectionModel().getSelectedItem();
@@ -300,7 +324,7 @@ public class BlackBoardUI extends Routing implements Initializable {
 			   PostFacade postFacade = new PostFacade();
 		       System.out.println("accepatation de poste en cours");
 		       int res = postFacade.accept(post.getId_postBB());
-		       this.mode= "Manage";
+		       super.setVue("ManagePost");
 			   super.goTo("ManageBlackBoardUI");
 			   if (res < 0 ) {
 		    	   //ERROR MESSAGE 
@@ -308,6 +332,56 @@ public class BlackBoardUI extends Routing implements Initializable {
 		       else {
 		    	   ConfirmMessageUI.setParams(Integer.toString(res));
 		    	   super.openPopUp("This post has been accepted", "you have accepted this post.");
+		    	   super.setCurrentPost(null);
+		       }
+		   }
+		 
+		//---------------------------------------------CONTROLEUR CREATE POST BB--------------------
+		 
+		 // When user click on myButton
+		   // this method will be called.
+		   public void createPost(ActionEvent event) {
+			   User user=super.getCurrentUser();
+			   PostFacade postFacade = new PostFacade();
+		       System.out.println("crationd de post en cours");
+		       int res = postFacade.create( user.getId_user() ,titlePost.getText(),textPost.getText(),user.getCurrentBDE());
+		       System.out.println("L'ID du nouveau post est le : " + res);
+		       //userFacade.join(user, res);
+			   if (res < 0 ) {
+		    	   this.errorMessage.setText("Please make sure the post have a title and a text non null");
+		       }
+		       else {
+				   super.setVue("BasicBB");
+		    	   super.goTo("BlackBoardUI");
+		    	   ConfirmMessageUI.setParams(Integer.toString(res));
+		    	   super.openPopUp("Your post has been created", "Your post has been added to list of waiting post, he will be visible when the administrator has valided it");
+		    	   //this.idBDELabel.setText("8");
+		       }
+		   }
+		   
+		   public void backBB(ActionEvent event) {
+				super.setVue("BasicBB");
+			   super.goTo("BlackBoardUI");
+		   }
+		   
+		 //---------------------------------------------CONTROLEUR MODIFY POST BB--------------------
+		   
+		// When user click on myButton
+		   // this method will be called.
+		   public void modifyPost(ActionEvent event) {
+			   Post post=super.getCurrentPost();
+			   PostFacade postFacade = new PostFacade();
+		       System.out.println("modification de poste en cours");
+		       int res = postFacade.modify(post.getId_postBB(),post.getId_user_publisher(),titlePost.getText(), textPost.getText(),post.getId_BDE_postBB());
+			   
+			   if (res < 0 ) {
+				   this.errorMessage.setText("Please make sure the post have a title and a text non null");
+		       }
+		       else {
+				   super.setVue("BasicBB");
+		    	   super.goTo("BlackBoardUI");
+		    	   ConfirmMessageUI.setParams(Integer.toString(res));
+		    	   super.openPopUp("Your post has been modified", "Your post has been added to list of waiting post, he will be visible when the administrator has valided it");
 		    	   super.setCurrentPost(null);
 		       }
 		   }

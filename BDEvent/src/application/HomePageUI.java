@@ -123,6 +123,7 @@ public class HomePageUI extends Routing implements Initializable {
 		   super.goTo("ManageBDEUI");
 	   }
 	   public void goToBB(ActionEvent envent) {
+		   super.setVue("BasicBB");
 		   super.goTo("BlackBoardUI");
 	   }
 	   

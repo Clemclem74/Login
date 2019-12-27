@@ -15,12 +15,21 @@ public class Routing {
 	private static Stage popUp;
 	private static User currentUser;
 	private static Post currentPost;
+	private static String vue;
 	
 	
 	
 	
 
 
+
+	public static String getVue() {
+		return vue;
+	}
+
+	public static void setVue(String vue) {
+		Routing.vue = vue;
+	}
 
 	public static Stage getStage() {
 		return stage;

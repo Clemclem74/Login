@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreatePostUI">
+<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
    <children>
       <Button id="createPostButton" fx:id="createButton" layoutX="219.0" layoutY="351.0" mnemonicParsing="false" onAction="#createPost" prefHeight="34.0" prefWidth="106.0" text="Create" />
       <Text layoutX="158.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE POST">
