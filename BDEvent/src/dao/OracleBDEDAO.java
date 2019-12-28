@@ -28,7 +28,7 @@ public int create(BDE obj) {
 	  // auto close connection and preparedStatement
 	  try {
 
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  Statement st = conn.createStatement();
 
 	      st.executeUpdate(SQL_INSERT);
@@ -49,7 +49,7 @@ public boolean delete(BDE bde) {
 	int id = bde.getIdBDE();
 	String SQL_DELETE = "DELETE from BDE WHERE ID_BDE='"+id+"'";
 	 try {
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -72,7 +72,7 @@ public boolean update(int idBde, BDE obj) {
 	int id = idBde;
 
 	  try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 
 
 		  PreparedStatement ps = conn.prepareStatement(
@@ -106,7 +106,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -132,7 +132,7 @@ public BDE findById(int id) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-		  ORACLE_DB_PATH, "system", "oose");
+		  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -167,7 +167,7 @@ public ArrayList<Integer> findTeams(int idBDE){
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	          "jdbc:oracle:thin:@localhost:1521:xe", ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -214,6 +214,12 @@ public ArrayList<BDE> findAll() {
 public int join(BDE obj, User user) {
 	// TODO Auto-generated method stub
 	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 

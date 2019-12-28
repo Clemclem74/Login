@@ -75,7 +75,7 @@ public ArrayList<Post> findAllPost(User user) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -111,6 +111,18 @@ public ArrayList<Post> findAllPost(User user) {
 	  }
 	return ret;
 	}
+
+@Override
+public int join(BlackBoard obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 
 

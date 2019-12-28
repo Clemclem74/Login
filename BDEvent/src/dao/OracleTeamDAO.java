@@ -29,7 +29,7 @@ public int create(Team obj) {
 	  // auto close connection and preparedStatement
 	  try {
 
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  Statement st = conn.createStatement();
 		
 	      st.executeUpdate(SQL_INSERT);
@@ -61,7 +61,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          ORACLE_DB_PATH, "system", "oose");
+	          ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -87,7 +87,7 @@ public Team findById(int id) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-          ORACLE_DB_PATH, "system", "oose");
+          ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -143,5 +143,11 @@ public ArrayList<Team> findAll() {
 public int join(Team obj, User user) {
 	// TODO Auto-generated method stub
 	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }
