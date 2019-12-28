@@ -8,10 +8,16 @@ import buisnessLogic.User;
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
   
-  public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:orcl";
+  public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
    
   public OracleDAO(Connection conn){
     this.connect = conn;
+    try {
+		Class.forName("com.mysql.jdbc.Driver");
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
    
 

@@ -31,7 +31,7 @@ public int create(User obj) {
 	  // auto close connection and preparedStatement
 	  try {
 		  
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "root", "");
 		  Statement st = conn.createStatement();
 
 	      st.executeUpdate(SQL_INSERT);
@@ -114,7 +114,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, "root", "");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -140,7 +140,7 @@ public User find(String email) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-		  ORACLE_DB_PATH, "system", "oose");
+		  ORACLE_DB_PATH, "root", "");
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -186,7 +186,7 @@ public User findById(int id) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, "root", "");
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
