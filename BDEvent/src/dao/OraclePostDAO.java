@@ -30,7 +30,7 @@ public int create(Post obj) {
 	  String SQL_INSERT = "Insert into POSTBB " + "Values (" + id +"," + obj.getId_user_publisher() + ","
 			  +"'" + obj.getTitle_postBB() + "',"
 					  +"'" + obj.getText_postBB() + "',"+
-					  	+ obj.getId_BDE_postBB() + ")";
+					  	+ obj.getId_BDE_postBB() + "," + 0 + ")";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -52,21 +52,62 @@ public int create(Post obj) {
 }
 
 @Override
-public boolean delete(Post obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
+public boolean delete(Post post) {
+	int id = post.getId_postBB();
+	String SQL_DELETE = "DELETE from POSTBB WHERE ID_POSTBB='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
 
-@Override
-public boolean update(int i, Post obj) {
-	// TODO Auto-generated method stub
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
 }
 
 @Override
 public boolean update(Post obj) {
-	// TODO Auto-generated method stub
+	
+	int id = obj.getId_postBB();
+	  
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  System.out.println(id);
+		  System.out.println(obj.getTitle_postBB());
+		  System.out.println(obj.getText_postBB());
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE POSTBB SET TITLE_POSTBB = ?, TEXT_POSTBB = ?, STATE = 0 WHERE ID_POSTBB = ? ");
+		  
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getTitle_postBB());
+			    ps.setString(2,obj.getText_postBB());
+			    ps.setInt(3,id);
+			  
+			   System.out.println(obj.getTitle_postBB());
+			   
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
+	
 }
 
 @Override
@@ -90,6 +131,8 @@ public Post find(String titrePost) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
+
 
 	          
 	          obj.setId_postBB(id_postbb);
@@ -97,6 +140,8 @@ public Post find(String titrePost) {
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
+	          
 	          
 
 	      }
@@ -169,6 +214,8 @@ public ArrayList<Post> findAll() {
           String title = resultSet.getString("TITLE_POSTBB");
           String text = resultSet.getString("TEXT_POSTBB");
           int bde = resultSet.getInt("ID_BDE");
+          int state = resultSet.getInt("STATE");
+
 
           
           obj.setId_postBB(id_postbb);
@@ -176,6 +223,7 @@ public ArrayList<Post> findAll() {
           obj.setTitle_postBB(title);
           obj.setText_postBB(text);
           obj.setId_BDE_postBB(bde);
+          obj.setState(state);
           
 
           ret.add(obj);
@@ -213,12 +261,15 @@ public ArrayList<Post> findAllPostByBDE(User user) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
+
 
 	          obj.setId_postBB(id_postbb);
 	          obj.setId_user_publisher(id_publisher);
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
 
 	          ret.add(obj);
 
@@ -254,12 +305,14 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	          String title = resultSet.getString("TITLE_POSTBB");
 	          String text = resultSet.getString("TEXT_POSTBB");
 	          int bde = resultSet.getInt("ID_BDE");
+	          int state = resultSet.getInt("STATE");
 
 	          obj.setId_postBB(id_postbb);
 	          obj.setId_user_publisher(id_publisher);
 	          obj.setTitle_postBB(title);
 	          obj.setText_postBB(text);
 	          obj.setId_BDE_postBB(bde);
+	          obj.setState(state);
 
 	          ret.add(obj);
 
@@ -275,5 +328,56 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	  }
 	return ret;
 	}
+
+@Override
+public boolean acceptPost(Post obj) {
+	int id = obj.getId_postBB();
+	System.out.println("id : "+ id);
+	  
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE POSTBB SET STATE = 1 WHERE ID_POSTBB =? ");
+		  
+			    // set the preparedstatement parameters
+			    
+			    ps.setInt(1,id);
+			    System.out.println("id : "+ id);
+
+			   
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
+}
+@Override
+public int join(Post obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public boolean update(int i, Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }

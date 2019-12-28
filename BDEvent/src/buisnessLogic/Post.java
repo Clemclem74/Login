@@ -10,8 +10,15 @@ public class Post {
 	private String title_postBB;
 	private String text_postBB;
 	private int id_BDE_postBB;
+	private int state;
 	
 	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	public int getId_BDE_postBB() {
 		return id_BDE_postBB;
 	}
