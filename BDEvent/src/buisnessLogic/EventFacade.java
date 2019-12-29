@@ -76,6 +76,15 @@ public class EventFacade {
 		}
 	}
 	
+	public void modify(int id,Event event) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		boolean bool = eventDao.update(id,event);
+		if (!bool) {
+			System.out.println("event null facade");
+		}
+	}
+	
+	
 	public int join(Event event,User user) {
 		OracleDAO<Event> eventDao = this.adf.getEventDAO();
 		int bool = eventDao.join(event,user);

@@ -15,6 +15,7 @@ public class Routing {
 	private static Stage popUp;
 	private static User currentUser;
 	private static Post currentPost;
+	private static Event eventSelected;
 	private static String vue;
 	
 	
@@ -163,6 +164,14 @@ public class Routing {
 	
 	public void hidePopUp() {
 		Routing.popUp.hide();
+	}
+
+	public static Event getEventSelected() {
+		return eventSelected;
+	}
+
+	public static void setEventSelected(Event eventSelected) {
+		Routing.eventSelected = eventSelected;
 	}
 	
 	

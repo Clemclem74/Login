@@ -77,13 +77,14 @@ public boolean update(int id_event, Event obj) {
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET TITLE = ?, DESCRIPTION= ?, DATE=? WHERE EVENT = ?");
+			      "UPDATE EVENT SET TITLE = ?, DESCRIPTION= ?, DATE=?, IMAGE=? WHERE EVENT = ?");
 
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getTitle());
 			    ps.setString(2,obj.getDescription());
 			    ps.setString(3,obj.getEvent_date());
-			    ps.setInt(4,id);
+			    ps.setString(4,obj.getImage());
+			    ps.setInt(5,id);
 
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();

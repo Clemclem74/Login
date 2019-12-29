@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class EventListUI extends Routing implements Initializable {
@@ -34,7 +36,8 @@ public class EventListUI extends Routing implements Initializable {
 	 private Label description;
 	 @FXML
 	 private Label event_date;
-
+	 @FXML
+	 private ImageView imageview;
 	 
 
 	@Override
@@ -77,6 +80,22 @@ public class EventListUI extends Routing implements Initializable {
 			this.event_title.setText(theEvent.getTitle());
 			this.event_date.setText(theEvent.getEvent_date());	
 		}
+		
+		Image image = new Image("/img/p1.jpg");
+		
+		if(theEvent.getImage()!=null) {
+			image = new Image(theEvent.getImage());
+		}
+		
+		
+		imageview.setImage(image);
+
+		imageview.setFitWidth(364);
+		imageview.setPreserveRatio(true);
+		imageview.setSmooth(true);
+		imageview.setCache(true);
+
+		
 		
 	}
 	
