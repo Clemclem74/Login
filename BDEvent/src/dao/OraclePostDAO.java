@@ -34,7 +34,7 @@ public int create(Post obj) {
 	  // auto close connection and preparedStatement
 	  try {
 		  
-		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  Statement st = conn.createStatement();
 
 	      st.executeUpdate(SQL_INSERT);
@@ -55,7 +55,7 @@ public boolean delete(Post post) {
 	int id = post.getId_postBB();
 	String SQL_DELETE = "DELETE from POSTBB WHERE ID_POSTBB='"+id+"'";
 	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -80,7 +80,7 @@ public boolean update(Post obj) {
 	  
 	  try {
 		
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  System.out.println(id);
 		  System.out.println(obj.getTitle_postBB());
 		  System.out.println(obj.getText_postBB());
@@ -117,7 +117,7 @@ public Post find(String titrePost) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -174,7 +174,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-	          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+	          ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -200,7 +200,7 @@ public ArrayList<Post> findAll() {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-		  ORACLE_DB_PATH, "system", "oose");
+		  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -248,7 +248,7 @@ public ArrayList<Post> findAllPostByBDE(User user) {
 	  String SQL_SELECT = "Select * from POSTBB where ID_BDE="+idbde;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 		  
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -292,7 +292,7 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	  String SQL_SELECT = "Select * from POSTBB where ID_USER_PUBLISHER="+iduser;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 		  
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -335,7 +335,7 @@ public boolean acceptPost(Post obj) {
 	  
 	  try {
 		
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  PreparedStatement ps = conn.prepareStatement(
 			      "UPDATE POSTBB SET STATE = 1 WHERE ID_POSTBB =? ");

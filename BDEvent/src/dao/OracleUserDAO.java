@@ -31,7 +31,7 @@ public int create(User obj) {
 	  // auto close connection and preparedStatement
 	  try {
 		  
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  Statement st = conn.createStatement();
 
 	      st.executeUpdate(SQL_INSERT);
@@ -52,7 +52,7 @@ public boolean delete(User user) {
 	int id = user.getId_user();
 	String SQL_DELETE = "DELETE from Users WHERE ID_USER='"+id+"'";
 	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -76,7 +76,7 @@ public boolean update(int iduser, User obj) {
 	int id = iduser;
 	  
 	  try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
@@ -114,7 +114,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -140,7 +140,7 @@ public User find(String email) {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-		  ORACLE_DB_PATH, "system", "oose");
+		  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -186,7 +186,7 @@ public User findById(int id) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -246,5 +246,11 @@ public ArrayList<User> findAll() {
 public int join(User obj, User user) {
 	// TODO Auto-generated method stub
 	return 0;
+}
+
+@Override
+public ArrayList<Integer> getEventByUser(User user) {
+	// TODO Auto-generated method stub
+	return null;
 }
 }

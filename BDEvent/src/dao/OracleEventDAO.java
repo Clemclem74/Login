@@ -22,12 +22,13 @@ public int create(Event obj) {
 	
 	  String SQL_INSERT = "Insert into Event " + "Values (" + id +",'" + obj.getTitle() + "',"
 			  +"'" + obj.getDescription() + "',"
-					  +"'" + obj.getEvent_date() + "')";
+					  +"'" + obj.getEvent_date() + "',"
+	  						+"'" + obj.getImage() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
 		  
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  Statement st = conn.createStatement();
 
 	      st.executeUpdate(SQL_INSERT);
@@ -48,7 +49,7 @@ public boolean delete(Event event) {
 	int id = event.getId_event();
 	String SQL_DELETE = "DELETE from EVENT WHERE EVENT='"+id+"'";
 	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -72,7 +73,7 @@ public boolean update(int id_event, Event obj) {
 	int id = id_event;
 	  
 	  try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
@@ -108,7 +109,7 @@ public ArrayList<Event> findAll() {
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
-		  ORACLE_DB_PATH, "system", "oose");
+		  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
        PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -120,11 +121,13 @@ public ArrayList<Event> findAll() {
           String title = resultSet.getString("TITLE");
           String description = resultSet.getString("DESCRIPTION");
           String event_date = resultSet.getString("DATE");
+          String image = resultSet.getString("IMAGE");
 
           obj.setId_event(id_event);
           obj.setTitle(title);
           obj.setDescription(description);
           obj.setEvent_date(event_date);
+          obj.setImage(image);
 
           ret.add(obj);
 
@@ -149,22 +152,24 @@ public Event findById(int id) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      
 	      while (resultSet.next()) {
 
-	          int id_event = resultSet.getInt("EVENT");
+	    	  int id_event = resultSet.getInt("EVENT");
 	          String title = resultSet.getString("TITLE");
 	          String description = resultSet.getString("DESCRIPTION");
 	          String event_date = resultSet.getString("DATE");
+	          String image = resultSet.getString("IMAGE");
 
 	          obj.setId_event(id_event);
 	          obj.setTitle(title);
 	          obj.setDescription(description);
 	          obj.setEvent_date(event_date);
+	          obj.setImage(image);
 	          
 
 	      }
@@ -193,22 +198,24 @@ public Event find(String id) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      
 	      while (resultSet.next()) {
 
-	          int id_event = resultSet.getInt("EVENT");
+	    	  int id_event = resultSet.getInt("EVENT");
 	          String title = resultSet.getString("TITLE");
 	          String description = resultSet.getString("DESCRIPTION");
 	          String event_date = resultSet.getString("DATE");
+	          String image = resultSet.getString("IMAGE");
 
 	          obj.setId_event(id_event);
 	          obj.setTitle(title);
 	          obj.setDescription(description);
 	          obj.setEvent_date(event_date);
+	          obj.setImage(image);
 	          
 
 	      }
@@ -232,7 +239,7 @@ private int getLastId() {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -262,7 +269,7 @@ public int join(Event obj,User user) {
 		  // auto close connection and preparedStatement
 		  try {
 			  
-			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  Statement st = conn.createStatement();
 
 		      st.executeUpdate(SQL_INSERT);
@@ -293,7 +300,7 @@ public ArrayList<Integer> getEventByUser(User user) {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
@@ -322,7 +329,7 @@ private int alreadyEventbyUser(int id_event,int id_user) {
 	int id = -1;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();

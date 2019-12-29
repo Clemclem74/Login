@@ -8,6 +8,7 @@ import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -18,6 +19,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class EventUI extends Routing implements Initializable {
@@ -36,6 +39,8 @@ public class EventUI extends Routing implements Initializable {
 	 private Label event_date;
 	 @FXML
 	 private Button join_button;
+	 @FXML
+	 private ImageView imageview;
 	 
 
 	@Override
@@ -78,6 +83,22 @@ public class EventUI extends Routing implements Initializable {
 			this.event_title.setText(theEvent.getTitle());
 			this.event_date.setText(theEvent.getEvent_date());	
 		}
+		
+		
+		Image image = new Image("/img/p1.jpg");
+		
+		if(theEvent.getImage()!=null || theEvent.getImage()!="") {
+			image = new Image(theEvent.getImage());
+		}
+		
+		
+		imageview.setImage(image);
+
+		imageview.setFitWidth(364);
+		imageview.setPreserveRatio(true);
+		imageview.setSmooth(true);
+		imageview.setCache(true);
+
 		
 	}
 	
