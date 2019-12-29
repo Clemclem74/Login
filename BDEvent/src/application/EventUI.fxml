@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
    <children>
-      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Events : " wrappingWidth="328.5625">
+      <Text layoutX="203.0" layoutY="54.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Events : " textAlignment="CENTER" wrappingWidth="715.5625">
          <font>
-            <Font size="23.0" />
+            <Font size="38.0" />
          </font>
       </Text>
-      <Pane layoutX="4.0" layoutY="-3.0">
+      <Pane layoutX="4.0" layoutY="-3.0" prefHeight="608.0" prefWidth="185.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="402.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
                <effect>
                   <Glow />
                </effect>
@@ -29,27 +29,46 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="552.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="56.0" layoutY="122.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
-                  <Button layoutX="50.0" layoutY="192.0" mnemonicParsing="false" onAction="#list" text="My Events" />
+                  <Button layoutX="63.0" layoutY="175.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
+                  <Button layoutX="57.0" layoutY="360.0" mnemonicParsing="false" onAction="#list" text="My Events" />
                </children>
             </AnchorPane>
          </children>
       </Pane>
-      <ListView fx:id="eventList" layoutX="303.0" layoutY="24.0" onMouseClicked="#displaySelected" prefHeight="173.0" prefWidth="200.0" />
-      <Button layoutX="286.0" layoutY="348.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="359.0" layoutY="348.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Button layoutX="211.0" layoutY="348.0" mnemonicParsing="false" text="Modify" />
-      <Label layoutX="221.0" layoutY="225.0" text="Title :" />
-      <Label layoutX="421.0" layoutY="225.0" text="Date :" />
-      <Label layoutX="221.0" layoutY="257.0" text="Description :" />
-      <Label fx:id="event_title" layoutX="278.0" layoutY="225.0" />
-      <Label fx:id="description" layoutX="222.0" layoutY="285.0" />
-      <Label fx:id="event_date" layoutX="471.0" layoutY="225.0" />
-      <Button fx:id="button_join" layoutX="460.0" layoutY="348.0" mnemonicParsing="false" onAction="#join" text="Join" />
+      <ListView fx:id="eventList" layoutX="223.0" layoutY="81.0" onMouseClicked="#displaySelected" prefHeight="491.0" prefWidth="200.0" />
+      <Button layoutX="588.0" layoutY="556.0" mnemonicParsing="false" onAction="#create" text="Create" />
+      <Button layoutX="661.0" layoutY="556.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Button layoutX="513.0" layoutY="556.0" mnemonicParsing="false" text="Modify" />
+      <Label layoutX="506.0" layoutY="424.0" text="Title :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="770.0" layoutY="424.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="506.0" layoutY="456.0" text="Description :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="event_title" layoutX="563.0" layoutY="424.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="description" layoutX="507.0" layoutY="484.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="event_date" layoutX="830.0" layoutY="424.0" prefHeight="27.0" prefWidth="107.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="button_join" layoutX="836.0" layoutY="557.0" mnemonicParsing="false" onAction="#join" text="Join" />
+      <ImageView fx:id="imageview" fitHeight="240.0" fitWidth="364.0" layoutX="506.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
