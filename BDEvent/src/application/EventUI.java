@@ -87,11 +87,13 @@ public class EventUI extends Routing implements Initializable {
 		
 		Image image = new Image("/img/p1.jpg");
 		
-		System.out.println("test");
+		if(theEvent.getImage()!=null || theEvent.getImage()!="") {
+			image = new Image(theEvent.getImage());
+		}
+		
 		
 		imageview.setImage(image);
-		
-		System.out.println("test2");
+
 		imageview.setFitWidth(364);
 		imageview.setPreserveRatio(true);
 		imageview.setSmooth(true);

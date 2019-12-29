@@ -22,7 +22,8 @@ public int create(Event obj) {
 	
 	  String SQL_INSERT = "Insert into Event " + "Values (" + id +",'" + obj.getTitle() + "',"
 			  +"'" + obj.getDescription() + "',"
-					  +"'" + obj.getEvent_date() + "')";
+					  +"'" + obj.getEvent_date() + "',"
+	  						+"'" + obj.getImage() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -120,11 +121,13 @@ public ArrayList<Event> findAll() {
           String title = resultSet.getString("TITLE");
           String description = resultSet.getString("DESCRIPTION");
           String event_date = resultSet.getString("DATE");
+          String image = resultSet.getString("IMAGE");
 
           obj.setId_event(id_event);
           obj.setTitle(title);
           obj.setDescription(description);
           obj.setEvent_date(event_date);
+          obj.setImage(image);
 
           ret.add(obj);
 
@@ -156,15 +159,17 @@ public Event findById(int id) {
 	      
 	      while (resultSet.next()) {
 
-	          int id_event = resultSet.getInt("EVENT");
+	    	  int id_event = resultSet.getInt("EVENT");
 	          String title = resultSet.getString("TITLE");
 	          String description = resultSet.getString("DESCRIPTION");
 	          String event_date = resultSet.getString("DATE");
+	          String image = resultSet.getString("IMAGE");
 
 	          obj.setId_event(id_event);
 	          obj.setTitle(title);
 	          obj.setDescription(description);
 	          obj.setEvent_date(event_date);
+	          obj.setImage(image);
 	          
 
 	      }
@@ -200,15 +205,17 @@ public Event find(String id) {
 	      
 	      while (resultSet.next()) {
 
-	          int id_event = resultSet.getInt("EVENT");
+	    	  int id_event = resultSet.getInt("EVENT");
 	          String title = resultSet.getString("TITLE");
 	          String description = resultSet.getString("DESCRIPTION");
 	          String event_date = resultSet.getString("DATE");
+	          String image = resultSet.getString("IMAGE");
 
 	          obj.setId_event(id_event);
 	          obj.setTitle(title);
 	          obj.setDescription(description);
 	          obj.setEvent_date(event_date);
+	          obj.setImage(image);
 	          
 
 	      }
