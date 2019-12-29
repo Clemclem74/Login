@@ -127,6 +127,12 @@ public class HomePageUI extends Routing implements Initializable {
 		   super.goTo("BlackBoardUI");
 	   }
 	   
+	   public void goToFee(ActionEvent envent) {
+		   super.setVue("BasicFee");
+		   super.goTo("FeeUI");
+	   }
+	   
+	   
 	   public void manageMyTeamsAction(ActionEvent event) {
 		   super.goTo("ManageMyTeamsUI");
 	   }

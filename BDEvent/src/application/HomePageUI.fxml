@@ -25,7 +25,7 @@
                </effect>
                <children>
                   <Button fx:id="events_button" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Fees" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToFee" prefHeight="39.0" prefWidth="144.0" text="Fees" />
                   <Button fx:id="communication_button" layoutX="25.0" layoutY="349.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
                      <font>
                         <Font size="14.0" />

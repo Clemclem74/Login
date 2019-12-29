@@ -8,6 +8,7 @@ import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 import buisnessLogic.Event;
+import buisnessLogic.Fee;
 
 public class OracleDAOFactory extends AbstractDAOFactory{
 
@@ -23,6 +24,9 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 
 	  public OracleDAO<Team> getTeamDAO(){
 		  return new OracleTeamDAO(conn);
+	  }
+	  public OracleDAO<Fee> getFeeDAO(){
+		  return new OracleFeeDAO(conn);
 	  }
 	  
 	  

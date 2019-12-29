@@ -15,6 +15,18 @@ public class Routing {
 	private static Stage popUp;
 	private static User currentUser;
 	private static Post currentPost;
+	private static Fee currentFee;
+	
+	public static Fee getCurrentFee() {
+		return currentFee;
+	}
+
+	public static void setCurrentFee(Fee currentFee) {
+		Routing.currentFee = currentFee;
+	}
+
+
+
 	private static String vue;
 	
 	
