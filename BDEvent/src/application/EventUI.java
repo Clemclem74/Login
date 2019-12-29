@@ -8,6 +8,7 @@ import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,11 +18,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class EventUI extends Routing implements Initializable {
 	 
@@ -40,6 +46,8 @@ public class EventUI extends Routing implements Initializable {
 	 @FXML
 	 private Button join_button;
 	 @FXML
+	 private Button modify_button;
+	 @FXML
 	 private ImageView imageview;
 	 
 
@@ -47,7 +55,6 @@ public class EventUI extends Routing implements Initializable {
 	   public void initialize(URL location, ResourceBundle resources) {
 			
 	       loadData();
-	       System.out.println("eventList");
 	   }
 
 	private void loadData() {
@@ -84,10 +91,11 @@ public class EventUI extends Routing implements Initializable {
 			this.event_date.setText(theEvent.getEvent_date());	
 		}
 		
+		super.setEventSelected(theEvent);
 		
 		Image image = new Image("/img/p1.jpg");
 		
-		if(theEvent.getImage()!=null || theEvent.getImage()!="") {
+		if(theEvent.getImage()!=null && theEvent.getImage()!="") {
 			image = new Image(theEvent.getImage());
 		}
 		
@@ -111,6 +119,12 @@ public class EventUI extends Routing implements Initializable {
 	
 	public void create(ActionEvent event) {
 		super.goTo("CreateEventUI");
+	}
+	
+	public void modify(ActionEvent event) {
+		
+		super.goTo("ModifyEventUI");
+		
 	}
 	
 	public void home(ActionEvent event) {
