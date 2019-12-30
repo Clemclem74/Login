@@ -120,10 +120,17 @@ public class EventUI extends Routing implements Initializable {
 	}
 	
 	public void delete(ActionEvent event) {
-		EventFacade eventFacade = new EventFacade();
-		eventFacade.delete(this.theEvent);
-		eventList.getItems().removeAll(eventList.getItems()); 
-		loadData();
+		
+		if(super.getEventSelected().getResponsible()==super.getCurrentUser().getId_user()) {
+			EventFacade eventFacade = new EventFacade();
+			eventFacade.delete(this.theEvent);
+			eventList.getItems().removeAll(eventList.getItems()); 
+			loadData();
+		}
+		else {
+			event_join.setText("You are not responsible of the event");
+		}
+	
 	}
 	
 	public void create(ActionEvent event) {
@@ -140,8 +147,12 @@ public class EventUI extends Routing implements Initializable {
 	}
 	
 	public void modify(ActionEvent event) {
-		
-		super.goTo("ModifyEventUI");
+		if(super.getEventSelected().getResponsible()==super.getCurrentUser().getId_user()) {
+			super.goTo("ModifyEventUI");
+		}
+		else {
+			event_join.setText("You are not responsible of the event");
+		}
 		
 	}
 	
