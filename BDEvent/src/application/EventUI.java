@@ -6,6 +6,7 @@ import buisnessLogic.BDEFacade;
 import buisnessLogic.Event;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.TeamMemberFacade;
 import buisnessLogic.User;
 
 import java.io.IOException;
@@ -85,7 +86,7 @@ public class EventUI extends Routing implements Initializable {
 	@FXML
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
-		
+		event_join.setText("");
 		if(eventList.getSelectionModel().getSelectedItem()!=null) {
 			
 			String event1 = eventList.getSelectionModel().getSelectedItem();
@@ -126,7 +127,16 @@ public class EventUI extends Routing implements Initializable {
 	}
 	
 	public void create(ActionEvent event) {
-		super.goTo("CreateEventUI");
+		
+		TeamMemberFacade teamMemberFacade= new TeamMemberFacade();
+		
+		if(teamMemberFacade.isChief(super.getCurrentUser())){
+			super.goTo("CreateEventUI");
+		}
+		else {
+			event_join.setText("You are not a team chief");
+		}
+		
 	}
 	
 	public void modify(ActionEvent event) {

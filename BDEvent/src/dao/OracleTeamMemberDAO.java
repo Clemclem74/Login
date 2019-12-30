@@ -78,6 +78,32 @@ public boolean delete(TeamMember teamMember) {
 	 return false;
 }
 
+public boolean isChief(int id) {
+
+	int count = 0;
+	
+	String SQL_SELECT = "SELECT COUNT(*) AS MYCOUNT FROM TEAM_MEMBER WHERE ID_USER="+id+" AND IS_CHIEF=1";
+	System.out.println(SQL_SELECT);
+	try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          count = resultSet.getInt("MYCOUNT"); 
+	      }
+	      return count>0;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return count>0;
+}
+
+
+
 public boolean update(int idBde, BDE obj) {
 	return false;
 }

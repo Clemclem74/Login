@@ -402,4 +402,10 @@ public ArrayList<Integer> findTeams(int idBDE) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public boolean isChief(int id_user) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

@@ -384,5 +384,11 @@ public boolean leave(int id, Post obj) {
 	return false;
 }
 
+@Override
+public boolean isChief(int id_user) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }

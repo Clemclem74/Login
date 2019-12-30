@@ -89,4 +89,7 @@ public boolean accept(Post obj) {
 }
 
 
+public abstract boolean isChief(int id_user);
+
+
 }

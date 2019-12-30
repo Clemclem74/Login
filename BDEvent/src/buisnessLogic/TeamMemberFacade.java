@@ -46,6 +46,13 @@ public class TeamMemberFacade {
 	}
 	
 	
+	
+	public boolean isChief(User user) {
+		
+		OracleDAO<TeamMember> teamDao = this.adf.getTeamMemberDAO();
+		return teamDao.isChief(user.getId_user());
+	}
+
 
 	
 	
