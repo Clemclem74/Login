@@ -57,6 +57,7 @@ public class CreateEventUI extends Routing implements Initializable {
 	       event1.setTitle(this.titleEventField.getText());
 	       event1.setDescription(this.descriptionEventField.getText());
 	       event1.setEvent_date(date);
+	       event1.setResponsible(super.getCurrentUser().getId_user());
 	       try {
 			event1.setImage(selectedFile.toURI().toURL().toString());
 		} catch (MalformedURLException e) {
