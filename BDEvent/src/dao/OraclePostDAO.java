@@ -378,5 +378,11 @@ public boolean update(int i, Post obj) {
 	return false;
 }
 
+@Override
+public boolean leave(int id, Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }

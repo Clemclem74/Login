@@ -57,6 +57,23 @@ public boolean delete(Event event) {
 		  ps.executeUpdate(); 
 		  ps.close();
 		  
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	 
+	 SQL_DELETE = "DELETE from USEREVENT WHERE ID_EVENT='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
 		  return true;
 
 	  } catch (SQLException e) {
@@ -64,6 +81,8 @@ public boolean delete(Event event) {
 	  } catch (Exception e) {
 	      e.printStackTrace();
 	  }
+	 
+	 
 	return false;
 }
     

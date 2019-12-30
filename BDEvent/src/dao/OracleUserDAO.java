@@ -253,4 +253,10 @@ public ArrayList<Integer> getEventByUser(User user) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public boolean leave(int id, User obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

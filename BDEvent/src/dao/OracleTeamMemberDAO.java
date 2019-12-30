@@ -186,6 +186,12 @@ public ArrayList<Integer> getEventByUser(User user) {
 	return null;
 }
 
+@Override
+public boolean leave(int id, TeamMember obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 
 

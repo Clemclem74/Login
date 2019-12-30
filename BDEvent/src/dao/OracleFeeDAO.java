@@ -251,5 +251,11 @@ public ArrayList<Fee> findAllFeeByUser(User user) {
 	return ret;
 	}
 
+@Override
+public boolean leave(int id, Fee obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }

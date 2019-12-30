@@ -222,5 +222,11 @@ public ArrayList<Integer> getEventByUser(User user) {
 	return null;
 }
 
+@Override
+public boolean leave(int id, BDE obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 
 }
