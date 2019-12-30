@@ -22,16 +22,16 @@ public int create(TeamMember obj) {
 
 	String SQL_INSERT;
 	if (obj.isChief()) {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getUser().getId_user() + ","
-				  + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+				  +  obj.getUser().getId_user() + ","
 						  +"'" + "1" + "'"+")";
+		
 	}
 	else {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getUser().getId_user() + ","
-				  + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+				  +  obj.getUser().getId_user() + ","
 						  +"'" + "0" + "'"+")";
 	}
-	
 	 
 	  System.out.println(SQL_INSERT);
 
@@ -145,7 +145,8 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 
 public ArrayList<Integer> findMembersByTeam(int idTeam){
 
-	  String SQL_SELECT = "Select * from Team where ID_TEAM='"+idTeam+"'";
+	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM="+idTeam+"";
+	  System.out.println(SQL_SELECT);
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -159,6 +160,7 @@ public ArrayList<Integer> findMembersByTeam(int idTeam){
 	      }
 	      
 		  conn.close();
+		  System.out.println("dans dao :" + users);
 	      return users;
 
 	  } catch (SQLException e) {

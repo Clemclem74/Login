@@ -88,6 +88,11 @@ public class FeeUI extends Routing implements Initializable {
 		  
 				  else /*si basic fee */ {
 			   displayFee();
+			   trezButton.setVisible(false);
+			   System.out.println("tres ou pas "+super.getCurrentUser().isPartOfTrez());
+			   if (super.getCurrentUser().isPartOfTrez()) {
+				   trezButton.setVisible(true);
+			   }
 			    modifyFee.setVisible(false);
 				deleteFee.setVisible(false);
 				stateText.setVisible(false);
@@ -185,7 +190,11 @@ public class FeeUI extends Routing implements Initializable {
 			 
 		}
 	   
-	   
+	   @FXML
+	   private void goToManage(ActionEvent event) {
+			super.setVue("ManageFee");
+			super.goTo("ManageFee");
+		}
 	   
 	   //Creation Fee 
 	   

@@ -95,7 +95,12 @@ public class TeamMemberFacade {
 		return idTeams;
 	}
 
-
+	public ArrayList<Integer> isPartOfTeam(int idTeam) {
+		OracleDAO<TeamMember> tmDao = this.adf.getTeamMemberDAO();
+		ArrayList<Integer> idusers = tmDao.findMembersByTeam(idTeam);
+		System.out.println("dans facade :" + tmDao.findMembersByTeam(idTeam));
+		return idusers;
+	}
 
 
 	public void sendError() {
