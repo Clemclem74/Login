@@ -294,6 +294,34 @@ public int join(Event obj,User user) {
 }
 
 
+
+public boolean leave(int id,Event obj) {
+	
+
+	String SQL_DELETE = "DELETE from USEREVENT WHERE ID_USER='"+id+"'" + " AND " + "ID_EVENT=" + "'" + obj.getId_event() + "'";
+	 try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
+	
+}
+
+
+
 public ArrayList<Integer> getEventByUser(User user) {
 	ArrayList<Integer> id_list = new ArrayList<Integer>();
     

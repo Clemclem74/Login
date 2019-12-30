@@ -38,6 +38,8 @@ public class EventListUI extends Routing implements Initializable {
 	 private Label event_date;
 	 @FXML
 	 private ImageView imageview;
+	 @FXML
+	 private Button leave_button;
 	 
 
 	@Override
@@ -60,6 +62,15 @@ public class EventListUI extends Routing implements Initializable {
 		list.forEach((n)-> eventName.add(n.getTitle() + " : " + n.getEvent_date())); 
 
 		eventList.getItems().addAll(eventName);
+	}
+	
+	public void leave(ActionEvent event) {
+		
+		EventFacade eventFacade = new EventFacade();
+		eventFacade.leave(super.getCurrentUser().getId_user(),this.theEvent);
+		eventList.getItems().removeAll(eventList.getItems()); 
+		loadData();
+		
 	}
 	
 	public void logout(ActionEvent event) {

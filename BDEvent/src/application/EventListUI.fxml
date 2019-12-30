@@ -40,7 +40,7 @@
             </AnchorPane>
          </children>
       </Pane>
-      <ListView fx:id="eventList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displaySelected" prefHeight="476.0" prefWidth="200.0" />
+      <ListView fx:id="eventList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displaySelected" prefHeight="426.0" prefWidth="200.0" />
       <Label layoutX="253.0" layoutY="483.0" text="Title :">
          <font>
             <Font name="System Bold" size="17.0" />
@@ -66,5 +66,10 @@
             <Font size="17.0" />
          </font></Label>
       <ImageView fx:id="imageview" fitHeight="334.0" fitWidth="397.0" layoutX="216.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="leave_button" layoutX="750.0" layoutY="541.0" mnemonicParsing="false" onAction="#leave" style="-fx-background-color: orange;" text="Leave">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

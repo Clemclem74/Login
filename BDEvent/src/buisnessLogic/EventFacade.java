@@ -98,6 +98,16 @@ public class EventFacade {
 		return 0;
 	}
 	
+	public int leave(int id,Event event) {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		boolean bool = eventDao.leave(id,event);
+		if (bool == false) {
+			System.out.println("event null facade");
+			return -1;
+		}
+		return 0;
+	}
+	
 	
 	public ArrayList<Event> getEventbyUser(User user) {
 		OracleDAO<Event> eventDao = this.adf.getEventDAO();
