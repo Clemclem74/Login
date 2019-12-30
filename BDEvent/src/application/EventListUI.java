@@ -83,28 +83,30 @@ public class EventListUI extends Routing implements Initializable {
 	@FXML
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
+		if(eventList.getSelectionModel().getSelectedItem()!=null) {
 		
-		String event1 = eventList.getSelectionModel().getSelectedItem();
-		theEvent = eventFacade.find(event1.split(" : ")[0]);
-		if(event1 != null) {
-			this.description.setText(theEvent.getDescription());
-			this.event_title.setText(theEvent.getTitle());
-			this.event_date.setText(theEvent.getEvent_date());	
-		}
-		
-		Image image = new Image("/img/p1.jpg");
-		
-		if(theEvent.getImage()!=null) {
-			image = new Image(theEvent.getImage());
-		}
-		
-		
-		imageview.setImage(image);
+			String event1 = eventList.getSelectionModel().getSelectedItem();
+			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			if(event1 != null) {
+				this.description.setText(theEvent.getDescription());
+				this.event_title.setText(theEvent.getTitle());
+				this.event_date.setText(theEvent.getEvent_date());	
+			}
+			
+			Image image = new Image("/img/p1.jpg");
+			
+			if(theEvent.getImage()!=null) {
+				image = new Image(theEvent.getImage());
+			}
+			
+			
+			imageview.setImage(image);
 
-		imageview.setFitWidth(364);
-		imageview.setPreserveRatio(true);
-		imageview.setSmooth(true);
-		imageview.setCache(true);
+			imageview.setFitWidth(364);
+			imageview.setPreserveRatio(true);
+			imageview.setSmooth(true);
+			imageview.setCache(true);
+		}
 
 		
 		

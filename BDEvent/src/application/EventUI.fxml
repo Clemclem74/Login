@@ -69,6 +69,11 @@
             <Font size="18.0" />
          </font></Label>
       <Button fx:id="button_join" layoutX="836.0" layoutY="557.0" mnemonicParsing="false" onAction="#join" text="Join" />
-      <ImageView fx:id="imageview" fitHeight="240.0" fitWidth="364.0" layoutX="506.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageview" fitHeight="240.0" fitWidth="364.0" layoutX="506.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="event_join" layoutX="490.0" layoutY="100.0" prefHeight="21.0" prefWidth="354.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

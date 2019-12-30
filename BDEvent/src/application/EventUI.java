@@ -49,6 +49,9 @@ public class EventUI extends Routing implements Initializable {
 	 private Button modify_button;
 	 @FXML
 	 private ImageView imageview;
+	 @FXML
+	 private Label event_join;
+	 
 	 
 
 	@Override
@@ -83,29 +86,34 @@ public class EventUI extends Routing implements Initializable {
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
 		
-		String event1 = eventList.getSelectionModel().getSelectedItem();
-		theEvent = eventFacade.find(event1.split(" : ")[0]);
-		if(event1 != null) {
-			this.description.setText(theEvent.getDescription());
-			this.event_title.setText(theEvent.getTitle());
-			this.event_date.setText(theEvent.getEvent_date());	
-		}
-		
-		super.setEventSelected(theEvent);
-		
-		Image image = new Image("/img/p1.jpg");
-		
-		if(theEvent.getImage()!=null && theEvent.getImage()!="") {
-			image = new Image(theEvent.getImage());
-		}
-		
-		
-		imageview.setImage(image);
+		if(eventList.getSelectionModel().getSelectedItem()!=null) {
+			
+			String event1 = eventList.getSelectionModel().getSelectedItem();
+			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			if(event1 != null) {
+				this.description.setText(theEvent.getDescription());
+				this.event_title.setText(theEvent.getTitle());
+				this.event_date.setText(theEvent.getEvent_date());	
+			}
+			
+			super.setEventSelected(theEvent);
+			
+			Image image = new Image("/img/p1.jpg");
+			
+			if(theEvent.getImage()!=null && theEvent.getImage()!="") {
+				image = new Image(theEvent.getImage());
+			}
+			
+			
+			imageview.setImage(image);
 
-		imageview.setFitWidth(364);
-		imageview.setPreserveRatio(true);
-		imageview.setSmooth(true);
-		imageview.setCache(true);
+			imageview.setFitWidth(364);
+			imageview.setPreserveRatio(true);
+			imageview.setSmooth(true);
+			imageview.setCache(true);
+			
+		}
+		
 
 		
 	}
@@ -141,12 +149,12 @@ public class EventUI extends Routing implements Initializable {
 		EventFacade eventFacade = new EventFacade();
 		int res=eventFacade.join(this.theEvent,super.getCurrentUser());
 		if(res == 0) {
-			System.out.println("You succesfully join " + this.theEvent.getTitle());
+			event_join.setText("You succesfully join " + this.theEvent.getTitle());
 			
 		}
 		
 		if(res == -2) {
-			System.out.println("You already participate to this event");
+			event_join.setText("You already participate to this event");
 		}
 	}
 	
