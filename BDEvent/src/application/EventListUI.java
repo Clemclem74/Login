@@ -40,6 +40,8 @@ public class EventListUI extends Routing implements Initializable {
 	 private ImageView imageview;
 	 @FXML
 	 private Button leave_button;
+	 @FXML
+	 private Button activity_button;
 	 
 
 	@Override
@@ -110,6 +112,10 @@ public class EventListUI extends Routing implements Initializable {
 
 		
 		
+	}
+	
+	public void activity(ActionEvent event) {
+		super.goTo("ActivityUI");
 	}
 	
 	

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.=ActivityUI">
+   <children>
+      <Text layoutX="585.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities for : " textAlignment="CENTER" wrappingWidth="166.5625">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Pane layoutX="4.0" layoutY="-3.0">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
+                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" text="Events List" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Text fx:id="name_event" layoutX="757.0" layoutY="64.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="166.5625">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <TableView fx:id="BDE_Activity" layoutX="228.0" layoutY="94.0" prefHeight="417.0" prefWidth="263.0">
+        <columns>
+          <TableColumn fx:id="BDE_Activity_title" prefWidth="92.0" text="Title" />
+          <TableColumn fx:id="BDE_Activity_start" prefWidth="78.0" text="Start" />
+            <TableColumn fx:id="BDE_Activity_end" prefWidth="92.0" text="End" />
+        </columns>
+      </TableView>
+      <Button layoutX="336.0" layoutY="554.0" mnemonicParsing="false" text="Join" />
+      <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" text="Join" />
+      <TableView fx:id="Staff_Activity" layoutX="623.0" layoutY="94.0" prefHeight="417.0" prefWidth="263.0">
+         <columns>
+            <TableColumn prefWidth="92.0" text="Title" />
+            <TableColumn prefWidth="78.0" text="Start" />
+            <TableColumn prefWidth="92.0" text="End" />
+         </columns>
+      </TableView>
+      <Text layoutX="289.0" layoutY="64.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BDE Activities" textAlignment="CENTER" wrappingWidth="166.5625">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <SplitMenuButton layoutX="483.0" layoutY="539.0" mnemonicParsing="false" text="Create Activity">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#createBDEActivity" text="BDE Activity" />
+          <MenuItem mnemonicParsing="false" text="Staff Activity" />
+        </items>
+      </SplitMenuButton>
+   </children>
+</AnchorPane>

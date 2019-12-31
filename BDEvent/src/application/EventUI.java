@@ -52,6 +52,8 @@ public class EventUI extends Routing implements Initializable {
 	 private ImageView imageview;
 	 @FXML
 	 private Label event_join;
+	 @FXML
+	 private Label event_responsible;
 	 
 	 
 
@@ -86,15 +88,21 @@ public class EventUI extends Routing implements Initializable {
 	@FXML
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
+		UserFacade userFacade = new UserFacade();
+		User responsible = new User();
+		
+		
 		event_join.setText("");
 		if(eventList.getSelectionModel().getSelectedItem()!=null) {
 			
 			String event1 = eventList.getSelectionModel().getSelectedItem();
 			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			responsible = userFacade.findById(theEvent.getResponsible());
 			if(event1 != null) {
 				this.description.setText(theEvent.getDescription());
 				this.event_title.setText(theEvent.getTitle());
-				this.event_date.setText(theEvent.getEvent_date());	
+				this.event_date.setText(theEvent.getEvent_date());
+				this.event_responsible.setText(responsible.getFirstname() + " " + responsible.getUsername());	
 			}
 			
 			super.setEventSelected(theEvent);

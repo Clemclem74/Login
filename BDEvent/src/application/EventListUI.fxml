@@ -65,11 +65,13 @@
          <font>
             <Font size="17.0" />
          </font></Label>
-      <ImageView fx:id="imageview" fitHeight="334.0" fitWidth="397.0" layoutX="216.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageview" fitHeight="279.0" fitWidth="397.0" layoutX="216.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="leave_button" layoutX="750.0" layoutY="541.0" mnemonicParsing="false" onAction="#leave" style="-fx-background-color: orange;" text="Leave">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
+      <Button fx:id="activity_button" layoutX="254.0" layoutY="100.0" mnemonicParsing="false" onAction="#activity" text="Activities" />
+      <Button layoutX="427.0" layoutY="100.0" mnemonicParsing="false" text="Ressources" />
    </children>
 </AnchorPane>
