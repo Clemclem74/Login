@@ -36,15 +36,15 @@ public class ActivityFacade {
 	}
 
 
-	public ArrayList<Event> findAll() {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		ArrayList<Event> event = eventDao.findAll();
-		if (event == null) {
-			System.out.println("event null facade");
+	public ArrayList<BDEActivity> findAll() {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		ArrayList<BDEActivity> acti = BDEActivityDao.findAll();
+		if (acti == null) {
+			System.out.println("BDEActivity null facade");
 			return null;
 		}
 		else {
-			return event;
+			return acti;
 		}
 	}
 	

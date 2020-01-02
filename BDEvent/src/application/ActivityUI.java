@@ -93,10 +93,18 @@ public class ActivityUI extends Routing implements Initializable {
 		
 		ActivityFacade activityFacade = new ActivityFacade();
 		
-		//list1 = activityFacade.getBDEActivity();
+		list1 = activityFacade.findAll();
 		
-		//list1.forEach((n)-> acti.add(n.getTitle(),n.getStart(),n.getEnd())); 
 		
+		
+		list1.forEach( (n) -> { 
+			ActivityList aActi = new ActivityList();
+			aActi.setTitle(n.getName_activity());
+			aActi.setStart(n.getStart_hour());
+			aActi.setEnd(n.getDuration());
+			acti.add(aActi);
+		}
+		); 
 		
 		return acti;
 		

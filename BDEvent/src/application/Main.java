@@ -17,7 +17,7 @@ public class Main extends Application {
             // Read file fxml and draw interface.
         	
         	Routing root = new Routing(primaryStage);
-        	root.goTo("CreateBDEActivityUI");
+        	root.goTo("ActivityUI");
          
         } catch(Exception e) {
             e.printStackTrace();

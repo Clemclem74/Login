@@ -25,7 +25,8 @@ public int create(BDEActivity obj) {
 	  String SQL_INSERT = "Insert into BDEACTIVITY " + "Values (" + id +",'" + obj.getName_activity() + "',"
 			  +"'" + obj.getDescription() + "',"
 					  +"'" + obj.getDate() + "',"
-	  						+"'" + obj.getDuration() + "')";
+							  +"'" + obj.getStart_hour() + "',"
+	  								+"'" + obj.getDuration() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -123,11 +124,11 @@ public boolean update(int id_event, Event obj) {
 }
 
  
-public ArrayList<Event> findAll() {
+public ArrayList<BDEActivity> findAll() {
   
-	ArrayList<Event> ret = new ArrayList<Event>();
+	ArrayList<BDEActivity> ret = new ArrayList<BDEActivity>();
     
-  String SQL_SELECT = "Select * from EVENT";
+  String SQL_SELECT = "Select * from BDEACTIVITY";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -138,20 +139,20 @@ public ArrayList<Event> findAll() {
       
       while (resultSet.next()) {
     	  
-    	  Event obj = new Event();
-          int id_event = resultSet.getInt("EVENT");
+    	  BDEActivity obj = new BDEActivity();
+          int id_activity = resultSet.getInt("ID_ACTIVITY");
           String title = resultSet.getString("TITLE");
           String description = resultSet.getString("DESCRIPTION");
           String event_date = resultSet.getString("DATE");
-          String image = resultSet.getString("IMAGE");
-          int responsible = resultSet.getInt("RESPONSIBLE");
+          String start_hour = resultSet.getString("START_HOUR");
+          String duration = resultSet.getString("DURATION");
 
-          obj.setId_event(id_event);
-          obj.setTitle(title);
+          obj.setId_activity(id_activity);
+          obj.setName_activity(title);
           obj.setDescription(description);
-          obj.setEvent_date(event_date);
-          obj.setImage(image);
-          obj.setResponsible(responsible);
+          obj.setDate(event_date);
+          obj.setStart_hour(start_hour);
+          obj.setDuration(duration);
           
           ret.add(obj);
 

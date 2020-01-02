@@ -41,15 +41,23 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		private Label Date_End;
 		@FXML
 		private TextField descriptionActivity;
+		@FXML
+		private Label start_hour;
+		@FXML
+		private Label duration;
+		@FXML
+		private Slider start_hour_slider;
 		
 		
 		String theHours="";
 		String theMinutes="";
+		String theStartHour="";
 		
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
 	       // TODO (don't really need to do anything here).
-		   
+		   start_hour.setText("12h00m");
+		   duration.setText("0h00m");
 		   
 	   }
 	 
@@ -68,11 +76,12 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 	       acti1.setName_activity(this.titleActivityField.getText());
 	       acti1.setDate(date);
 	       acti1.setDescription(this.descriptionActivity.getText());
+	       acti1.setStart_hour(theStartHour);
 	       acti1.setDuration(theHours+"h"+theMinutes+"m");
 	       
 	       
 	       actiFacade.create(acti1);
-	       super.goTo("EventUI");
+	       super.goTo("ActivityUI");
 	       
 	       
 	   }
@@ -83,6 +92,18 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		   	menu = (MenuItem) event.getSource();
 		   	theHours = (String) menu.getUserData();
 		   	
+		   	String hours = "0";
+			   String minutes = "0";
+			   
+			   if(theHours!="") {
+				   hours=theHours;
+			   }
+			   if(theMinutes!="") {
+				   minutes=theMinutes;
+			   }
+			   
+			   duration.setText(hours+"h"+minutes+"m");
+		   	
 		    
 		}
 	   
@@ -92,12 +113,50 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		   	menu = (MenuItem) event.getSource();
 		   	theMinutes = (String) menu.getUserData();
 		   	
+		   	String hours = "0";
+			   String minutes = "0";
+			   
+			   if(theHours!="") {
+				   hours=theHours;
+			   }
+			   if(theMinutes!="") {
+				   minutes=theMinutes;
+			   }
+			   
+			   duration.setText(hours+"h"+minutes+"m");
+		   	
 		    
 		}
 	   
-	  
+	   public void slider_change(MouseEvent event) {
+		   int sliderval = (int) start_hour_slider.getValue();
+		   double sliderValue = (double) sliderval/4;
+		   
+		   int i = new Double(sliderValue).intValue(); //recuperer la partie entiere
+		   double decimale = sliderValue-(new Double(i).doubleValue());
+		   String dec = String.valueOf(decimale);
+		   switch(dec) {
+		   case "0":
+		     dec = "00";
+		     break;
+		   case "0.25":
+			   dec = "15";
+		     break;
+		   case "0.5":
+			   dec = "30";
+			     break;
+		   case "0.75":
+			   dec = "45";
+			     break;
+		   default:
+		     dec="00";
+		 }
+		   
+		   start_hour.setText(String.valueOf(i)+"h"+String.valueOf(dec)+"m");
+		   theStartHour = String.valueOf(i)+"h"+String.valueOf(dec)+"m";
+	   }
 	   
-
+	  
 	   
 	   
 }
