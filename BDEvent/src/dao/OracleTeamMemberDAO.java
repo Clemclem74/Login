@@ -146,7 +146,6 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 public ArrayList<Integer> findMembersByTeam(int idTeam){
 
 	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM="+idTeam+"";
-	  System.out.println(SQL_SELECT);
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -160,7 +159,6 @@ public ArrayList<Integer> findMembersByTeam(int idTeam){
 	      }
 	      
 		  conn.close();
-		  System.out.println("dans dao :" + users);
 	      return users;
 
 	  } catch (SQLException e) {

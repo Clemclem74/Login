@@ -212,6 +212,7 @@ public ArrayList<Fee> findAllFeeByUser(User user) {
 	 int id = user.getId_user();
 	  String SQL_SELECT = "Select * from FEE where ID_USER_FEE="+id;
 	  // auto close connection and preparedStatement
+	
 	  try (Connection conn = DriverManager.getConnection(
 			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
@@ -250,6 +251,84 @@ public ArrayList<Fee> findAllFeeByUser(User user) {
 	  }
 	return ret;
 	}
+
+public ArrayList<Fee> findAllFee(User user) {
+	ArrayList<Fee> ret = new ArrayList<Fee>();
+		int idUser = user.getId_user();
+    	int idbde = user.getCurrentBDE();
+	  String SQL_SELECT = "Select ID_FEE,TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_USER_FEE="+idUser +" AND ID_BDE="+idbde;
+	  // auto close connection and preparedStatement
+	  System.out.println("avant try");
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+		  
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	    	  Fee obj = new Fee();
+	          int id_fee = resultSet.getInt("ID_FEE");
+	          String title_fee = resultSet.getString("TITLE_FEE");
+	          String comment_fee = resultSet.getString("COMMENT_FEE");
+	          int amount_fee = resultSet.getInt("AMOUNT_FEE");
+	          int state_fee = resultSet.getInt("STATE_FEE");
+	          int id_user_fee = resultSet.getInt("ID_USER_FEE");
+
+
+	          obj.setId_fee(id_fee);
+	          obj.setTitle_fee(title_fee);
+	          obj.setComment_fee(comment_fee);
+	          obj.setAmount_fee(amount_fee);
+	          obj.setState_fee(state_fee);
+	          obj.setId_user_fee(id_user_fee);
+
+
+	          ret.add(obj);
+
+	      }
+		  conn.close();
+
+	      return ret;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return ret;
+	}
+
+@Override
+public boolean acceptFee(Fee obj) {
+	int id = obj.getId_fee();
+	System.out.println("id : "+ id);
+	  
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE FEE SET STATE_FEE = 1 WHERE ID_FEE =? ");
+		  
+			    // set the preparedstatement parameters
+			    
+			    ps.setInt(1,id);
+			    System.out.println("id : "+ id);
+
+			   
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return false;
+	
+}
 
 @Override
 public boolean leave(int id, Fee obj) {

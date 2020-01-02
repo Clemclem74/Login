@@ -132,6 +132,64 @@ public class FeeFacade {
 		}
 	}
 
+	public ArrayList<Fee> findAllFee(User user) {
+		OracleDAO<Fee> feeDao = this.adf.getFeeDAO();
+		ArrayList<Fee> allfee = feeDao.findAllFee(user);
+		if (allfee == null) {
+			System.out.println("fee null facade");
+			return null;
+		}
+		else {
+			return allfee;
+		}
+	}
+public ArrayList<Fee> findAllWaitingFee(User user) {
+		
+		ArrayList<Fee> allfee = findAllFee(user);
+		ArrayList<Fee> waitingFee = new ArrayList<Fee>();
+		for ( int i = 0 ; i < allfee.size(); i++) {
+			if (allfee.get(i).getState_fee() == 0) {
+				waitingFee.add(allfee.get(i));
+			}
+		}
+		
+		return waitingFee;
+		
+	}
+
+public ArrayList<Fee> findAllPayedFee(User user) {
+	
+	ArrayList<Fee> allfee = findAllFee(user);
+	ArrayList<Fee> PayedFee = new ArrayList<Fee>();
+	for ( int i = 0 ; i < allfee.size(); i++) {
+		if (allfee.get(i).getState_fee() == 1) {
+			PayedFee.add(allfee.get(i));
+		}
+	}
+	
+	return PayedFee;
+	
+}
+public int accept(int idFee) {
+	System.out.println("accept dans postfacade debut");
+	Fee obj = new Fee();
+	
+	obj.setId_fee(idFee);
+	
+    
+    OracleDAO<Fee> feeDao = adf.getFeeDAO();
+    System.out.println("apres creation dao");
+    
+    if(feeDao.acceptFee(obj)) {
+    	System.out.println("fee accepted");
+    	return 1;
+    }
+    else {
+    	System.out.println("Error while accepting fee");
+    	return -1;
+    }
+}
+	
 
 
 }

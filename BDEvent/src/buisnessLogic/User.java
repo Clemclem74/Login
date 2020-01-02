@@ -124,8 +124,6 @@ public class User {
 	public boolean isPartOfTrez() {
 		TeamMemberFacade tmFacade = new TeamMemberFacade();
 		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(4);
-		System.out.println("liste id users : " + idusers);
-		System.out.println("user actuel :" +this.getId_user());
 		Boolean res = false;
 		for (int i =0 ; i< idusers.size(); i++) {
 			if (this.getId_user() == idusers.get(i)) {

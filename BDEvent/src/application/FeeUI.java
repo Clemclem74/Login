@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 public class FeeUI extends Routing implements Initializable {
 	
 	ArrayList<Fee> globalFeeList = new ArrayList<Fee>();
+	ArrayList<Fee> waitingFeeList = new ArrayList<Fee>();
 	
 	 @FXML
 	 private Button homePage;
@@ -70,6 +71,15 @@ public class FeeUI extends Routing implements Initializable {
 		@FXML
 		private Label errorMessage;
 		
+		 //--------------------------------Controlleur pour Manage fee
+		 
+	 	@FXML
+		private Button buttonBackFee;
+		 @FXML
+		 private ListView<String> applianceFeeList;
+		 @FXML
+		private Button payedButton;
+		
 	 
 	
 	   public void initialize(URL location, ResourceBundle resources) {
@@ -85,18 +95,30 @@ public class FeeUI extends Routing implements Initializable {
 			   textFee.setText(fee.getComment_fee());
 			   amountFeeField.setText(Integer.toString(fee.getAmount_fee()));
 		  	}
+			  else {
+				  if (super.getVue().contentEquals("ManageFee")) {
+					  System.out.println("vu en manage");
+					  displayWaitingFee();
+					  displayPayedFee();
+					  modifyFee.setVisible(false);
+						deleteFee.setVisible(false);
+						stateText.setVisible(false);
+						amountText.setVisible(false);
+						payedButton.setVisible(false);
+			  
+				  }
 		  
-				  else /*si basic fee */ {
-			   displayFee();
-			   trezButton.setVisible(false);
-			   System.out.println("tres ou pas "+super.getCurrentUser().isPartOfTrez());
-			   if (super.getCurrentUser().isPartOfTrez()) {
-				   trezButton.setVisible(true);
-			   }
-			    modifyFee.setVisible(false);
-				deleteFee.setVisible(false);
-				stateText.setVisible(false);
-				amountText.setVisible(false);
+					  else /*si basic fee */ {
+				   displayFee();
+				   trezButton.setVisible(false);
+				   if (super.getCurrentUser().isPartOfTrez()) {
+					   trezButton.setVisible(true);
+				   }
+				    modifyFee.setVisible(false);
+					deleteFee.setVisible(false);
+					stateText.setVisible(false);
+					amountText.setVisible(false);
+				  }
 			  }
 	   }
 			
@@ -122,17 +144,19 @@ public class FeeUI extends Routing implements Initializable {
 	 			Fee feeSelected = feeFacade.find(fee1.split(" : ")[0]);
 	 			super.setCurrentFee(feeSelected);
 	 			if(fee1 != null) {
-	 				if (super.getVue().contentEquals("BasicFee")) {
-	 					this.stateText.setVisible(true);
-	 					this.amountText.setVisible(true);
-	 					if (feeSelected.getState_fee() == 0) {
-	 						state = "Not refund";
-	 						this.stateFee.setTextFill(Color.RED);}
-	 					else {
-	 						state = "Already refund";
-	 						this.stateFee.setTextFill(Color.DARKGREEN);}
-	 					this.stateFee.setText(state);
+	 				if (super.getVue().contentEquals("ManageFee")) {
+	 					payedButton.setVisible(false);
 	 				}
+ 					this.stateText.setVisible(true);
+ 					this.amountText.setVisible(true);
+ 					if (feeSelected.getState_fee() == 0) {
+ 						state = "Not refund";
+ 						this.stateFee.setTextFill(Color.RED);}
+ 					else {
+ 						state = "Already refund";
+ 						this.stateFee.setTextFill(Color.DARKGREEN);}
+ 					this.stateFee.setText(state);
+	 				
 	 				this.titleFeeSelected.setText(feeSelected.getTitle_fee());
 	 				this.commentFeeSelected.setText(feeSelected.getComment_fee());
 	 				this.amountFee.setText(Integer.toString(feeSelected.getAmount_fee()));
@@ -152,8 +176,18 @@ public class FeeUI extends Routing implements Initializable {
 			globalFeeList.removeAll(globalFeeList);
 			
 			
+			if (super.getVue().equals("ManageFee")) {
+				applianceFeeList.getItems().clear();
+				waitingFeeList.removeAll(waitingFeeList);
+				displayWaitingFee();
+				
+			}
+			else {
+				displayFee();
+			}
+			
 			super.openPopUp("You're post has been deleted", "congratulations, you can continue to the application");
-			displayFee();
+			
 			
 			this.titleFeeSelected.setText("");
 			this.commentFeeSelected.setText("");
@@ -193,8 +227,11 @@ public class FeeUI extends Routing implements Initializable {
 	   @FXML
 	   private void goToManage(ActionEvent event) {
 			super.setVue("ManageFee");
-			super.goTo("ManageFee");
+			super.goTo("ManageFeeUI");
 		}
+	   
+	  
+	   
 	   
 	   //Creation Fee 
 	   
@@ -230,6 +267,7 @@ public class FeeUI extends Routing implements Initializable {
 	       System.out.println("modification de fee en cours");
 	       try {
 		       int amount = Integer.parseInt(amountFeeField.getText());
+		       System.out.println("nouv modify :" + fee.getId_fee() + " " +titleFee.getText()+ " " +textFee.getText()+ " " + amount);
 		       int res = feeFacade.modify( fee.getId_fee(), titleFee.getText(),textFee.getText(), amount);
 			   
 			   if (res < 0 ) {
@@ -247,12 +285,91 @@ public class FeeUI extends Routing implements Initializable {
 	    	}
 	   }
 	   
+	   
 	   //-------------ROUTING FUNCTION
 	   
 	   public void backFee(ActionEvent event) {
 			super.setVue("BasicFee");
 		   super.goTo("FeeUI");
 	   }
+	   
+	 
+	   
+	   private void displayWaitingFee() {
+			 waitingFeeList.removeAll(waitingFeeList);
+				super.setCurrentPost(null);
+				User user=super.getCurrentUser();
+				FeeFacade feeFacade = new FeeFacade();
+				waitingFeeList = feeFacade.findAllWaitingFee(user);
+				ArrayList<String> titleFee = new ArrayList<String>();
+				waitingFeeList.forEach((n)-> titleFee.add(n.getTitle_fee())); 
+				
+				applianceFeeList.getItems().addAll(titleFee);
+			}
+	   
+	   private void displayPayedFee() {
+		   	globalFeeList.removeAll(globalFeeList);
+			super.setCurrentFee(null);
+			User user=super.getCurrentUser();
+			FeeFacade feeFacade = new FeeFacade();
+			globalFeeList = feeFacade.findAllPayedFee(user);
+			ArrayList<String> titleFee = new ArrayList<String>();
+			globalFeeList.forEach((n)-> titleFee.add(n.getTitle_fee())); 
+			
+			feeList.getItems().addAll(titleFee);
+		}
+	   
+	   @FXML
+		private void displaySelectedWaitingList(MouseEvent event) {
+		 	String state;
+		 	FeeFacade feeFacade = new FeeFacade();
+			UserFacade userFacade = new UserFacade();
+			String fee1 = applianceFeeList.getSelectionModel().getSelectedItem();
+			Fee feeSelected = feeFacade.find(fee1.split(" : ")[0]);
+			super.setCurrentFee(feeSelected);
+			if(fee1 != null) {
+				if (super.getVue().contentEquals("ManageFee")) {
+					this.stateText.setVisible(true);
+					this.amountText.setVisible(true);
+					if (feeSelected.getState_fee() == 0) {
+						state = "Not refund";
+						this.stateFee.setTextFill(Color.RED);}
+					else {
+						state = "Already refund";
+						this.stateFee.setTextFill(Color.DARKGREEN);}
+					this.stateFee.setText(state);
+				}
+				this.titleFeeSelected.setText(feeSelected.getTitle_fee());
+				this.commentFeeSelected.setText(feeSelected.getComment_fee());
+				this.amountFee.setText(Integer.toString(feeSelected.getAmount_fee()));
+				
+				modifyFee.setVisible(true);
+				deleteFee.setVisible(true);
+				payedButton.setVisible(true);
+			}
+			
+	   }
+	   
+	   public void acceptedFee(ActionEvent event) {
+		   Fee fee=super.getCurrentFee();
+		   FeeFacade feeFacade = new FeeFacade();
+	       System.out.println("accepatation de fee en cours");
+	       int res = feeFacade.accept(fee.getId_fee());
+	       super.setVue("ManageFee");
+		   super.goTo("ManageFeeUI");
+		   if (res < 0 ) {
+	    	   //ERROR MESSAGE 
+	       }
+	       else {
+	    	   ConfirmMessageUI.setParams(Integer.toString(res));
+	    	   super.openPopUp("This Fee has been mark as PAYED", "you have marked as payed this fee.");
+	    	   super.setCurrentPost(null);
+	       }
+	   }
+	   
+	   
+	   
+	 
 	  
 	   
 	   
