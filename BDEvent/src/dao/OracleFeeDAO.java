@@ -111,6 +111,7 @@ public boolean update(int i, Fee obj) {
 public boolean update(Fee obj) {
 	
 	int id = obj.getId_fee();
+	System.out.println(id);
 	  
 	  try {
 		
@@ -123,7 +124,10 @@ public boolean update(Fee obj) {
 			    ps.setString(2, obj.getComment_fee());
 			    ps.setInt(3, obj.getAmount_fee());
 			    ps.setInt(4,id);
-			   
+			   System.out.println(obj.getTitle_fee());
+			   System.out.println(obj.getComment_fee());
+			   System.out.println(obj.getAmount_fee());
+			   System.out.println(id);
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
 			    ps.close();
@@ -256,7 +260,7 @@ public ArrayList<Fee> findAllFee(User user) {
 	ArrayList<Fee> ret = new ArrayList<Fee>();
 		int idUser = user.getId_user();
     	int idbde = user.getCurrentBDE();
-	  String SQL_SELECT = "Select ID_FEE,TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_USER_FEE="+idUser +" AND ID_BDE="+idbde;
+	  String SQL_SELECT = "Select DISTINCT(ID_FEE),TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_BDE="+idbde;
 	  // auto close connection and preparedStatement
 	  System.out.println("avant try");
 	  try (Connection conn = DriverManager.getConnection(
@@ -296,6 +300,8 @@ public ArrayList<Fee> findAllFee(User user) {
 	  }
 	return ret;
 	}
+
+
 
 @Override
 public boolean acceptFee(Fee obj) {

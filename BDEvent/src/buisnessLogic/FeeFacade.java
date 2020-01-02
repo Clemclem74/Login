@@ -73,6 +73,7 @@ public class FeeFacade {
 		System.out.println("modify dans feefacade debut");
 		Fee obj = new Fee();
 		if ((Title.length()>0) && (text.length()>0) && amount>0){
+			obj.setId_fee(idFee);
 			obj.setTitle_fee(Title);
 			obj.setComment_fee(text);
 			obj.setAmount_fee(amount);

@@ -111,7 +111,7 @@ public class FeeUI extends Routing implements Initializable {
 					  else /*si basic fee */ {
 				   displayFee();
 				   trezButton.setVisible(false);
-				   if (super.getCurrentUser().isPartOfTrez()) {
+				   if (super.getCurrentUser().isPartOfTrez() || super.getCurrentUser().isAdminOfHisBDE()) {
 					   trezButton.setVisible(true);
 				   }
 				    modifyFee.setVisible(false);
@@ -296,11 +296,12 @@ public class FeeUI extends Routing implements Initializable {
 	 
 	   
 	   private void displayWaitingFee() {
-			 waitingFeeList.removeAll(waitingFeeList);
+			 	waitingFeeList.removeAll(waitingFeeList);
 				super.setCurrentPost(null);
 				User user=super.getCurrentUser();
 				FeeFacade feeFacade = new FeeFacade();
 				waitingFeeList = feeFacade.findAllWaitingFee(user);
+				
 				ArrayList<String> titleFee = new ArrayList<String>();
 				waitingFeeList.forEach((n)-> titleFee.add(n.getTitle_fee())); 
 				
