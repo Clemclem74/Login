@@ -42,6 +42,8 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		@FXML
 		private TextField descriptionActivity;
 		@FXML
+		private TextField nb_users;
+		@FXML
 		private Label start_hour;
 		@FXML
 		private Label duration;
@@ -78,7 +80,7 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 	       acti1.setDescription(this.descriptionActivity.getText());
 	       acti1.setStart_hour(theStartHour);
 	       acti1.setDuration(theHours+"h"+theMinutes+"m");
-	       
+	       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
 	       
 	       actiFacade.create(acti1);
 	       super.goTo("ActivityUI");

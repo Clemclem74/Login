@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,6 +39,8 @@ public class ActivityUI extends Routing implements Initializable {
 	private TableColumn<ActivityList,String> BDE_Activity_start;
 	@FXML
 	private TableColumn<ActivityList,String> BDE_Activity_end;
+	@FXML
+	private TableColumn<ActivityList,String> BDE_Activity_nb;
 	
 	
 	
@@ -66,6 +69,7 @@ public class ActivityUI extends Routing implements Initializable {
 	
 	ArrayList<BDEActivity> list1 = new ArrayList<BDEActivity>();
 	
+	ActivityList selected = new ActivityList();
 	
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +81,7 @@ public class ActivityUI extends Routing implements Initializable {
 	       BDE_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
 	       BDE_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
 	       BDE_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
+	       BDE_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
 			
 		   BDE_Activity.setItems(loadData(super.getEventSelected()));
 	       
@@ -99,9 +104,11 @@ public class ActivityUI extends Routing implements Initializable {
 		
 		list1.forEach( (n) -> { 
 			ActivityList aActi = new ActivityList();
+			aActi.setId(n.getId_activity());
 			aActi.setTitle(n.getName_activity());
 			aActi.setStart(n.getStart_hour());
-			aActi.setEnd(n.getDuration());
+			aActi.setEnd(calculate_end(n.getStart_hour(),n.getDuration()));
+			aActi.setNb_user(String.valueOf(activityFacade.count_users_BDEacti(n))+"/"+n.getNb_users());
 			acti.add(aActi);
 		}
 		); 
@@ -109,7 +116,60 @@ public class ActivityUI extends Routing implements Initializable {
 		return acti;
 		
 	}
-
+	
+	private String calculate_end(String start,String duration) {
+		
+		String ret ="";
+		
+		
+		String[] tab1 = start.split("h");
+		String[] tab2 = duration.split("h");
+		
+	
+		tab1[1]=tab1[1].substring(0,tab1[1].length()-1);
+		tab2[1]=tab2[1].substring(0,tab2[1].length()-1);		
+		
+		int mins = Integer.parseInt(tab1[1])+Integer.parseInt(tab2[1]);
+		int ahour = 0;
+		
+		switch(mins) {
+		   case 90:
+		      ahour = 1;
+		      mins = 30; 
+		     break;
+		   case 75:
+			   ahour = 1;
+			   mins = 15;
+		     break;
+		   case 60:
+			   ahour = 1;
+			   mins = 0;
+			     break;
+		   default:
+			   ahour = 0;
+		 }
+		
+		String m = String.valueOf(mins);
+		if(m.startsWith("0")) {
+			m="00";
+		}
+		
+		ret = ret + String.valueOf(Integer.parseInt(tab1[0]) + Integer.parseInt(tab2[0]) + ahour)+"h"+String.valueOf(m)+"m";
+		return ret;
+	}
+	
+	@FXML
+	private void getSelected(MouseEvent event) {
+		if((BDE_Activity.getSelectionModel().getSelectedItem()!=null)) {
+			this.selected = BDE_Activity.getSelectionModel().getSelectedItem();
+		}
+	}
+	@FXML
+	private void join() {
+		ActivityFacade acti = new ActivityFacade();
+		acti.join(this.selected.getId(), super.getCurrentUser());
+		BDE_Activity.setItems(loadData(super.getEventSelected()));
+	}
 	
 	public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);

@@ -5,6 +5,7 @@ public class BDEActivity extends Activity{
 	private String date;
 	private String start_hour;
 	private String duration;
+	private int nb_users;
 	
 	//User constructor
 	public BDEActivity() {
@@ -12,6 +13,7 @@ public class BDEActivity extends Activity{
 		setDate("");
 		setDuration("");
 		setStart_hour("");
+		setNb_users(0);
 	}
 
 	public String getDate() {
@@ -36,6 +38,14 @@ public class BDEActivity extends Activity{
 
 	public void setStart_hour(String start_hour) {
 		this.start_hour = start_hour;
+	}
+
+	public int getNb_users() {
+		return nb_users;
+	}
+
+	public void setNb_users(int nb_users) {
+		this.nb_users = nb_users;
 	}
 
 

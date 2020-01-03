@@ -48,16 +48,12 @@ public class ActivityFacade {
 		}
 	}
 	
-	public Event find(String event_name) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		Event event = eventDao.find(event_name);
-		if (event == null) {
-			System.out.println("event null facade");
-			return null;
-		}
-		else {
-			return event;
-		}
+	public int count_users_BDEacti(BDEActivity activity) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		int acti = BDEActivityDao.count_users_BDEacti(activity.getId_activity());
+		
+		return acti;
+		
 	}
 	
 	public void delete(Event event) {
@@ -85,9 +81,9 @@ public class ActivityFacade {
 	}
 	
 	
-	public int join(Event event,User user) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		int bool = eventDao.join(event,user);
+	public int join(int id_acti,User user) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		int bool = BDEActivityDao.join(BDEActivityDao.findById(id_acti),user);
 		if (bool == -1) {
 			System.out.println("event null facade");
 			return -1;

@@ -1,10 +1,15 @@
 package buisnessLogic;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class ActivityList {
 
+	private int id;
 	private String title;
 	private String start;
 	private String end;
+	private String nb_user;
 	
 	//User constructor
 	public ActivityList() {
@@ -37,6 +42,22 @@ public class ActivityList {
 
 	public void setEnd(String end) {
 		this.end = end;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNb_user() {
+		return nb_user;
+	}
+
+	public void setNb_user(String nb_user) {
+		this.nb_user = nb_user;
 	}
 
 	

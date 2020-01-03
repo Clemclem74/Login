@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="595.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateBDEActivityUI">
+<AnchorPane prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateBDEActivityUI">
    <children>
-      <Button fx:id="saveButton" layoutX="202.0" layoutY="524.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Button fx:id="saveButton" layoutX="212.0" layoutY="617.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
       <Text layoutX="92.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create BDE Activity">
          <font>
             <Font size="43.0" />
@@ -62,5 +62,11 @@
       </Text>
       <Label fx:id="start_hour" layoutX="419.0" layoutY="384.0" />
       <Label fx:id="duration" layoutX="368.0" layoutY="473.0" />
+      <Text layoutX="177.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of users needed">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nb_users" layoutX="140.0" layoutY="555.0" prefHeight="34.0" prefWidth="255.0" promptText="Number of users needed" />
    </children>
 </AnchorPane>
