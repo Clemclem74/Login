@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class EventListUI extends Routing implements Initializable {
@@ -34,7 +36,12 @@ public class EventListUI extends Routing implements Initializable {
 	 private Label description;
 	 @FXML
 	 private Label event_date;
-
+	 @FXML
+	 private ImageView imageview;
+	 @FXML
+	 private Button leave_button;
+	 @FXML
+	 private Button activity_button;
 	 
 
 	@Override
@@ -59,6 +66,15 @@ public class EventListUI extends Routing implements Initializable {
 		eventList.getItems().addAll(eventName);
 	}
 	
+	public void leave(ActionEvent event) {
+		
+		EventFacade eventFacade = new EventFacade();
+		eventFacade.leave(super.getCurrentUser().getId_user(),this.theEvent);
+		eventList.getItems().removeAll(eventList.getItems()); 
+		loadData();
+		
+	}
+	
 	public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
 		   super.goTo("LoginUI");
@@ -69,15 +85,37 @@ public class EventListUI extends Routing implements Initializable {
 	@FXML
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
+		if(eventList.getSelectionModel().getSelectedItem()!=null) {
 		
-		String event1 = eventList.getSelectionModel().getSelectedItem();
-		theEvent = eventFacade.find(event1.split(" : ")[0]);
-		if(event1 != null) {
-			this.description.setText(theEvent.getDescription());
-			this.event_title.setText(theEvent.getTitle());
-			this.event_date.setText(theEvent.getEvent_date());	
+			String event1 = eventList.getSelectionModel().getSelectedItem();
+			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			if(event1 != null) {
+				this.description.setText(theEvent.getDescription());
+				this.event_title.setText(theEvent.getTitle());
+				this.event_date.setText(theEvent.getEvent_date());	
+			}
+			
+			Image image = new Image("/img/p1.jpg");
+			
+			if(theEvent.getImage()!=null) {
+				image = new Image(theEvent.getImage());
+			}
+			
+			
+			imageview.setImage(image);
+
+			imageview.setFitWidth(364);
+			imageview.setPreserveRatio(true);
+			imageview.setSmooth(true);
+			imageview.setCache(true);
 		}
+
 		
+		
+	}
+	
+	public void activity(ActionEvent event) {
+		super.goTo("ActivityUI");
 	}
 	
 	

@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
 import buisnessLogic.Event;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
@@ -375,6 +374,18 @@ public ArrayList<Integer> getEventByUser(User user) {
 
 @Override
 public boolean update(int i, Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean leave(int id, Post obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean isChief(int id_user) {
 	// TODO Auto-generated method stub
 	return false;
 }

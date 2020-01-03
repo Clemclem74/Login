@@ -1,5 +1,7 @@
 package buisnessLogic;
 
+import java.util.ArrayList;
+
 public class User {
 
 	private int id_user;
@@ -117,6 +119,19 @@ public class User {
 	
 	public boolean isPublisherPost(Post post) {
 		return this.id_user == post.getId_user_publisher();
+	}
+	
+	public boolean isPartOfTrez() {
+		TeamMemberFacade tmFacade = new TeamMemberFacade();
+		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(4);
+		Boolean res = false;
+		for (int i =0 ; i< idusers.size(); i++) {
+			if (this.getId_user() == idusers.get(i)) {
+				res = true;
+			}
+		}
+		return res;
+		
 	}
 	
 }

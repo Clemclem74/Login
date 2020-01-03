@@ -46,6 +46,13 @@ public class TeamMemberFacade {
 	}
 	
 	
+	
+	public boolean isChief(User user) {
+		
+		OracleDAO<TeamMember> teamDao = this.adf.getTeamMemberDAO();
+		return teamDao.isChief(user.getId_user());
+	}
+
 
 	
 	
@@ -88,7 +95,11 @@ public class TeamMemberFacade {
 		return idTeams;
 	}
 
-
+	public ArrayList<Integer> isPartOfTeam(int idTeam) {
+		OracleDAO<TeamMember> tmDao = this.adf.getTeamMemberDAO();
+		ArrayList<Integer> idusers = tmDao.findMembersByTeam(idTeam);
+		return idusers;
+	}
 
 
 	public void sendError() {

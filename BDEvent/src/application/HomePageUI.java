@@ -47,6 +47,8 @@ public class HomePageUI extends Routing implements Initializable {
 	 private Label BDELabel;
 	 @FXML
 	 private Button manageMyTeams;
+	 @FXML
+	 private Button activities;
 	 
 
 	@Override
@@ -125,6 +127,11 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void manageBDEAction(ActionEvent envent) {
 		   super.goTo("ManageBDEUI");
 	   }
+	   
+	   public void go_acti(ActionEvent envent) {
+		   super.goTo("ActivityUI");
+	   }
+	   
 	   public void goToBB(ActionEvent envent) {
 		   super.setVue("BasicBB");
 		   super.goTo("BlackBoardUI");
@@ -132,6 +139,12 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void goToPoll(ActionEvent event) {
 		   super.goTo("CreatePollUI");
 	   }
+	   
+	   public void goToFee(ActionEvent envent) {
+		   super.setVue("BasicFee");
+		   super.goTo("FeeUI");
+	   }
+	   
 	   
 	   public void manageMyTeamsAction(ActionEvent event) {
 		   super.goTo("ManageMyTeamsUI");

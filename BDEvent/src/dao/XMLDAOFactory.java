@@ -3,6 +3,7 @@ package dao;
 import buisnessLogic.BDE;
 import buisnessLogic.BlackBoard;
 import buisnessLogic.Event;
+import buisnessLogic.Fee;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
@@ -45,6 +46,12 @@ public class XMLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	public OracleDAO<Event> getEventDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<Fee> getFeeDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

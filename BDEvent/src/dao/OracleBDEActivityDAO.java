@@ -7,24 +7,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import buisnessLogic.BDEActivity;
 import buisnessLogic.Event;
 import buisnessLogic.User;
 
-public class OracleEventDAO extends OracleDAO<Event> {
-public OracleEventDAO(Connection conn) {
+public class OracleBDEActivityDAO extends OracleDAO<BDEActivity> {
+
+	
+	public OracleBDEActivityDAO(Connection conn) {
   super(conn);
 }
 
-public int create(Event obj) {
-	System.out.println("Before");
+public int create(BDEActivity obj) {
 
 	int id = getLastId()+1;
 	
-	  String SQL_INSERT = "Insert into Event " + "Values (" + id +",'" + obj.getTitle() + "',"
+	  String SQL_INSERT = "Insert into BDEACTIVITY " + "Values (" + id +",'" + obj.getName_activity() + "',"
 			  +"'" + obj.getDescription() + "',"
-					  +"'" + obj.getEvent_date() + "',"
-	  						+"'" + obj.getImage() + "',"
-	  							+"'" + obj.getResponsible() + "')";
+					  +"'" + obj.getDate() + "',"
+							  +"'" + obj.getStart_hour() + "',"
+	  								+"'" + obj.getDuration() + "',"
+	  									+"'" + obj.getNb_users() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -122,11 +125,11 @@ public boolean update(int id_event, Event obj) {
 }
 
  
-public ArrayList<Event> findAll() {
+public ArrayList<BDEActivity> findAll() {
   
-	ArrayList<Event> ret = new ArrayList<Event>();
+	ArrayList<BDEActivity> ret = new ArrayList<BDEActivity>();
     
-  String SQL_SELECT = "Select * from EVENT";
+  String SQL_SELECT = "Select * from BDEACTIVITY";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -137,21 +140,23 @@ public ArrayList<Event> findAll() {
       
       while (resultSet.next()) {
     	  
-    	  Event obj = new Event();
-          int id_event = resultSet.getInt("EVENT");
+    	  BDEActivity obj = new BDEActivity();
+          int id_activity = resultSet.getInt("ID_ACTIVITY");
           String title = resultSet.getString("TITLE");
           String description = resultSet.getString("DESCRIPTION");
           String event_date = resultSet.getString("DATE");
-          String image = resultSet.getString("IMAGE");
-          int responsible = resultSet.getInt("RESPONSIBLE");
-
-          obj.setId_event(id_event);
-          obj.setTitle(title);
-          obj.setDescription(description);
-          obj.setEvent_date(event_date);
-          obj.setImage(image);
-          obj.setResponsible(responsible);
+          String start_hour = resultSet.getString("START_HOUR");
+          String duration = resultSet.getString("DURATION");
+          int nb_users = resultSet.getInt("NB_USERS");
           
+          
+          obj.setId_activity(id_activity);
+          obj.setName_activity(title);
+          obj.setDescription(description);
+          obj.setDate(event_date);
+          obj.setStart_hour(start_hour);
+          obj.setDuration(duration);
+          obj.setNb_users(nb_users);
           ret.add(obj);
 
       }
@@ -168,10 +173,10 @@ return ret;
 }
 
 
-public Event findById(int id) {
-	  Event obj = new Event();      
+public BDEActivity findById(int id) {
+	BDEActivity obj = new BDEActivity();     
 	    
-	  String SQL_SELECT = "Select * from Event where EVENT='"+id+"'";
+	  String SQL_SELECT = "Select * from BDEActivity where ID_ACTIVITY='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -182,19 +187,24 @@ public Event findById(int id) {
 	      
 	      while (resultSet.next()) {
 
-	          int id_event = resultSet.getInt("EVENT");
+	    	  
+	          int id_activity = resultSet.getInt("ID_ACTIVITY");
 	          String title = resultSet.getString("TITLE");
 	          String description = resultSet.getString("DESCRIPTION");
 	          String event_date = resultSet.getString("DATE");
-	          String image = resultSet.getString("IMAGE");
-	          int responsible = resultSet.getInt("RESPONSIBLE");
-
-	          obj.setId_event(id_event);
-	          obj.setTitle(title);
+	          String start_hour = resultSet.getString("START_HOUR");
+	          String duration = resultSet.getString("DURATION");
+	          int nb_users = resultSet.getInt("NB_USERS");
+	          
+	          
+	          obj.setId_activity(id_activity);
+	          obj.setName_activity(title);
 	          obj.setDescription(description);
-	          obj.setEvent_date(event_date);
-	          obj.setImage(image);
-	          obj.setResponsible(responsible);
+	          obj.setDate(event_date);
+	          obj.setStart_hour(start_hour);
+	          obj.setDuration(duration);
+	          obj.setNb_users(nb_users);
+
 	          
 
 	      }
@@ -209,11 +219,7 @@ public Event findById(int id) {
 	return obj;
 	}
 
-@Override
-public boolean update(Event obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
+
 
 @Override
 public Event find(String id) {
@@ -262,7 +268,7 @@ public Event find(String id) {
 private int getLastId() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select MAX(EVENT)from Event";
+	String SQL_SELECT = "Select MAX(ID_ACTIVITY) from BDEACTIVITY";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -271,7 +277,33 @@ private int getLastId() {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      while (resultSet.next()) {
-	          id_event = resultSet.getInt("MAX(EVENT)"); 
+	          id_event = resultSet.getInt("MAX(ID_ACTIVITY)"); 
+	      }
+	      return id_event;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id_event;
+	
+}
+
+
+public int count_users_BDEacti(int id) {
+	
+	int id_event=0;
+	String SQL_SELECT = "Select COUNT(ID_USER) from USERBDEACTIVITY WHERE ID_ACTIVITY="+id;
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          id_event = resultSet.getInt("COUNT(ID_USER)"); 
 	      }
 	      return id_event;
 
@@ -286,12 +318,12 @@ private int getLastId() {
 
 
 
-public int join(Event obj,User user) {
-	System.out.println("Before");
+public int join(BDEActivity obj,User user) {
+	System.out.println("Before join" + obj.getId_activity() );
 
-	if(this.alreadyEventbyUser(obj.getId_event(),user.getId_user())==-1) {
+	if(this.alreadyActibyUser(obj.getId_activity(),user.getId_user())==-1) {
 		
-		String SQL_INSERT = "Insert into USEREVENT " + "Values (" + obj.getId_event() +",'" + user.getId_user() + "')";
+		String SQL_INSERT = "Insert into USERBDEACTIVITY " + "Values (" + obj.getId_activity() +",'" + user.getId_user() + "')";
 		  System.out.println(SQL_INSERT);
 		  // auto close connection and preparedStatement
 		  try {
@@ -377,10 +409,12 @@ public ArrayList<Integer> getEventByUser(User user) {
 
 
 
-private int alreadyEventbyUser(int id_event,int id_user) {
+private int alreadyActibyUser(int id_acti,int id_user) {
 	
-	String SQL_SELECT = "Select * from USEREVENT where id_user = "+id_user+" AND id_event = "+id_event;
+	String SQL_SELECT = "Select * from USERBDEACTIVITY where id_activity = "+id_acti+" AND id_user = "+id_user ;
 
+	System.out.println(SQL_SELECT);
+	
 	int id = -1;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -389,7 +423,7 @@ private int alreadyEventbyUser(int id_event,int id_user) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      while (resultSet.next()) {
-	          id = resultSet.getInt("id_event"); 
+	          id = resultSet.getInt("id_activity"); 
 	      }
 	      return id;
 
@@ -412,6 +446,33 @@ public ArrayList<Integer> findTeams(int idBDE) {
 
 @Override
 public boolean isChief(int id_user) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+@Override
+public boolean delete(BDEActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean update(int i, BDEActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean update(BDEActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean leave(int id, BDEActivity obj) {
 	// TODO Auto-generated method stub
 	return false;
 }

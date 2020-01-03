@@ -3,13 +3,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
+import buisnessLogic.BDEActivity;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 import buisnessLogic.Event;
 import buisnessLogic.Poll;
+import buisnessLogic.Fee;
+
 
 public class OracleDAOFactory extends AbstractDAOFactory{
 
@@ -26,10 +28,11 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	  public OracleDAO<Team> getTeamDAO(){
 		  return new OracleTeamDAO(conn);
 	  }
-	  
-	  public OracleDAO<BlackBoard> getBlackBoardDAO(){
-		  return new OracleBlackBoardDAO(conn);
+	  public OracleDAO<Fee> getFeeDAO(){
+		  return new OracleFeeDAO(conn);
 	  }
+	  
+	  
 
 	@Override
 	public OracleDAO<Post> getPostDAO() {
@@ -48,5 +51,9 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 		public OracleDAO<Event> getEventDAO(){
 		 return new OracleEventDAO(conn);
 	 }
+		
+		public OracleDAO<BDEActivity> getBDEActivityDAO(){
+			 return new OracleBDEActivityDAO(conn);
+		 }
 
 	}

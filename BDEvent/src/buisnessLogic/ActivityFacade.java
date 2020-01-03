@@ -22,7 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class EventFacade {
+public class ActivityFacade {
 
 	User connectedUser;
 
@@ -30,34 +30,30 @@ public class EventFacade {
 	AbstractDAOFactory adf;
 
 
-	public EventFacade() {
+	public ActivityFacade() {
 		this.adf=AbstractDAOFactory.getFactory(AbstractDAOFactory.ORACLE_DAO_FACTORY);
 
 	}
 
 
-	public ArrayList<Event> findAll() {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		ArrayList<Event> event = eventDao.findAll();
-		if (event == null) {
-			System.out.println("event null facade");
+	public ArrayList<BDEActivity> findAll() {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		ArrayList<BDEActivity> acti = BDEActivityDao.findAll();
+		if (acti == null) {
+			System.out.println("BDEActivity null facade");
 			return null;
 		}
 		else {
-			return event;
+			return acti;
 		}
 	}
 	
-	public Event find(String event_name) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		Event event = eventDao.find(event_name);
-		if (event == null) {
-			System.out.println("event null facade");
-			return null;
-		}
-		else {
-			return event;
-		}
+	public int count_users_BDEacti(BDEActivity activity) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		int acti = BDEActivityDao.count_users_BDEacti(activity.getId_activity());
+		
+		return acti;
+		
 	}
 	
 	public void delete(Event event) {
@@ -68,9 +64,9 @@ public class EventFacade {
 		}
 	}
 	
-	public void create(Event event) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		int bool = eventDao.create(event);
+	public void create(BDEActivity acti) {
+		OracleDAO<BDEActivity> activityDao = this.adf.getBDEActivityDAO();
+		int bool = activityDao.create(acti);
 		if (bool == -1) {
 			System.out.println("event null facade");
 		}
@@ -85,9 +81,9 @@ public class EventFacade {
 	}
 	
 	
-	public int join(Event event,User user) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		int bool = eventDao.join(event,user);
+	public int join(int id_acti,User user) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		int bool = BDEActivityDao.join(BDEActivityDao.findById(id_acti),user);
 		if (bool == -1) {
 			System.out.println("event null facade");
 			return -1;

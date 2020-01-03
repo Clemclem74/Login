@@ -22,16 +22,16 @@ public int create(TeamMember obj) {
 
 	String SQL_INSERT;
 	if (obj.isChief()) {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getUser().getId_user() + ","
-				  + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+				  +  obj.getUser().getId_user() + ","
 						  +"'" + "1" + "'"+")";
+		
 	}
 	else {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getUser().getId_user() + ","
-				  + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+				  +  obj.getUser().getId_user() + ","
 						  +"'" + "0" + "'"+")";
 	}
-	
 	 
 	  System.out.println(SQL_INSERT);
 
@@ -78,6 +78,32 @@ public boolean delete(TeamMember teamMember) {
 	 return false;
 }
 
+public boolean isChief(int id) {
+
+	int count = 0;
+	
+	String SQL_SELECT = "SELECT COUNT(*) AS MYCOUNT FROM TEAM_MEMBER WHERE ID_USER="+id+" AND IS_CHIEF=1";
+	System.out.println(SQL_SELECT);
+	try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          count = resultSet.getInt("MYCOUNT"); 
+	      }
+	      return count>0;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return count>0;
+}
+
+
+
 public boolean update(int idBde, BDE obj) {
 	return false;
 }
@@ -119,7 +145,7 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 
 public ArrayList<Integer> findMembersByTeam(int idTeam){
 
-	  String SQL_SELECT = "Select * from Team where ID_TEAM='"+idTeam+"'";
+	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM="+idTeam+"";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -184,6 +210,12 @@ public int join(TeamMember obj, User user) {
 public ArrayList<Integer> getEventByUser(User user) {
 	// TODO Auto-generated method stub
 	return null;
+}
+
+@Override
+public boolean leave(int id, TeamMember obj) {
+	// TODO Auto-generated method stub
+	return false;
 }
 
 

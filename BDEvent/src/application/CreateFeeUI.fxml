@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="461.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FeeUI">
+   <children>
+      <Button id="createFeeButton" layoutX="323.0" layoutY="407.0" mnemonicParsing="false" onAction="#createFee" prefHeight="34.0" prefWidth="106.0" text="Create" />
+      <Text layoutX="269.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE FEE">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Text layoutX="270.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment for the tresorerie Team">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="320.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title of your Fee">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="titleFee" layoutX="210.0" layoutY="136.0" prefHeight="25.0" prefWidth="355.0" />
+      <TextArea fx:id="textFee" layoutX="138.0" layoutY="199.0" prefHeight="114.0" prefWidth="484.0" />
+      <Button fx:id="backButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backFee" text="&lt; Go Back" />
+      <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="66.0" layoutY="78.0" prefHeight="17.0" prefWidth="411.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Text layoutX="306.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of your Fee">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="amountFeeField" layoutX="288.0" layoutY="365.0" prefHeight="25.0" prefWidth="176.0" />
+   </children>
+</AnchorPane>

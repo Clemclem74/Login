@@ -6,8 +6,10 @@ import buisnessLogic.BDEFacade;
 import buisnessLogic.Event;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.TeamMemberFacade;
 import buisnessLogic.User;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,11 +19,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class EventUI extends Routing implements Initializable {
 	 
@@ -40,14 +47,20 @@ public class EventUI extends Routing implements Initializable {
 	 @FXML
 	 private Button join_button;
 	 @FXML
+	 private Button modify_button;
+	 @FXML
 	 private ImageView imageview;
+	 @FXML
+	 private Label event_join;
+	 @FXML
+	 private Label event_responsible;
+	 
 	 
 
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
 			
 	       loadData();
-	       System.out.println("eventList");
 	   }
 
 	private void loadData() {
@@ -75,42 +88,80 @@ public class EventUI extends Routing implements Initializable {
 	@FXML
 	private void displaySelected(MouseEvent event) {
 		EventFacade eventFacade = new EventFacade();
-		
-		String event1 = eventList.getSelectionModel().getSelectedItem();
-		theEvent = eventFacade.find(event1.split(" : ")[0]);
-		if(event1 != null) {
-			this.description.setText(theEvent.getDescription());
-			this.event_title.setText(theEvent.getTitle());
-			this.event_date.setText(theEvent.getEvent_date());	
-		}
+		UserFacade userFacade = new UserFacade();
+		User responsible = new User();
 		
 		
-		Image image = new Image("/img/p1.jpg");
-		
-		if(theEvent.getImage()!=null || theEvent.getImage()!="") {
-			image = new Image(theEvent.getImage());
-		}
-		
-		
-		imageview.setImage(image);
+		event_join.setText("");
+		if(eventList.getSelectionModel().getSelectedItem()!=null) {
+			
+			String event1 = eventList.getSelectionModel().getSelectedItem();
+			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			responsible = userFacade.findById(theEvent.getResponsible());
+			if(event1 != null) {
+				this.description.setText(theEvent.getDescription());
+				this.event_title.setText(theEvent.getTitle());
+				this.event_date.setText(theEvent.getEvent_date());
+				this.event_responsible.setText(responsible.getFirstname() + " " + responsible.getUsername());	
+			}
+			
+			super.setEventSelected(theEvent);
+			
+			Image image = new Image("/img/p1.jpg");
+			
+			if(theEvent.getImage()!=null && theEvent.getImage()!="") {
+				image = new Image(theEvent.getImage());
+			}
+			
+			
+			imageview.setImage(image);
 
-		imageview.setFitWidth(364);
-		imageview.setPreserveRatio(true);
-		imageview.setSmooth(true);
-		imageview.setCache(true);
+			imageview.setFitWidth(364);
+			imageview.setPreserveRatio(true);
+			imageview.setSmooth(true);
+			imageview.setCache(true);
+			
+		}
+		
 
 		
 	}
 	
 	public void delete(ActionEvent event) {
-		EventFacade eventFacade = new EventFacade();
-		eventFacade.delete(this.theEvent);
-		eventList.getItems().removeAll(eventList.getItems()); 
-		loadData();
+		
+		if(super.getEventSelected().getResponsible()==super.getCurrentUser().getId_user()) {
+			EventFacade eventFacade = new EventFacade();
+			eventFacade.delete(this.theEvent);
+			eventList.getItems().removeAll(eventList.getItems()); 
+			loadData();
+		}
+		else {
+			event_join.setText("You are not responsible of the event");
+		}
+	
 	}
 	
 	public void create(ActionEvent event) {
-		super.goTo("CreateEventUI");
+		
+		TeamMemberFacade teamMemberFacade= new TeamMemberFacade();
+		
+		if(teamMemberFacade.isChief(super.getCurrentUser())){
+			super.goTo("CreateEventUI");
+		}
+		else {
+			event_join.setText("You are not a team chief");
+		}
+		
+	}
+	
+	public void modify(ActionEvent event) {
+		if(super.getEventSelected().getResponsible()==super.getCurrentUser().getId_user()) {
+			super.goTo("ModifyEventUI");
+		}
+		else {
+			event_join.setText("You are not responsible of the event");
+		}
+		
 	}
 	
 	public void home(ActionEvent event) {
@@ -127,12 +178,12 @@ public class EventUI extends Routing implements Initializable {
 		EventFacade eventFacade = new EventFacade();
 		int res=eventFacade.join(this.theEvent,super.getCurrentUser());
 		if(res == 0) {
-			System.out.println("You succesfully join " + this.theEvent.getTitle());
+			event_join.setText("You succesfully join " + this.theEvent.getTitle());
 			
 		}
 		
 		if(res == -2) {
-			System.out.println("You already participate to this event");
+			event_join.setText("You already participate to this event");
 		}
 	}
 	

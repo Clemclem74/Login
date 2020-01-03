@@ -150,4 +150,16 @@ public ArrayList<Integer> getEventByUser(User user) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+@Override
+public boolean leave(int id, Team obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean isChief(int id_user) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }
