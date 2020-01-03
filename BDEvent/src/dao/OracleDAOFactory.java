@@ -9,6 +9,7 @@ import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 import buisnessLogic.Event;
+import buisnessLogic.Poll;
 
 public class OracleDAOFactory extends AbstractDAOFactory{
 
@@ -33,6 +34,11 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	@Override
 	public OracleDAO<Post> getPostDAO() {
 		return new OraclePostDAO(conn);
+	}
+	
+	@Override
+	public OracleDAO<Poll> getPollDAO() {
+		return new OraclePollDAO(conn);
 	}
 
 	  public OracleDAO<TeamMember> getTeamMemberDAO(){

@@ -16,6 +16,8 @@ import javafx.scene.control.*;
 
 public class HomePageUI extends Routing implements Initializable {
 	 @FXML
+	 private Button poll_button;
+	 @FXML
 	 private Button fees_button;
 	 @FXML
 	 private Button communication_button;
@@ -73,6 +75,7 @@ public class HomePageUI extends Routing implements Initializable {
 		  else {
 			  manageMyTeams.setVisible(false);
 			  showBDE.setVisible(false);
+			  poll_button.setVisible(false);
 			  fees_button.setVisible(false);
 			  events_button.setVisible(false);
 			  quitBDEbutton.setVisible(false);
@@ -125,6 +128,9 @@ public class HomePageUI extends Routing implements Initializable {
 	   public void goToBB(ActionEvent envent) {
 		   super.setVue("BasicBB");
 		   super.goTo("BlackBoardUI");
+	   }
+	   public void goToPoll(ActionEvent event) {
+		   super.goTo("CreatePollUI");
 	   }
 	   
 	   public void manageMyTeamsAction(ActionEvent event) {

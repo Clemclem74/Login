@@ -6,6 +6,7 @@ import buisnessLogic.Post;
 import buisnessLogic.Event;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
+import buisnessLogic.Poll;
 
 public abstract class AbstractDAOFactory {
 	  public static final int ORACLE_DAO_FACTORY = 0;
@@ -16,6 +17,7 @@ public abstract class AbstractDAOFactory {
 	  public abstract OracleDAO<BDE> getBDEDAO();
 	  public abstract OracleDAO<Team> getTeamDAO();
 	  public abstract OracleDAO<Post> getPostDAO();
+	  public abstract OracleDAO<Poll> getPollDAO();
 	  public abstract OracleDAO<BlackBoard> getBlackBoardDAO();
 	   
 	  
