@@ -205,8 +205,11 @@ public class ActivityUI extends Routing implements Initializable {
 	@FXML
 	public void delete(ActionEvent event) {
 		
+		ActivityFacade activityFacade = new ActivityFacade();
 		
+		activityFacade.delete(activityFacade.find(selected.getId()));
 		
+		BDE_Activity.setItems(loadData(super.getEventSelected()));
 	}
 	
 	

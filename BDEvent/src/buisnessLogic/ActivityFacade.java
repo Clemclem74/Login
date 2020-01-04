@@ -71,9 +71,9 @@ public class ActivityFacade {
 		
 	}
 	
-	public void delete(Event event) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		Boolean bool = eventDao.delete(event);
+	public void delete(BDEActivity acti) {
+		OracleDAO<BDEActivity> actiDao = this.adf.getBDEActivityDAO();
+		Boolean bool = actiDao.delete(acti);
 		if (bool == false) {
 			System.out.println("event null facade");
 		}

@@ -455,8 +455,27 @@ public boolean isChief(int id_user) {
 
 @Override
 public boolean delete(BDEActivity obj) {
-	// TODO Auto-generated method stub
+	
+	int id = obj.getId_activity();
+	String SQL_DELETE = "DELETE from BDEACTIVITY WHERE ID_ACTIVITY='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	 
 	return false;
+	
 }
 
 @Override
