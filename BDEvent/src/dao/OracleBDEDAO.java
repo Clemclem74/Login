@@ -78,7 +78,7 @@ public boolean update(int idBde, BDE obj) {
 		  PreparedStatement ps = conn.prepareStatement(
 			      "UPDATE BDE SET IDCREATOR = ?, NAMEBDE = ?, SCHOOLBDE= ? WHERE ID_BDE = ? ");
 
-			    // set the preparedstatement parameters
+			    // set the prepareddcstatement parameters
 			    ps.setInt(1,obj.getCreator().getId_user());
 			    ps.setString(2,obj.getNameBDE());
 			    ps.setString(3,obj.getSchoolBDE());
