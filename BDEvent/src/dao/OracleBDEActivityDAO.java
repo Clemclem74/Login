@@ -461,8 +461,37 @@ public boolean delete(BDEActivity obj) {
 
 @Override
 public boolean update(int i, BDEActivity obj) {
-	// TODO Auto-generated method stub
+	int id = i;
+	  
+	  try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE BDEACTIVITY SET TITLE = ?, DESCRIPTION= ?, DATE=?, START_HOUR=?, DURATION=?, NB_USERS=? WHERE ID_ACTIVITY = ?");
+
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getName_activity());
+			    ps.setString(2,obj.getDescription());
+			    ps.setString(3,obj.getDate());
+			    ps.setString(4,obj.getStart_hour());
+			    ps.setString(5,obj.getDuration());
+			    ps.setInt(6,obj.getNb_users());
+			    ps.setInt(7,id);
+
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
+	
 }
 
 @Override

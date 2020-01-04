@@ -73,5 +73,7 @@
             <Font size="26.0" />
          </font>
       </Label>
+      <Button layoutX="524.0" layoutY="164.0" mnemonicParsing="false" onAction="#modify" text="Modify" />
+      <Button layoutX="526.0" layoutY="224.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
    </children>
 </AnchorPane>

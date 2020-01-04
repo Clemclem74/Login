@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -26,7 +28,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class CreateBDEActivityUI extends Routing implements Initializable {
+public class ModifyBDEActivityUI extends Routing implements Initializable {
 		@FXML
 		private Button saveButton;
 		@FXML
@@ -58,8 +60,49 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
 	       // TODO (don't really need to do anything here).
-		   start_hour.setText("12h00m");
-		   duration.setText("0h00m");
+		   
+		   setActivity(super.getBdeActivitySelected());
+		   
+		   
+	   }
+	   
+	   public void setActivity(BDEActivity acti) {
+		   
+		   start_hour.setText(acti.getStart_hour());
+		   duration.setText(acti.getDuration());
+		   
+		   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		   String date = acti.getDate().replace("/","-");
+		   
+
+		   if(date.charAt(1)=='-') {
+			   date = "0" + date;
+			   if(date.charAt(4)=='-') {
+				   date = date.substring(0,3) + "0" + date.substring(3);
+			   }
+		   }else {
+			   System.out.println(date.charAt(4));
+			   if((date.charAt(4)=='-')) {
+				   date = date.substring(0,3) + "0" + date.substring(3);
+			   }
+			   
+		   }
+		   
+		   System.out.println(date);
+		   
+		   LocalDate localDate = LocalDate.parse(date, formatter);
+		   
+		   
+		   this.dateActivityField.setValue(localDate);
+		   this.titleActivityField.setText(acti.getName_activity());
+		   this.descriptionActivity.setText(acti.getDescription());
+		   this.nb_users.setText(String.valueOf(acti.getNb_users()));
+
+		   String[] tab1 = acti.getDuration().split("h");
+			
+		   theHours = tab1[0];
+		   theMinutes = tab1[1].substring(0,tab1[1].length()-1);
+		   theStartHour=acti.getStart_hour();
 		   
 	   }
 	 
@@ -70,7 +113,7 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		   
 		   ActivityFacade actiFacade = new ActivityFacade();
 	       BDEActivity acti1 = new BDEActivity();
-
+	       
 	       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
 	    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
 	    		   String.valueOf(dateActivityField.getValue().getYear());
@@ -82,7 +125,7 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 	       acti1.setDuration(theHours+"h"+theMinutes+"m");
 	       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
 	       
-	       actiFacade.create(acti1);
+	       actiFacade.modify(acti1,super.getBdeActivitySelected().getId_activity());
 	       super.goTo("ActivityUI");
 	       
 	       

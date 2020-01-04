@@ -121,6 +121,7 @@ public class ActivityUI extends Routing implements Initializable {
 		
 		String ret ="";
 		
+		System.out.println(start+" "+duration);
 		
 		String[] tab1 = start.split("h");
 		String[] tab2 = duration.split("h");
@@ -160,8 +161,13 @@ public class ActivityUI extends Routing implements Initializable {
 	
 	@FXML
 	private void getSelected(MouseEvent event) {
+		
+		ActivityFacade activityFacade = new ActivityFacade();
+		
 		if((BDE_Activity.getSelectionModel().getSelectedItem()!=null)) {
 			this.selected = BDE_Activity.getSelectionModel().getSelectedItem();
+			
+			super.setBdeActivitySelected(activityFacade.find(this.selected.getId()));
 		}
 	}
 	@FXML
@@ -182,14 +188,25 @@ public class ActivityUI extends Routing implements Initializable {
 		super.goTo("CreateBDEActivityUI");
 	}
 
-	
+	@FXML
 	public void activity(ActionEvent event) {
 		super.goTo("HomePageUI");
 	}
 	
-	
+	@FXML
 	public void home(ActionEvent event) {
 		super.goTo("HomePageUI");
+	}
+	@FXML
+	public void modify(ActionEvent event) {
+		super.goTo("ModifyBDEActivityUI");
+		BDE_Activity.setItems(loadData(super.getEventSelected()));
+	}
+	@FXML
+	public void delete(ActionEvent event) {
+		
+		
+		
 	}
 	
 	

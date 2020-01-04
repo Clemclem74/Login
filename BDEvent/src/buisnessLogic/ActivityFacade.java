@@ -48,6 +48,21 @@ public class ActivityFacade {
 		}
 	}
 	
+	
+	public BDEActivity find(int id) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		BDEActivity acti = BDEActivityDao.findById(id);
+		if (acti == null) {
+			System.out.println("BDEActivity null facade");
+			return null;
+		}
+		else {
+			return acti;
+		}
+	}
+	
+	
+	
 	public int count_users_BDEacti(BDEActivity activity) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
 		int acti = BDEActivityDao.count_users_BDEacti(activity.getId_activity());
@@ -72,9 +87,9 @@ public class ActivityFacade {
 		}
 	}
 	
-	public void modify(int id,Event event) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		boolean bool = eventDao.update(id,event);
+	public void modify(BDEActivity acti,int id) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		boolean bool = BDEActivityDao.update(id,acti);
 		if (!bool) {
 			System.out.println("event null facade");
 		}
