@@ -2,8 +2,10 @@ package dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import buisnessLogic.Event;
 import buisnessLogic.Fee;
 import buisnessLogic.Post;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
 public abstract class OracleDAO<T> {
@@ -118,6 +120,9 @@ public boolean acceptFee(Fee obj) {
 
 
 public abstract int count_users_BDEacti(int acti);
+
+
+public abstract int create(StaffActivity acti, Event event);
 
 
 }

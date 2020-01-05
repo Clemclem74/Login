@@ -189,8 +189,8 @@ public class ActivityUI extends Routing implements Initializable {
 	}
 
 	@FXML
-	public void activity(ActionEvent event) {
-		super.goTo("HomePageUI");
+	public void createStaffActivity(ActionEvent event) {
+		super.goTo("CreateStaffActivityUI");
 	}
 	
 	@FXML

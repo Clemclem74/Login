@@ -89,6 +89,7 @@ public class EventListUI extends Routing implements Initializable {
 		
 			String event1 = eventList.getSelectionModel().getSelectedItem();
 			theEvent = eventFacade.find(event1.split(" : ")[0]);
+			super.setEventSelected(theEvent);
 			if(event1 != null) {
 				this.description.setText(theEvent.getDescription());
 				this.event_title.setText(theEvent.getTitle());

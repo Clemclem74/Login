@@ -12,10 +12,10 @@ import buisnessLogic.Event;
 import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
-public class OracleBDEActivityDAO extends OracleDAO<BDEActivity> {
+public class OracleStaffActivityDAO extends OracleDAO<StaffActivity> {
 
 	
-	public OracleBDEActivityDAO(Connection conn) {
+public OracleStaffActivityDAO(Connection conn) {
   super(conn);
 }
 
@@ -49,6 +49,63 @@ public int create(BDEActivity obj) {
 	return -1;
 	
 }
+
+
+public int create(StaffActivity obj,Event event) {
+
+	int id = getLastId()+1;
+	
+	  String SQL_INSERT = "Insert into STAFFACTIVITY " + "Values (" + id +",'" + obj.getName_activity() + "',"
+			  +"'" + obj.getDescription() + "',"
+					  +"'" + obj.getDate() + "',"
+							  +"'" + obj.getStart_hour() + "',"
+	  								+"'" + obj.getDuration() + "',"
+	  									+"'" + obj.getNb_users() + "')";
+	  System.out.println(SQL_INSERT);
+	  // auto close connection and preparedStatement
+	  try {
+		  
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  Statement st = conn.createStatement();
+
+	      st.executeUpdate(SQL_INSERT);
+		  
+		  conn.close();
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  
+	  SQL_INSERT = "Insert into APPLIANCE " + "Values (" + id +"," + event.getId_event() +"," +"0"+ ")";
+	  System.out.println(SQL_INSERT);
+	  // auto close connection and preparedStatement
+	  try {
+		  
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  Statement st = conn.createStatement();
+
+	      st.executeUpdate(SQL_INSERT);
+		  
+		  conn.close();
+		  return 1;
+		  
+		  
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  
+	  
+	  
+	  
+	return -1;
+	
+}
+
+
 
 public boolean delete(Event event) {
 	int id = event.getId_event();
@@ -269,7 +326,7 @@ public Event find(String id) {
 private int getLastId() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select MAX(ID_ACTIVITY) from BDEACTIVITY";
+	String SQL_SELECT = "Select MAX(ID_ACTIVITY) from STAFFACTIVITY";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -527,8 +584,38 @@ public boolean leave(int id, BDEActivity obj) {
 }
 
 @Override
-public int create(StaffActivity acti, Event event) {
+public int create(StaffActivity obj) {
 	// TODO Auto-generated method stub
 	return 0;
+}
+
+@Override
+public int join(StaffActivity obj, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public boolean delete(StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean update(int i, StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean update(StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean leave(int id, StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
 }
 }

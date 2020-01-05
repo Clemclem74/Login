@@ -65,7 +65,7 @@
       <SplitMenuButton fx:id="Menu_Button" layoutX="483.0" layoutY="539.0" mnemonicParsing="false" text="Create Activity">
         <items>
           <MenuItem fx:id="BDE_Activity_Menu" mnemonicParsing="false" onAction="#createBDEActivity" text="BDE Activity" />
-          <MenuItem fx:id="Staff_Activity_Menu" mnemonicParsing="false" text="Staff Activity" />
+          <MenuItem fx:id="Staff_Activity_Menu" mnemonicParsing="false" onAction="#createStaffActivity" text="Staff Activity" />
         </items>
       </SplitMenuButton>
       <Label fx:id="name_event" layoutX="754.0" layoutY="44.0">

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
 import buisnessLogic.Post;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
@@ -53,7 +54,12 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	 }
 		
 		public OracleDAO<BDEActivity> getBDEActivityDAO(){
-			 return new OracleBDEActivityDAO(conn);
+			return new OracleBDEActivityDAO(conn);
+		}
+
+		public OracleDAO<StaffActivity> getStaffActivityDAO(){
+			 return new OracleStaffActivityDAO(conn);
 		 }
 
+		
 	}

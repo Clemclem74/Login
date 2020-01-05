@@ -87,6 +87,16 @@ public class ActivityFacade {
 		}
 	}
 	
+	public void createStaff(StaffActivity acti,Event event) {
+		OracleDAO<StaffActivity> activityDao = this.adf.getStaffActivityDAO();
+		int bool = activityDao.create(acti,event);
+		if (bool == -1) {
+			System.out.println("event null facade");
+		}
+	}
+	
+	
+	
 	public void modify(BDEActivity acti,int id) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
 		boolean bool = BDEActivityDao.update(id,acti);
