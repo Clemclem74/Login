@@ -183,11 +183,11 @@ public boolean update(int id_event, Event obj) {
 }
 
  
-public ArrayList<BDEActivity> findAll() {
+public ArrayList<Integer> findAllStaff(int id) {
   
-	ArrayList<BDEActivity> ret = new ArrayList<BDEActivity>();
+	ArrayList<Integer> ret = new ArrayList<Integer>();
     
-  String SQL_SELECT = "Select * from BDEACTIVITY";
+  String SQL_SELECT = "Select DISTINCT ID_STAFF_ACTIVITY from APPLIANCE WHERE ID_EVENT="+id;
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -198,24 +198,10 @@ public ArrayList<BDEActivity> findAll() {
       
       while (resultSet.next()) {
     	  
-    	  BDEActivity obj = new BDEActivity();
-          int id_activity = resultSet.getInt("ID_ACTIVITY");
-          String title = resultSet.getString("TITLE");
-          String description = resultSet.getString("DESCRIPTION");
-          String event_date = resultSet.getString("DATE");
-          String start_hour = resultSet.getString("START_HOUR");
-          String duration = resultSet.getString("DURATION");
-          int nb_users = resultSet.getInt("NB_USERS");
+    	  
+          int id_activity = resultSet.getInt("ID_STAFF_ACTIVITY");
           
-          
-          obj.setId_activity(id_activity);
-          obj.setName_activity(title);
-          obj.setDescription(description);
-          obj.setDate(event_date);
-          obj.setStart_hour(start_hour);
-          obj.setDuration(duration);
-          obj.setNb_users(nb_users);
-          ret.add(obj);
+          ret.add(id_activity);
 
       }
 	  conn.close();
@@ -231,10 +217,10 @@ return ret;
 }
 
 
-public BDEActivity findById(int id) {
-	BDEActivity obj = new BDEActivity();     
+public StaffActivity findById(int id) {
+	StaffActivity obj = new StaffActivity();     
 	    
-	  String SQL_SELECT = "Select * from BDEActivity where ID_ACTIVITY='"+id+"'";
+	  String SQL_SELECT = "Select * from StaffActivity where ID_ACTIVITY='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -618,4 +604,110 @@ public boolean leave(int id, StaffActivity obj) {
 	// TODO Auto-generated method stub
 	return false;
 }
+
+@Override
+public ArrayList<StaffActivity> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int count_users_Staffacti(int id_activity) {
+	int id_event=0;
+	String SQL_SELECT = "Select COUNT(ID_USER) from APPLIANCE WHERE ID_STAFF_ACTIVITY="+id_activity+" AND ID_USER != 0";
+
+	System.out.println(SQL_SELECT);
+	
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          id_event = resultSet.getInt("COUNT(ID_USER)"); 
+	      }
+	      return id_event;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id_event;
+}
+
+@Override
+public int joinStaff(int id_acti, Event event, User user) {
+	
+	  String SQL_INSERT = "";	
+	  if(!alreadyAppliance(id_acti,event.getId_event())) {
+		  
+		  SQL_INSERT = "UPDATE APPLIANCE SET ID_STAFF_ACTIVITY = "+id_acti+", ID_EVENT= "+event.getId_event()+", ID_USER="+user.getId_user()+" WHERE ID_STAFF_ACTIVITY = "+id_acti+" AND ID_EVENT = "+event.getId_event();
+		  
+	  }
+	  else {
+		  SQL_INSERT = "Insert into APPLIANCE " + "Values (" + id_acti +"," + event.getId_event() +"," +user.getId_user()+ ")"; 
+	  }
+	
+	
+	  System.out.println(SQL_INSERT);
+	  // auto close connection and preparedStatement
+	  try {
+		  
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  Statement st = conn.createStatement();
+
+	      st.executeUpdate(SQL_INSERT);
+		  
+		  conn.close();
+		  return 1;
+		  
+		  
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  
+	  
+	   
+	return -1;
+}
+
+
+
+private boolean alreadyAppliance(int id_acti,int id_event) {
+	
+	int count = 0;
+	boolean res = false;
+	String SQL_SELECT = "Select COUNT(ID_USER) from APPLIANCE WHERE ID_STAFF_ACTIVITY="+id_acti+" AND ID_USER = 0";
+
+	System.out.println(SQL_SELECT);
+	
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          count = resultSet.getInt("COUNT(ID_USER)"); 
+	      }
+	      
+	      if(count>0) {
+	    	  res=true;
+	      }
+	      
+	      return res;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return res;
+	
+}
+
 }

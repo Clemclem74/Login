@@ -49,12 +49,13 @@
         </columns>
       </TableView>
       <Button layoutX="336.0" layoutY="554.0" mnemonicParsing="false" onAction="#join" text="Join" />
-      <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" text="Join" />
-      <TableView fx:id="Staff_Activity" layoutX="623.0" layoutY="94.0" prefHeight="417.0" prefWidth="263.0">
+      <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" onAction="#join2" text="Join" />
+      <TableView fx:id="Staff_Activity" layoutX="625.0" layoutY="94.0" onMouseClicked="#getSelected2" prefHeight="417.0" prefWidth="263.0">
          <columns>
             <TableColumn fx:id="Staff_Activity_title" prefWidth="92.0" text="Title" />
-            <TableColumn fx:id="Staff_Activity_start" prefWidth="78.0" text="Start" />
-            <TableColumn fx:id="Staff_Activity_end" prefWidth="92.0" text="End" />
+            <TableColumn fx:id="Staff_Activity_start" prefWidth="68.0" text="Start" />
+            <TableColumn fx:id="Staff_Activity_end" prefWidth="69.0" text="End" />
+            <TableColumn fx:id="Staff_Activity_nb" prefWidth="125.0" text="Nb Users" />
          </columns>
       </TableView>
       <Text layoutX="288.0" layoutY="64.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BDE Activities" textAlignment="CENTER" wrappingWidth="166.5625">

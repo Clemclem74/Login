@@ -48,6 +48,30 @@ public class ActivityFacade {
 		}
 	}
 	
+	public ArrayList<StaffActivity> findAllStaff(Event event) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		
+		ArrayList<Integer> id_acti = StaffActivityDao.findAllStaff(event.getId_event());
+		
+		if (id_acti == null) {
+			System.out.println("Activity null facade");
+			return null;
+		}
+		else {
+		
+			ArrayList<StaffActivity> acti = new ArrayList<StaffActivity>();
+			
+			id_acti.forEach((n)->{
+				
+				StaffActivity aActi = new StaffActivity();
+				aActi = StaffActivityDao.findById(n);
+				acti.add(aActi);
+			});
+			
+			return acti;
+		}
+	}
+	
 	
 	public BDEActivity find(int id) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
@@ -66,6 +90,14 @@ public class ActivityFacade {
 	public int count_users_BDEacti(BDEActivity activity) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
 		int acti = BDEActivityDao.count_users_BDEacti(activity.getId_activity());
+		
+		return acti;
+		
+	}
+	
+	public int count_users_Staffacti(StaffActivity activity) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		int acti = StaffActivityDao.count_users_Staffacti(activity.getId_activity());
 		
 		return acti;
 		
@@ -118,6 +150,22 @@ public class ActivityFacade {
 		}
 		return 0;
 	}
+	
+	
+	public int joinStaff(int id_acti,Event event,User user) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		int bool = StaffActivityDao.joinStaff(id_acti,event,user);
+		if (bool == -1) {
+			System.out.println("event null facade");
+			return -1;
+		}
+		if(bool == -2) {
+			return -2;
+		}
+		return 0;
+	}
+	
+	
 	
 	public int leave(int id,Event event) {
 		OracleDAO<Event> eventDao = this.adf.getEventDAO();

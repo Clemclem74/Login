@@ -125,4 +125,15 @@ public abstract int count_users_BDEacti(int acti);
 public abstract int create(StaffActivity acti, Event event);
 
 
+public abstract ArrayList<Integer> findAllStaff(int id_event);
+
+
+public abstract int count_users_Staffacti(int id_activity);
+
+
+public abstract int joinStaff(int acti, Event event, User user);
+
+
+
+
 }

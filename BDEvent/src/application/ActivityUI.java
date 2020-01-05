@@ -9,6 +9,7 @@ import buisnessLogic.BDEFacade;
 import buisnessLogic.Event;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
 import java.net.URL;
@@ -52,6 +53,8 @@ public class ActivityUI extends Routing implements Initializable {
 	private TableColumn<ActivityList,String> Staff_Activity_start;
 	@FXML
 	private TableColumn<ActivityList,String> Staff_Activity_end;
+	@FXML
+	private TableColumn<ActivityList,String> Staff_Activity_nb;
 	
 	
 	@FXML
@@ -68,8 +71,10 @@ public class ActivityUI extends Routing implements Initializable {
 	private Button logoutButton; 
 	
 	ArrayList<BDEActivity> list1 = new ArrayList<BDEActivity>();
+	ArrayList<StaffActivity> list2 = new ArrayList<StaffActivity>();
 	
 	ActivityList selected = new ActivityList();
+	ActivityList selected2 = new ActivityList();
 	
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
@@ -83,13 +88,21 @@ public class ActivityUI extends Routing implements Initializable {
 	       BDE_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
 	       BDE_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
 			
-		   BDE_Activity.setItems(loadData(super.getEventSelected()));
+		   BDE_Activity.setItems(loadData());
+		   
+		   Staff_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
+	       Staff_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
+	       Staff_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
+	       Staff_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
+			
+	       Staff_Activity.setItems(loadData2(super.getEventSelected()));
 	       
 	      
 	       
 	   }
 
-	private ObservableList<ActivityList> loadData(Event event) {
+	
+private ObservableList<ActivityList> loadData() {
 		
 		ObservableList<ActivityList> acti = FXCollections.observableArrayList();
 		
@@ -109,6 +122,36 @@ public class ActivityUI extends Routing implements Initializable {
 			aActi.setStart(n.getStart_hour());
 			aActi.setEnd(calculate_end(n.getStart_hour(),n.getDuration()));
 			aActi.setNb_user(String.valueOf(activityFacade.count_users_BDEacti(n))+"/"+n.getNb_users());
+			acti.add(aActi);
+		}
+		); 
+		
+		return acti;
+		
+	}
+	
+	
+	
+	private ObservableList<ActivityList> loadData2(Event event) {
+		
+		ObservableList<ActivityList> acti = FXCollections.observableArrayList();
+		
+		
+		list2.removeAll(list2);
+		
+		ActivityFacade activityFacade = new ActivityFacade();
+		
+		list2 = activityFacade.findAllStaff(event);
+		
+		
+		
+		list2.forEach( (n) -> { 
+			ActivityList aActi = new ActivityList();
+			aActi.setId(n.getId_activity());
+			aActi.setTitle(n.getName_activity());
+			aActi.setStart(n.getStart_hour());
+			aActi.setEnd(calculate_end(n.getStart_hour(),n.getDuration()));
+			aActi.setNb_user(String.valueOf(activityFacade.count_users_Staffacti(n))+"/"+n.getNb_users());
 			acti.add(aActi);
 		}
 		); 
@@ -170,11 +213,31 @@ public class ActivityUI extends Routing implements Initializable {
 			super.setBdeActivitySelected(activityFacade.find(this.selected.getId()));
 		}
 	}
+	
+	@FXML
+	private void getSelected2(MouseEvent event) {
+		
+		ActivityFacade activityFacade = new ActivityFacade();
+		
+		if((Staff_Activity.getSelectionModel().getSelectedItem()!=null)) {
+			this.selected2 = Staff_Activity.getSelectionModel().getSelectedItem();
+			
+			super.setStaffActivitySelected(activityFacade.find(this.selected2.getId()));
+		}
+	}
+	
 	@FXML
 	private void join() {
 		ActivityFacade acti = new ActivityFacade();
 		acti.join(this.selected.getId(), super.getCurrentUser());
-		BDE_Activity.setItems(loadData(super.getEventSelected()));
+		BDE_Activity.setItems(loadData());
+	}
+	
+	@FXML
+	private void join2() {
+		ActivityFacade acti = new ActivityFacade();
+		acti.joinStaff(this.selected2.getId(),super.getEventSelected() ,super.getCurrentUser());
+		Staff_Activity.setItems(loadData2(super.getEventSelected()));
 	}
 	
 	public void logout(ActionEvent event) {
@@ -200,7 +263,7 @@ public class ActivityUI extends Routing implements Initializable {
 	@FXML
 	public void modify(ActionEvent event) {
 		super.goTo("ModifyBDEActivityUI");
-		BDE_Activity.setItems(loadData(super.getEventSelected()));
+		BDE_Activity.setItems(loadData());
 	}
 	@FXML
 	public void delete(ActionEvent event) {
@@ -209,7 +272,7 @@ public class ActivityUI extends Routing implements Initializable {
 		
 		activityFacade.delete(activityFacade.find(selected.getId()));
 		
-		BDE_Activity.setItems(loadData(super.getEventSelected()));
+		BDE_Activity.setItems(loadData());
 	}
 	
 	
