@@ -11,6 +11,7 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
@@ -208,15 +209,26 @@ public class ActivityFacade {
 	}
 	
 	
-	public ArrayList<Event> getEventbyUser(User user) {
-		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+	public ArrayList<BDEActivity> getBDEActivitybyUser(User user) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
 		
-		ArrayList<Integer> event_id = eventDao.getEventByUser(user);
-		ArrayList<Event> event = new ArrayList<Event>();
-		event_id.forEach((n) -> System.out.println(n));
-		event_id.forEach((n) -> event.add(eventDao.findById(n)));
+		ArrayList<Integer> acti_id = BDEActivityDao.getEventByUser(user);
+		ArrayList<BDEActivity> acti = new ArrayList<BDEActivity>();
+		acti_id.forEach((n) -> System.out.println(n));
+		acti_id.forEach((n) -> acti.add(BDEActivityDao.findById(n)));
 		
-		return event;
+		return acti;
+	}
+	
+	public ArrayList<StaffActivity> getStaffActivitybyUser(User user) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		
+		ArrayList<Integer> acti_id =StaffActivityDao.getEventByUser(user);
+		ArrayList<StaffActivity> acti = new ArrayList<StaffActivity>();
+		acti_id.forEach((n) -> System.out.println(n));
+		acti_id.forEach((n) -> acti.add(StaffActivityDao.findById(n)));
+		
+		return acti;
 	}
 
 
@@ -224,8 +236,45 @@ public class ActivityFacade {
 		// TODO - implement LoginFacade.sendError
 		throw new UnsupportedOperationException();
 	}
-	
 
+
+	public String findCollegue(BDEActivity theBDEActi) {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		ArrayList<Integer> users = BDEActivityDao.findCollegue(theBDEActi.getId_activity());
+		
+		UserFacade userFacade = new UserFacade();
+		
+		
+		String str[] = new String[users.size()]; 
+		  
+        // ArrayList to Array Conversion 
+        for (int j = 0; j < users.size(); j++) { 
+  
+            // Assign each value to String array 
+            str[j] = userFacade.findById(users.get(j)).getFirstname() + " " + userFacade.findById(users.get(j)).getLastname() + " / ";
+        } 
+		
+		return Arrays.toString(str);
+	}
+	
+	public String findCollegueStaff(StaffActivity theStaffActi) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		ArrayList<Integer> users = StaffActivityDao.findCollegue(theStaffActi.getId_activity());
+		
+UserFacade userFacade = new UserFacade();
+		
+		
+		String str[] = new String[users.size()]; 
+		  
+        // ArrayList to Array Conversion 
+        for (int j = 0; j < users.size(); j++) { 
+  
+            // Assign each value to String array 
+            str[j] = userFacade.findById(users.get(j)).getFirstname() + " " + userFacade.findById(users.get(j)).getLastname() + " / ";
+        } 
+		
+		return Arrays.toString(str);
+	}
 	
 
 }

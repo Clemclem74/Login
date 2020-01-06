@@ -134,6 +134,12 @@ public abstract int count_users_Staffacti(int id_activity);
 public abstract int joinStaff(int acti, Event event, User user);
 
 
+public ArrayList<Integer> findCollegue(int id_activity) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 
 
 }

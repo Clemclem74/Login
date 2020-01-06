@@ -384,7 +384,7 @@ public boolean leave(int id,Event obj) {
 public ArrayList<Integer> getEventByUser(User user) {
 	ArrayList<Integer> id_list = new ArrayList<Integer>();
     
-	  String SQL_SELECT = "Select * from USEREVENT where id_user="+user.getId_user();
+	  String SQL_SELECT = "Select * from USERBDEACTIVITY where id_user="+user.getId_user();
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -395,7 +395,7 @@ public ArrayList<Integer> getEventByUser(User user) {
 	      
 	      while (resultSet.next()) {
 	    	  
-	    	  id_list.add(resultSet.getInt("ID_EVENT"));
+	    	  id_list.add(resultSet.getInt("ID_ACTIVITY"));
 	    	  
 	      }
 	      conn.close();
@@ -548,4 +548,55 @@ public int create(StaffActivity acti, Event event) {
 	// TODO Auto-generated method stub
 	return 0;
 }
+
+@Override
+public ArrayList<Integer> findAllStaff(int id_event) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public int count_users_Staffacti(int id_activity) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int joinStaff(int acti, Event event, User user) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+public ArrayList<Integer> findCollegue(int id) {
+	
+	String SQL_SELECT = "Select * from USERBDEACTIVITY where id_activity = "+id;
+	ArrayList<Integer> ret = new ArrayList<Integer>();
+	
+	System.out.println(SQL_SELECT);
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	    	  int id_ret = resultSet.getInt("id_user");
+	          ret.add(id_ret);
+	      }
+	      return ret;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return ret;
+
+	
+	
+	
+}
+
 }

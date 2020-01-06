@@ -427,7 +427,7 @@ public boolean leave(int id,Event obj) {
 public ArrayList<Integer> getEventByUser(User user) {
 	ArrayList<Integer> id_list = new ArrayList<Integer>();
     
-	  String SQL_SELECT = "Select * from USEREVENT where id_user="+user.getId_user();
+	  String SQL_SELECT = "Select * from Appliance where id_user="+user.getId_user();
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -438,7 +438,7 @@ public ArrayList<Integer> getEventByUser(User user) {
 	      
 	      while (resultSet.next()) {
 	    	  
-	    	  id_list.add(resultSet.getInt("ID_EVENT"));
+	    	  id_list.add(resultSet.getInt("ID_STAFF_ACTIVITY"));
 	    	  
 	      }
 	      conn.close();
@@ -449,6 +449,38 @@ public ArrayList<Integer> getEventByUser(User user) {
 	      e.printStackTrace();
 	  }
 	return id_list;
+}
+
+public ArrayList<Integer> findCollegue(int id) {
+	
+	String SQL_SELECT = "Select * from APPLIANCE where id_staff_activity = "+id+" AND id_user!=0";
+	ArrayList<Integer> ret = new ArrayList<Integer>();
+	
+	System.out.println(SQL_SELECT);
+	
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          int id_ret = resultSet.getInt("id_user");
+	          ret.add(id_ret);
+	      }
+	      return ret;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return ret;
+
+	
+	
+	
 }
 
 
@@ -581,7 +613,6 @@ public boolean update(int i, StaffActivity obj) {
 			    // call executeUpdate to execute our sql update statement
 			    ps.executeUpdate();
 			    ps.close();
-		  
 		  return true;
 
 	  } catch (SQLException e) {

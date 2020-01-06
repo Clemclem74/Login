@@ -173,6 +173,11 @@ public class EventUI extends Routing implements Initializable {
 		super.goTo("EventListUI");
 	}
 	
+	@FXML
+	public void activity(ActionEvent event) {
+		super.goTo("MyActivityUI");
+	}
+	
 	
 	public void join(ActionEvent event) {
 		EventFacade eventFacade = new EventFacade();

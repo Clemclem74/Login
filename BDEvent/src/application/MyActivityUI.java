@@ -1,11 +1,14 @@
 package application;
 
 import buisnessLogic.UserFacade;
+import buisnessLogic.ActivityFacade;
 import buisnessLogic.BDE;
+import buisnessLogic.BDEActivity;
 import buisnessLogic.BDEFacade;
 import buisnessLogic.Event;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
 import java.net.URL;
@@ -24,20 +27,27 @@ import javafx.scene.input.MouseEvent;
 
 public class MyActivityUI extends Routing implements Initializable {
 	 
-	ArrayList<Event> list = new ArrayList<Event>();
-	private Event theEvent = new Event();
+	ArrayList<BDEActivity> list = new ArrayList<BDEActivity>();
+	private BDEActivity theBDEActi = new BDEActivity();
+	
+	ArrayList<StaffActivity> list2 = new ArrayList<StaffActivity>();
+	private StaffActivity theStaffActi = new StaffActivity();
 	
 	@FXML
-	 private ListView<String> eventList;
+	 private ListView<String> actiList;
 	
 	@FXML
-	 private Label event_title;
+	 private Label title;
 	 @FXML
 	 private Label description;
 	 @FXML
-	 private Label event_date;
+	 private Label date;
 	 @FXML
-	 private ImageView imageview;
+	 private Label start_hour;
+	 @FXML
+	 private Label end_hour;
+	 @FXML
+	 private Label users;
 	 @FXML
 	 private Button leave_button;
 	 @FXML
@@ -48,29 +58,31 @@ public class MyActivityUI extends Routing implements Initializable {
 	   public void initialize(URL location, ResourceBundle resources) {
 			
 	       loadData();
-	       System.out.println("eventList");
 	   }
 
 	private void loadData() {
 		
 		list.removeAll(list);
+		list2.removeAll(list2);
 		
-		EventFacade eventFacade = new EventFacade();
+		ActivityFacade eventFacade = new ActivityFacade();
 		
-		list = eventFacade.getEventbyUser(super.getCurrentUser());
+		list = eventFacade.getBDEActivitybyUser(super.getCurrentUser());
+		list2 = eventFacade.getStaffActivitybyUser(super.getCurrentUser());
 		
-		ArrayList<String> eventName = new ArrayList<String>();
+		ArrayList<String> actiName = new ArrayList<String>();
 		
-		list.forEach((n)-> eventName.add(n.getTitle() + " : " + n.getEvent_date())); 
-
-		eventList.getItems().addAll(eventName);
+		list.forEach((n)-> actiName.add(n.getId_activity() + " - " + n.getName_activity() + " : BDE")); 
+		list2.forEach((n)-> actiName.add(n.getId_activity() + " - " + n.getName_activity()+ " : Staff")) ;
+		
+		System.out.println("list 1:"+actiName.size());
+		
+		actiList.getItems().addAll(actiName);
 	}
 	
 	public void leave(ActionEvent event) {
 		
-		EventFacade eventFacade = new EventFacade();
-		eventFacade.leave(super.getCurrentUser().getId_user(),this.theEvent);
-		eventList.getItems().removeAll(eventList.getItems()); 
+		actiList.getItems().removeAll(actiList.getItems()); 
 		loadData();
 		
 	}
@@ -84,31 +96,45 @@ public class MyActivityUI extends Routing implements Initializable {
 	
 	@FXML
 	private void displaySelected(MouseEvent event) {
-		EventFacade eventFacade = new EventFacade();
-		if(eventList.getSelectionModel().getSelectedItem()!=null) {
+		ActivityFacade actiFacade = new ActivityFacade();
+		if(actiList.getSelectionModel().getSelectedItem()!=null) {
 		
-			String event1 = eventList.getSelectionModel().getSelectedItem();
-			theEvent = eventFacade.find(event1.split(" : ")[0]);
-			super.setEventSelected(theEvent);
-			if(event1 != null) {
-				this.description.setText(theEvent.getDescription());
-				this.event_title.setText(theEvent.getTitle());
-				this.event_date.setText(theEvent.getEvent_date());	
-			}
+			String event1 = actiList.getSelectionModel().getSelectedItem();
 			
-			Image image = new Image("/img/p1.jpg");
-			
-			if(theEvent.getImage()!=null) {
-				image = new Image(theEvent.getImage());
-			}
-			
-			
-			imageview.setImage(image);
+			if(event1.split(" : ")[1].endsWith("BDE")) {
+				
+				theBDEActi = actiFacade.find(Integer.parseInt(event1.split(" - ")[0]));
 
-			imageview.setFitWidth(364);
-			imageview.setPreserveRatio(true);
-			imageview.setSmooth(true);
-			imageview.setCache(true);
+				String alluser = actiFacade.findCollegue(theBDEActi);
+				
+				
+				if(event1 != null) {
+					this.description.setText(theBDEActi.getDescription());
+					this.title.setText(theBDEActi.getName_activity());
+					this.date.setText(theBDEActi.getDate());
+					this.start_hour.setText(theBDEActi.getStart_hour());
+					this.end_hour.setText(theBDEActi.getDuration());
+					this.users.setText(alluser);
+				}
+				
+			}else {
+				
+				theStaffActi = actiFacade.findStaff(Integer.parseInt(event1.split(" - ")[0]));
+
+				String alluser = actiFacade.findCollegueStaff(theStaffActi);
+				
+				if(event1 != null) {
+					this.description.setText(theStaffActi.getDescription());
+					this.title.setText(theStaffActi.getName_activity());
+					this.date.setText(theStaffActi.getDate());
+					this.start_hour.setText(theStaffActi.getStart_hour());
+					this.end_hour.setText(theStaffActi.getDuration());
+					this.users.setText(alluser);
+				
+				}
+			
+			}
+		
 		}
 
 		
