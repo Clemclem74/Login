@@ -50,7 +50,7 @@
       </TableView>
       <Button layoutX="336.0" layoutY="554.0" mnemonicParsing="false" onAction="#join" text="Join" />
       <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" onAction="#join2" text="Join" />
-      <TableView fx:id="Staff_Activity" layoutX="625.0" layoutY="94.0" onMouseClicked="#getSelected2" prefHeight="417.0" prefWidth="263.0">
+      <TableView fx:id="Staff_Activity" layoutX="626.0" layoutY="94.0" onMouseClicked="#getSelected2" prefHeight="417.0" prefWidth="263.0">
          <columns>
             <TableColumn fx:id="Staff_Activity_title" prefWidth="92.0" text="Title" />
             <TableColumn fx:id="Staff_Activity_start" prefWidth="68.0" text="Start" />
@@ -74,7 +74,17 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button layoutX="524.0" layoutY="164.0" mnemonicParsing="false" onAction="#modify" text="Modify" />
-      <Button layoutX="526.0" layoutY="224.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <MenuButton layoutX="516.0" layoutY="156.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Modify">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#modify" text="BDE Activity" />
+          <MenuItem mnemonicParsing="false" onAction="#modify2" text="Staff Activity" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="516.0" layoutY="214.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Delete">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#delete" text="BDE Activity" />
+            <MenuItem mnemonicParsing="false" onAction="#delete2" text="Staff Activity" />
+         </items>
+      </MenuButton>
    </children>
 </AnchorPane>

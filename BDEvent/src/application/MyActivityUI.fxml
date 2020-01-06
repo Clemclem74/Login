@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventListUI">
+   <children>
+      <Text layoutX="197.0" layoutY="47.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Events : " textAlignment="CENTER" wrappingWidth="743.5625">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Pane layoutX="4.0" layoutY="-3.0">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
+                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" text="All Events" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <ListView fx:id="eventList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displaySelected" prefHeight="426.0" prefWidth="200.0" />
+      <Label layoutX="253.0" layoutY="483.0" text="Title :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Label>
+      <Label layoutX="453.0" layoutY="483.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Label>
+      <Label layoutX="253.0" layoutY="515.0" text="Description :">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Label>
+      <Label fx:id="event_title" layoutX="310.0" layoutY="483.0">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="description" layoutX="254.0" layoutY="543.0">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="event_date" layoutX="515.0" layoutY="483.0" prefHeight="26.0" prefWidth="128.0">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <ImageView fx:id="imageview" fitHeight="279.0" fitWidth="397.0" layoutX="216.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="leave_button" layoutX="750.0" layoutY="541.0" mnemonicParsing="false" onAction="#leave" style="-fx-background-color: orange;" text="Leave">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="activity_button" layoutX="254.0" layoutY="100.0" mnemonicParsing="false" onAction="#activity" text="Activities" />
+      <Button layoutX="427.0" layoutY="100.0" mnemonicParsing="false" text="Ressources" />
+   </children>
+</AnchorPane>

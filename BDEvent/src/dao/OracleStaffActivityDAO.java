@@ -107,9 +107,9 @@ public int create(StaffActivity obj,Event event) {
 
 
 
-public boolean delete(Event event) {
-	int id = event.getId_event();
-	String SQL_DELETE = "DELETE from EVENT WHERE EVENT='"+id+"'";
+public boolean delete(StaffActivity acti) {
+	int id = acti.getId_activity();
+	String SQL_DELETE = "DELETE from StaffActivity WHERE ID_ACTIVITY='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -126,7 +126,7 @@ public boolean delete(Event event) {
 	      e.printStackTrace();
 	  }
 	 
-	 SQL_DELETE = "DELETE from USEREVENT WHERE ID_EVENT='"+id+"'";
+	 SQL_DELETE = "DELETE from APPLIANCE WHERE ID_STAFF_ACTIVITY='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -497,30 +497,6 @@ public boolean isChief(int id_user) {
 
 
 
-@Override
-public boolean delete(BDEActivity obj) {
-	
-	int id = obj.getId_activity();
-	String SQL_DELETE = "DELETE from BDEACTIVITY WHERE ID_ACTIVITY='"+id+"'";
-	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
-		  // call executeUpdate to execute our sql update statement
-		  ps.executeUpdate(); 
-		  ps.close();
-		  
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	 
-	return false;
-	
-}
 
 @Override
 public boolean update(int i, BDEActivity obj) {
@@ -581,16 +557,40 @@ public int join(StaffActivity obj, User user) {
 	return 0;
 }
 
-@Override
-public boolean delete(StaffActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
 
 @Override
 public boolean update(int i, StaffActivity obj) {
-	// TODO Auto-generated method stub
+	int id = i;
+	  
+	  try {
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE STAFFACTIVITY SET TITLE = ?, DESCRIPTION= ?, DATE=?, START_HOUR=?, DURATION=?, NB_USERS=? WHERE ID_ACTIVITY = ?");
+
+			    // set the preparedstatement parameters
+			    ps.setString(1,obj.getName_activity());
+			    ps.setString(2,obj.getDescription());
+			    ps.setString(3,obj.getDate());
+			    ps.setString(4,obj.getStart_hour());
+			    ps.setString(5,obj.getDuration());
+			    ps.setInt(6,obj.getNb_users());
+			    ps.setInt(7,id);
+
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
+	
 }
 
 @Override

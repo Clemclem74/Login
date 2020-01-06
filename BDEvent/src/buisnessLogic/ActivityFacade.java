@@ -85,6 +85,27 @@ public class ActivityFacade {
 		}
 	}
 	
+	public StaffActivity findStaff(int id) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		StaffActivity acti = StaffActivityDao.findById(id);
+		if (acti == null) {
+			System.out.println("StaffActivity null facade");
+			return null;
+		}
+		else {
+			return acti;
+		}
+	}
+	
+	
+	public void deleteStaff(StaffActivity acti) {
+		OracleDAO<StaffActivity> actiDao = this.adf.getStaffActivityDAO();
+		Boolean bool = actiDao.delete(acti);
+		if (bool == false) {
+			System.out.println("event null facade");
+		}
+	}
+	
 	
 	
 	public int count_users_BDEacti(BDEActivity activity) {
@@ -134,6 +155,15 @@ public class ActivityFacade {
 		boolean bool = BDEActivityDao.update(id,acti);
 		if (!bool) {
 			System.out.println("event null facade");
+		}
+	}
+	
+	
+	public void modifyStaff(StaffActivity acti,int id) {
+		OracleDAO<StaffActivity> StaffActivityDao = this.adf.getStaffActivityDAO();
+		boolean bool = StaffActivityDao.update(id,acti);
+		if (!bool) {
+			System.out.println("acti null facade");
 		}
 	}
 	

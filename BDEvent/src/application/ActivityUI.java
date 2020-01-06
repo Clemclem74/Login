@@ -222,7 +222,8 @@ private ObservableList<ActivityList> loadData() {
 		if((Staff_Activity.getSelectionModel().getSelectedItem()!=null)) {
 			this.selected2 = Staff_Activity.getSelectionModel().getSelectedItem();
 			
-			super.setStaffActivitySelected(activityFacade.find(this.selected2.getId()));
+			super.setStaffActivitySelected(activityFacade.findStaff(this.selected2.getId()));
+			
 		}
 	}
 	
@@ -262,9 +263,17 @@ private ObservableList<ActivityList> loadData() {
 	}
 	@FXML
 	public void modify(ActionEvent event) {
+		
 		super.goTo("ModifyBDEActivityUI");
 		BDE_Activity.setItems(loadData());
 	}
+	
+	@FXML
+	public void modify2(ActionEvent event) {
+		super.goTo("ModifyStaffActivityUI");
+		Staff_Activity.setItems(loadData2(super.getEventSelected()));
+	}
+	
 	@FXML
 	public void delete(ActionEvent event) {
 		
@@ -273,6 +282,16 @@ private ObservableList<ActivityList> loadData() {
 		activityFacade.delete(activityFacade.find(selected.getId()));
 		
 		BDE_Activity.setItems(loadData());
+	}
+	
+	@FXML
+	public void delete2(ActionEvent event) {
+		
+		ActivityFacade activityFacade = new ActivityFacade();
+		
+		activityFacade.deleteStaff(activityFacade.findStaff(selected2.getId()));
+		
+		Staff_Activity.setItems(loadData2(super.getEventSelected()));
 	}
 	
 	
