@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
 import buisnessLogic.Event;
 import buisnessLogic.User;
@@ -222,7 +223,7 @@ public BDEActivity findById(int id) {
 
 
 @Override
-public Event find(String id) {
+public BDE find(String id) {
 	Event obj = new Event();      
     
 	  String SQL_SELECT = "Select * from Event where TITLE='"+id+"'";

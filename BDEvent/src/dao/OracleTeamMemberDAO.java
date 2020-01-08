@@ -117,7 +117,7 @@ public TeamMember findById(int id) {
 
 public ArrayList<Integer> findTeamsByUser(int idUser){
 
-	  String SQL_SELECT = "Select * from Team where ID_USER='"+idUser+"'";
+	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_USER='"+idUser+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -127,9 +127,8 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      ArrayList<Integer> teams = new ArrayList<Integer>();
 	      while (resultSet.next()) {
-	    	  teams.add( resultSet.getInt("ID_TEAM"));
+	    	  teams.add(resultSet.getInt("ID_TEAM"));
 	      }
-	      System.out.println(teams.toString());
 	      
 		  conn.close();
 	      return teams;
@@ -216,6 +215,12 @@ public ArrayList<Integer> getEventByUser(User user) {
 public boolean leave(int id, TeamMember obj) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+@Override
+public int count_users_BDEacti(int acti) {
+	// TODO Auto-generated method stub
+	return 0;
 }
 
 

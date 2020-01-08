@@ -3,6 +3,7 @@ import buisnessLogic.User;
 import buisnessLogic.Activity;
 import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
+import buisnessLogic.Contact;
 import buisnessLogic.Post;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
@@ -37,4 +38,7 @@ public abstract class AbstractDAOFactory {
 	        return null;
 	    }
 	  }
+	  
+	  
+	public abstract OracleDAO<Contact> getContactDAO();
 	}

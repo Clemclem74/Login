@@ -115,6 +115,48 @@ public Team findById(int id) {
 return obj;
 }
 
+
+
+
+
+public Team findByName(String name) {
+	  Team obj = new Team();
+
+	  String SQL_SELECT = "Select * from TEAM where NAME_TEAM='"+name+"'";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+	          ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      BDEFacade bdefacade = new BDEFacade();
+	      
+	      while (resultSet.next()) {
+
+	          int idteam = resultSet.getInt("ID_TEAM");
+	          String nameTeam = resultSet.getString("NAME_TEAM");
+	          int idBDE = resultSet.getInt("ID_BDE");
+
+	          obj.setIdTeam(idteam);
+	          obj.setNameTeam(nameTeam);
+	          obj.setBde(bdefacade.findById(idBDE));
+
+	      }
+		  conn.close();
+	      return obj;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return obj;
+	}
+
+
+
+
 @Override
 public boolean update(Team obj) {
 	// TODO Auto-generated method stub

@@ -265,4 +265,10 @@ public boolean isChief(int id_user) {
 	// TODO Auto-generated method stub
 	return false;
 }
+
+@Override
+public int count_users_BDEacti(int acti) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }

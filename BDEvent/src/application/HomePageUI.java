@@ -140,6 +140,12 @@ public class HomePageUI extends Routing implements Initializable {
 	   }
 	   
 	   
+	   public void goToContacts(ActionEvent envent) {
+		   super.setVue("BasicContacts");
+		   super.goTo("ContactsUI");
+	   }
+	   
+	   
 	   public void manageMyTeamsAction(ActionEvent event) {
 		   super.goTo("ManageMyTeamsUI");
 	   }
