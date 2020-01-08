@@ -80,6 +80,7 @@ public class HomePageUI extends Routing implements Initializable {
 			  poll_button.setVisible(false);
 			  fees_button.setVisible(false);
 			  events_button.setVisible(false);
+			  goToBB.setVisible(false);
 			  quitBDEbutton.setVisible(false);
 			  communication_button.setVisible(false);
 			  BDELabel.setVisible(false);
