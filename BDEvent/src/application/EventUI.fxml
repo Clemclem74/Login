@@ -36,6 +36,7 @@
                   </Button>
                   <Button layoutX="63.0" layoutY="175.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
                   <Button layoutX="57.0" layoutY="360.0" mnemonicParsing="false" onAction="#list" text="My Events" />
+                  <Button layoutX="57.0" layoutY="410.0" mnemonicParsing="false" onAction="#activity" text="My Activity" />
                </children>
             </AnchorPane>
          </children>

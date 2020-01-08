@@ -29,6 +29,7 @@ public class Routing {
 
 	private static Event eventSelected;
 	private static BDEActivity bdeActivitySelected;
+	private static StaffActivity staffActivitySelected;
 	private static String vue;
 	
 	
@@ -193,6 +194,14 @@ public class Routing {
 
 	public static void setBdeActivitySelected(BDEActivity bdeActivitySelected) {
 		Routing.bdeActivitySelected = bdeActivitySelected;
+	}
+
+	public static StaffActivity getStaffActivitySelected() {
+		return staffActivitySelected;
+	}
+
+	public static void setStaffActivitySelected(StaffActivity staffActivitySelected) {
+		Routing.staffActivitySelected = staffActivitySelected;
 	}
 	
 	
