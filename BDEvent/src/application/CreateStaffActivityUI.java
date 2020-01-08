@@ -8,6 +8,7 @@ import buisnessLogic.BDEActivity;
 import buisnessLogic.BDEFacade;
 import buisnessLogic.EventFacade;
 import buisnessLogic.Routing;
+import buisnessLogic.StaffActivity;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -26,7 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class CreateBDEActivityUI extends Routing implements Initializable {
+public class CreateStaffActivityUI extends Routing implements Initializable {
 		@FXML
 		private Button saveButton;
 		@FXML
@@ -51,9 +52,10 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		private Slider start_hour_slider;
 		
 		
-		String theHours="";
-		String theMinutes="";
-		String theStartHour="";
+		String theHours="1";
+		String theMinutes="0";
+		String theStartHour="12h00m";
+		
 		
 	   @Override
 	   public void initialize(URL location, ResourceBundle resources) {
@@ -69,7 +71,7 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 		   System.out.println(Hours.getAccessibleText());
 		   
 		   ActivityFacade actiFacade = new ActivityFacade();
-	       BDEActivity acti1 = new BDEActivity();
+	       StaffActivity acti1 = new StaffActivity();
 
 	       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
 	    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
@@ -81,8 +83,8 @@ public class CreateBDEActivityUI extends Routing implements Initializable {
 	       acti1.setStart_hour(theStartHour);
 	       acti1.setDuration(theHours+"h"+theMinutes+"m");
 	       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
-	       
-	       actiFacade.create(acti1);
+	       System.out.println("Event:"+super.getEventSelected().getTitle());
+	       actiFacade.createStaff(acti1,super.getEventSelected());
 	       super.goTo("ActivityUI");
 	       
 	       

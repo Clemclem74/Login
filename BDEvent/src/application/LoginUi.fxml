@@ -7,30 +7,43 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginUI">
    <children>
-      <TextField fx:id="emailField" layoutX="328.0" layoutY="226.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
-      <PasswordField fx:id="passwordField" layoutX="328.0" layoutY="303.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" />
-      <Button fx:id="loginButton" layoutX="328.0" layoutY="373.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="34.0" prefWidth="106.0" text="Login" AnchorPane.topAnchor="373.0" />
-      <Text layoutX="436.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="422.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="392.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
-         <font>
-            <Font size="43.0" />
-         </font>
-      </Text>
-      <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="272.0" layoutY="158.0" prefHeight="34.0" prefWidth="368.0" textFill="#ff2d2d">
+      <TextField fx:id="emailField" layoutX="332.0" layoutY="287.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" stylesheets="@login.css" AnchorPane.bottomAnchor="287.0" />
+      <PasswordField fx:id="passwordField" layoutX="332.0" layoutY="364.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <Button fx:id="loginButton" layoutX="486.0" layoutY="432.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #2196f3;" text="Login" textFill="WHITE" AnchorPane.topAnchor="432.0" />
+      <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="275.0" layoutY="197.0" prefHeight="34.0" prefWidth="368.0" textFill="#ff2d2d">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Button fx:id="registerButton" layoutX="477.0" layoutY="373.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: orange;" text="Register" />
+      <ImageView fitHeight="97.0" fitWidth="106.0" layoutX="409.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="414.0" layoutY="150.0" text="BDE" textFill="#2196f3">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="461.0" layoutY="150.0" text="vent" textFill="#a0a2ab">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="823.0" layoutY="82.0" mnemonicParsing="false" onAction="#registerAction" style="-fx-background-color: #151928;" text="Sign Up" textFill="#a0a2ab" />
+      <Button layoutX="707.0" layoutY="82.0" mnemonicParsing="false" style="-fx-background-color: #2D3447;" text="Not member ?" textFill="#a0a2ab" />
+      <Separator layoutX="338.0" layoutY="323.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Separator layoutX="339.0" layoutY="397.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="297.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../lock.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="296.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../contact.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

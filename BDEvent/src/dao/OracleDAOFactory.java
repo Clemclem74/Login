@@ -6,11 +6,14 @@ import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
 import buisnessLogic.Contact;
 import buisnessLogic.Post;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 import buisnessLogic.Event;
+import buisnessLogic.Poll;
 import buisnessLogic.Fee;
+
 
 public class OracleDAOFactory extends AbstractDAOFactory{
 
@@ -40,6 +43,11 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	public OracleDAO<Post> getPostDAO() {
 		return new OraclePostDAO(conn);
 	}
+	
+	@Override
+	public OracleDAO<Poll> getPollDAO() {
+		return new OraclePollDAO(conn);
+	}
 
 	  public OracleDAO<TeamMember> getTeamMemberDAO(){
 		  return new OracleTeamMemberDAO(conn);
@@ -50,7 +58,12 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	 }
 		
 		public OracleDAO<BDEActivity> getBDEActivityDAO(){
-			 return new OracleBDEActivityDAO(conn);
+			return new OracleBDEActivityDAO(conn);
+		}
+
+		public OracleDAO<StaffActivity> getStaffActivityDAO(){
+			 return new OracleStaffActivityDAO(conn);
 		 }
 
+		
 	}

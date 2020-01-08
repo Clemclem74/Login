@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateStaffActivityUI">
+   <children>
+      <Button fx:id="saveButton" layoutX="212.0" layoutY="617.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Text layoutX="92.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Staff Activity">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Text layoutX="222.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Title">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="titleActivityField" layoutX="134.0" layoutY="128.0" prefHeight="34.0" prefWidth="255.0" promptText="Activity Title" />
+      <Text layoutX="239.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="dateActivityField" layoutX="148.0" layoutY="303.0" />
+      <Text layoutX="225.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Hour">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="descriptionActivity" layoutX="130.0" layoutY="216.0" prefHeight="34.0" prefWidth="255.0" promptText="Activity Description" />
+      <Text layoutX="215.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <MenuButton fx:id="Hours" layoutX="67.0" layoutY="468.0" mnemonicParsing="false" text="Hours">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleHours" text="0" userData="0" />
+          <MenuItem mnemonicParsing="false" onAction="#handleHours" text="1" userData="1" />
+            <MenuItem mnemonicParsing="false" onAction="#handleHours" text="2" userData="2" />
+            <MenuItem mnemonicParsing="false" onAction="#handleHours" text="3" userData="3" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="Minutes" layoutX="208.0" layoutY="468.0" mnemonicParsing="false" text="Minutes">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleMinutes" text="0" userData="0" />
+            <MenuItem mnemonicParsing="false" onAction="#handleMinutes" text="15" userData="15" />
+            <MenuItem mnemonicParsing="false" onAction="#handleMinutes" text="30" userData="30" />
+            <MenuItem mnemonicParsing="false" onAction="#handleMinutes" text="45" userData="45" />
+         </items>
+      </MenuButton>
+      <Slider fx:id="start_hour_slider" blockIncrement="1.0" layoutX="64.0" layoutY="385.0" max="96.0" onMouseReleased="#slider_change" prefHeight="18.0" prefWidth="319.0" value="48.0" />
+      <Text layoutX="227.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Label fx:id="start_hour" layoutX="419.0" layoutY="384.0" />
+      <Label fx:id="duration" layoutX="368.0" layoutY="473.0" />
+      <Text layoutX="177.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of users needed">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nb_users" layoutX="140.0" layoutY="555.0" prefHeight="34.0" prefWidth="255.0" promptText="Number of users needed" />
+   </children>
+</AnchorPane>
