@@ -18,3 +18,9 @@
 /createPoll.class
 /CreatePollUI.class
 /PollUI.class
+/ActivityUI.class
+/CreateBDEActivityUI.class
+/FeeUI.class
+/ModifyEventUI.class
+/ModifyBDEActivityUI.class
+/modifyPollUI.class

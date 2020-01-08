@@ -14,3 +14,9 @@
 /TeamMemberFacade.class
 /PollFacade.class
 /Poll.class
+/Activity.class
+/ActivityFacade.class
+/ActivityList.class
+/BDEActivity.class
+/Fee.class
+/FeeFacade.class

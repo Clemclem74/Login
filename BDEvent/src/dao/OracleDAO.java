@@ -11,7 +11,7 @@ import buisnessLogic.User;
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
 
- /*
+ 
   public static final String ORACLE_DB_PATH = "jdbc:oracle:thin:@localhost:1521:xe";
   public static final String ORACLE_DB_USER = "system";
   public static final String ORACLE_DB_PASSWORD = "oose";
@@ -21,13 +21,13 @@ public abstract class OracleDAO<T> {
     this.connect = conn;
   }
 
-*/
-  
+
+  /*
   public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
   public static final String ORACLE_DB_USER = "root";
   public static final String ORACLE_DB_PASSWORD = "";
   
- 
+ */
 	
 
   public OracleDAO(Connection conn){

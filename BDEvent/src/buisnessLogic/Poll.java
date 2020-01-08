@@ -68,5 +68,14 @@ public class Poll {
 		choices.removeAll(array);
 		
 	}
+	
+	public ArrayList<String> splitChoices(String s) {
+		ArrayList<String> array = new ArrayList<>();
+		String [] list = s.split(" , ");
+		for(int i=0;i<list.length;i++) {
+			array.add(list[i]);
+		}
+		return array;
+	}
 
 }
