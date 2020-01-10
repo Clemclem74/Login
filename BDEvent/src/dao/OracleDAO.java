@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import buisnessLogic.BDE;
 import buisnessLogic.Contact;
 import buisnessLogic.Fee;
 import buisnessLogic.Post;
@@ -18,11 +19,11 @@ public abstract class OracleDAO<T> {
 
 
 
-  /*
-  public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
-  public static final String ORACLE_DB_USER = "root";
-  public static final String ORACLE_DB_PASSWORD = "";
-  */
+
+//  public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
+//  public static final String ORACLE_DB_USER = "root";
+//  public static final String ORACLE_DB_PASSWORD = "";
+
 
 
 
@@ -156,5 +157,14 @@ public ArrayList<Integer> findCollegue(int id_activity) {
   // TODO Auto-generated method stub
 	return null;
   }
+
+
+public abstract int getNumber();
+
+
+public BDE findBySchool(String school) {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }

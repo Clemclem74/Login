@@ -239,50 +239,41 @@ public ArrayList<Contact> findAllContactByTeam(Team team) {
 
 
 
-public ArrayList<Fee> findAllFee(User user) {
-	ArrayList<Fee> ret = new ArrayList<Fee>();
-		int idUser = user.getId_user();
-    	int idbde = user.getCurrentBDE();
-	  String SQL_SELECT = "Select DISTINCT(ID_FEE),TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_BDE="+idbde;
-	  // auto close connection and preparedStatement
-	  System.out.println("avant try");
-	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
-		  
-	      ResultSet resultSet = preparedStatement.executeQuery();
-	      while (resultSet.next()) {
-	    	  Fee obj = new Fee();
-	          int id_fee = resultSet.getInt("ID_FEE");
-	          String title_fee = resultSet.getString("TITLE_FEE");
-	          String comment_fee = resultSet.getString("COMMENT_FEE");
-	          int amount_fee = resultSet.getInt("AMOUNT_FEE");
-	          int state_fee = resultSet.getInt("STATE_FEE");
-	          int id_user_fee = resultSet.getInt("ID_USER_FEE");
 
 
-	          obj.setId_fee(id_fee);
-	          obj.setTitle_fee(title_fee);
-	          obj.setComment_fee(comment_fee);
-	          obj.setAmount_fee(amount_fee);
-	          obj.setState_fee(state_fee);
-	          obj.setId_user_fee(id_user_fee);
 
+	public int getNumber() {
+		 String SQL_SELECT = "Select * from CONTACT";
+		  // auto close connection and preparedStatement
+		
+		  try (Connection conn = DriverManager.getConnection(
+				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+			  
+		      ResultSet resultSet = preparedStatement.executeQuery();
+		      int nb=0;
+		      while (resultSet.next()) {
+		    	  nb++;
+		      }
+			  conn.close();
 
-	          ret.add(obj);
+		      return nb;
 
-	      }
-		  conn.close();
-
-	      return ret;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return ret;
+		  } catch (SQLException e) {
+		      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		  } catch (Exception e) {
+		      e.printStackTrace();
+		  }
+		
+		return 0;
+		
 	}
+
+	
+	
+	
+	
+	
 
 @Override
 public int join(Contact obj, User user) {

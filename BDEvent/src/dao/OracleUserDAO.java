@@ -224,6 +224,40 @@ public User findById(int id) {
 	return obj;
 	}
 
+
+
+public int getNumber() {
+	 String SQL_SELECT = "Select * from USERS";
+	  // auto close connection and preparedStatement
+	
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+		  
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      int nb=0;
+	      while (resultSet.next()) {
+	    	  nb++;
+	      }
+		  conn.close();
+
+	      return nb;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	
+	return 0;
+	
+}
+
+
+
+
+
+
 @Override
 public boolean update(User obj) {
 	// TODO Auto-generated method stub
