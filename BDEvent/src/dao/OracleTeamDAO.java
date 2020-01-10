@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import buisnessLogic.BDE;
 import buisnessLogic.BDEFacade;
+import buisnessLogic.Contact;
 import buisnessLogic.Team;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
@@ -46,9 +47,29 @@ public int create(Team obj) {
 
 }
 
-public boolean delete(Team obj) {
-  return false;
+public boolean delete(Team team) {
+	int id = team.getIdTeam();
+	String SQL_DELETE = "DELETE from TEAM WHERE ID_TEAM ='"+id+"'";
+	 try {
+		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  
+		  
+		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
+		  // call executeUpdate to execute our sql update statement
+		  ps.executeUpdate(); 
+		  ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	 return false;
 }
+
+
 
 public boolean update(int idtTeam, Team obj) {
 	return true;
@@ -157,11 +178,67 @@ public Team findByName(String name) {
 
 
 
+public int getNumber() {
+	 String SQL_SELECT = "Select * from TEAM";
+	  // auto close connection and preparedStatement
+	
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+		  
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      int nb=0;
+	      while (resultSet.next()) {
+	    	  nb++;
+	      }
+		  conn.close();
+
+	      return nb;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	
+	return 0;
+	
+}
+
+
+
+
+
+
 @Override
 public boolean update(Team obj) {
-	// TODO Auto-generated method stub
+	int id = obj.getIdTeam();
+	  try {
+		
+		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		  PreparedStatement ps = conn.prepareStatement(
+			      "UPDATE TEAM SET NAME_TEAM = ?, ID_BDE = ? WHERE ID_TEAM = ? ");
+		  
+			    // set the prepared statement parameters
+			    ps.setString(1,obj.getNameTeam());
+			    ps.setInt(2, obj.getBde().getIdBDE());
+			    ps.setInt(3,id);
+			    // call executeUpdate to execute our sql update statement
+			    ps.executeUpdate();
+			    ps.close();
+		  
+		  return true;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
 	return false;
+	
 }
+
+
 
 @Override
 public Team find(String id) {

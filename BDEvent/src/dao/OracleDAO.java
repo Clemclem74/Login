@@ -7,6 +7,7 @@ import buisnessLogic.Contact;
 import buisnessLogic.Fee;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
+import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 
 public abstract class OracleDAO<T> {
@@ -163,6 +164,12 @@ public abstract int getNumber();
 
 
 public BDE findBySchool(String school) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+public TeamMember findByUserTeam(User user, Team team) {
 	// TODO Auto-generated method stub
 	return null;
 }

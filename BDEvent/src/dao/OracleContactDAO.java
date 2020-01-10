@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import buisnessLogic.BDE;
 import buisnessLogic.Contact;
 import buisnessLogic.Fee;
 import buisnessLogic.Team;
@@ -127,10 +128,6 @@ public boolean update(Contact obj) {
 	return false;
 	
 }
-
-
-
-
 
 
 
