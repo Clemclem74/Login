@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import buisnessLogic.BDE;
 import buisnessLogic.Contact;
 import buisnessLogic.Fee;
 import buisnessLogic.Post;
@@ -159,5 +160,11 @@ public ArrayList<Integer> findCollegue(int id_activity) {
 
 
 public abstract int getNumber();
+
+
+public BDE findBySchool(String school) {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }
