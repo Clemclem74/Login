@@ -30,7 +30,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		  // auto close connection and preparedStatement
 		  try {
 			  
-			  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  Statement st = conn.createStatement();
 
 		      st.executeUpdate(SQL_INSERT);
@@ -51,7 +51,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		int id = poll.getId_pollBB();
 		String SQL_DELETE = "DELETE from POLLBB WHERE ID_POLLBB='"+id+"'";
 		 try {
-			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  
 			  
 			  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -76,7 +76,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		  
 		  try {
 			
-			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  System.out.println(id);
 			  System.out.println(obj.getTitle_pollBB());
 			  System.out.println(obj.getchoices_pollBB());
@@ -113,7 +113,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
-				  ORACLE_DB_PATH, "system", "oose");
+				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 		      ResultSet resultSet = preparedStatement.executeQuery();
@@ -161,7 +161,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
-		          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+		          "jdbc:oracle:thin:@localhost:1521:xe", ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 		      ResultSet resultSet = preparedStatement.executeQuery();
@@ -186,7 +186,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();

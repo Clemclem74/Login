@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
@@ -10,23 +16,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" stylesheets="@HomePage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
    <children>
-      <Text layoutX="250.0" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
+      <Text layoutX="245.0" layoutY="69.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: f7b4b4;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_button" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToFee" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="349.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" textFill="#a0a2ab" />
+                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToFee" prefHeight="39.0" prefWidth="144.0" text="Fees" textFill="#a0a2ab" />
+                  <Button fx:id="communication_button" layoutX="25.0" layoutY="349.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication" textFill="#a0a2ab">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -36,18 +42,18 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="558.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="558.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #4b5369;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="createBDE" layoutX="59.0" layoutY="145.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
-                  <Button fx:id="joinBDE" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
-                  <Button fx:id="showBDE" layoutX="108.0" layoutY="110.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
-                  <Button fx:id="quitBDEbutton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
-                  <Button fx:id="goToBB" layoutX="25.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
-                  <Button fx:id="manageMyTeams" layoutX="17.0" layoutY="182.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
-                  <Button fx:id="poll_button" layoutX="25.0" layoutY="245.0" mnemonicParsing="false" onAction="#goToPoll" prefHeight="31.0" prefWidth="144.0" text="Poll" />
+                  <Button fx:id="createBDE" layoutX="59.0" layoutY="145.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" textFill="#a0a2ab" />
+                  <Button fx:id="joinBDE" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" textFill="#a0a2ab" />
+                  <Button fx:id="showBDE" layoutX="108.0" layoutY="110.0" mnemonicParsing="false" onAction="#manageBDEAction" style="-fx-background-color: #151928;" text="MyBDE" textFill="#a0a2ab" />
+                  <Button fx:id="quitBDEbutton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitBDE" style="-fx-background-color: #151928;" text="QuitBDE" textFill="#a0a2ab" />
+                  <Button fx:id="goToBB" layoutX="25.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" textFill="#a0a2ab" />
+                  <Button fx:id="manageMyTeams" layoutX="17.0" layoutY="182.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" textFill="#a0a2ab" />
+                  <Button fx:id="poll_button" layoutX="25.0" layoutY="245.0" mnemonicParsing="false" onAction="#goToPoll" prefHeight="31.0" prefWidth="144.0" text="Poll" textFill="#a0a2ab" />
                </children>
             </AnchorPane>
          </children>
@@ -63,8 +69,8 @@
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Button layoutX="655.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify my account" />
-      <Button layoutX="799.0" layoutY="29.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="29.0" />
+      <Button layoutX="655.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify my account" textFill="#a0a2ab" />
+      <Button layoutX="807.0" layoutY="29.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #4b5369;" text="Delete account ?" AnchorPane.topAnchor="29.0" />
       <Label layoutX="225.0" layoutY="299.0" text="BDE : " />
       <Label fx:id="noBDE" layoutX="280.0" layoutY="294.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet">
          <font>
