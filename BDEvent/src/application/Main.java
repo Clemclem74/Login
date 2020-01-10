@@ -17,6 +17,7 @@ public class Main extends Application {
             // Read file fxml and draw interface.
         	
         	Routing root = new Routing(primaryStage);
+        	root.setVue("Login");
         	root.goTo("LoginUI");
          
         } catch(Exception e) {
