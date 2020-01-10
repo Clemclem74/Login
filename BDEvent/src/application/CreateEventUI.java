@@ -79,6 +79,9 @@ public class CreateEventUI extends Routing implements Initializable {
 		   
 	   }
 	   
+	   public void back() {
+		   super.goTo("EventUI");   
+	   }
 
 	   
 	   
