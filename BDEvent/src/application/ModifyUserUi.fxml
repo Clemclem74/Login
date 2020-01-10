@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyUserUI">
+<AnchorPane prefHeight="880.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserUI">
    <children>
       <TextField fx:id="phoneNumberField" layoutX="142.0" layoutY="503.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
       <Button fx:id="saveButton" layoutX="208.0" layoutY="554.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
@@ -26,7 +26,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="emailField" layoutX="139.0" layoutY="408.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
+      <TextField fx:id="emailFieldM" layoutX="139.0" layoutY="408.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
       <TextField fx:id="lastNameField" layoutX="137.0" layoutY="224.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
       <Text layoutX="229.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>

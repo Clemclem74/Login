@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserUI">
    <children>
       <TextField fx:id="emailField" layoutX="332.0" layoutY="287.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" stylesheets="@login.css" AnchorPane.bottomAnchor="287.0" />
       <PasswordField fx:id="passwordField" layoutX="332.0" layoutY="364.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
@@ -31,7 +31,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="823.0" layoutY="82.0" mnemonicParsing="false" onAction="#registerAction" style="-fx-background-color: #151928;" text="Sign Up" textFill="#a0a2ab" />
+      <Button layoutX="823.0" layoutY="82.0" mnemonicParsing="false" onAction="#goToregister" style="-fx-background-color: #151928;" text="Sign Up" textFill="#a0a2ab" />
       <Button layoutX="707.0" layoutY="82.0" mnemonicParsing="false" style="-fx-background-color: #2D3447;" text="Not member ?" textFill="#a0a2ab" />
       <Separator layoutX="338.0" layoutY="323.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
       <Separator layoutX="339.0" layoutY="397.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />

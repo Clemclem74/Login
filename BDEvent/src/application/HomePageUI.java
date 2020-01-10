@@ -99,12 +99,15 @@ public class HomePageUI extends Routing implements Initializable {
 	   // When user click on modifyUserButton
 	   // this method will be called.
 	   public void modifyUser(ActionEvent event) {
+		   super.setVue("modifyUser");
 		   super.goTo("ModifyUserUI");
+	
 	   }
 
 	   // When user click on deleteAccountButton
 	   // this method will be called.
 	   public void deleteUser(ActionEvent event) {
+		   super.setVue("DeleteUser");
 		   super.goTo("DeleteUserUI");
 	   }
 

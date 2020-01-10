@@ -17,8 +17,8 @@ public abstract class OracleDAO<T> {
   public static final String ORACLE_DB_PASSWORD = "oose";
 
 
-  
-  
+
+
 //  public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
 //  public static final String ORACLE_DB_USER = "root";
 //  public static final String ORACLE_DB_PASSWORD = "";

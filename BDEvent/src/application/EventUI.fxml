@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
    <children>
-      <Text layoutX="203.0" layoutY="54.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Events : " textAlignment="CENTER" wrappingWidth="715.5625">
+      <Text fill="#52abff" layoutX="203.0" layoutY="54.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" textAlignment="CENTER" wrappingWidth="715.5625">
          <font>
-            <Font size="38.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0" prefHeight="608.0" prefWidth="185.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,59 +29,80 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="552.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="552.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="63.0" layoutY="175.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
-                  <Button layoutX="57.0" layoutY="360.0" mnemonicParsing="false" onAction="#list" text="My Events" />
-                  <Button layoutX="57.0" layoutY="410.0" mnemonicParsing="false" onAction="#activity" text="My Activity" />
+                  <Button layoutX="55.0" layoutY="138.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button layoutX="53.0" layoutY="244.0" mnemonicParsing="false" onAction="#list" style="-fx-background-color: #151928;" text="My Events" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button layoutX="50.0" layoutY="352.0" mnemonicParsing="false" onAction="#activity" style="-fx-background-color: #151928;" text="My Activity" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
       <ListView fx:id="eventList" layoutX="223.0" layoutY="81.0" onMouseClicked="#displaySelected" prefHeight="491.0" prefWidth="200.0" />
-      <Button layoutX="588.0" layoutY="556.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="661.0" layoutY="556.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Button fx:id="modify_button" layoutX="513.0" layoutY="556.0" mnemonicParsing="false" onAction="#modify" text="Modify" />
-      <Label layoutX="509.0" layoutY="400.0" text="Title :">
+      <Button layoutX="588.0" layoutY="556.0" mnemonicParsing="false" onAction="#create" style="-fx-background-color: #151928;" text="Create" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="661.0" layoutY="556.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-color: #151928;" text="Delete" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="modify_button" layoutX="513.0" layoutY="556.0" mnemonicParsing="false" onAction="#modify" style="-fx-background-color: #151928;" text="Modify" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label layoutX="509.0" layoutY="400.0" text="Title :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="773.0" layoutY="400.0" text="Date :">
+      <Label layoutX="773.0" layoutY="400.0" text="Date :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="510.0" layoutY="472.0" text="Description :">
+      <Label layoutX="510.0" layoutY="472.0" text="Description :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label fx:id="event_title" layoutX="566.0" layoutY="400.0">
+      <Label fx:id="event_title" layoutX="566.0" layoutY="400.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="description" layoutX="511.0" layoutY="500.0">
+      <Label fx:id="description" layoutX="511.0" layoutY="500.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="event_date" layoutX="833.0" layoutY="400.0" prefHeight="27.0" prefWidth="107.0">
+      <Label fx:id="event_date" layoutX="833.0" layoutY="400.0" prefHeight="27.0" prefWidth="107.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button fx:id="button_join" layoutX="836.0" layoutY="557.0" mnemonicParsing="false" onAction="#join" text="Join" />
+      <Button fx:id="button_join" layoutX="836.0" layoutY="557.0" mnemonicParsing="false" onAction="#join" style="-fx-background-color: #151928;" text="Join" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <ImageView fx:id="imageview" fitHeight="240.0" fitWidth="364.0" layoutX="511.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="event_join" layoutX="490.0" layoutY="100.0" prefHeight="21.0" prefWidth="354.0" textFill="RED">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="event_responsible" layoutX="636.0" layoutY="438.0" prefHeight="28.0" prefWidth="290.0">
+      <Label fx:id="event_responsible" layoutX="636.0" layoutY="438.0" prefHeight="28.0" prefWidth="290.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="511.0" layoutY="438.0" text="Responsible :">
+      <Label layoutX="511.0" layoutY="438.0" text="Responsible :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

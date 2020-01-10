@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserUI">
    <children>
-      <TextField fx:id="phoneNumberField" layoutX="552.0" layoutY="171.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
-      <PasswordField fx:id="passwordField" layoutX="549.0" layoutY="261.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" />
+      <TextField fx:id="phoneNumberFieldR" layoutX="552.0" layoutY="171.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" />
+      <PasswordField fx:id="passwordFieldR" layoutX="549.0" layoutY="261.0" prefHeight="34.0" prefWidth="255.0" promptText="Password" />
       <Button fx:id="registerButton" layoutX="410.0" layoutY="522.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="50.0" prefWidth="150.0" text="Register">
          <font>
             <Font size="20.0" />
@@ -35,8 +35,8 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="emailField" layoutX="173.0" layoutY="445.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
-      <TextField fx:id="lastNameField" layoutX="171.0" layoutY="261.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
+      <TextField fx:id="emailFieldR" layoutX="173.0" layoutY="445.0" prefHeight="34.0" prefWidth="255.0" promptText="Email" />
+      <TextField fx:id="lastNameFieldR" layoutX="171.0" layoutY="261.0" prefHeight="34.0" prefWidth="255.0" promptText="Last name" />
       <Text layoutX="263.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last name">
          <font>
             <Font size="16.0" />
@@ -47,19 +47,19 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNameField" layoutX="171.0" layoutY="172.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
+      <TextField fx:id="firstNameFieldR" layoutX="171.0" layoutY="172.0" prefHeight="34.0" prefWidth="255.0" promptText="First name" />
       <Text layoutX="589.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <PasswordField fx:id="passwordField2" layoutX="552.0" layoutY="351.0" prefHeight="34.0" prefWidth="255.0" promptText="Password Confirmation" />
+      <PasswordField fx:id="passwordField2R" layoutX="552.0" layoutY="351.0" prefHeight="34.0" prefWidth="255.0" promptText="Password Confirmation" />
       <Text layoutX="264.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" layoutX="172.0" layoutY="351.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
+      <TextField fx:id="usernameFieldR" layoutX="172.0" layoutY="351.0" prefHeight="34.0" prefWidth="255.0" promptText="Username" />
       <Label fx:id="errorMessage" alignment="CENTER" layoutX="45.0" layoutY="106.0" prefHeight="25.0" prefWidth="874.0" textFill="#ff2d2d">
          <font>
             <Font name="System Bold" size="12.0" />
