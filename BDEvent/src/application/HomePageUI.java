@@ -111,6 +111,7 @@ public class HomePageUI extends Routing implements Initializable {
 	   // When user click on createBdeButton
 	   // this method will be called.
 	   public void createBDE(ActionEvent event) {
+		   super.setVue("CreateBDE");
 		   super.goTo("CreateBDEUI");
 	   }
 
@@ -121,11 +122,12 @@ public class HomePageUI extends Routing implements Initializable {
 	   }
 	   
 	   public void joinBDE(ActionEvent event) {
+		   super.setVue("JoinBDE");
 		   super.goToLittleWindow("JoinBDEUI");
-	    	   //this.idBDELabel.setText("8");
 	   }
 	   
 	   public void manageBDEAction(ActionEvent envent) {
+		   super.setVue("ManageBDE");
 		   super.goTo("ManageBDEUI");
 	   }
 	   
@@ -154,6 +156,7 @@ public class HomePageUI extends Routing implements Initializable {
 	   
 	   
 	   public void manageMyTeamsAction(ActionEvent event) {
+		   super.setVue("ManageMyTeams");
 		   super.goTo("ManageMyTeamsUI");
 	   }
 	   

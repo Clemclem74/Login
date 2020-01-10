@@ -147,6 +147,12 @@ public class ContactFacade {
 			return contact;
 		}
 	}
+	
+	public int getNumber(){
+		OracleDAO<Contact> contactDao = this.adf.getContactDAO();
+		int nb = contactDao.getNumber();
+		return nb;
+	}
 
 
 

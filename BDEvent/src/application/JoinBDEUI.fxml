@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.JoinBDEUI">
+<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
    <children>
       <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Veuillez rentrer l'ID svp :">
          <font>
