@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="515.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContactsUI">
+   <children>
+      <Button id="createFeeButton" layoutX="309.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyContact" prefHeight="34.0" prefWidth="106.0" text="Modify" />
+      <Text layoutX="269.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODIFY CONTACT">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Text layoutX="40.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of your contact :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="233.0" layoutY="104.0" prefHeight="39.0" prefWidth="264.0" promptText="Name" />
+      <Button fx:id="backButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backContact" text="&lt; Go Back" />
+      <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="66.0" layoutY="78.0" prefHeight="17.0" prefWidth="411.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="companyField" layoutX="234.0" layoutY="158.0" prefHeight="39.0" prefWidth="264.0" promptText="Company" />
+      <Text layoutX="41.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="41.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="phoneNumberField" layoutX="234.0" layoutY="211.0" prefHeight="39.0" prefWidth="264.0" promptText="Phone Number" />
+      <TextArea fx:id="informationsField" layoutX="234.0" layoutY="268.0" prefHeight="64.0" prefWidth="349.0" promptText="Informations" />
+      <Text layoutX="40.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

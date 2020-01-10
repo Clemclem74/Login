@@ -16,7 +16,21 @@ public class Routing {
 	private static User currentUser;
 	private static Post currentPost;
 	private static Fee currentFee;
+	private static Contact currentContact;
 	
+	
+	
+	
+	
+	
+	public static Contact getCurrentContact() {
+		return currentContact;
+	}
+
+	public static void setCurrentContact(Contact currentContact) {
+		Routing.currentContact = currentContact;
+	}
+
 	public static Fee getCurrentFee() {
 		return currentFee;
 	}

@@ -86,6 +86,19 @@ public class TeamFacade {
 			return team;
 		}
 	}
+	
+	
+	public Team findByName(String nameTeam) {
+		OracleDAO<Team> teamDao = this.adf.getTeamDAO();
+		Team team = teamDao.findByName(nameTeam);
+		if (team.getIdTeam()==0) {
+			System.out.println("Team null");
+			return null;
+		}
+		else {
+			return team;
+		}
+	}
 
 
 

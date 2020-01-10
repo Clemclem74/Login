@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContactsUI">
+   <children>
+      <Text layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Contacts" textAlignment="CENTER" wrappingWidth="328.5625">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Pane layoutX="4.0" layoutY="-3.0">
+         <children>
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #43A861;">
+               <effect>
+                  <Glow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="42.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="homePage" layoutX="46.0" layoutY="121.0" mnemonicParsing="false" onAction="#homePage" text="HomePage" />
+                  <Button fx:id="newContact" layoutX="28.0" layoutY="200.0" mnemonicParsing="false" onAction="#newContact" text="Add Contact" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      
+      <ListView fx:id="contactList" layoutX="289.0" layoutY="103.0" onMouseClicked="#displaySelectedList" prefHeight="242.0" prefWidth="577.0" />
+      <Button fx:id="modifyContact" layoutX="383.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" text="Modify this Contact" />
+      <Button fx:id="deleteContact" layoutX="598.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: red;" text="Delete this Contact" />
+      <Text fx:id="nameText" layoutX="193.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" />
+      <Label fx:id="nameContact" layoutX="258.0" layoutY="373.0" prefHeight="17.0" prefWidth="141.0" />
+      <Label fx:id="companyContact" layoutX="289.0" layoutY="427.0" prefHeight="17.0" prefWidth="141.0" />
+      <Text fx:id="companyText" layoutX="193.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company :" />
+      <Text fx:id="phoneNumberText" layoutX="193.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number :" />
+      <Label fx:id="phoneNumberContact" layoutX="329.0" layoutY="472.0" prefHeight="17.0" prefWidth="141.0" />
+      <Text fx:id="informationsText" layoutX="193.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Infos :" />
+      <Label fx:id="informationsContact" layoutX="258.0" layoutY="516.0" prefHeight="17.0" prefWidth="141.0" />
+   </children>
+</AnchorPane>
