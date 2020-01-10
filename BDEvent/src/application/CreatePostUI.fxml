@@ -7,27 +7,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
+<AnchorPane prefHeight="413.0" prefWidth="534.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
    <children>
-      <Button id="createPostButton" fx:id="createButton" layoutX="219.0" layoutY="351.0" mnemonicParsing="false" onAction="#createPost" prefHeight="34.0" prefWidth="106.0" text="Create" />
-      <Text layoutX="158.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE POST">
+      <Button id="createPostButton" fx:id="createButton" layoutX="219.0" layoutY="351.0" mnemonicParsing="false" onAction="#createPost" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #53afbb;" text="Create" textFill="WHITE">
          <font>
-            <Font size="43.0" />
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Text fill="#53afbb" layoutX="158.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE POST">
+         <font>
+            <Font name="System Bold" size="44.0" />
          </font>
       </Text>
-      <Text layoutX="212.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text of your Post">
+      <Text fill="WHITE" layoutX="212.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text of your Post">
          <font>
-            <Font size="16.0" />
+            <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="212.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title of your Post">
+      <Text fill="WHITE" layoutX="212.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title of your Post">
          <font>
-            <Font size="16.0" />
+            <Font size="18.0" />
          </font>
       </Text>
       <TextField fx:id="titlePost" layoutX="102.0" layoutY="150.0" prefHeight="25.0" prefWidth="355.0" />
       <TextArea fx:id="textPost" layoutX="30.0" layoutY="213.0" prefHeight="114.0" prefWidth="484.0" />
-      <Button fx:id="backButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backBB" text="&lt; Go Back" />
+      <Button fx:id="backButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backBB" style="-fx-background-color: #151928;" text="&lt; Go Back" textFill="#53afbb">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <Label fx:id="errorMessage" alignment="TOP_CENTER" layoutX="66.0" layoutY="78.0" prefHeight="17.0" prefWidth="411.0" textFill="RED">
          <font>
             <Font name="System Bold" size="15.0" />

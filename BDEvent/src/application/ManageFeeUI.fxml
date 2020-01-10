@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FeeUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FeeUI">
    <children>
-      <Text layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGE  FEE" textAlignment="CENTER" wrappingWidth="328.5625">
+      <Text fill="#53afbb" layoutX="414.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="MANAGE  FEE" textAlignment="CENTER" wrappingWidth="328.5625">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #43A861;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,36 +29,77 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #53afbb;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="homePage" layoutX="46.0" layoutY="121.0" mnemonicParsing="false" onAction="#homePage" text="HomePage" />
-                  <Button fx:id="buttonBackFee" layoutX="45.0" layoutY="217.0" mnemonicParsing="false" onAction="#backFee" text="Back to Fee" />
+                  <Button fx:id="homePage" layoutX="35.0" layoutY="131.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #151928;" text="HomePage" textFill="#53afbb">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button fx:id="buttonBackFee" layoutX="33.0" layoutY="210.0" mnemonicParsing="false" onAction="#backFee" style="-fx-background-color: #151928;" text="Back to Fee" textFill="#26b3b5">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
-      
-      <ListView fx:id="applianceFeeList" layoutX="199.0" layoutY="124.0" onMouseClicked="#displaySelectedWaitingList" prefHeight="270.0" prefWidth="317.0" />
-       <Text fx:id="commentFeeSelected" layoutX="249.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="533.13671875" />
-      <Label fx:id="titleFeeSelected" layoutX="380.0" layoutY="426.0" prefHeight="17.0" prefWidth="355.0">
+       <Text fx:id="commentFeeSelected" fill="WHITE" layoutX="249.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="533.13671875">
+         <font>
+            <Font size="17.0" />
+         </font></Text>
+      <Label fx:id="titleFeeSelected" alignment="CENTER" layoutX="380.0" layoutY="426.0" prefHeight="17.0" prefWidth="355.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font></Label>
-      <Button fx:id="modifyFee" layoutX="639.0" layoutY="560.0"  onAction="#modifySelected" mnemonicParsing="false" text="Modify this Fee" />
-      <Button fx:id="deleteFee" layoutX="774.0" layoutY="560.0" onAction="#deleteSelected" mnemonicParsing="false" style="-fx-background-color: red;" text="Delete this Fee" />
-      <ListView fx:id="feeList" layoutX="601.0" layoutY="124.0" onMouseClicked="#displaySelectedList" prefHeight="270.0" prefWidth="317.0" />
-      <Button fx:id="payedButton" layoutX="268.0" layoutY="557.0"  onAction="#acceptedFee" mnemonicParsing="false" style="-fx-background-color: green;" text="Mark this fee as payed" textFill="WHITE">
+      <Button fx:id="modifyFee" layoutX="639.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" style="-fx-background-color: #151928;" text="Modify this Fee" textFill="#3ab52c">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Text layoutX="299.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting Fee list" />
-      <Text layoutX="714.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payed Fee list" />
-      <Text fx:id="stateText" layoutX="431.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State :" />
-      <Label fx:id="stateFee" layoutX="499.0" layoutY="526.0" prefHeight="17.0" prefWidth="141.0" />
-      <Text fx:id="amountText" layoutX="199.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount :" />
-      <Label fx:id="amountFee" layoutX="287.0" layoutY="409.0" prefHeight="17.0" prefWidth="141.0" />
+      <Button fx:id="deleteFee" layoutX="786.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: #151928;" text="Delete this Fee" textFill="#dd5a2e">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="payedButton" layoutX="256.0" layoutY="553.0" mnemonicParsing="false" onAction="#acceptedFee" style="-fx-background-color: #151928; -fx-border-color: #53afbb;" text="Mark this fee as payed" textFill="#53afbb">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Button>
+      <Text fill="WHITE" layoutX="315.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting Fee list">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Text fill="WHITE" layoutX="710.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payed Fee list">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Text fx:id="stateText" fill="WHITE" layoutX="431.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Label fx:id="stateFee" layoutX="498.0" layoutY="518.0" prefHeight="17.0" prefWidth="141.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Text fx:id="amountText" fill="WHITE" layoutX="199.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Label fx:id="amountFee" layoutX="282.0" layoutY="401.0" prefHeight="17.0" prefWidth="141.0" textFill="#53abff">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <AnchorPane layoutX="210.0" layoutY="108.0" prefHeight="286.0" prefWidth="341.0" style="-fx-background-color: F4D57C;">
+         <children>
+            
+            <ListView fx:id="applianceFeeList" layoutX="12.0" layoutY="8.0" onMouseClicked="#displaySelectedWaitingList" prefHeight="270.0" prefWidth="317.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="586.0" layoutY="108.0" prefHeight="286.0" prefWidth="341.0" style="-fx-background-color: ADF47C;">
+         <children>
+            <ListView fx:id="feeList" layoutX="12.0" layoutY="8.0" onMouseClicked="#displaySelectedList" prefHeight="270.0" prefWidth="317.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
