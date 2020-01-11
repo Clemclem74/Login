@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
+import buisnessLogic.Poll;
 import buisnessLogic.Post;
 import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
@@ -71,6 +72,11 @@ public abstract class OracleDAO<T> {
 
 
 public  ArrayList<Post> findAllPostByBDE(User user){
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public  ArrayList<Poll> findAllPollByBDE(User user){
 	// TODO Auto-generated method stub
 	return null;
 }

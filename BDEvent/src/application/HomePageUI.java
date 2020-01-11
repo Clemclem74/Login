@@ -137,7 +137,8 @@ public class HomePageUI extends Routing implements Initializable {
 		   super.goTo("BlackBoardUI");
 	   }
 	   public void goToPoll(ActionEvent event) {
-		   super.goTo("CreatePollUI");
+		   super.setVue("BasicPoll");
+		   super.goTo("PollUI");
 	   }
 	   
 	   public void goToFee(ActionEvent envent) {

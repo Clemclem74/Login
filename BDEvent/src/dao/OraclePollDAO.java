@@ -30,7 +30,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		  // auto close connection and preparedStatement
 		  try {
 			  
-			  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  Statement st = conn.createStatement();
 
 		      st.executeUpdate(SQL_INSERT);
@@ -51,7 +51,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		int id = poll.getId_pollBB();
 		String SQL_DELETE = "DELETE from POLLBB WHERE ID_POLLBB='"+id+"'";
 		 try {
-			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  
 			  
 			  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
@@ -71,23 +71,25 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	
 	@Override
 	public boolean update(Poll obj) {
-		
+		System.out.println(obj.getId_pollBB());
 		int id = obj.getId_pollBB();
+		System.out.println(id);
+
 		  
 		  try {
 			
-			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, "system", "oose");
+			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  System.out.println(id);
 			  System.out.println(obj.getTitle_pollBB());
 			  System.out.println(obj.getchoices_pollBB());
 			  PreparedStatement ps = conn.prepareStatement(
-				      "UPDATE POSTBB SET TITLE_POLLBB = ?, CHOICES_POLLBB = ?, STATE = 0 WHERE ID_POLLBB = ? ");
+				      "UPDATE POLLBB SET TITLE_POLLBB = ?, CHOICES_POLLBB = ?, STATE = 0 WHERE ID_POLLBB = ? ");
 			  
 				    // set the preparedstatement parameters
 				    ps.setString(1,obj.getTitle_pollBB());
 				    ps.setString(2,obj.getchoices_pollBB());
 				    ps.setInt(3,id);
-				  
+				    System.out.println(id);
 				   System.out.println(obj.getTitle_pollBB());
 				   
 				    // call executeUpdate to execute our sql update statement
@@ -161,7 +163,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
-		          "jdbc:oracle:thin:@localhost:1521:xe", "system", "oose");
+				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 		      ResultSet resultSet = preparedStatement.executeQuery();
@@ -225,6 +227,54 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	  }
 	return ret;
 	}
+	
+	public ArrayList<Poll> findAllPollByBDE(User user) {
+		ArrayList<Poll> ret = new ArrayList<Poll>();
+		
+	    	int idbde = user.getCurrentBDE();
+		  String SQL_SELECT = "Select * from POLLBB where ID_BDE="+idbde;
+		  // auto close connection and preparedStatement
+		  try (Connection conn = DriverManager.getConnection(
+				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+			  
+		      ResultSet resultSet = preparedStatement.executeQuery();
+		      
+		      while (resultSet.next()) {
+		    	  Poll obj = new Poll();
+		    	  int id_pollbb = resultSet.getInt("ID_POLLBB");
+		          int id_publisher = resultSet.getInt("ID_USER_PUBLISHER");
+		          String title = resultSet.getString("TITLE_POLLBB");
+		          String choices = resultSet.getString("CHOICES_POLLBB");
+		          int bde = resultSet.getInt("ID_BDE");
+		          int state = resultSet.getInt("STATE");
+		          
+		          
+		          obj.setId_pollBB(id_pollbb);
+		          obj.setId_user_publisher(id_publisher);
+		          obj.setTitle_pollBB(title);
+		          obj.setChoices_pollBB(choices);
+		          obj.setId_BDE_pollBB(bde);
+		          obj.setState(state);
+		          
+
+		          ret.add(obj);
+
+		      }
+			  conn.close();
+			  
+			  return ret;
+
+		  } catch (SQLException e) {
+		      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+		  } catch (Exception e) {
+		      e.printStackTrace();
+		  }
+		return ret;
+		}
+			  
+		      
+	
 	@Override
 	public int join(Poll obj, User user) {
 		// TODO Auto-generated method stub

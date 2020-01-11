@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreatePollUI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PollUI">
    <children>
       <TextField id="pollTitle" fx:id="pollTitle" layoutX="233.0" layoutY="88.0" />
       <Text layoutX="278.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="title pool" />
       <TextField id="field1" fx:id="field1" layoutX="62.0" layoutY="165.0" />
-      <TextField id="field2" fx:id="field2" layoutX="62.0" layoutY="234.0" />
+      <TextField id="field2" fx:id="field2" layoutX="62.0" layoutY="245.0" />
       <TextField id="field3" fx:id="field3" layoutX="62.0" layoutY="305.0" />
       <Text layoutX="62.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choice 1" />
       <Text layoutX="64.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choice 2" />
       <Text layoutX="64.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choice 3" />
-      <Button layoutX="268.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifyAction" text="modify pool" />
+      <Button fx:id="ModifyButton" layoutX="268.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifyPoll" text="modify pool" />
    </children>
 </AnchorPane>

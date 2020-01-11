@@ -121,6 +121,10 @@ public class User {
 		return this.id_user == post.getId_user_publisher();
 	}
 	
+	public boolean isPublisherPoll(Poll poll) {
+		return this.id_user == poll.getId_user_publisher();
+	}
+	
 	public boolean isPartOfTrez() {
 		TeamMemberFacade tmFacade = new TeamMemberFacade();
 		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(4);

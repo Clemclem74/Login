@@ -4,6 +4,7 @@ import buisnessLogic.BDE;
 import buisnessLogic.BlackBoard;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
+import buisnessLogic.Poll;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
@@ -28,6 +29,12 @@ public class XMLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	public OracleDAO<Post> getPostDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override 
+	public OracleDAO<Poll> getPollDAO(){
 		// TODO Auto-generated method stub
 		return null;
 	}

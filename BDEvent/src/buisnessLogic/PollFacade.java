@@ -55,11 +55,11 @@ public class PollFacade {
         }
 	}
 	
-	public int modify(int idUser , String title,ArrayList<String> choices, int idBde) {
+	public int modify(int idPoll, int idUser , String title,ArrayList<String> choices, int idBde) {
 		System.out.println("modify dans pollfacade debut");
 		Poll obj = new Poll();
 		
-	
+		obj.setId_pollBB(idPoll);
 		obj.setId_user_publisher(idUser);
 		obj.setTitle_pollBB(title);
 		obj.removeAllChoices(choices);
@@ -78,6 +78,30 @@ public class PollFacade {
         	System.out.println("Error while modifing poll");
         	return -1;
         }
+	}
+	
+	public ArrayList<Poll> findAllPollBDE(User user){
+		OracleDAO<Poll> pollDao = this.adf.getPollDAO();
+		ArrayList<Poll> allpoll = pollDao.findAllPollByBDE(user);
+		if(allpoll == null) {
+			System.out.println("no poll found");
+			return null;
+		}
+		else {
+			return allpoll;
+		}
+	}
+	
+	public Poll find(String poll_name) {
+		OracleDAO<Poll> pollDao = this.adf.getPollDAO();
+		Poll poll = pollDao.find(poll_name);
+		if(poll == null) {
+			System.out.println("poll null find");
+			return null;
+		}
+		else {
+			return poll;
+		}
 	}
 	
 

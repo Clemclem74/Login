@@ -15,6 +15,7 @@ public class Routing {
 	private static Stage popUp;
 	private static User currentUser;
 	private static Post currentPost;
+	private static Poll currentPoll;
 	private static Fee currentFee;
 	
 	public static Fee getCurrentFee() {
@@ -60,6 +61,14 @@ public class Routing {
 
 	public static void setCurrentPost(Post post) {
 		Routing.currentPost = post;
+	}
+	
+	public static Poll getCurrentPoll() {
+		return currentPoll;
+	}
+
+	public static void setCurrentPoll(Poll poll) {
+		Routing.currentPoll = poll;
 	}
 
 	public static Stage getConfirmMessage() {

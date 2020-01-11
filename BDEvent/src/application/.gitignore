@@ -24,3 +24,6 @@
 /ModifyEventUI.class
 /ModifyBDEActivityUI.class
 /modifyPollUI.class
+/CreateStaffActivityUI.class
+/ModifyStaffActivityUI.class
+/MyActivityUI.class
