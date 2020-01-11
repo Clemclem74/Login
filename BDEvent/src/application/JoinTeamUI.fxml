@@ -7,23 +7,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeamUI">
+<AnchorPane prefHeight="166.0" prefWidth="465.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeamUI">
    <children>
-      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Veuillez rentrer l'ID svp :">
+      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Write team's ID please" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="65.0" prefHeight="27.0" prefWidth="141.0" text="Id's Team :" />
+      <Label layoutX="26.0" layoutY="65.0" prefHeight="27.0" prefWidth="141.0" text="Id's Team :" textFill="WHITE" />
       <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button layoutX="326.0" layoutY="110.0" mnemonicParsing="false" onAction="#joinAction" prefHeight="39.0" prefWidth="101.0" text="OK" />
-      <TextField fx:id="idTeamField" layoutX="150.0" layoutY="64.0" prefHeight="39.0" prefWidth="110.0" promptText="ID" />
-      <Label layoutX="26.0" layoutY="116.0" prefHeight="27.0" prefWidth="141.0" text="Chief : " />
-      <CheckBox fx:id="isChief" layoutX="95.0" layoutY="116.0" mnemonicParsing="false" text="Yes" />
-      <CheckBox fx:id="isNotChief" layoutX="182.0" layoutY="116.0" mnemonicParsing="false" text="No" />
+      <Label layoutX="26.0" layoutY="116.0" prefHeight="27.0" prefWidth="141.0" text="Chief : " textFill="WHITE" />
+      <CheckBox fx:id="isChief" layoutX="95.0" layoutY="116.0" mnemonicParsing="false" text="Yes" textFill="WHITE" />
+      <CheckBox fx:id="isNotChief" layoutX="182.0" layoutY="116.0" mnemonicParsing="false" text="No" textFill="WHITE" />
+      <TextField fx:id="idTeamField" layoutX="123.0" layoutY="58.0" prefHeight="39.0" prefWidth="170.0" promptText="Id of the Team" style="-fx-background-color: #4b5369; -fx-text-inner-color: #ffffff;" />
+      <Separator layoutX="128.0" layoutY="97.0" opacity="0.5" prefHeight="6.0" prefWidth="131.0" style="-fx-background-color: #a0a2ab;" />
+      <Button fx:id="createButton" layoutX="340.0" layoutY="107.0" mnemonicParsing="false" onAction="#createAction" prefHeight="45.0" prefWidth="95.0" style="-fx-background-color: #151928;" text="Join" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

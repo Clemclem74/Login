@@ -24,7 +24,7 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="67.0" layoutY="148.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
+                  <Button layoutX="34.0" layoutY="148.0" mnemonicParsing="false" onAction="#manageBDE" style="-fx-background-color: #2D3447;" text="&lt; Manage BDE" textFill="#52abff">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -38,12 +38,12 @@
             <Font size="23.0" />
          </font></Label>
       <ListView fx:id="tableTeams" layoutX="261.0" layoutY="145.0" prefHeight="376.0" prefWidth="322.0" />
-      <Text fill="#52abff" layoutX="223.0" layoutY="74.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Teams" textAlignment="CENTER" wrappingWidth="715.5625">
+      <Text fill="#52abff" layoutX="223.0" layoutY="74.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Teams of your BDE" textAlignment="CENTER" wrappingWidth="715.5625">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
       </Text>
-      <Button layoutX="668.0" layoutY="251.0" mnemonicParsing="false" onAction="#joinTeam" style="-fx-background-color: #151928;" text="Join a Team" textFill="#52abff">
+      <Button layoutX="668.0" layoutY="251.0" mnemonicParsing="false" onAction="#joinTeam" style="-fx-background-color: #151928;" text="Add a Team" textFill="#52abff">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

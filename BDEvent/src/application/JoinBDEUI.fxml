@@ -7,20 +7,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
+<AnchorPane prefHeight="166.0" prefWidth="465.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
    <children>
-      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Veuillez rentrer l'ID svp :">
+      <Label layoutX="59.0" layoutY="19.0" prefHeight="35.0" prefWidth="354.0" text="Please enter the Id of the BDE" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="83.0" prefHeight="27.0" prefWidth="141.0" text="Id de votre BDE : " />
+      <Label layoutX="70.0" layoutY="80.0" prefHeight="27.0" prefWidth="141.0" text="ID : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
       <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <Button layoutX="326.0" layoutY="110.0" mnemonicParsing="false" onAction="#joinAction" prefHeight="39.0" prefWidth="101.0" text="OK" />
-      <TextField fx:id="idBDEField" layoutX="195.0" layoutY="78.0" prefHeight="39.0" prefWidth="110.0" promptText="ID" />
+      <TextField fx:id="idBDEField" layoutX="162.0" layoutY="78.0" prefHeight="39.0" prefWidth="110.0" promptText="ID" />
+      <Button layoutX="347.0" layoutY="107.0" mnemonicParsing="false" onAction="#joinAction" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="OK" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

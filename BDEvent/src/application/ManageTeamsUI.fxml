@@ -10,16 +10,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeamUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeamUI">
    <children>
-      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Teams : " wrappingWidth="328.5625">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="402.0" prefWidth="185.0" style="-fx-background-color: #63b6ce;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,12 +24,11 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button layoutX="67.0" layoutY="148.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
                      <font>
-                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="16.0" layoutY="119.0" mnemonicParsing="false" onAction="#manageBDE" style="-fx-background-color: #6f5c89;" text="&lt; Manage BDE" textFill="#fcf8f8" />
                </children>
             </AnchorPane>
          </children>
@@ -43,7 +37,21 @@
          <font>
             <Font size="23.0" />
          </font></Label>
-       <ListView fx:id="tableTeams" layoutX="289.0" layoutY="103.0" prefHeight="242.0" prefWidth="577.0" />
-      <Button layoutX="402.0" layoutY="50.0" mnemonicParsing="false" onAction="#addTeam" text="Add Team" />
+      <ListView fx:id="tableTeams" layoutX="261.0" layoutY="145.0" prefHeight="376.0" prefWidth="322.0" />
+      <Text fill="#52abff" layoutX="223.0" layoutY="74.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Teams" textAlignment="CENTER" wrappingWidth="715.5625">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Text>
+      <Button layoutX="668.0" layoutY="251.0" mnemonicParsing="false" onAction="#addTeam" style="-fx-background-color: #151928;" text="Add a Team" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="logoutButton1" layoutX="48.0" layoutY="549.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="10.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

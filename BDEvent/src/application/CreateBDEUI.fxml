@@ -7,25 +7,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="413.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
+<AnchorPane prefHeight="406.0" prefWidth="534.0" style="-fx-background-color: #2D3447;" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
    <children>
-      <Button fx:id="createButton" layoutX="205.0" layoutY="335.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Create" />
-      <Text layoutX="177.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CREATE BDE">
+      <Button fx:id="createButton" layoutX="207.0" layoutY="331.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #2196f3;" text="Save" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="149.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create BDE">
          <font>
-            <Font size="43.0" />
+            <Font name="System Bold" size="43.0" />
          </font>
       </Text>
-      <TextField fx:id="schoolBDEField" layoutX="134.0" layoutY="248.0" prefHeight="34.0" prefWidth="255.0" promptText="School BDE" />
-      <Text layoutX="226.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="School BDE">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="220.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name BDE">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <TextField fx:id="nameBDEField" layoutX="134.0" layoutY="159.0" prefHeight="34.0" prefWidth="255.0" promptText="Name BDE" />
+      <TextField fx:id="schoolBDEField" layoutX="134.0" layoutY="211.0" prefHeight="34.0" prefWidth="255.0" promptText="School of BDE" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <TextField fx:id="nameBDEField" layoutX="134.0" layoutY="128.0" prefHeight="34.0" prefWidth="255.0" promptText="Name of BDE" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <Separator layoutX="137.0" layoutY="247.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Separator layoutX="139.0" layoutY="163.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Button layoutX="25.0" layoutY="34.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #2D3447;" text="&lt; back" textFill="WHITE" />
    </children>
 </AnchorPane>
