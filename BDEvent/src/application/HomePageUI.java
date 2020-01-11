@@ -158,6 +158,7 @@ public class HomePageUI extends Routing implements Initializable {
 	   }
 	   
 	   public void manageMyEventsAction(ActionEvent event) {
+		   super.setVue("Event");
 		   super.goTo("EventUI");
 	   }
 	       

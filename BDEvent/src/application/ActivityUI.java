@@ -13,6 +13,8 @@ import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -70,6 +72,60 @@ public class ActivityUI extends Routing implements Initializable {
 	@FXML
 	private Button logoutButton; 
 	
+	
+	
+	@FXML
+	private Button saveButton;
+	@FXML
+	private TextField titleActivityField;
+	@FXML
+	private DatePicker dateActivityField;
+	@FXML
+	private MenuButton Hours;
+	@FXML
+	private MenuButton Minutes;
+	@FXML
+	private Label Date_End;
+	@FXML
+	private TextField descriptionActivity;
+	@FXML
+	private TextField nb_users;
+	@FXML
+	private Label start_hour;
+	@FXML
+	private Label duration;
+	@FXML
+	private Slider start_hour_slider;
+	
+	private BDEActivity theBDEActi = new BDEActivity();
+
+	private StaffActivity theStaffActi = new StaffActivity();
+	
+	@FXML
+	 private ListView<String> actiList;
+	
+	@FXML
+	 private Label title;
+	 @FXML
+	 private Label description;
+	 @FXML
+	 private Label date;
+	 @FXML
+	 private Label end_hour;
+	 @FXML
+	 private Label users;
+	 @FXML
+	 private Button leave_button;
+	 @FXML
+	 private Button activity_button;
+	 
+	
+	
+	String theHours="1";
+	String theMinutes="0";
+	String theStartHour="12h00m";
+	
+	
 	ArrayList<BDEActivity> list1 = new ArrayList<BDEActivity>();
 	ArrayList<StaffActivity> list2 = new ArrayList<StaffActivity>();
 	
@@ -79,26 +135,43 @@ public class ActivityUI extends Routing implements Initializable {
 	@Override
 	   public void initialize(URL location, ResourceBundle resources) {
 			
-			System.out.println("test");
-		
-	       //name_event.setText(super.getEventSelected().getTitle());
-	       
-	       BDE_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
-	       BDE_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
-	       BDE_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
-	       BDE_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
-			
-		   BDE_Activity.setItems(loadData());
-		   
-		   Staff_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
-	       Staff_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
-	       Staff_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
-	       Staff_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
-			
-	       Staff_Activity.setItems(loadData2(super.getEventSelected()));
-	       
-	      
-	       
+		 if (super.getVue().contentEquals("Activity")){
+			//name_event.setText(super.getEventSelected().getTitle());
+		       
+		       BDE_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
+		       BDE_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
+		       BDE_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
+		       BDE_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
+				
+			   BDE_Activity.setItems(loadData());
+			   
+			   Staff_Activity_title.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("title"));
+		       Staff_Activity_start.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("start"));
+		       Staff_Activity_end.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("end"));
+		       Staff_Activity_nb.setCellValueFactory(new PropertyValueFactory<ActivityList,String>("nb_user"));
+				
+		       Staff_Activity.setItems(loadData2(super.getEventSelected())); 
+		 } else {
+			 if (super.getVue().contentEquals("CreateBDEActivity")||super.getVue().contentEquals("CreateStaffActivity")){
+				 start_hour.setText("12h00m");
+				 duration.setText("0h00m");
+			 }
+			 else {
+				 if (super.getVue().contentEquals("ModifyBDEActivity")){
+					 setActivity(super.getBdeActivitySelected());
+				 }
+				 else { 
+					 if (super.getVue().contentEquals("ModifyStaffActivity")){
+						 setActivityStaff(super.getStaffActivitySelected());
+					 }
+					 else {
+						 if (super.getVue().contentEquals("MyActivity")){
+							 loadMyData();
+						 }
+					 }
+				 }
+			 }
+		 }
 	   }
 
 	
@@ -129,7 +202,34 @@ private ObservableList<ActivityList> loadData() {
 		return acti;
 		
 	}
+
+	private void loadMyData() {
 	
+		list1.removeAll(list1);
+		list2.removeAll(list2);
+		
+		ActivityFacade eventFacade = new ActivityFacade();
+		
+		list1 = eventFacade.getBDEActivitybyUser(super.getCurrentUser());
+		list2 = eventFacade.getStaffActivitybyUser(super.getCurrentUser());
+		
+		ArrayList<String> actiName = new ArrayList<String>();
+		
+		list1.forEach((n)-> actiName.add(n.getId_activity() + " - " + n.getName_activity() + " : BDE")); 
+		list2.forEach((n)-> actiName.add(n.getId_activity() + " - " + n.getName_activity()+ " : Staff")) ;
+		
+		System.out.println("list 1:"+actiName.size());
+	
+		actiList.getItems().addAll(actiName);
+	}
+
+	
+	public void leave(ActionEvent event) {
+		
+		actiList.getItems().removeAll(actiList.getItems()); 
+		loadData();
+		
+	}
 	
 	
 	private ObservableList<ActivityList> loadData2(Event event) {
@@ -243,33 +343,38 @@ private ObservableList<ActivityList> loadData() {
 	
 	public void logout(ActionEvent event) {
 		   Routing.setCurrentUser(null);
+		   super.setVue("Login");
 		   super.goTo("LoginUI");
 	   }
 	
 	
 	@FXML
 	private void createBDEActivity() {
+		super.setVue("CreateBDEActivity");
 		super.goTo("CreateBDEActivityUI");
 	}
 
 	@FXML
 	public void createStaffActivity(ActionEvent event) {
+		super.setVue("CreateStaffActivity");
 		super.goTo("CreateStaffActivityUI");
 	}
 	
 	@FXML
 	public void home(ActionEvent event) {
+		super.setVue("HomePage");
 		super.goTo("HomePageUI");
 	}
 	@FXML
 	public void modify(ActionEvent event) {
-		
+		super.setVue("ModifyBDEActivity");
 		super.goTo("ModifyBDEActivityUI");
 		BDE_Activity.setItems(loadData());
 	}
 	
 	@FXML
 	public void modify2(ActionEvent event) {
+		super.setVue("ModifyStaffActivity");
 		super.goTo("ModifyStaffActivityUI");
 		Staff_Activity.setItems(loadData2(super.getEventSelected()));
 	}
@@ -296,9 +401,313 @@ private ObservableList<ActivityList> loadData() {
 	
 	
 	public void list(ActionEvent event) {
+		super.setVue("Event");
 		super.goTo("EventUI");
 	}
 	
+	
+	public void handleHours(ActionEvent event) {
+	   	
+	   	MenuItem menu = new MenuItem();
+	   	menu = (MenuItem) event.getSource();
+	   	theHours = (String) menu.getUserData();
+	   	
+	   	String hours = "0";
+		   String minutes = "0";
+		   
+		   if(theHours!="") {
+			   hours=theHours;
+		   }
+		   if(theMinutes!="") {
+			   minutes=theMinutes;
+		   }
+		   
+		   duration.setText(hours+"h"+minutes+"m");
+	   	
+	    
+	}
    
+   public void handleMinutes(ActionEvent event) {
+	   	
+	   	MenuItem menu = new MenuItem();
+	   	menu = (MenuItem) event.getSource();
+	   	theMinutes = (String) menu.getUserData();
+	   	
+	   	String hours = "0";
+		   String minutes = "0";
+		   
+		   if(theHours!="") {
+			   hours=theHours;
+		   }
+		   if(theMinutes!="") {
+			   minutes=theMinutes;
+		   }
+		   
+		   duration.setText(hours+"h"+minutes+"m");
+	   	
+	    
+	}
+   
+   public void slider_change(MouseEvent event) {
+	   int sliderval = (int) start_hour_slider.getValue();
+	   double sliderValue = (double) sliderval/4;
+	   
+	   int i = new Double(sliderValue).intValue(); //recuperer la partie entiere
+	   double decimale = sliderValue-(new Double(i).doubleValue());
+	   String dec = String.valueOf(decimale);
+	   switch(dec) {
+	   case "0":
+	     dec = "00";
+	     break;
+	   case "0.25":
+		   dec = "15";
+	     break;
+	   case "0.5":
+		   dec = "30";
+		     break;
+	   case "0.75":
+		   dec = "45";
+		     break;
+	   default:
+	     dec="00";
+	 }
+	   
+	   start_hour.setText(String.valueOf(i)+"h"+String.valueOf(dec)+"m");
+	   theStartHour = String.valueOf(i)+"h"+String.valueOf(dec)+"m";
+   }
+   
+   public void createAction(ActionEvent event) {
+	   System.out.println(Hours.getAccessibleText());
+	   
+	   ActivityFacade actiFacade = new ActivityFacade();
+       BDEActivity acti1 = new BDEActivity();
+
+       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getYear());
+       
+       acti1.setName_activity(this.titleActivityField.getText());
+       acti1.setDate(date);
+       acti1.setDescription(this.descriptionActivity.getText());
+       acti1.setStart_hour(theStartHour);
+       acti1.setDuration(theHours+"h"+theMinutes+"m");
+       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       
+       actiFacade.create(acti1);
+       super.setVue("Activity");
+       super.goTo("ActivityUI");
+       
+       
+   }
+   
+   public void createActionStaff(ActionEvent event) {
+	   System.out.println(Hours.getAccessibleText());
+	   
+	   ActivityFacade actiFacade = new ActivityFacade();
+       StaffActivity acti1 = new StaffActivity();
+
+       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getYear());
+       
+       acti1.setName_activity(this.titleActivityField.getText());
+       acti1.setDate(date);
+       acti1.setDescription(this.descriptionActivity.getText());
+       acti1.setStart_hour(theStartHour);
+       acti1.setDuration(theHours+"h"+theMinutes+"m");
+       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       System.out.println("Event:"+super.getEventSelected().getTitle());
+       actiFacade.createStaff(acti1,super.getEventSelected());
+       super.setVue("Activity");
+       super.goTo("ActivityUI");
+       
+       
+   }
+   
+   
+   public void setActivity(BDEActivity acti) {
+	   
+	   start_hour.setText(acti.getStart_hour());
+	   duration.setText(acti.getDuration());
+	   
+	   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	   String date = acti.getDate().replace("/","-");
+	   
+
+	   if(date.charAt(1)=='-') {
+		   date = "0" + date;
+		   if(date.charAt(4)=='-') {
+			   date = date.substring(0,3) + "0" + date.substring(3);
+		   }
+	   }else {
+		   System.out.println(date.charAt(4));
+		   if((date.charAt(4)=='-')) {
+			   date = date.substring(0,3) + "0" + date.substring(3);
+		   }
+		   
+	   }
+	   
+	   System.out.println(date);
+	   
+	   LocalDate localDate = LocalDate.parse(date, formatter);
+	   
+	   
+	   this.dateActivityField.setValue(localDate);
+	   this.titleActivityField.setText(acti.getName_activity());
+	   this.descriptionActivity.setText(acti.getDescription());
+	   this.nb_users.setText(String.valueOf(acti.getNb_users()));
+
+	   String[] tab1 = acti.getDuration().split("h");
+		
+	   theHours = tab1[0];
+	   theMinutes = tab1[1].substring(0,tab1[1].length()-1);
+	   theStartHour=acti.getStart_hour();
+	   
+   }
+   
+   public void setActivityStaff(StaffActivity acti) {
+	   
+	   start_hour.setText(acti.getStart_hour());
+	   duration.setText(acti.getDuration());
+	   
+	   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	   String date = acti.getDate().replace("/","-");
+	   
+
+	   if(date.charAt(1)=='-') {
+		   date = "0" + date;
+		   if(date.charAt(4)=='-') {
+			   date = date.substring(0,3) + "0" + date.substring(3);
+		   }
+	   }else {
+		   System.out.println(date.charAt(4));
+		   if((date.charAt(4)=='-')) {
+			   date = date.substring(0,3) + "0" + date.substring(3);
+		   }
+		   
+	   }
+	   
+	   System.out.println(date);
+	   
+	   LocalDate localDate = LocalDate.parse(date, formatter);
+	   
+	   
+	   this.dateActivityField.setValue(localDate);
+	   this.titleActivityField.setText(acti.getName_activity());
+	   this.descriptionActivity.setText(acti.getDescription());
+	   this.nb_users.setText(String.valueOf(acti.getNb_users()));
+
+	   String[] tab1 = acti.getDuration().split("h");
+		
+	   theHours = tab1[0];
+	   theMinutes = tab1[1].substring(0,tab1[1].length()-1);
+	   theStartHour=acti.getStart_hour();
+	   
+   }
+   
+   
+   public void modifyAction(ActionEvent event) {
+	   System.out.println(Hours.getAccessibleText());
+	   
+	   ActivityFacade actiFacade = new ActivityFacade();
+       BDEActivity acti1 = new BDEActivity();
+       
+       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getYear());
+       
+       acti1.setName_activity(this.titleActivityField.getText());
+       acti1.setDate(date);
+       acti1.setDescription(this.descriptionActivity.getText());
+       acti1.setStart_hour(theStartHour);
+       acti1.setDuration(theHours+"h"+theMinutes+"m");
+       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       
+       actiFacade.modify(acti1,super.getBdeActivitySelected().getId_activity());
+       super.setVue("Activity");
+       super.goTo("ActivityUI");
+       
+       
+   }
+   
+   
+   public void modifyActionStaff(ActionEvent event) {
+	   System.out.println(Hours.getAccessibleText());
+	   
+	   ActivityFacade actiFacade = new ActivityFacade();
+       StaffActivity acti1 = new StaffActivity();
+       
+       String date = String.valueOf(dateActivityField.getValue().getDayOfMonth()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getMonthValue()) + "/" +
+    		   String.valueOf(dateActivityField.getValue().getYear());
+       
+       acti1.setName_activity(this.titleActivityField.getText());
+       acti1.setDate(date);
+       acti1.setDescription(this.descriptionActivity.getText());
+       acti1.setStart_hour(theStartHour);
+       acti1.setDuration(theHours+"h"+theMinutes+"m");
+       acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       
+       System.out.println("title "+ acti1.getName_activity());
+       actiFacade.modifyStaff(acti1,super.getStaffActivitySelected().getId_activity());
+       super.setVue("Activity");
+       super.goTo("ActivityUI");
+       
+       
+   }
+   
+   @FXML
+	private void displaySelected(MouseEvent event) {
+		ActivityFacade actiFacade = new ActivityFacade();
+		if(actiList.getSelectionModel().getSelectedItem()!=null) {
+		
+			String event1 = actiList.getSelectionModel().getSelectedItem();
+			
+			if(event1.split(" : ")[1].endsWith("BDE")) {
+				
+				theBDEActi = actiFacade.find(Integer.parseInt(event1.split(" - ")[0]));
+
+				String alluser = actiFacade.findCollegue(theBDEActi);
+				
+				
+				if(event1 != null) {
+					this.description.setText(theBDEActi.getDescription());
+					this.title.setText(theBDEActi.getName_activity());
+					this.date.setText(theBDEActi.getDate());
+					this.start_hour.setText(theBDEActi.getStart_hour());
+					this.end_hour.setText(theBDEActi.getDuration());
+					this.users.setText(alluser);
+				}
+				
+			}else {
+				
+				theStaffActi = actiFacade.findStaff(Integer.parseInt(event1.split(" - ")[0]));
+
+				String alluser = actiFacade.findCollegueStaff(theStaffActi);
+				
+				if(event1 != null) {
+					this.description.setText(theStaffActi.getDescription());
+					this.title.setText(theStaffActi.getName_activity());
+					this.date.setText(theStaffActi.getDate());
+					this.start_hour.setText(theStaffActi.getStart_hour());
+					this.end_hour.setText(theStaffActi.getDuration());
+					this.users.setText(alluser);
+				
+				}
+			
+			}
+		
+		}
+
+		
+		
+	}
+   
+   public void activity(ActionEvent event) {
+	   super.setVue("Activity");
+		super.goTo("ActivityUI");
+	}
+	
+	
 }
 

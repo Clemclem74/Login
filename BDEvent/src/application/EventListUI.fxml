@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventListUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
    <children>
       <Text fill="WHITE" layoutX="197.0" layoutY="47.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Events : " textAlignment="CENTER" wrappingWidth="743.5625">
          <font>
@@ -38,7 +38,7 @@
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" style="-fx-background-color: #151928;" text="All Events" textFill="#52abff">
+                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list2" style="-fx-background-color: #151928;" text="All Events" textFill="#52abff">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
@@ -46,7 +46,7 @@
             </AnchorPane>
          </children>
       </Pane>
-      <ListView fx:id="eventList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displaySelected" prefHeight="426.0" prefWidth="200.0" />
+      <ListView fx:id="eventList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displayUserSelected" prefHeight="426.0" prefWidth="200.0" />
       <Label layoutX="253.0" layoutY="483.0" text="Title :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
@@ -77,7 +77,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="activity_button" layoutX="254.0" layoutY="100.0" mnemonicParsing="false" onAction="#activity" style="-fx-background-color: #151928;" text="Activities" textFill="#52abff">
+      <Button fx:id="activity_button" layoutX="254.0" layoutY="100.0" mnemonicParsing="false" onAction="#activity2" style="-fx-background-color: #151928;" text="Activities" textFill="#52abff">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>

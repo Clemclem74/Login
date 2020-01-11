@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateStaffActivityUI">
+<AnchorPane prefHeight="683.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityUI">
    <children>
-      <Button fx:id="saveButton" layoutX="212.0" layoutY="617.0" mnemonicParsing="false" onAction="#createAction" prefHeight="34.0" prefWidth="106.0" text="Save" />
+      <Button fx:id="saveButton" layoutX="212.0" layoutY="617.0" mnemonicParsing="false" onAction="#createActionStaff" prefHeight="34.0" prefWidth="106.0" text="Save" />
       <Text layoutX="92.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Staff Activity">
          <font>
             <Font size="43.0" />
