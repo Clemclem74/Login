@@ -191,6 +191,11 @@ public int accept(int idFee) {
     }
 }
 	
+public int getNumber(){
+	OracleDAO<Fee> feeDao = this.adf.getFeeDAO();
+	int nb = feeDao.getNumber();
+	return nb;
+}
 
 
 }

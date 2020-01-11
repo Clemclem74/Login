@@ -12,10 +12,15 @@ public class MainTest {
 		BDEFacade bdeFacade = new BDEFacade();
 		TeamFacade teamFacade = new TeamFacade();
 		TeamMemberFacade teamMemberFacade = new TeamMemberFacade();
+		PostFacade postFacade = new PostFacade();
+		FeeFacade feeFacade = new FeeFacade();
+		
 		int pre;
 		int post;
 		User u;
 		BDE bde;
+		Fee f;
+		Post p;
 		Team t1;
 		Team t2;
 		Team t3;
@@ -50,6 +55,7 @@ public class MainTest {
 			System.out.println("Erreur à la modification");
 			nb_erreurs++;
 		}
+		
 		
 		
 /* --------------------------------------------------------------------------------------------------------
@@ -184,8 +190,61 @@ public class MainTest {
 			nb_erreurs++;
 		}
 		
+/* --------------------------------------------------------------------------------------------------------
+		
+										FEE
+
+--------------------------------------------------------------------------------------------------------*/		
+		
+		//Ajout Fee 
+		pre = feeFacade.getNumber();
+		feeFacade.create(u.getId_user(), "T", "T", 1);
+		post=feeFacade.getNumber();
+		if (post != pre+1) {
+			System.out.println("Erreur création Fee");
+			nb_erreurs++;
+		}
+
+		//Modification Fee 
+		f = feeFacade.find("T");
+		feeFacade.modify(f.getId_fee(), "T", "Tbis" , 1);
+		f = feeFacade.find("T");
+		if (f.getComment_fee().contentEquals("Tbis")) {
+
+		}
+		else {
+			System.out.println("Erreur à la modification de fee");
+			nb_erreurs++;
+		}
 		
 		
+/* --------------------------------------------------------------------------------------------------------
+		
+										POST
+
+--------------------------------------------------------------------------------------------------------*/		
+
+		//Ajout Post 
+		pre = postFacade.getNumber();
+		postFacade.create(u.getId_user(), "T", "T", bde.getIdBDE());
+		post = postFacade.getNumber();
+		if (post != pre+1) {
+			System.out.println("Erreur création Post");
+			nb_erreurs++;
+		}
+
+		//Modification Post 
+		p = postFacade.find("T");
+		postFacade.modify(p.getId_postBB(), u.getId_user(), "T", "Tbis" , bde.getIdBDE());
+		p = postFacade.find("T");
+		if (p.getText_postBB().contentEquals("Tbis")) {
+
+		}
+		else {
+			System.out.println("Erreur à la modification de post");
+			nb_erreurs++;
+		}
+
 /* --------------------------------------------------------------------------------------------------------
 		
 								SUPPRESSIONS
@@ -244,6 +303,26 @@ public class MainTest {
 		post = userFacade.getNumber();
 		if (post != pre-1) {
 			System.out.println("Erreur Suppression User");
+			nb_erreurs++;
+		}
+		
+		//Suppression Fee 
+		f = feeFacade.find("T");
+		pre = feeFacade.getNumber();
+		feeFacade.delete(f);
+		post = feeFacade.getNumber();
+		if (post != pre-1) {
+			System.out.println("Erreur Suppression Fee");
+			nb_erreurs++;
+		}
+		
+		//Suppression post 
+		p = postFacade.find("T");
+		pre = postFacade.getNumber();
+		postFacade.delete(p);
+		post = postFacade.getNumber();
+		if (post != pre-1) {
+			System.out.println("Erreur Suppression Post");
 			nb_erreurs++;
 		}
 		

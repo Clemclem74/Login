@@ -191,5 +191,11 @@ public ArrayList<Post> findAllWaitingPostBDE(User user) {
 			return post;
 		}
 	}
+	
+	public int getNumber(){
+		OracleDAO<Post> postDao = this.adf.getPostDAO();
+		int nb = postDao.getNumber();
+		return nb;
+	}
 
 }
