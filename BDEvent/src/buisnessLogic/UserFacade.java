@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.ArrayList;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
@@ -178,6 +179,21 @@ public class UserFacade {
 			return user;
 		}
 	}
+	
+	
+	public User findByEmail(String email) {
+		OracleDAO<User> userDao = this.adf.getUserDAO();
+		User user = userDao.find(email);
+		if (user.getId_user()==0) {
+			System.out.println("user null facade");
+			return null;
+		}
+		else {
+			return user;
+		}
+	}
+	
+	
 
 
 
@@ -194,6 +210,15 @@ public class UserFacade {
 	public void setBDEnull(User user) {
 		modify(user.getId_user(),user.getUsername(),user.getEmailuser(),user.getPassworduser(),user.getFirstname(), user.getLastname(),user.getPhonenumberuser(),-1);
 	}
+	
+	
+	
+	public int getNumber(){
+		OracleDAO<User> userDao = this.adf.getUserDAO();
+		int nb = userDao.getNumber();
+		return nb;
+	}
+	
 	
 	
 

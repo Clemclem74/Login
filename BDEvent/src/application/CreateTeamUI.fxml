@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateTeamUI">
+<AnchorPane prefHeight="166.0" prefWidth="465.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeamUI">
    <children>
-      <Label layoutX="42.0" layoutY="19.0" prefHeight="35.0" prefWidth="401.0" text="Enter Team Name :">
+      <Label layoutX="42.0" layoutY="19.0" prefHeight="35.0" prefWidth="401.0" text="Enter Team Name :" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -19,7 +19,12 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="createButton" layoutX="326.0" layoutY="110.0" mnemonicParsing="false" onAction="#createAction" prefHeight="39.0" prefWidth="101.0" text="OK" />
-      <TextField fx:id="nameBDEField" layoutX="30.0" layoutY="78.0" prefHeight="39.0" prefWidth="264.0" promptText="Name" />
+      <Button fx:id="createButton" layoutX="342.0" layoutY="74.0" mnemonicParsing="false" onAction="#createAction" prefHeight="45.0" prefWidth="95.0" style="-fx-background-color: #151928;" text="Create" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Separator layoutX="47.0" layoutY="117.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <TextField fx:id="nameTeamField" layoutX="42.0" layoutY="78.0" prefHeight="34.0" prefWidth="255.0" promptText="Name of the Team" style="-fx-background-color: #4b5369; -fx-text-inner-color: #ffffff;" />
    </children>
 </AnchorPane>

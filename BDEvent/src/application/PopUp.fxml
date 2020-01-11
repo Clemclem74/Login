@@ -7,14 +7,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="220.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PopUp">
+<AnchorPane prefHeight="244.0" prefWidth="612.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PopUp">
    <children>
-      <Label fx:id="titlePopUp" layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0">
+      <Label fx:id="titlePopUp" layoutX="50.0" layoutY="19.0" prefHeight="35.0" prefWidth="519.0" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="labelPopUp" layoutX="42.0" layoutY="83.0" prefHeight="78.0" prefWidth="381.0" />
-      <Button fx:id="okButton" layoutX="182.0" layoutY="167.0" mnemonicParsing="false" onAction="#okContinue" prefHeight="39.0" prefWidth="101.0" text="Ok, continue" />
+      <Label fx:id="labelPopUp" layoutX="42.0" layoutY="83.0" prefHeight="78.0" prefWidth="527.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Label>
+      <Button fx:id="okButton" layoutX="256.0" layoutY="177.0" mnemonicParsing="false" onAction="#okContinue" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="OK" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

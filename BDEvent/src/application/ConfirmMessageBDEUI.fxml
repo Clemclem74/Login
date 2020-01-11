@@ -7,19 +7,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="166.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConfirmMessageUI">
+<AnchorPane prefHeight="166.0" prefWidth="465.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConfirmMessageUI">
    <children>
-      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="303.0" text="Votre BDE a bien été créé !!!">
+      <Label layoutX="84.0" layoutY="19.0" prefHeight="35.0" prefWidth="324.0" text="Your BDE as been created !" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="83.0" prefHeight="27.0" prefWidth="141.0" text="Votre id est le : " />
-      <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0">
+      <Label layoutX="54.0" layoutY="83.0" prefHeight="27.0" prefWidth="141.0" text="Your ID is : " textFill="WHITE">
          <font>
-            <Font size="48.0" />
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0" style="-fx-background-color: #4b5369;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="326.0" layoutY="110.0" mnemonicParsing="false" onAction="#confirmCreation" prefHeight="39.0" prefWidth="101.0" text="OK" />
+      <Button fx:id="modifyContact" layoutX="337.0" layoutY="97.0" mnemonicParsing="false" onAction="#modifySelected" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="OK" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

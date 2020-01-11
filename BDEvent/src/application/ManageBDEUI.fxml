@@ -10,16 +10,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="383.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ManageBDEUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BDEUI">
    <children>
-      <Text layoutX="195.0" layoutY="42.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="402.0" prefWidth="185.0" style="-fx-background-color: #63b6ce;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,29 +24,71 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="homePage1" layoutX="58.0" layoutY="141.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
                      <font>
-                        <Font name="Copperplate Gothic Bold" size="10.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="16.0" layoutY="119.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #6f5c89;" text="&lt; HomePage" textFill="#fcf8f8" />
-                  <Button layoutX="24.0" layoutY="182.0" mnemonicParsing="false" onAction="#manageTeams" text="Manage Teams" />
+                  <Button layoutX="29.0" layoutY="263.0" mnemonicParsing="false" onAction="#manageTeams" style="-fx-background-color: #151928;" text="Manage Teams" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
-      <Label layoutX="200.0" layoutY="93.0" prefHeight="39.0" prefWidth="159.0" text="Informations : " />
-      <Label layoutX="225.0" layoutY="154.0" text="Name : " />
-      <Label layoutX="225.0" layoutY="201.0" text="School :" />
-      <Label fx:id="nameBDE_text" layoutX="339.0" layoutY="154.0" />
-      <Label fx:id="school_text" layoutX="339.0" layoutY="201.0" />
-      <Label fx:id="name_text" layoutX="311.0" layoutY="16.0">
+      <Label layoutX="248.0" layoutY="178.0" prefHeight="39.0" prefWidth="185.0" text="Informations : " textFill="WHITE">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Button layoutX="359.0" layoutY="84.0" mnemonicParsing="false" onAction="#modifyBDE" text="Modify" />
-      <Button layoutX="427.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteBDE" style="-fx-background-color: red;" text="Delete my BDE" AnchorPane.topAnchor="84.0" />
-      <Label layoutX="225.0" layoutY="249.0" text="Id : " />
-      <Label fx:id="id_text" layoutX="269.0" layoutY="249.0" prefHeight="27.0" prefWidth="62.0" />
+      <Label layoutX="248.0" layoutY="238.0" text="Name : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label layoutX="248.0" layoutY="285.0" text="School :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="nameBDE_text" layoutX="362.0" layoutY="238.0" prefHeight="35.0" prefWidth="318.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="school_text" layoutX="362.0" layoutY="285.0" prefHeight="35.0" prefWidth="351.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="name_text" layoutX="448.0" layoutY="180.0" prefHeight="35.0" prefWidth="260.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label layoutX="248.0" layoutY="333.0" text="Id : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="id_text" layoutX="304.0" layoutY="333.0" prefHeight="27.0" prefWidth="62.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Text fill="#52abff" layoutX="223.0" layoutY="74.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage My BDE" textAlignment="CENTER" wrappingWidth="715.5625">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Text>
+      <Button fx:id="logoutButton" layoutX="48.0" layoutY="549.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="598.0" layoutY="544.0" mnemonicParsing="false" onAction="#modifyBDE" style="-fx-background-color: #151928;" text="Modify" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="724.0" layoutY="544.0" mnemonicParsing="false" onAction="#deleteBDE" style="-fx-background-color: #151928;" text="Delete" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

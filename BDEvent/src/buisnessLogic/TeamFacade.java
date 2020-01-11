@@ -43,17 +43,17 @@ public class TeamFacade {
 	
 	
 	
-	public int modify(int idBDE, String nameBDE , String schoolBDE) {
-
-		BDE obj = new BDE();
-		obj.setCreator(Routing.getCurrentUser());
-		obj.setNameBDE(nameBDE);
-		obj.setSchoolBDE(schoolBDE);
-		obj.setIdBDE(idBDE);
+	public int modify(int idTeam, String nameTeam, int idBDE ) {
+		BDEFacade bdeFacade = new BDEFacade();
+		Team obj = new Team();
+		obj.setIdTeam(idTeam);
+		obj.setNameTeam(nameTeam);
+		obj.setBde(bdeFacade.findById(idBDE));
+		
      
-        OracleDAO<BDE> bdeDao = adf.getBDEDAO();
-        if(bdeDao.update(idBDE,obj)) {
-        	System.out.println("BDE modified");
+        OracleDAO<Team> teamDao = adf.getTeamDAO();
+        if(teamDao.update(obj)) {
+        	System.out.println("Team modified");
         	return 1;
         }
         else {
@@ -86,9 +86,29 @@ public class TeamFacade {
 			return team;
 		}
 	}
+	
+	
+	public Team findByName(String nameTeam) {
+		OracleDAO<Team> teamDao = this.adf.getTeamDAO();
+		Team team = teamDao.findByName(nameTeam);
+		if (team.getIdTeam()==0) {
+			System.out.println("Team null");
+			return null;
+		}
+		else {
+			return team;
+		}
+	}
 
 
+	
+	public int getNumber(){
+		OracleDAO<Team> teamDao = this.adf.getTeamDAO();
+		int nb = teamDao.getNumber();
+		return nb;
+	}
 
+	
 
 	public void sendError() {
 		// TODO - implement LoginFacade.sendError

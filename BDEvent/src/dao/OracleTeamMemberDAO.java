@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
+import buisnessLogic.Contact;
 import buisnessLogic.Team;
+import buisnessLogic.TeamFacade;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
@@ -56,7 +58,7 @@ public int create(TeamMember obj) {
 }
 
 public boolean delete(TeamMember teamMember) {
-	int idUser = teamMember.getId_user();
+	int idUser = teamMember.getUser().getId_user();
 	int idTeam = teamMember.getTeam().getIdTeam();
 	String SQL_DELETE = "DELETE from TEAM_MEMBER WHERE ID_USER='"+idUser+"' AND ID_TEAM='"+idTeam+"'";
 	 try {
@@ -117,7 +119,7 @@ public TeamMember findById(int id) {
 
 public ArrayList<Integer> findTeamsByUser(int idUser){
 
-	  String SQL_SELECT = "Select * from Team where ID_USER='"+idUser+"'";
+	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_USER='"+idUser+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -127,9 +129,8 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 	      ResultSet resultSet = preparedStatement.executeQuery();
 	      ArrayList<Integer> teams = new ArrayList<Integer>();
 	      while (resultSet.next()) {
-	    	  teams.add( resultSet.getInt("ID_TEAM"));
+	    	  teams.add(resultSet.getInt("ID_TEAM"));
 	      }
-	      System.out.println(teams.toString());
 	      
 		  conn.close();
 	      return teams;
@@ -168,6 +169,81 @@ public ArrayList<Integer> findMembersByTeam(int idTeam){
 	  }
 	return new ArrayList<Integer>();
 }
+
+
+
+public int getNumber() {
+	 String SQL_SELECT = "Select * from TEAM_MEMBER";
+	  // auto close connection and preparedStatement
+	
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+		  
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      int nb=0;
+	      while (resultSet.next()) {
+	    	  nb++;
+	      }
+		  conn.close();
+
+	      return nb;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	
+	return 0;
+	
+}
+
+
+public TeamMember findByUserTeam(User user, Team team) {
+	TeamMember obj = new TeamMember();      
+    
+	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM='"+team.getIdTeam()+"' AND ID_USER='" + user.getId_user() + "' ";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      
+	      while (resultSet.next()) {
+	    	  
+	          int id_team = resultSet.getInt("ID_TEAM");
+	          int id_user = resultSet.getInt("ID_USER");
+	          boolean ischief;
+	          if (resultSet.getInt("IS_CHIEF") == 1) {
+	        	  ischief=true;
+	          }
+	          else {
+	        	  ischief = false;
+	          }
+	          
+	          UserFacade userFacade = new UserFacade();
+	          TeamFacade teamFacade = new TeamFacade();
+	          obj.setChief(ischief);
+	          obj.setUser(userFacade.findById(id_user));
+	          obj.setTeam(teamFacade.findById(id_team));
+	          
+
+	      }
+		  conn.close();
+	      return obj;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return obj;
+}
+
+
 
 
 @Override
@@ -216,6 +292,12 @@ public ArrayList<Integer> getEventByUser(User user) {
 public boolean leave(int id, TeamMember obj) {
 	// TODO Auto-generated method stub
 	return false;
+}
+
+@Override
+public int count_users_BDEacti(int acti) {
+	// TODO Auto-generated method stub
+	return 0;
 }
 
 

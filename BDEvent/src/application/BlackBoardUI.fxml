@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BlackBoardUI">
    <children>
-      <Text layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BLACKBOARD" textAlignment="CENTER" wrappingWidth="328.5625">
+      <Text fill="#53abff" layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BLACKBOARD" textAlignment="CENTER" wrappingWidth="328.5625">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #403E3E;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,32 +29,68 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #53afbb;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="homePage" layoutX="46.0" layoutY="121.0" mnemonicParsing="false" onAction="#homePage" text="HomePage" />
-                  <Button fx:id="newPost" layoutX="29.0" layoutY="202.0" mnemonicParsing="false" onAction="#newPost" text="Create a new Post" />
-                  <Button fx:id="seePost" layoutX="41.0" layoutY="263.0" mnemonicParsing="false" onAction="#seeMyPost" text="See my Posts" />
-                  <Button fx:id="buttonSeeBB" layoutX="25.0" layoutY="304.0" mnemonicParsing="false" onAction="#seeBB" text="Back to BlackBoard" />
-                  <Button fx:id="manageButton" layoutX="26.0" layoutY="378.0" mnemonicParsing="false" onAction="#manageBB" style="-fx-background-color: pink;" text="Manage BlackBoard" />
+                  <Button fx:id="homePage" layoutX="41.0" layoutY="113.0" mnemonicParsing="false" onAction="#homePage" style="-fx-background-color: #151928;" text="HomePage" textFill="#53abff">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="newPost" layoutX="19.0" layoutY="231.0" mnemonicParsing="false" onAction="#newPost" style="-fx-background-color: #151928;" text="Create a new Post" textFill="#53abff">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="seePost" layoutX="31.0" layoutY="282.0" mnemonicParsing="false" onAction="#seeMyPost" style="-fx-background-color: #151928;" text="See my Posts" textFill="#53abff">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="buttonSeeBB" layoutX="10.0" layoutY="328.0" mnemonicParsing="false" onAction="#seeBB" style="-fx-background-color: #151928;" text="Back to BlackBoard" textFill="#53abff">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="manageButton" layoutX="8.0" layoutY="377.0" mnemonicParsing="false" onAction="#manageBB" style="-fx-background-color: #151928; -fx-border-color: #53afbb;" text="Manage BlackBoard" textFill="#127fe4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
       
       <ListView fx:id="postList" layoutX="289.0" layoutY="103.0" onMouseClicked="#displaySelectedList" prefHeight="242.0" prefWidth="577.0" />
-      <Text fx:id="textPostSelected" layoutX="311.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="533.13671875" />
-      <Label fx:id="titrePostSelected" layoutX="584.0" layoutY="380.0" prefHeight="17.0" prefWidth="355.0">
+      <Text fx:id="textPostSelected" fill="WHITE" layoutX="262.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="577.0">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font size="17.0" />
+         </font></Text>
+      <Label fx:id="titrePostSelected" alignment="CENTER" layoutX="375.0" layoutY="400.0" prefHeight="30.0" prefWidth="446.0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
          </font></Label>
-      <Button fx:id="modifyPost" layoutX="383.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" text="Modify this Post" />
-      <Button fx:id="deletePost" layoutX="598.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: red;" text="Delete this Post" />
-      <Text fx:id="textName" layoutX="193.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher : " />
-      <Label fx:id="publisherName" layoutX="261.0" layoutY="372.0" prefHeight="17.0" prefWidth="141.0" />
-      <Text fx:id="stateText" layoutX="431.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State :" />
-      <Label fx:id="statePost" layoutX="499.0" layoutY="526.0" prefHeight="17.0" prefWidth="141.0" />
+      <Button fx:id="modifyPost" layoutX="383.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" style="-fx-background-color: #151928;" text="Modify this Post" textFill="#3ab52c">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="deletePost" layoutX="598.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: #151928;" text="Delete this Post" textFill="#dd5a2e">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Text fx:id="textName" fill="WHITE" layoutX="193.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher : ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Label fx:id="publisherName" layoutX="289.0" layoutY="364.0" prefHeight="27.0" prefWidth="247.0" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Text fx:id="stateText" fill="WHITE" layoutX="431.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Text>
+      <Label fx:id="statePost" layoutX="497.0" layoutY="518.0" prefHeight="17.0" prefWidth="141.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>

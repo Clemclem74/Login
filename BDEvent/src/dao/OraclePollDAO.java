@@ -115,7 +115,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
-				  ORACLE_DB_PATH, "system", "oose");
+				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 		      ResultSet resultSet = preparedStatement.executeQuery();
@@ -188,7 +188,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, "system", "oose");
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
 	      ResultSet resultSet = preparedStatement.executeQuery();

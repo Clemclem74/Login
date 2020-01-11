@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Glow?>
@@ -10,25 +17,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" stylesheets="@HomePage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageUI">
    <children>
-      <Text layoutX="250.0" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="328.5625">
+      <Text fill="#53baff" layoutX="216.0" layoutY="67.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="185.0">
          <font>
-            <Font size="23.0" />
+            <Font name="System Bold" size="33.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: f7b4b4;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
                <children>
-                  <Button fx:id="events_button" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" />
-                  <Button fx:id="fees_button" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" onAction="#goToFee" prefHeight="39.0" prefWidth="144.0" text="Fees" />
-                  <Button fx:id="communication_button" layoutX="25.0" layoutY="349.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Communication">
+                  <Button fx:id="events_button" layoutX="21.0" layoutY="297.0" mnemonicParsing="false" onAction="#manageMyEventsAction" prefHeight="36.0" prefWidth="144.0" text="Events" textFill="#52abff">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="fees_button" layoutX="21.0" layoutY="343.0" mnemonicParsing="false" onAction="#goToFee" prefHeight="34.0" prefWidth="144.0" text="Fees" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="communication_button" layoutX="21.0" layoutY="388.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="144.0" text="Communication" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
                   <ImageView fitHeight="81.0" fitWidth="110.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -36,43 +49,96 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="558.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="558.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="createBDE" layoutX="59.0" layoutY="145.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" />
-                  <Button fx:id="joinBDE" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" />
-                  <Button fx:id="showBDE" layoutX="108.0" layoutY="110.0" mnemonicParsing="false" onAction="#manageBDEAction" text="MyBDE" />
-                  <Button fx:id="quitBDEbutton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#quitBDE" text="QuitBDE" />
-                  <Button fx:id="goToBB" layoutX="25.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" />
-                  <Button fx:id="manageMyTeams" layoutX="17.0" layoutY="182.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" />
-                  <Button fx:id="poll_button" layoutX="25.0" layoutY="245.0" mnemonicParsing="false" onAction="#goToPoll" prefHeight="31.0" prefWidth="144.0" text="Poll" />
+                  <Button fx:id="createBDE" layoutX="58.0" layoutY="162.0" mnemonicParsing="false" onAction="#createBDE" text="Create BDE" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="joinBDE" layoutX="65.0" layoutY="128.0" mnemonicParsing="false" onAction="#joinBDE" text="Join BDE" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="showBDE" layoutX="116.0" layoutY="195.0" mnemonicParsing="false" onAction="#manageBDEAction" style="-fx-background-color: #151928;" text="MyBDE" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="quitBDEbutton" layoutX="65.0" layoutY="95.0" mnemonicParsing="false" onAction="#quitBDE" style="-fx-background-color: #151928;" text="QuitBDE" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="goToBB" layoutX="21.0" layoutY="433.0" mnemonicParsing="false" onAction="#goToBB" prefHeight="36.0" prefWidth="144.0" text="BlackBoard" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="manageMyTeams" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#manageMyTeamsAction" text="MyTeams" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="poll_button" layoutX="21.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToPoll" prefHeight="36.0" prefWidth="144.0" text="Poll" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="goToContact" layoutX="21.0" layoutY="480.0" mnemonicParsing="false" onAction="#goToContacts" prefHeight="36.0" prefWidth="144.0" text="Contact" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
-      <Label layoutX="200.0" layoutY="93.0" prefHeight="39.0" prefWidth="159.0" text="Your informations : " />
-      <Label layoutX="225.0" layoutY="154.0" text="Username : " />
-      <Label layoutX="225.0" layoutY="201.0" text="Email : " />
-      <Label layoutX="225.0" layoutY="249.0" text="Phone Number : " />
-      <Label fx:id="username_text" layoutX="339.0" layoutY="154.0" />
-      <Label fx:id="email_text" layoutX="339.0" layoutY="201.0" />
-      <Label fx:id="phone_number_text" layoutX="371.0" layoutY="249.0" />
-      <Label fx:id="name_text" layoutX="414.0" layoutY="25.0">
+      <Label layoutX="223.0" layoutY="135.0" prefHeight="39.0" prefWidth="232.0" text="Your informations : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font></Label>
+      <Label layoutX="268.0" layoutY="215.0" text="Username : " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label layoutX="268.0" layoutY="262.0" text="Email : " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label layoutX="268.0" layoutY="310.0" text="Phone Number : " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label fx:id="username_text" layoutX="389.0" layoutY="215.0" textFill="#53baff">
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Button layoutX="655.0" layoutY="29.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify my account" />
-      <Button layoutX="799.0" layoutY="29.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: red;" text="Delete account" AnchorPane.topAnchor="29.0" />
-      <Label layoutX="225.0" layoutY="299.0" text="BDE : " />
-      <Label fx:id="noBDE" layoutX="280.0" layoutY="294.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet">
+      <Label fx:id="email_text" layoutX="351.0" layoutY="261.0" textFill="#53baff">
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Label fx:id="BDELabel" layoutX="271.0" layoutY="294.0" prefHeight="27.0" prefWidth="286.0">
+      <Label fx:id="phone_number_text" layoutX="443.0" layoutY="309.0" textFill="#53baff">
          <font>
-            <Font size="21.0" />
+            <Font size="23.0" />
+         </font></Label>
+      <Label fx:id="name_text" layoutX="398.0" layoutY="30.0" textFill="#53baff">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font></Label>
+      <Button layoutX="677.0" layoutY="570.0" mnemonicParsing="false" onAction="#modifyUser" text="Modify my account" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="804.0" layoutY="567.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #4b5369;" text="Delete account ?" AnchorPane.topAnchor="567.0" />
+      <Label layoutX="268.0" layoutY="360.0" text="BDE : " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label fx:id="noBDE" layoutX="323.0" layoutY="355.0" prefHeight="38.0" prefWidth="240.0" text="No BDE yet" textFill="#54baff">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <Label fx:id="BDELabel" layoutX="328.0" layoutY="359.0" prefHeight="27.0" prefWidth="286.0" textFill="#53baff">
+         <font>
+            <Font size="23.0" />
          </font></Label>
    </children>
 </AnchorPane>

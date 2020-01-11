@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 
 import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
+import buisnessLogic.Contact;
 import buisnessLogic.Post;
 import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
@@ -33,6 +34,9 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 		  return new OracleFeeDAO(conn);
 	  }
 	  
+	  public OracleDAO<Contact> getContactDAO(){
+		  return new OracleContactDAO(conn);
+	  }
 	  
 
 	@Override

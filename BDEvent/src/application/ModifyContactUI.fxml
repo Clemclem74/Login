@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="509.0" prefWidth="534.0" style="-fx-background-color: #2D3447;" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContactsUI">
+   <children>
+      <Text fill="WHITE" layoutX="149.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Contact">
+         <font>
+            <Font name="System Bold" size="43.0" />
+         </font>
+      </Text>
+      <TextField fx:id="phoneNumberField" layoutX="134.0" layoutY="201.0" prefHeight="34.0" prefWidth="255.0" promptText="Phone Number" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <TextField fx:id="nameField" layoutX="134.0" layoutY="95.0" prefHeight="34.0" prefWidth="255.0" promptText="Name" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <Separator layoutX="137.0" layoutY="237.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Separator layoutX="139.0" layoutY="133.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Button layoutX="25.0" layoutY="34.0" mnemonicParsing="false" onAction="#backContact" style="-fx-background-color: #2D3447;" text="&lt; back" textFill="WHITE" />
+      <Separator layoutX="139.0" layoutY="185.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <TextField fx:id="companyField" layoutX="135.0" layoutY="145.0" prefHeight="34.0" prefWidth="255.0" promptText="Company" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <TextArea fx:id="informationsField" layoutX="89.0" layoutY="277.0" prefHeight="135.0" prefWidth="348.0" promptText="Informations :" />
+      <Button fx:id="saveButton" layoutX="207.0" layoutY="445.0" mnemonicParsing="false" onAction="#modifyContact" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #2196f3;" text="Save" textFill="WHITE" />
+   </children>
+</AnchorPane>

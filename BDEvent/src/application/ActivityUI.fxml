@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityUI">
    <children>
-      <Text layoutX="585.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities for : " textAlignment="CENTER" wrappingWidth="166.5625">
+      <Text fill="WHITE" layoutX="582.0" layoutY="73.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="Activities for : " textAlignment="CENTER" wrappingWidth="214.5625">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,13 +29,19 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
-                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" text="Events List" />
+                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" style="-fx-background-color: #151928;" text="Events List" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
@@ -48,8 +54,14 @@
             <TableColumn fx:id="BDE_Activity_nb" prefWidth="121.0" text="Nb Users" />
         </columns>
       </TableView>
-      <Button layoutX="336.0" layoutY="554.0" mnemonicParsing="false" onAction="#join" text="Join" />
-      <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" onAction="#join2" text="Join" />
+      <Button layoutX="336.0" layoutY="554.0" mnemonicParsing="false" onAction="#join" style="-fx-background-color: #151928;" text="Join" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="730.0" layoutY="554.0" mnemonicParsing="false" onAction="#join2" style="-fx-background-color: #151928;" text="Join" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
       <TableView fx:id="Staff_Activity" layoutX="626.0" layoutY="94.0" onMouseClicked="#getSelected2" prefHeight="417.0" prefWidth="263.0">
          <columns>
             <TableColumn fx:id="Staff_Activity_title" prefWidth="92.0" text="Title" />
@@ -58,33 +70,42 @@
             <TableColumn fx:id="Staff_Activity_nb" prefWidth="125.0" text="Nb Users" />
          </columns>
       </TableView>
-      <Text layoutX="288.0" layoutY="64.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BDE Activities" textAlignment="CENTER" wrappingWidth="166.5625">
+      <Text fill="WHITE" layoutX="238.0" layoutY="70.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="BDE Activities" textAlignment="CENTER" wrappingWidth="196.5625">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Text>
-      <SplitMenuButton fx:id="Menu_Button" layoutX="483.0" layoutY="539.0" mnemonicParsing="false" text="Create Activity">
+      <SplitMenuButton fx:id="Menu_Button" layoutX="483.0" layoutY="539.0" mnemonicParsing="false" style="-fx-background-color: #151928;" text="Create Activity" textFill="#52abff">
         <items>
           <MenuItem fx:id="BDE_Activity_Menu" mnemonicParsing="false" onAction="#createBDEActivity" text="BDE Activity" />
           <MenuItem fx:id="Staff_Activity_Menu" mnemonicParsing="false" onAction="#createStaffActivity" text="Staff Activity" />
         </items>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </SplitMenuButton>
       <Label fx:id="name_event" layoutX="754.0" layoutY="44.0">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <MenuButton layoutX="516.0" layoutY="156.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Modify">
+      <MenuButton layoutX="516.0" layoutY="156.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #151928;" text="Modify" textFill="#52abff">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#modify" text="BDE Activity" />
           <MenuItem mnemonicParsing="false" onAction="#modify2" text="Staff Activity" />
         </items>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </MenuButton>
-      <MenuButton layoutX="516.0" layoutY="214.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="87.0" text="Delete">
+      <MenuButton layoutX="516.0" layoutY="214.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="94.0" style="-fx-background-color: #151928;" text="Delete" textFill="#52abff">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#delete" text="BDE Activity" />
             <MenuItem mnemonicParsing="false" onAction="#delete2" text="Staff Activity" />
          </items>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </MenuButton>
    </children>
 </AnchorPane>
