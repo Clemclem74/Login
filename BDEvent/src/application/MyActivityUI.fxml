@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivityUI">
    <children>
-      <Text layoutX="197.0" layoutY="47.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Activity : " textAlignment="CENTER" wrappingWidth="743.5625">
+      <Text fill="WHITE" layoutX="197.0" layoutY="47.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Activity : " textAlignment="CENTER" wrappingWidth="743.5625">
          <font>
-            <Font size="26.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #59FF33;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="185.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>
@@ -29,68 +29,74 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="50.0" layoutY="547.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
                   </Button>
-                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #6f5c89;" text="&lt; Home" textFill="#fcf8f8" />
-                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" text="All Events" />
+                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #2D3447;" text="&lt; Home" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#list" style="-fx-background-color: #151928;" text="All Events" textFill="#52abff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>
       </Pane>
       <ListView fx:id="actiList" layoutX="682.0" layoutY="79.0" onMouseClicked="#displaySelected" prefHeight="426.0" prefWidth="200.0" />
-      <Label layoutX="228.0" layoutY="98.0" text="Title :">
+      <Label layoutX="228.0" layoutY="98.0" text="Title :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="428.0" layoutY="98.0" text="Date :">
+      <Label layoutX="428.0" layoutY="98.0" text="Date :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label layoutX="223.0" layoutY="276.0" text="Description :">
+      <Label layoutX="223.0" layoutY="276.0" text="Description :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <Label fx:id="title" layoutX="285.0" layoutY="98.0">
+      <Label fx:id="title" layoutX="285.0" layoutY="98.0" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Label fx:id="description" layoutX="224.0" layoutY="304.0">
+      <Label fx:id="description" layoutX="224.0" layoutY="304.0" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Label fx:id="date" layoutX="490.0" layoutY="98.0" prefHeight="26.0" prefWidth="128.0">
+      <Label fx:id="date" layoutX="490.0" layoutY="98.0" prefHeight="26.0" prefWidth="128.0" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Label fx:id="start_hour" layoutX="314.0" layoutY="190.0" prefHeight="26.0" prefWidth="91.0">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="223.0" layoutY="190.0" text="Start hour :">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="420.0" layoutY="190.0" text="Duration :">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="end_hour" layoutX="512.0" layoutY="190.0" prefHeight="26.0" prefWidth="148.0">
+      <Label fx:id="start_hour" layoutX="314.0" layoutY="190.0" prefHeight="26.0" prefWidth="91.0" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="228.0" layoutY="441.0" text="Users for this activity:">
+      <Label layoutX="223.0" layoutY="190.0" text="Start hour :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="users" layoutX="227.0" layoutY="479.0" prefHeight="108.0" prefWidth="436.0">
+      <Label layoutX="420.0" layoutY="190.0" text="Duration :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="end_hour" layoutX="512.0" layoutY="190.0" prefHeight="26.0" prefWidth="148.0" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="228.0" layoutY="441.0" text="Users for this activity:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="users" layoutX="227.0" layoutY="479.0" prefHeight="108.0" prefWidth="436.0" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

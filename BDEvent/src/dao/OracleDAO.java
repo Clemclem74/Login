@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import buisnessLogic.BDE;
 import buisnessLogic.Contact;
+import buisnessLogic.Event;
 import buisnessLogic.Fee;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
@@ -46,6 +47,8 @@ public abstract class OracleDAO<T> {
 
 
   public abstract int create(T obj);
+  
+  public abstract int create(T obj,Event event);
 
   public abstract int join(T obj,User user);
 

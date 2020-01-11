@@ -285,7 +285,7 @@ public class EventUI extends Routing implements Initializable {
 	
 	public void modify(ActionEvent event) {
 		if(super.getEventSelected().getResponsible()==super.getCurrentUser().getId_user()) {
-			super.setVue("CreateEvent");
+			super.setVue("ModifyEvent");
 			super.goTo("ModifyEventUI");
 		}
 		else {

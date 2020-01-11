@@ -7,32 +7,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
+<AnchorPane prefHeight="500.0" prefWidth="534.0" style="-fx-background-color: #2D3447;" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventUI">
    <children>
-      <Button fx:id="saveButton" layoutX="204.0" layoutY="430.0" mnemonicParsing="false" onAction="#createAction2" prefHeight="34.0" prefWidth="106.0" text="Save" />
-      <Text layoutX="149.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Event">
+      <Button fx:id="saveButton" layoutX="204.0" layoutY="430.0" mnemonicParsing="false" onAction="#createAction2" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: #2196f3;" text="Save" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="149.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Event">
          <font>
-            <Font size="43.0" />
+            <Font name="System Bold" size="43.0" />
          </font>
       </Text>
-      <TextField fx:id="descriptionEventField" layoutX="134.0" layoutY="211.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Description" />
-      <Text layoutX="218.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="222.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Title">
+      <TextField fx:id="descriptionEventField" layoutX="134.0" layoutY="211.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Description" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <TextField fx:id="titleEventField" layoutX="134.0" layoutY="128.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Title" style="-fx-background-color: #2D3447; -fx-text-inner-color: #ffffff;" />
+      <Text fill="#a0a2ab" layoutX="240.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="titleEventField" layoutX="134.0" layoutY="128.0" prefHeight="34.0" prefWidth="255.0" promptText="Event Title" />
-      <Text layoutX="240.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+      <DatePicker fx:id="dateEventField" layoutX="165.0" layoutY="287.0" style="-fx-background-color: #2D3447;" />
+      <Button fx:id="image" layoutX="201.0" layoutY="353.0" mnemonicParsing="false" onAction="#selectImage" style="-fx-background-color: #151928;" text="Choose Image" textFill="#52abff">
          <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <DatePicker fx:id="dateEventField" layoutX="151.0" layoutY="287.0" />
-      <Button fx:id="image" layoutX="201.0" layoutY="353.0" mnemonicParsing="false" onAction="#selectImage" text="Choose Image" />
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Separator layoutX="137.0" layoutY="247.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Separator layoutX="139.0" layoutY="163.0" opacity="0.5" prefHeight="0.0" prefWidth="246.0" style="-fx-background-color: #a0a2ab;" />
+      <Button layoutX="25.0" layoutY="34.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #2D3447;" text="&lt; back" textFill="WHITE" />
    </children>
 </AnchorPane>
