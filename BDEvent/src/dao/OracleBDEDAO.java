@@ -161,6 +161,51 @@ public BDE findById(int id) {
 return obj;
 }
 
+
+
+
+
+public BDE findBySchool(String school) {
+	  BDE obj = new BDE();
+
+	  String SQL_SELECT = "Select * from BDE where SCHOOLBDE='"+school+"'";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      UserFacade userfacade = new UserFacade();
+
+	      while (resultSet.next()) {
+
+	          int id_BDE = resultSet.getInt("ID_BDE");
+	          User creator = userfacade.findById(Integer.parseInt(resultSet.getString("IDCREATOR")));
+	          String nameBDE = resultSet.getString("NAMEBDE");
+	          String schoolBDE = resultSet.getString("SCHOOLBDE");
+
+	          obj.setIdBDE(id_BDE);
+	          obj.setCreator(creator);
+	          obj.setNameBDE(nameBDE);
+	          obj.setSchoolBDE(schoolBDE);
+	      }
+		  conn.close();
+	      return obj;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	return obj;
+	}
+
+
+
+
+
+
 public ArrayList<Integer> findTeams(int idBDE){
 
 	  String SQL_SELECT = "Select * from Team where ID_BDE='"+idBDE+"'";
@@ -188,6 +233,34 @@ public ArrayList<Integer> findTeams(int idBDE){
 	return new ArrayList<Integer>();
 }
 
+
+
+public int getNumber() {
+	 String SQL_SELECT = "Select * from BDE";
+	  // auto close connection and preparedStatement
+	
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+		  
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      int nb=0;
+	      while (resultSet.next()) {
+	    	  nb++;
+	      }
+		  conn.close();
+
+	      return nb;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	
+	return 0;
+	
+}
 
 
 

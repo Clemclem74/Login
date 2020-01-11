@@ -181,6 +181,18 @@ public class UserFacade {
 	}
 	
 	
+	public User findByEmail(String email) {
+		OracleDAO<User> userDao = this.adf.getUserDAO();
+		User user = userDao.find(email);
+		if (user.getId_user()==0) {
+			System.out.println("user null facade");
+			return null;
+		}
+		else {
+			return user;
+		}
+	}
+	
 	
 
 
@@ -198,6 +210,15 @@ public class UserFacade {
 	public void setBDEnull(User user) {
 		modify(user.getId_user(),user.getUsername(),user.getEmailuser(),user.getPassworduser(),user.getFirstname(), user.getLastname(),user.getPhonenumberuser(),-1);
 	}
+	
+	
+	
+	public int getNumber(){
+		OracleDAO<User> userDao = this.adf.getUserDAO();
+		int nb = userDao.getNumber();
+		return nb;
+	}
+	
 	
 	
 

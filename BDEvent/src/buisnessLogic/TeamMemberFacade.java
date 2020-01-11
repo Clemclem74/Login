@@ -75,12 +75,32 @@ public class TeamMemberFacade {
 		ArrayList<Integer> idusers = tmDao.findMembersByTeam(idTeam);
 		return idusers;
 	}
+	
+	public int getNumber(){
+		OracleDAO<TeamMember> teamMemberDao = this.adf.getTeamMemberDAO();
+		int nb = teamMemberDao.getNumber();
+		return nb;
+	}
 
 	public void sendError() {
 		// TODO - implement LoginFacade.sendError
 		throw new UnsupportedOperationException();
 	}
 
+	
+	public TeamMember findByUserTeam(User user, Team team) {
+		OracleDAO<TeamMember> teamMemberDao = this.adf.getTeamMemberDAO();
+		TeamMember teamMember = teamMemberDao.findByUserTeam(user,team);
+		if (teamMember == null) {
+			System.out.println("contact null facade");
+			return null;
+		}
+		else {
+			return teamMember;
+		}
+	}
+	
+	
 	/**
 	 *
 	 * @param user

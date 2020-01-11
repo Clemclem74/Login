@@ -98,10 +98,32 @@ public class BDEFacade {
 	}
 	
 	
+	public BDE findBySchool(String school) {
+		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
+		BDE bde = bdeDao.findBySchool(school);
+		if (bde.getIdBDE()==0) {
+			System.out.println("BDE null");
+			return null;
+		}
+		else {
+			return bde;
+		}
+	}
+	
+	
+	
+	
 	public ArrayList<Integer> getListTeams(int idBDE) {
 		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
 		ArrayList<Integer> idTeams = bdeDao.findTeams(idBDE);
 		return idTeams;
+	}
+	
+	
+	public int getNumber(){
+		OracleDAO<BDE> bdeDao = this.adf.getBDEDAO();
+		int nb = bdeDao.getNumber();
+		return nb;
 	}
 
 

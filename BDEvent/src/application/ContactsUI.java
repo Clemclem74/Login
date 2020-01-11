@@ -209,9 +209,7 @@ public class ContactsUI extends Routing implements Initializable {
 		}
 	   
 	  
-	   
-	   
-	   //Creation Fee 
+
 	   
 	   public void createContact(ActionEvent event) {
 		   ContactFacade contactFacade = new ContactFacade();
