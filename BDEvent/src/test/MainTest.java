@@ -275,7 +275,8 @@ public class MainTest {
 		//modification Poll
 		poll = pollFacade.find("T");
 		pollFacade.modify(poll.getId_pollBB(), u.getId_user(), "T", testArray , bde.getIdBDE());
-		if(poll.getchoices_pollBB().contentEquals(" a ,  b ,  c")) {
+		poll = pollFacade.find("T");
+		if(poll.getchoices_pollBB().contentEquals("  a ,  b ,  c")) {
 			
 		}
 		else {
@@ -301,6 +302,7 @@ public class MainTest {
 		//modification Meeting
 		meeting = meetingFacade.find("T");
 		meetingFacade.modify(meeting.getId_meeting(), u.getId_user(), "T", "2020-02-02", bde.getIdBDE());
+		meeting = meetingFacade.find("T");
 		if(meeting.getMeeting_date().contentEquals("2020-02-02")) {
 			
 		}
@@ -391,14 +393,16 @@ public class MainTest {
 			nb_erreurs++;
 		}
 		
-		System.out.println("Test finit avec " + nb_erreurs + " erreurs !");
+		
 		
 		//Suppression Poll
 		poll = pollFacade.find("T");
-		pre = postFacade.getNumber();
+		pre = pollFacade.getNumber();
 		pollFacade.delete(poll);
 		post = pollFacade.getNumber();
-		if(post != pre-1);{
+		System.out.println(pre);
+		System.out.println(post);
+		if(post != pre-1){
 			System.out.println("Erreur Suppression Poll");
 			nb_erreurs++;
 		}
@@ -412,6 +416,8 @@ public class MainTest {
 			System.out.println("Erreur Suppression Meeting");
 			nb_erreurs++;
 		}
+		
+		System.out.println("Test finit avec " + nb_erreurs + " erreurs !");
 
 	}
 	
