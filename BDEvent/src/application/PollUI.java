@@ -221,6 +221,8 @@ public class PollUI extends Routing implements Initializable {
 			super.goTo("modifyPollUI");
 		}
 		
+		
+		
 		public ArrayList<String> getTextChoices() {
 			 ArrayList<String> listchoice = new ArrayList<>();
 			 listchoice.add(field1.getText());
