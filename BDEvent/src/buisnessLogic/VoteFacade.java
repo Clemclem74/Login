@@ -33,7 +33,7 @@ public class VoteFacade {
 	        	return res;
 	        }
 	        else {
-	        	System.out.println("Error while creating the poll");
+	        	System.out.println("Error while creating the vote");
 	        	return -1;
 	        }
 	}

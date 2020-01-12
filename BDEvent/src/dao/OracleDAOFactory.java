@@ -15,6 +15,7 @@ import buisnessLogic.Event;
 import buisnessLogic.Poll;
 import buisnessLogic.Fee;
 import buisnessLogic.Meeting;
+import buisnessLogic.Participe;
 
 
 public class OracleDAOFactory extends AbstractDAOFactory{
@@ -53,6 +54,11 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	@Override
 	public OracleDAO<Meeting> getMeetingDAO() {
 		return new OracleMeetingDAO(conn);
+	}
+	
+	@Override
+	public OracleDAO<Participe> getParticipeDAO() {
+		return new OracleParticipeDAO(conn);
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ import buisnessLogic.StaffActivity;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
 import buisnessLogic.Meeting;
+import buisnessLogic.Participe;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.Poll;
@@ -24,6 +25,7 @@ public abstract class AbstractDAOFactory {
 	  public abstract OracleDAO<Team> getTeamDAO();
 	  public abstract OracleDAO<Post> getPostDAO();
 	  public abstract OracleDAO<Meeting> getMeetingDAO();
+	  public abstract OracleDAO<Participe> getParticipeDAO();
 
 
 	  public abstract OracleDAO<Poll> getPollDAO();

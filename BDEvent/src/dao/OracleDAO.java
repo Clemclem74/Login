@@ -7,6 +7,7 @@ import buisnessLogic.Contact;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
 import buisnessLogic.Meeting;
+import buisnessLogic.Participe;
 import buisnessLogic.Poll;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
@@ -89,6 +90,11 @@ public  ArrayList<Poll> findAllPollByBDE(User user){
 }
 
 public ArrayList<Meeting> findAllMeetingByBDE(User user){
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public ArrayList<Participe> findAllParticipeByBDE(User user){
 	// TODO Auto-generated method stub
 	return null;
 }

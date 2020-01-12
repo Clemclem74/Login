@@ -8,15 +8,20 @@ import buisnessLogic.BDE;
 import buisnessLogic.BDEFacade;
 import buisnessLogic.Meeting;
 import buisnessLogic.MeetingFacade;
+import buisnessLogic.Participe;
+import buisnessLogic.ParticipeFacade;
 import buisnessLogic.Poll;
 import buisnessLogic.PollFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -27,6 +32,8 @@ import javafx.scene.text.Text;
 public class MeetingUI extends Routing implements Initializable {
 	
 	ArrayList<Meeting> meetingL = new ArrayList<>();
+	
+	ObservableList<String> choiceList = FXCollections.observableArrayList("oui","non");
 	
 	@FXML
 	private Button newMeeting;
@@ -50,6 +57,15 @@ public class MeetingUI extends Routing implements Initializable {
 	private Label selectedDate;
 	@FXML 
 	private Text textDate;
+	@FXML
+	private ChoiceBox participeCheckbox;
+	@FXML
+	private Button participe_button;
+	@FXML
+	private Label nboui;
+	@FXML
+	private Label nbnon;
+	
 	
 	
 	
@@ -90,6 +106,8 @@ public class MeetingUI extends Routing implements Initializable {
 				modifyMeeting.setVisible(false);
 				deleteMeeting.setVisible(false);
 				selectedDate.setVisible(false);
+				participeCheckbox.setVisible(false);
+				participe_button.setVisible(false);
 			}
 		}
 	}
@@ -137,11 +155,15 @@ public class MeetingUI extends Routing implements Initializable {
 		modifyMeeting.setVisible(true);
 		deleteMeeting.setVisible(true);
 		selectedDate.setVisible(true);
+		participeCheckbox.setValue("oui");
+		participeCheckbox.setItems(choiceList);
+		
 		
 		MeetingFacade meetingFacade = new MeetingFacade();
 		UserFacade userFacade = new UserFacade();
 		String meeting1 = MeetingList.getSelectionModel().getSelectedItem();
 		Meeting meetingSelected = meetingFacade.find(meeting1);
+		ParticipeFacade participeFacade = new ParticipeFacade();
 		super.setCurrentMeeting(meetingSelected);
 		
 		if(meeting1 != null) {
@@ -154,6 +176,21 @@ public class MeetingUI extends Routing implements Initializable {
 				this.modifyMeeting.setVisible(true);
 				this.deleteMeeting.setVisible(true);
 			}
+			if(participeFacade.alreadyParticiped(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser())) {
+				participe_button.setVisible(false);
+				participeCheckbox.setVisible(false);
+			}else {
+				nboui.setVisible(true);
+				nbnon.setVisible(true);
+			}
+			ArrayList<Integer> counter = new ArrayList<>();
+			ArrayList<Participe> list = new ArrayList<>();
+			list = participeFacade.findAllVoteBDE(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser());
+			counter = participeFacade.CounterParticipes(list, super.getCurrentMeeting().getId_meeting());
+			this.nboui.setText(counter.get(0).toString());
+			this.nboui.setText(counter.get(1).toString());
+			
+			
 			
 		}
 	}
@@ -231,6 +268,32 @@ public class MeetingUI extends Routing implements Initializable {
     	
 
     }
-	
+    
+    
+  //---------------------------------------------CONTROLEUR PARTICIPE--------------------
+
+	public void createParticipe(ActionEvent event) {
+		Meeting meeting = super.getCurrentMeeting();
+		String choice = (String) participeCheckbox.getValue();
+		ParticipeFacade participeFacade = new ParticipeFacade();
+		User user = super.getCurrentUser();
+		int userId = user.getId_user();
+		BDEFacade bdeFacade = new BDEFacade();
+		BDE bde = bdeFacade.findById(super.getCurrentUser().getCurrentBDE());
+		int idBde = bde.getIdBDE();
+		
+		
+		int res = participeFacade.addParticipe(userId, meeting.getId_meeting(), choice, idBde);
+		if(res < 0) {
+			//this.errorMessage.setText("Please make sure the fields are completed");
+		}
+		else {
+			super.setVue("BasicMeeting");
+			super.goTo("MeetingUI");
+			ConfirmMessageUI.setParams(Integer.toString(res));
+			super.openPopUp("Participed with sucess", "");
+			super.setCurrentPoll(null);
+		}
+	}
 
 }
