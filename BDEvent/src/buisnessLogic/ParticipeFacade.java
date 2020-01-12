@@ -38,7 +38,7 @@ public class ParticipeFacade {
 
 	}
 	
-	public ArrayList<Participe> findAllVoteBDE(int idMeeting, User user){
+	public ArrayList<Participe> findAllParticipeBDE(int idMeeting, User user){
 		OracleDAO<Participe> participeDAO = this.adf.getParticipeDAO();
 		ArrayList<Participe> allparticipe = participeDAO.findAllParticipeByBDE(user);
 		if(allparticipe == null) {
@@ -50,17 +50,18 @@ public class ParticipeFacade {
 		}	
 	}
 	
-	public ArrayList<Integer> CounterParticipes(ArrayList<Participe> list, int idparticipe) {
+	public ArrayList<Integer> CounterParticipes(ArrayList<Participe> list, int idmeeting) {
 		int oui=0, non=0;
 		ArrayList<Integer> ret = new ArrayList<>();
 		for(int i=0;i<list.size();i++) {
-			if(list.get(i).getChoice()=="oui" && idparticipe==list.get(i).getId_meeting()) {
+			if(list.get(i).getChoice().contentEquals("oui") && idmeeting==list.get(i).getId_meeting()) {
 				oui = oui + 1;
 			}
-			else if(list.get(i).getChoice()=="non" && idparticipe==list.get(i).getId_meeting()) {
+			else if(list.get(i).getChoice().contentEquals("non") && idmeeting==list.get(i).getId_meeting()) {
 				non = non + 1;
 			}
 		}
+		System.out.println(oui);
 		ret.add(oui);
 		ret.add(non);
 		return ret;

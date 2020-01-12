@@ -187,10 +187,10 @@ public class MeetingUI extends Routing implements Initializable {
 			}
 			ArrayList<Integer> counter = new ArrayList<>();
 			ArrayList<Participe> list = new ArrayList<>();
-			list = participeFacade.findAllVoteBDE(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser());
+			list = participeFacade.findAllParticipeBDE(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser());
 			counter = participeFacade.CounterParticipes(list, super.getCurrentMeeting().getId_meeting());
 			this.nboui.setText(counter.get(0).toString());
-			this.nboui.setText(counter.get(1).toString());
+			this.nbnon.setText(counter.get(1).toString());
 			
 			
 			
