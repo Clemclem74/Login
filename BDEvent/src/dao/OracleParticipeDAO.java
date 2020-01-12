@@ -85,7 +85,7 @@ public class OracleParticipeDAO extends OracleDAO<Participe>{
 		    	  int id_participe = resultSet.getInt("ID_PARTICIPE");
 		          int id_participer = resultSet.getInt("ID_PARTICIPER");
 		          String choice_participe = resultSet.getString("CHOICE_PARTICIPE");
-		          int id_meeting = resultSet.getInt("ID_POLL");
+		          int id_meeting = resultSet.getInt("ID_MEETING");
 		          int bde = resultSet.getInt("ID_BDE");
 		          
 		          

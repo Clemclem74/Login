@@ -152,9 +152,14 @@ public class MeetingUI extends Routing implements Initializable {
 	
 	@FXML
 	private void displaySelectedMeeting(MouseEvent event) {
-		modifyMeeting.setVisible(true);
-		deleteMeeting.setVisible(true);
 		selectedDate.setVisible(true);
+		nboui.setVisible(true);
+		nbnon.setVisible(true);
+		this.modifyMeeting.setVisible(false);
+		this.deleteMeeting.setVisible(false);
+		participe_button.setVisible(true);
+		participeCheckbox.setVisible(true);
+		
 		participeCheckbox.setValue("oui");
 		participeCheckbox.setItems(choiceList);
 		
@@ -178,10 +183,7 @@ public class MeetingUI extends Routing implements Initializable {
 			}
 			if(participeFacade.alreadyParticiped(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser())) {
 				participe_button.setVisible(false);
-				participeCheckbox.setVisible(false);
-			}else {
-				nboui.setVisible(true);
-				nbnon.setVisible(true);
+			}
 			}
 			ArrayList<Integer> counter = new ArrayList<>();
 			ArrayList<Participe> list = new ArrayList<>();
@@ -193,7 +195,7 @@ public class MeetingUI extends Routing implements Initializable {
 			
 			
 		}
-	}
+
 	
 	@FXML void deleteSelected(ActionEvent event) {
 		MeetingFacade meetingFacade = new MeetingFacade();
