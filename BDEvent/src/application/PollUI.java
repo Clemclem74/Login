@@ -185,6 +185,9 @@ public class PollUI extends Routing implements Initializable {
 				if(super.getCurrentUser().isPublisherPoll(Routing.getCurrentPoll()) || super.getCurrentUser().isAdminOfHisBDE()){
 					modifyPoll.setVisible(true);
 					deletePoll.setVisible(true);
+				if(voteFacade.alreadyvoted(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser())) {
+					voteButton.setVisible(false);
+				}
 				ArrayList<Integer> counter = new ArrayList<>();
 				ArrayList<Vote> list = new ArrayList<>();
 				list = voteFacade.findAllVoteBDE(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser());

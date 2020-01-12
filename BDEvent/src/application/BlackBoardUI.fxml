@@ -19,7 +19,7 @@
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #2D3447;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #403E3E;">
                <effect>
                   <Glow />
                </effect>
@@ -29,7 +29,7 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #53afbb;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>

@@ -71,5 +71,25 @@ public class VoteFacade {
 		
 	}
 	
+	public boolean alreadyvoted(int idpoll, User user) {
+		
+		OracleDAO<Vote> voteDAO = this.adf.getVoteDAO();
+		ArrayList<Vote> allvote = voteDAO.findAllVoteByBDE(user);
+		if(allvote == null) {
+			System.out.println("no votes found");
+		}
+		else {
+			for(int i=0;i<allvote.size();i++) {
+				if(allvote.get(i).getId_poll() == idpoll && allvote.get(i).getId_voter() == user.getId_user()) {
+					return true;
+				}
+			}
+			return false;
+			
+		}
+		System.out.println("no vote");
+		return false;
+	}
+	
 
 }
