@@ -14,9 +14,11 @@ import buisnessLogic.User;
 
 
 public class OraclePollDAO extends OracleDAO<Poll> {
+	
 	public OraclePollDAO(Connection conn) {
 		  super(conn);
 		}
+	
 	public int create(Poll obj) {
 		System.out.println("Before");
 		int id = getLastId()+1;
@@ -71,17 +73,11 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	
 	@Override
 	public boolean update(Poll obj) {
-		System.out.println(obj.getId_pollBB());
 		int id = obj.getId_pollBB();
-		System.out.println(id);
-
 		  
 		  try {
 			
 			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-			  System.out.println(id);
-			  System.out.println(obj.getTitle_pollBB());
-			  System.out.println(obj.getchoices_pollBB());
 			  PreparedStatement ps = conn.prepareStatement(
 				      "UPDATE POLLBB SET TITLE_POLLBB = ?, CHOICES_POLLBB = ?, STATE = 0 WHERE ID_POLLBB = ? ");
 			  

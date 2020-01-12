@@ -6,6 +6,7 @@ import buisnessLogic.BDE;
 import buisnessLogic.Contact;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
+import buisnessLogic.Meeting;
 import buisnessLogic.Poll;
 import buisnessLogic.Post;
 import buisnessLogic.Team;
@@ -83,6 +84,11 @@ public  ArrayList<Post> findAllPostByBDE(User user){
 }
 
 public  ArrayList<Poll> findAllPollByBDE(User user){
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public ArrayList<Meeting> findAllMeetingByBDE(User user){
 	// TODO Auto-generated method stub
 	return null;
 }

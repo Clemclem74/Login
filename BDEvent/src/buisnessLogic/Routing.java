@@ -18,6 +18,7 @@ public class Routing {
 	private static Poll currentPoll;
 	private static Fee currentFee;
 	private static Contact currentContact;
+	private static Meeting currentMeeting;
 	
 	
 	
@@ -99,6 +100,14 @@ public class Routing {
 
 	public static void setCurrentUser(User currentUser) {
 		Routing.currentUser = currentUser;
+	}
+	
+	public Meeting getCurrentMeeting() {
+		return currentMeeting;
+	}
+	
+	public static void setCurrentMeeting(Meeting currentMeeting) {
+		Routing.currentMeeting = currentMeeting;
 	}
 
 	//Function which change the current stage with the stage enter in parameters
@@ -226,6 +235,8 @@ public class Routing {
 	public static void setStaffActivitySelected(StaffActivity staffActivitySelected) {
 		Routing.staffActivitySelected = staffActivitySelected;
 	}
+
+
 	
 	
 	

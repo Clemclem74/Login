@@ -34,6 +34,8 @@ public class HomePageUI extends Routing implements Initializable {
 	 @FXML
 	 private Button goToBB;
 	 @FXML
+	 private Button meeting_button;
+	 @FXML
 	 private Label username_text;
 	 @FXML
 	 private Label email_text;
@@ -84,6 +86,7 @@ public class HomePageUI extends Routing implements Initializable {
 			  quitBDEbutton.setVisible(false);
 			  communication_button.setVisible(false);
 			  BDELabel.setVisible(false);
+			  meeting_button.setVisible(false);
 
 		  }
 	     
@@ -146,6 +149,13 @@ public class HomePageUI extends Routing implements Initializable {
 		   super.setVue("BasicPoll");
 		   super.goTo("PollUI");
 	   }
+	   
+	   public void goToMeetings(ActionEvent event) {
+		   super.setVue("BasicMeeting");
+		   super.goTo("MeetingUI");
+	   }
+	   
+	   
 	   
 	   public void goToFee(ActionEvent envent) {
 		   super.setVue("BasicFee");
