@@ -22,3 +22,7 @@
 /FeeFacade.class
 /Appliance.class
 /StaffActivity.class
+/Contact.class
+/ContactFacade.class
+/Vote.class
+/VoteFacade.class

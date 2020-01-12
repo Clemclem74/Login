@@ -10,6 +10,7 @@ import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
+import buisnessLogic.Vote;
 import buisnessLogic.Event;
 import buisnessLogic.Poll;
 import buisnessLogic.Fee;
@@ -36,6 +37,10 @@ public class OracleDAOFactory extends AbstractDAOFactory{
 	  
 	  public OracleDAO<Contact> getContactDAO(){
 		  return new OracleContactDAO(conn);
+	  }
+	  
+	  public OracleDAO<Vote> getVoteDAO(){
+		  return new OracleVoteDAO(conn);
 	  }
 	  
 

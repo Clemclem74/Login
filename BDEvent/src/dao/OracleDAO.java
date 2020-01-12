@@ -11,6 +11,7 @@ import buisnessLogic.Post;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
+import buisnessLogic.Vote;
 
 public abstract class OracleDAO<T> {
   protected Connection connect = null;
@@ -83,6 +84,11 @@ public  ArrayList<Post> findAllPostByBDE(User user){
 
 public  ArrayList<Poll> findAllPollByBDE(User user){
 	// TODO Auto-generated method stub
+	return null;
+}
+
+public ArrayList<Vote> findAllVoteByBDE(User user){
+	
 	return null;
 }
 

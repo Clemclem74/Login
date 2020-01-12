@@ -4,9 +4,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -19,11 +22,15 @@ import buisnessLogic.PollFacade;
 import buisnessLogic.Routing;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
+import buisnessLogic.Vote;
+import buisnessLogic.VoteFacade;
 import javafx.fxml.Initializable;
 
 public class PollUI extends Routing implements Initializable {
 	
 	ArrayList<Poll> pollL = new ArrayList<>();
+	
+	ObservableList<Integer> choiceList = FXCollections.observableArrayList(1,2,3);
 	
 	@FXML
 	 private Button homePage;
@@ -47,6 +54,16 @@ public class PollUI extends Routing implements Initializable {
 	 private Label choices2;
 	 @FXML
 	 private Label choices3;
+	 @FXML
+	 private ChoiceBox voteCheckbox;
+	 @FXML
+	 private Button voteButton;
+	 @FXML
+	 private Label counter1;
+	 @FXML
+	 private Label counter2;
+	 @FXML
+	 private Label counter3;
 	 
 	 
 	
@@ -97,7 +114,8 @@ public class PollUI extends Routing implements Initializable {
 					choices1.setVisible(false);
 					choices2.setVisible(false);
 					choices3.setVisible(false);
-					
+					voteCheckbox.setVisible(false);
+					voteButton.setVisible(false);
 					}
 		}
 		
@@ -135,14 +153,23 @@ public class PollUI extends Routing implements Initializable {
 			choices1.setVisible(true);
 			choices2.setVisible(true);
 			choices3.setVisible(true);
+			voteCheckbox.setVisible(true);
+			voteButton.setVisible(true);
+			
+			voteCheckbox.setValue(1);
+			voteCheckbox.setItems(choiceList);
+			
+			
 			String state;
 			String stringChoices = "";
 			ArrayList<String> arrayChoices = new ArrayList<>();
 			PollFacade pollFacade = new PollFacade();
+			VoteFacade voteFacade = new VoteFacade();
 			UserFacade userFacade = new UserFacade();
 			String poll1 = pollList.getSelectionModel().getSelectedItem();
 			Poll pollSelected = pollFacade.find(poll1);
-			super.setCurrentPoll(pollSelected);
+			super.setCurrentPoll(pollSelected);			
+			
 			if(poll1 != null) {
 				this.titlePollSelected.setText(pollSelected.getTitle_pollBB());
 				stringChoices = pollSelected.getchoices_pollBB();
@@ -158,6 +185,14 @@ public class PollUI extends Routing implements Initializable {
 				if(super.getCurrentUser().isPublisherPoll(Routing.getCurrentPoll()) || super.getCurrentUser().isAdminOfHisBDE()){
 					modifyPoll.setVisible(true);
 					deletePoll.setVisible(true);
+				ArrayList<Integer> counter = new ArrayList<>();
+				ArrayList<Vote> list = new ArrayList<>();
+				list = voteFacade.findAllVoteBDE(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser());
+				counter = voteFacade.counterVotes(list, super.getCurrentPoll().getId_pollBB());
+				System.out.println(counter.get(0).toString());
+				this.counter1.setText(counter.get(0).toString());
+				this.counter2.setText(counter.get(1).toString());
+				this.counter3.setText(counter.get(2).toString());
 					
 				}
 			}
@@ -257,5 +292,31 @@ public class PollUI extends Routing implements Initializable {
 	    	
 
 	    }
-
+	    
+//---------------------------------------------CONTROLEUR VOTE--------------------
+	    	
+	    	public void createVote(ActionEvent event) {
+	    		Poll poll = super.getCurrentPoll();
+	    		int choice = (int) voteCheckbox.getValue();
+	    		int idPoll = poll.getId_pollBB();
+	    		VoteFacade voteFacade = new VoteFacade();
+				User user = super.getCurrentUser();
+				BDEFacade bdeFacade = new BDEFacade();
+				BDE bde = bdeFacade.findById(super.getCurrentUser().getCurrentBDE());
+				int idBde = bde.getIdBDE();
+				int userId = user.getId_user();
+				
+				int res = voteFacade.addVote(userId, choice, idBde, idPoll);
+				if(res < 0) {
+					//this.errorMessage.setText("Please make sure the fields are completed");
+				}
+				else {
+					super.setVue("BasicPoll");
+					super.goTo("PollUI");
+					ConfirmMessageUI.setParams(Integer.toString(res));
+					super.openPopUp("Voted with sucess", "");
+					super.setCurrentPoll(null);
+				}
+				
+	    	}
 }

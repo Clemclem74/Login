@@ -1,5 +1,6 @@
 package dao;
 import buisnessLogic.User;
+import buisnessLogic.Vote;
 import buisnessLogic.Activity;
 import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
@@ -23,6 +24,7 @@ public abstract class AbstractDAOFactory {
 	  public abstract OracleDAO<Post> getPostDAO();
 
 	  public abstract OracleDAO<Poll> getPollDAO();
+	  public abstract OracleDAO<Vote> getVoteDAO();
 	  public abstract OracleDAO<BlackBoard> getBlackBoardDAO();
 	   
 
