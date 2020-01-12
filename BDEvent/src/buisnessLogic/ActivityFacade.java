@@ -168,6 +168,11 @@ public class ActivityFacade {
 		}
 	}
 	
+	public int getNumber() {
+		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
+		return BDEActivityDao.getNumber();
+	}
+	
 	
 	public int join(int id_acti,User user) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();

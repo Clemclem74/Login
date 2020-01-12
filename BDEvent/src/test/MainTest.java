@@ -16,6 +16,9 @@ public class MainTest {
 		FeeFacade feeFacade = new FeeFacade();
 		PollFacade pollFacade = new PollFacade();
 		MeetingFacade meetingFacade = new MeetingFacade();
+		ActivityFacade activityFacade = new ActivityFacade();
+		EventFacade eventFacade = new EventFacade();
+		
 		
 		int pre;
 		int post;
@@ -30,7 +33,9 @@ public class MainTest {
 		Team t3;
 		TeamMember tm1;
 		TeamMember tm2;
-		
+		Event e;
+		BDEActivity a1;
+		StaffActivity a2;
 		
 		
 		
@@ -145,7 +150,7 @@ public class MainTest {
 								TEAM MEMBER 
 
 -------------------------------------------------------------------------------------------------------*/
-		
+	
 		
 		
 		//Creation Team Member (Ajout d'un User à une Team
@@ -193,6 +198,8 @@ public class MainTest {
 			System.out.println("Erreur members team");
 			nb_erreurs++;
 		}
+		
+		
 		
 /* --------------------------------------------------------------------------------------------------------
 		
@@ -311,6 +318,65 @@ public class MainTest {
 			nb_erreurs++;
 		}
 		
+		
+		
+		
+/* --------------------------------------------------------------------------------------------------------
+		
+											EVENT
+
+--------------------------------------------------------------------------------------------------------*/
+
+//create Event
+		pre = eventFacade.getNumber();
+		Event event = new Event();
+		event.setTitle("T");
+		event.setDescription("T");
+		event.setEvent_date("2019-02-01");
+		event.setImage("T");
+		event.setResponsible(0);
+		eventFacade.create(event);
+		post = eventFacade.getNumber();
+		if (post != pre+1) {
+			System.out.println("Erreur création Event");
+			nb_erreurs++;
+		}
+
+		//modification Meeting
+		event = eventFacade.find("T");
+		event.setEvent_date("2020-02-02");
+		eventFacade.modify(event.getId_event(),event);
+		event = eventFacade.find("T");
+		if(event.getEvent_date().contentEquals("2020-02-02")) {
+
+		}
+		else {
+			System.out.println("Erreur à la modification de event");
+			nb_erreurs++;
+		}
+		
+/* --------------------------------------------------------------------------------------------------------
+		
+								Activity
+
+--------------------------------------------------------------------------------------------------------*/
+
+//create Activity
+		pre = activityFacade.getNumber();
+		BDEActivity acti = new BDEActivity();
+
+		acti.setDate("2020-02-02");
+		acti.setDuration("1h30");
+		acti.setStart_hour("12h00");
+		acti.setNb_users(2);
+		activityFacade.create(acti);
+		post = activityFacade.getNumber();
+		if (post != pre+1) {
+		System.out.println("Erreur création Activity");
+			nb_erreurs++;
+		}
+
+		
 
 /* --------------------------------------------------------------------------------------------------------
 		
@@ -416,9 +482,29 @@ public class MainTest {
 			System.out.println("Erreur Suppression Meeting");
 			nb_erreurs++;
 		}
+
+		//Suppression Event
+		event = eventFacade.find("T");
+		pre = eventFacade.getNumber();
+		eventFacade.delete(event);
+		post = eventFacade.getNumber();
+		if (post != pre-1) {
+			System.out.println("Erreur Suppression Event");
+			nb_erreurs++;
+		}
 		
+		//Suppression Event
+		pre = activityFacade.getNumber();
+		activityFacade.delete(acti);
+		post = activityFacade.getNumber();
+		if (post != pre-1) {
+			System.out.println("Erreur Suppression Activity");
+			nb_erreurs++;	
+		}
+				
 		System.out.println("Test finit avec " + nb_erreurs + " erreurs !");
 
 	}
 	
+
 }

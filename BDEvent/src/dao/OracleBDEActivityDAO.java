@@ -292,6 +292,31 @@ private int getLastId() {
 	
 }
 
+public int getNumber() {
+	
+	int id_event=0;
+	String SQL_SELECT = "Select COUNT(ID_ACTIVITY) from BDEACTIVITY";
+
+	  // auto close connection and preparedStatement
+	  try (Connection conn = DriverManager.getConnection(
+			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
+	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+
+	      ResultSet resultSet = preparedStatement.executeQuery();
+	      while (resultSet.next()) {
+	          id_event = resultSet.getInt("COUNT(ID_ACTIVITY)"); 
+	      }
+	      return id_event;
+
+	  } catch (SQLException e) {
+	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
+	  return id_event;
+	
+}
+
 
 public int count_users_BDEacti(int id) {
 	
@@ -599,5 +624,12 @@ public ArrayList<Integer> findCollegue(int id) {
 	
 	
 }
+
+@Override
+public int create(BDEActivity obj, Event event) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 
 }

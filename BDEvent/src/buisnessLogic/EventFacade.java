@@ -68,6 +68,12 @@ public class EventFacade {
 		}
 	}
 	
+	public int getNumber() {
+		OracleDAO<Event> eventDao = this.adf.getEventDAO();
+		return eventDao.getNumber();
+		
+	}
+	
 	public void create(Event event) {
 		OracleDAO<Event> eventDao = this.adf.getEventDAO();
 		int bool = eventDao.create(event);
