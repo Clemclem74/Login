@@ -14,6 +14,8 @@ public class MainTest {
 		TeamMemberFacade teamMemberFacade = new TeamMemberFacade();
 		PostFacade postFacade = new PostFacade();
 		FeeFacade feeFacade = new FeeFacade();
+		PollFacade pollFacade = new PollFacade();
+		MeetingFacade meetingFacade = new MeetingFacade();
 		
 		int pre;
 		int post;
@@ -21,6 +23,8 @@ public class MainTest {
 		BDE bde;
 		Fee f;
 		Post p;
+		Poll poll;
+		Meeting meeting;
 		Team t1;
 		Team t2;
 		Team t3;
@@ -244,6 +248,67 @@ public class MainTest {
 			System.out.println("Erreur à la modification de post");
 			nb_erreurs++;
 		}
+		
+/* --------------------------------------------------------------------------------------------------------
+		
+									POLL
+
+--------------------------------------------------------------------------------------------------------*/
+		
+		//ajout Poll
+		pre = pollFacade.getNumber();
+		ArrayList<String> testArray = new ArrayList<>();
+		testArray.add("1");
+		testArray.add("2");
+		testArray.add("3");
+		pollFacade.createPoll(u.getId_user(),"T", testArray, bde.getIdBDE());
+		post = pollFacade.getNumber();
+		if (post != pre+1) {
+			System.out.println("Erreur création Post");
+			nb_erreurs++;
+		}
+		testArray.clear();
+		testArray.add("a");
+		testArray.add("b");
+		testArray.add("c");
+		
+		//modification Poll
+		poll = pollFacade.find("T");
+		pollFacade.modify(poll.getId_pollBB(), u.getId_user(), "T", testArray , bde.getIdBDE());
+		if(poll.getchoices_pollBB().contentEquals(" a ,  b ,  c")) {
+			
+		}
+		else {
+			System.out.println("Erreur à la modification de poll");
+			nb_erreurs++;
+		}
+		
+/* --------------------------------------------------------------------------------------------------------
+		
+										MEETING
+
+--------------------------------------------------------------------------------------------------------*/
+		
+		//ajout Meeting
+		pre = meetingFacade.getNumber();
+		meetingFacade.create(u.getId_user(), "T", "2020-01-08", bde.getIdBDE());
+		post = meetingFacade.getNumber();
+		if (post != pre+1) {
+			System.out.println("Erreur création Post");
+			nb_erreurs++;
+		}
+		
+		//modification Meeting
+		meeting = meetingFacade.find("T");
+		meetingFacade.modify(meeting.getId_meeting(), u.getId_user(), "T", "2020-02-02", bde.getIdBDE());
+		if(meeting.getMeeting_date().contentEquals("2020-02-02")) {
+			
+		}
+		else {
+			System.out.println("Erreur à la modification de meeting");
+			nb_erreurs++;
+		}
+		
 
 /* --------------------------------------------------------------------------------------------------------
 		
@@ -327,6 +392,26 @@ public class MainTest {
 		}
 		
 		System.out.println("Test finit avec " + nb_erreurs + " erreurs !");
+		
+		//Suppression Poll
+		poll = pollFacade.find("T");
+		pre = postFacade.getNumber();
+		pollFacade.delete(poll);
+		post = pollFacade.getNumber();
+		if(post != pre-1);{
+			System.out.println("Erreur Suppression Poll");
+			nb_erreurs++;
+		}
+		
+		//Suppression Meeting
+		meeting =meetingFacade.find("T");
+		pre = meetingFacade.getNumber();
+		meetingFacade.delete(meeting);
+		post = meetingFacade.getNumber();
+		if (post != pre-1) {
+			System.out.println("Erreur Suppression Meeting");
+			nb_erreurs++;
+		}
 
 	}
 	

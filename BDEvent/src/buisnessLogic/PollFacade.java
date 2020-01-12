@@ -104,5 +104,11 @@ public class PollFacade {
 		}
 	}
 	
+	public int getNumber(){
+		OracleDAO<Poll> pollDao = this.adf.getPollDAO();
+		int nb = pollDao.getNumber();
+		return nb;
+	}
+	
 
 }

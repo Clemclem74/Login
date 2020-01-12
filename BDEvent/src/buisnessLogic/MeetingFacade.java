@@ -115,6 +115,12 @@ public class MeetingFacade {
 		}
 	}
 	
+	public int getNumber(){
+		OracleDAO<Meeting> meetingDao = this.adf.getMeetingDAO();
+		int nb = meetingDao.getNumber();
+		return nb;
+	}
+	
 	
 	
 
