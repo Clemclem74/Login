@@ -127,7 +127,7 @@ public class User {
 	
 	public boolean isPartOfTrez() {
 		TeamMemberFacade tmFacade = new TeamMemberFacade();
-		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(4);
+		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(13);
 		Boolean res = false;
 		for (int i =0 ; i< idusers.size(); i++) {
 			if (this.getId_user() == idusers.get(i)) {
