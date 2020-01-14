@@ -135,7 +135,7 @@
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Label fx:id="BDELabel" layoutX="328.0" layoutY="359.0" prefHeight="27.0" prefWidth="286.0" textFill="#53baff">
+      <Label fx:id="BDELabel" layoutX="328.0" layoutY="359.0" prefHeight="34.0" prefWidth="535.0" textFill="#53baff">
          <font>
             <Font size="23.0" />
          </font></Label>
