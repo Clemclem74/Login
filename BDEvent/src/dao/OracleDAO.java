@@ -10,6 +10,7 @@ import buisnessLogic.Meeting;
 import buisnessLogic.Participe;
 import buisnessLogic.Poll;
 import buisnessLogic.Post;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
 import buisnessLogic.User;
@@ -58,29 +59,41 @@ public abstract class OracleDAO<T> {
 
   public abstract int create(T obj,Event event);
 
-  public abstract int join(T obj,User user);
-
-
   public abstract boolean delete(T obj);
-
 
   public abstract boolean update(int i, T obj);
 
   public abstract boolean update(T obj);
 
-  public abstract boolean leave(int id,T obj);
+  
+  public int join(T obj,User user) {
+	return 0;
+  }
+  
+  
+  public boolean leave(int id,T obj) {
+	  return false;
+  }
 
 
-  public abstract T find(String id);
+  public T find(String id) {
+	  return null;
+  }
 
   public abstract ArrayList<T> findAll();
 
-
   public abstract T findById(int id);
+  
+  public abstract int getNumber();
+  
 
-  public abstract ArrayList<Integer> getEventByUser(User user);
+  public ArrayList<Integer> getEventByUser(User user){
+	return null;
+  }
 
-  public abstract ArrayList<Integer> findTeams(int idBDE);
+  public ArrayList<Integer> findTeams(int idBDE){
+	  return null;
+  }
 
 
 public  ArrayList<Post> findAllPostByBDE(User user){
@@ -104,7 +117,6 @@ public ArrayList<Participe> findAllParticipeByBDE(User user){
 }
 
 public ArrayList<Vote> findAllVoteByBDE(User user){
-
 	return null;
 }
 
@@ -154,19 +166,29 @@ public boolean acceptFee(Fee obj) {
 }
 
 
-public abstract int count_users_BDEacti(int acti);
+public int count_users_BDEacti(int acti) {
+	return 0;
+}
 
 
-public abstract int create(StaffActivity acti, Event event);
+public int create(StaffActivity acti, Event event) {
+	return 0;
+};
 
 
-public abstract ArrayList<Integer> findAllStaff(int id_event);
+public ArrayList<Integer> findAllStaff(int id_event){
+	return null;
+}
 
 
-public abstract int count_users_Staffacti(int id_activity);
+public int count_users_Staffacti(int id_activity) {
+	return 0;
+}
 
 
-public abstract int joinStaff(int acti, Event event, User user);
+public int joinStaff(int acti, Event event, User user) {
+	return 0;
+}
 
 
 public ArrayList<Integer> findCollegue(int id_activity) {
@@ -191,7 +213,7 @@ public ArrayList<Integer> findCollegue(int id_activity) {
   }
 
 
-public abstract int getNumber();
+
 
 
 public BDE findBySchool(String school) {
