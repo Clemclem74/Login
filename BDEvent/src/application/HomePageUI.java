@@ -49,6 +49,8 @@ public class HomePageUI extends Routing implements Initializable {
 	 private Button manageMyTeams;
 	 @FXML
 	 private Button activities;
+	 @FXML
+	 private Button contactButton;
 	 
 
 	@Override
@@ -84,6 +86,7 @@ public class HomePageUI extends Routing implements Initializable {
 			  quitBDEbutton.setVisible(false);
 			  BDELabel.setVisible(false);
 			  meeting_button.setVisible(false);
+			  contactButton.setVisible(false);
 
 		  }
 	     
