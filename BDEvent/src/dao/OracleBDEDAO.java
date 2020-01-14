@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
+import buisnessLogic.Event;
 import buisnessLogic.Team;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
@@ -262,8 +263,11 @@ public int getNumber() {
 	
 }
 
-
-
+@Override
+public int create(BDE obj, Event event) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 
 @Override
 public boolean update(BDE obj) {
@@ -272,40 +276,12 @@ public boolean update(BDE obj) {
 }
 
 @Override
-public BDE find(String id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
 public ArrayList<BDE> findAll() {
 	// TODO Auto-generated method stub
 	return null;
 }
 
-@Override
-public int join(BDE obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean leave(int id, BDE obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
 
 
 }

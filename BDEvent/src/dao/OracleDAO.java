@@ -57,7 +57,6 @@ public abstract class OracleDAO<T> {
 
   public abstract int create(T obj);
 
-  public abstract int create(T obj,Event event);
 
   public abstract boolean delete(T obj);
 
@@ -68,6 +67,11 @@ public abstract class OracleDAO<T> {
   
   public int join(T obj,User user) {
 	return 0;
+  }
+  
+
+  public int create(T obj,Event event) {
+	  return 0;
   }
   
   
