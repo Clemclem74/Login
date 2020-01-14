@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.Poll;
 import buisnessLogic.User;
 import buisnessLogic.Vote;
 
@@ -110,38 +109,29 @@ public class OracleVoteDAO extends OracleDAO<Vote> {
 
 	@Override
 	public boolean delete(Vote obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean update(int i, Vote obj) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean update(Vote obj) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Vote find(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<Vote> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Vote findById(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public int getNumber() {
+		return 0;
+	}
+
+	
+	
 }

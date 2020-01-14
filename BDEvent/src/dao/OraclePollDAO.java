@@ -293,35 +293,14 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		return 0;
 		
 	}
-			  
-		      
-	
-	@Override
-	public int join(Poll obj, User user) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public boolean update(int i, Poll obj) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	@Override
 	public Poll findById(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public ArrayList<Integer> getEventByUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ArrayList<Integer> findTeams(int idBDE) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-			
+			  
+		      
+		
 
 }
 	
