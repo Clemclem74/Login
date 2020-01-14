@@ -24,13 +24,13 @@ public int create(TeamMember obj) {
 
 	String SQL_INSERT;
 	if (obj.isChief()) {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into team_member " + "Values (" + obj.getTeam().getIdTeam() + ","
 				  +  obj.getUser().getId_user() + ","
 						  +"'" + "1" + "'"+")";
 		
 	}
 	else {
-		SQL_INSERT = "Insert into TEAM_MEMBER " + "Values (" + obj.getTeam().getIdTeam() + ","
+		SQL_INSERT = "Insert into team_member " + "Values (" + obj.getTeam().getIdTeam() + ","
 				  +  obj.getUser().getId_user() + ","
 						  +"'" + "0" + "'"+")";
 	}
@@ -60,7 +60,7 @@ public int create(TeamMember obj) {
 public boolean delete(TeamMember teamMember) {
 	int idUser = teamMember.getUser().getId_user();
 	int idTeam = teamMember.getTeam().getIdTeam();
-	String SQL_DELETE = "DELETE from TEAM_MEMBER WHERE ID_USER='"+idUser+"' AND ID_TEAM='"+idTeam+"'";
+	String SQL_DELETE = "DELETE from team_member WHERE ID_USER='"+idUser+"' AND ID_TEAM='"+idTeam+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -84,7 +84,7 @@ public boolean isChief(int id) {
 
 	int count = 0;
 	
-	String SQL_SELECT = "SELECT COUNT(*) AS MYCOUNT FROM TEAM_MEMBER WHERE ID_USER="+id+" AND IS_CHIEF=1";
+	String SQL_SELECT = "SELECT COUNT(*) AS MYCOUNT FROM team_member WHERE ID_USER="+id+" AND IS_CHIEF=1";
 	System.out.println(SQL_SELECT);
 	try (Connection conn = DriverManager.getConnection(
 			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -119,7 +119,7 @@ public TeamMember findById(int id) {
 
 public ArrayList<Integer> findTeamsByUser(int idUser){
 
-	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_USER='"+idUser+"'";
+	  String SQL_SELECT = "Select * from team_member where ID_USER='"+idUser+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -146,7 +146,7 @@ public ArrayList<Integer> findTeamsByUser(int idUser){
 
 public ArrayList<Integer> findMembersByTeam(int idTeam){
 
-	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM="+idTeam+"";
+	  String SQL_SELECT = "Select * from team_member where ID_TEAM="+idTeam+"";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -173,7 +173,7 @@ public ArrayList<Integer> findMembersByTeam(int idTeam){
 
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from TEAM_MEMBER";
+	 String SQL_SELECT = "Select * from team_member";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
@@ -203,7 +203,7 @@ public int getNumber() {
 public TeamMember findByUserTeam(User user, Team team) {
 	TeamMember obj = new TeamMember();      
     
-	  String SQL_SELECT = "Select * from TEAM_MEMBER where ID_TEAM='"+team.getIdTeam()+"' AND ID_USER='" + user.getId_user() + "' ";
+	  String SQL_SELECT = "Select * from team_member where ID_TEAM='"+team.getIdTeam()+"' AND ID_USER='" + user.getId_user() + "' ";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
