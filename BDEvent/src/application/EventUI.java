@@ -193,7 +193,7 @@ public class EventUI extends Routing implements Initializable {
 				this.description.setText(theEvent.getDescription());
 				this.event_title.setText(theEvent.getTitle());
 				this.event_date.setText(theEvent.getEvent_date());
-				this.event_responsible.setText(responsible.getFirstname() + " " + responsible.getUsername());	
+				this.event_responsible.setText(responsible.getFirstname() + " " + responsible.getLastname());	
 			}
 			
 			super.setEventSelected(theEvent);
