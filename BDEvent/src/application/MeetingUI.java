@@ -179,7 +179,6 @@ public class MeetingUI extends Routing implements Initializable {
 			System.out.println(super.getCurrentUser().isAdminOfHisBDE() == false);
 			System.out.println(meetingSelected.getPublisher_meeting());
 			if(super.getCurrentUser().isPublisherMeeting(Routing.getCurrentMeeting()) || super.getCurrentUser().isAdminOfHisBDE()) {
-				participe_button.setVisible(false);
 				this.modifyMeeting.setVisible(true);
 				this.deleteMeeting.setVisible(true);
 			}
