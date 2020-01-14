@@ -10,9 +10,7 @@ import java.util.ArrayList;
 
 
 import buisnessLogic.Participe;
-import buisnessLogic.Meeting;
 import buisnessLogic.User;
-import buisnessLogic.Vote;
 public class OracleParticipeDAO extends OracleDAO<Participe>{
 	
 	public OracleParticipeDAO(Connection conn) {
@@ -110,5 +108,31 @@ public class OracleParticipeDAO extends OracleDAO<Participe>{
 		  }
 		return ret;
 		}
+
+	
+	@Override
+	public boolean delete(Participe obj) {
+		return false;
+	}
+
+	@Override
+	public boolean update(Participe obj) {
+		return false;
+	}
+
+	@Override
+	public ArrayList<Participe> findAll() {
+		return null;
+	}
+
+	@Override
+	public Participe findById(int id) {
+		return null;
+	}
+
+	@Override
+	public int getNumber() {
+		return 0;
+	}
 
 }

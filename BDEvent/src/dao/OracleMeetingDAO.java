@@ -233,6 +233,16 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 		return 0;
 		
 	}
+
+	@Override
+	public ArrayList<Meeting> findAll() {
+		return null;
+	}
+
+	@Override
+	public Meeting findById(int id) {
+		return null;
+	}
 	
 
 }
