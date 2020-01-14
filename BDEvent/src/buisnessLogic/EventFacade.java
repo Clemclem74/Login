@@ -36,9 +36,9 @@ public class EventFacade {
 	}
 
 
-	public ArrayList<Event> findAll() {
+	public ArrayList<Event> findAll(int id_bde) {
 		OracleDAO<Event> eventDao = this.adf.getEventDAO();
-		ArrayList<Event> event = eventDao.findAll();
+		ArrayList<Event> event = eventDao.findAll(id_bde);
 		if (event == null) {
 			System.out.println("event null facade");
 			return null;

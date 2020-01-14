@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
+import buisnessLogic.BDEActivity;
 import buisnessLogic.Contact;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
@@ -177,7 +178,7 @@ public int count_users_BDEacti(int acti) {
 }
 
 
-public int create(StaffActivity acti, Event event) {
+public int create_acti_event(StaffActivity acti, Event event) {
 	return 0;
 };
 
@@ -232,5 +233,13 @@ public TeamMember findByUserTeam(User user, Team team) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
+
+public ArrayList<T> findAll(int bDE_id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 
 }

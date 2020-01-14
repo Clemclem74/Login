@@ -184,7 +184,7 @@ private ObservableList<ActivityList> loadData() {
 		
 		ActivityFacade activityFacade = new ActivityFacade();
 		
-		list1 = activityFacade.findAll();
+		list1 = activityFacade.findAll(super.getCurrentUser().getCurrentBDE());
 		
 		
 		
@@ -492,6 +492,7 @@ private ObservableList<ActivityList> loadData() {
        acti1.setStart_hour(theStartHour);
        acti1.setDuration(theHours+"h"+theMinutes+"m");
        acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       acti1.setId_bde(super.getCurrentUser().getCurrentBDE());
        
        actiFacade.create(acti1);
        super.setVue("Activity");
@@ -516,6 +517,7 @@ private ObservableList<ActivityList> loadData() {
        acti1.setStart_hour(theStartHour);
        acti1.setDuration(theHours+"h"+theMinutes+"m");
        acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       acti1.setId_bde(super.getCurrentUser().getCurrentBDE());
        System.out.println("Event:"+super.getEventSelected().getTitle());
        actiFacade.createStaff(acti1,super.getEventSelected());
        super.setVue("Activity");
@@ -622,6 +624,7 @@ private ObservableList<ActivityList> loadData() {
        acti1.setStart_hour(theStartHour);
        acti1.setDuration(theHours+"h"+theMinutes+"m");
        acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
+       acti1.setId_bde(super.getCurrentUser().getCurrentBDE());
        
        actiFacade.modify(acti1,super.getBdeActivitySelected().getId_activity());
        super.setVue("Activity");
@@ -647,7 +650,7 @@ private ObservableList<ActivityList> loadData() {
        acti1.setStart_hour(theStartHour);
        acti1.setDuration(theHours+"h"+theMinutes+"m");
        acti1.setNb_users(Integer.parseInt(this.nb_users.getText()));
-       
+       acti1.setId_bde(super.getCurrentUser().getCurrentBDE());
        System.out.println("title "+ acti1.getName_activity());
        actiFacade.modifyStaff(acti1,super.getStaffActivitySelected().getId_activity());
        super.setVue("Activity");
