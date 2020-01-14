@@ -41,6 +41,11 @@ public class UserUI extends Routing implements Initializable {
 	   @FXML
 	   private Button saveButton;
 	   
+	   public void backHome(ActionEvent event) {
+			super.setVue("HomePage");
+		   super.goTo("HomePageUI");
+	   }
+	   
 	   //------------------------------------------
 	  
 	   
@@ -100,6 +105,8 @@ public class UserUI extends Routing implements Initializable {
 		@FXML
 		private Button registerButton;
 		@FXML
+		private Button backButton;
+		@FXML
 		private TextField firstNameFieldR;
 		@FXML
 		private TextField lastNameFieldR;
@@ -155,6 +162,12 @@ public class UserUI extends Routing implements Initializable {
 					java.util.regex.Matcher m = p.matcher(phone);
 					return m.matches();
 			}
+			
+			 public void backLogin(ActionEvent event) {
+					super.setVue("Login");
+				   super.goTo("LoginUI");
+			   }
+			   
 			
 			//--------------Modify user controler : 
 			
