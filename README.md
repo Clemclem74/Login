@@ -8,8 +8,9 @@ This project was made with JAVA.
 2 - Extract the files  
 3 - Open OOSE-PROJECT on eclipse  
 4 - right click on src [OOSE-Project master], select Build Path Configure Build Path   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;click on Add External JARs... then add all the javafx.something.jar in Modulepath  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and mysql-connector-java-5.1.18-bin in Classpath ( all disponible in lib/)    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;click on Add External JARs... then add all the javafx.something.jar in Modulepath
+path to find them at (OOSE-Project\lib\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and mysql-connector-java-5.1.18-bin in Classpath find them at (OOSE-Project\lib)    
 
   ![alt text](https://image.noelshack.com/fichiers/2020/03/2/1578996530-captproj4.png)  
 
