@@ -155,8 +155,6 @@ public class MeetingUI extends Routing implements Initializable {
 		selectedDate.setVisible(true);
 		nboui.setVisible(true);
 		nbnon.setVisible(true);
-		this.modifyMeeting.setVisible(false);
-		this.deleteMeeting.setVisible(false);
 		participe_button.setVisible(true);
 		participeCheckbox.setVisible(true);
 		
@@ -177,9 +175,13 @@ public class MeetingUI extends Routing implements Initializable {
 			User publisher = userFacade.findById(meetingSelected.getPublisher_meeting());
 			String namePublisher = publisher.getFirstname() + " "+publisher.getLastname();
 			this.publisherName.setText(namePublisher);
-			if(super.getCurrentUser().getId_user() == meetingSelected.getPublisher_meeting() || super.getCurrentUser().isAdminOfHisBDE());{
-				this.modifyMeeting.setVisible(false);
-				this.deleteMeeting.setVisible(false);
+			System.out.println(super.getCurrentUser().getId_user() == meetingSelected.getPublisher_meeting());
+			System.out.println(super.getCurrentUser().isAdminOfHisBDE() == false);
+			System.out.println(meetingSelected.getPublisher_meeting());
+			if(super.getCurrentUser().isPublisherMeeting(Routing.getCurrentMeeting()) || super.getCurrentUser().isAdminOfHisBDE()) {
+				participe_button.setVisible(false);
+				this.modifyMeeting.setVisible(true);
+				this.deleteMeeting.setVisible(true);
 			}
 			if(participeFacade.alreadyParticiped(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser())) {
 				participe_button.setVisible(false);
