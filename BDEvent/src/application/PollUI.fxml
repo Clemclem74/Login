@@ -73,5 +73,10 @@
       <Label fx:id="counter1" layoutX="520.0" layoutY="436.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
       <Label fx:id="counter2" layoutX="520.0" layoutY="467.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
       <Label fx:id="counter3" layoutX="520.0" layoutY="499.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
+      <Label fx:id="alreadyLabel" layoutX="627.0" layoutY="467.0" text="You have already voted" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

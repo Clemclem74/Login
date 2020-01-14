@@ -64,6 +64,8 @@ public class PollUI extends Routing implements Initializable {
 	 private Label counter2;
 	 @FXML
 	 private Label counter3;
+	 @FXML
+	 private Label alreadyLabel;
 	 
 	 
 	
@@ -109,6 +111,7 @@ public class PollUI extends Routing implements Initializable {
 				else {
 					super.setCurrentPoll(null);
 					displayPoll();
+					alreadyLabel.setVisible(false);
 					modifyPoll.setVisible(false);
 					deletePoll.setVisible(false);
 					choices1.setVisible(false);
@@ -150,6 +153,7 @@ public class PollUI extends Routing implements Initializable {
 		
 		@FXML
 		private void displaySelectedList(MouseEvent event) {
+			alreadyLabel.setVisible(false);
 			choices1.setVisible(true);
 			choices2.setVisible(true);
 			choices3.setVisible(true);
@@ -191,6 +195,8 @@ public class PollUI extends Routing implements Initializable {
 					
 				if(voteFacade.alreadyvoted(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser())) {
 					voteButton.setVisible(false);
+					voteCheckbox.setVisible(false);
+					alreadyLabel.setVisible(true);
 				}
 				ArrayList<Integer> counter = new ArrayList<>();
 				ArrayList<Vote> list = new ArrayList<>();
@@ -206,6 +212,11 @@ public class PollUI extends Routing implements Initializable {
 					this.counter1.setVisible(false);
 					this.counter2.setVisible(false);
 					this.counter3.setVisible(false);
+					if(voteFacade.alreadyvoted(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser())) {
+						voteButton.setVisible(false);
+						voteCheckbox.setVisible(false);
+						alreadyLabel.setVisible(true);
+					}
 				}
 			}
 		}
@@ -215,7 +226,8 @@ public class PollUI extends Routing implements Initializable {
 			PollFacade pollFacade = new PollFacade();
 			pollFacade.delete(super.getCurrentPoll());
 			pollList.getItems().clear();
-			
+			super.setVue("BasicPoll");
+			super.goTo("PollUI");
 			super.openPopUp("You're poll has been deleted", "");
 			this.titlePollSelected.setText("");
 			this.publisherName.setText("");
