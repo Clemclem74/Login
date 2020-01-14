@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import buisnessLogic.BDE;
-import buisnessLogic.Contact;
 import buisnessLogic.Team;
 import buisnessLogic.TeamFacade;
 import buisnessLogic.TeamMember;
@@ -244,63 +243,15 @@ public TeamMember findByUserTeam(User user, Team team) {
 }
 
 
-
-
-@Override
-public boolean update(int i, TeamMember obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
 @Override
 public boolean update(TeamMember obj) {
-	// TODO Auto-generated method stub
 	return false;
-}
-
-@Override
-public TeamMember find(String id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
 }
 
 @Override
 public ArrayList<TeamMember> findAll() {
-	// TODO Auto-generated method stub
 	return null;
 }
-
-@Override
-public int join(TeamMember obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean leave(int id, TeamMember obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public int count_users_BDEacti(int acti) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-
 
 
 

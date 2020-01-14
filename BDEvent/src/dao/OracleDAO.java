@@ -57,13 +57,22 @@ public abstract class OracleDAO<T> {
 
   public abstract int create(T obj);
 
-
   public abstract boolean delete(T obj);
 
-  public abstract boolean update(int i, T obj);
-
   public abstract boolean update(T obj);
+  
+  public abstract ArrayList<T> findAll();
 
+  public abstract T findById(int id);
+  
+  public abstract int getNumber();
+  
+  
+  
+
+  public boolean update(int i, T obj) {
+	  return false ;
+  }
   
   public int join(T obj,User user) {
 	return 0;
@@ -82,14 +91,7 @@ public abstract class OracleDAO<T> {
 
   public T find(String id) {
 	  return null;
-  }
-
-  public abstract ArrayList<T> findAll();
-
-  public abstract T findById(int id);
-  
-  public abstract int getNumber();
-  
+  }  
 
   public ArrayList<Integer> getEventByUser(User user){
 	return null;

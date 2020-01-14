@@ -7,12 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.BDE;
 import buisnessLogic.BDEFacade;
-import buisnessLogic.Contact;
 import buisnessLogic.Team;
-import buisnessLogic.User;
-import buisnessLogic.UserFacade;
+
 
 public class OracleTeamDAO extends OracleDAO<Team> {
 public OracleTeamDAO(Connection conn) {
@@ -238,47 +235,10 @@ public boolean update(Team obj) {
 	
 }
 
-
-
-@Override
-public Team find(String id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
 @Override
 public ArrayList<Team> findAll() {
-	// TODO Auto-generated method stub
 	return null;
 }
 
-@Override
-public int join(Team obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean leave(int id, Team obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
 }

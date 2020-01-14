@@ -7,12 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.BDE;
 import buisnessLogic.Contact;
-import buisnessLogic.Fee;
 import buisnessLogic.Team;
 import buisnessLogic.TeamFacade;
-import buisnessLogic.User;
 
 public class OracleContactDAO extends OracleDAO<Contact> {
 public OracleContactDAO(Connection conn) {
@@ -266,67 +263,16 @@ public ArrayList<Contact> findAllContactByTeam(Team team) {
 		
 	}
 
+	@Override
+	public ArrayList<Contact> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	
 	
-	
-
-@Override
-public int join(Contact obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public boolean update(int i, Contact obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean leave(int id, Contact obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public Contact find(String id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Contact> findAll() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public int count_users_BDEacti(int acti) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-
 
 
 }
