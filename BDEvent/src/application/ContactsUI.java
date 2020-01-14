@@ -130,9 +130,14 @@ public class ContactsUI extends Routing implements Initializable {
 		   ContactFacade contactFacade = new ContactFacade();
 		   globalContactList = contactFacade.findAllMyContact(user);
 		   ArrayList<String> companyContact = new ArrayList<String>();
-		   globalContactList.forEach((n)-> companyContact.add(n.getIdContact()+ " : " + n.getCompany())); 
-			
-		   contactList.getItems().addAll(companyContact);
+		   if (this.globalContactList == null) {
+		   }
+		   else {
+			   this.globalContactList.forEach((n)-> companyContact.add(n.getIdContact()+ " : " + n.getCompany())); 
+				
+			   contactList.getItems().addAll(companyContact);
+		   }
+		  
 		}
 	   
 	   @FXML
