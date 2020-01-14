@@ -7,12 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.BDE;
-import buisnessLogic.Event;
 import buisnessLogic.Post;
-import buisnessLogic.Team;
 import buisnessLogic.User;
-import buisnessLogic.UserFacade;
 
 public class OraclePostDAO extends OracleDAO<Post> {
 public OraclePostDAO(Connection conn) {
@@ -155,17 +151,7 @@ public Post find(String titrePost) {
 	return obj;
 }
 
-@Override
-public Post findById(int id) {
-	// TODO Auto-generated method stub
-	return null;
-}
 
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
 
 private int getLastId() {
 	
@@ -389,34 +375,11 @@ public int getNumber() {
 }
 
 @Override
-public int join(Post obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
+public Post findById(int id) {
 	// TODO Auto-generated method stub
 	return null;
 }
 
-@Override
-public boolean update(int i, Post obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean leave(int id, Post obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
 
 
 }
