@@ -5,7 +5,7 @@ This project was made with JAVA.
 ## How to launch the project
 
 1 - Download the git repository  
-2 - Exctract the files  
+2 - Extract the files  
 3 - Open OOSE-PROJECT on eclipse  
 4 - right click on src [OOSE-Project master], select Build Path Configure Build Path   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;click on Add External JARs... then add all the javafx.something.jar in Modulepath  
@@ -16,7 +16,7 @@ This project was made with JAVA.
 5 - Click on run, Run Configurations  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the windows that opened go to (x)= Arguments  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and past in VM arguments the following lines :  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make sure you modify the path to in module-path 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(make sure you modify the path to your own in module-path) 
 
 --module-path "path\to\this\file\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib"  
 --add-modules=javafx.controls,javafx.fxml  
