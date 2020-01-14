@@ -16,8 +16,9 @@ This project was made with JAVA.
 5 - Click on run, Run Configurations  
 in the windows that opened go to (x)= Arguments and past in VM arguments the following lines :  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make sure you modify the path to in module-path 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--module-path "path\to\this\file\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib"  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--add-modules=javafx.controls,javafx.fxml  
+
+--module-path "path\to\this\file\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib"  
+--add-modules=javafx.controls,javafx.fxml  
   
   ![alt text](https://image.noelshack.com/fichiers/2020/03/2/1578995965-captproj2.png)
   
