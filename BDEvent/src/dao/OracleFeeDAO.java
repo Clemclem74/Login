@@ -7,13 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.BDE;
-import buisnessLogic.Event;
+
 import buisnessLogic.Fee;
-import buisnessLogic.Post;
-import buisnessLogic.Team;
 import buisnessLogic.User;
-import buisnessLogic.UserFacade;
 
 public class OracleFeeDAO extends OracleDAO<Fee> {
 public OracleFeeDAO(Connection conn) {
@@ -72,11 +68,6 @@ private int getLastId() {
 	
 }
 
-@Override
-public int join(Fee obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
 @Override
 public boolean delete(Fee fee) {
@@ -101,11 +92,6 @@ public boolean delete(Fee fee) {
 	return false;
 }
 
-@Override
-public boolean update(int i, Fee obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
 
 @Override
 public boolean update(Fee obj) {
@@ -184,37 +170,13 @@ public Fee find(String titreFee) {
 	return obj;
 }
 
-@Override
-public ArrayList<Fee> findAll() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public Fee findById(int id) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> getEventByUser(User user) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
 
 
 
 public ArrayList<Fee> findAllFeeByUser(User user) {
 	ArrayList<Fee> ret = new ArrayList<Fee>();
 	 int id = user.getId_user();
-	  String SQL_SELECT = "Select * from FEE where ID_USER_FEE="+id;
+	  String SQL_SELECT = "Select * from fee where ID_USER_FEE="+id;
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
@@ -258,7 +220,6 @@ public ArrayList<Fee> findAllFeeByUser(User user) {
 
 public ArrayList<Fee> findAllFee(User user) {
 	ArrayList<Fee> ret = new ArrayList<Fee>();
-		int idUser = user.getId_user();
     	int idbde = user.getCurrentBDE();
 	  String SQL_SELECT = "Select DISTINCT(ID_FEE),TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_BDE="+idbde;
 	  // auto close connection and preparedStatement
@@ -313,7 +274,7 @@ public boolean acceptFee(Fee obj) {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE FEE SET STATE_FEE = 1 WHERE ID_FEE =? ");
+			      "UPDATE fee SET STATE_FEE = 1 WHERE ID_FEE =? ");
 		  
 			    // set the preparedstatement parameters
 			    
@@ -337,7 +298,7 @@ public boolean acceptFee(Fee obj) {
 }
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from FEE";
+	 String SQL_SELECT = "Select * from fee";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
@@ -362,17 +323,17 @@ public int getNumber() {
 	return 0;
 	
 }
+
 @Override
-public boolean leave(int id, Fee obj) {
+public ArrayList<Fee> findAll() {
 	// TODO Auto-generated method stub
-	return false;
+	return null;
 }
 
 @Override
-public boolean isChief(int id_user) {
+public Fee findById(int id) {
 	// TODO Auto-generated method stub
-	return false;
+	return null;
 }
-
 
 }

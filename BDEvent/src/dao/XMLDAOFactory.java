@@ -1,15 +1,18 @@
 package dao;
 
 import buisnessLogic.BDE;
-import buisnessLogic.BlackBoard;
+import buisnessLogic.BDEActivity;
+import buisnessLogic.Contact;
 import buisnessLogic.Event;
 import buisnessLogic.Fee;
 import buisnessLogic.Meeting;
 import buisnessLogic.Participe;
 import buisnessLogic.Poll;
 import buisnessLogic.Post;
+import buisnessLogic.StaffActivity;
 import buisnessLogic.Team;
 import buisnessLogic.TeamMember;
+import buisnessLogic.Vote;
 
 public class XMLDAOFactory extends AbstractDAOFactory {
 	  
@@ -42,12 +45,6 @@ public class XMLDAOFactory extends AbstractDAOFactory {
 	}
 
 	@Override
-	public OracleDAO<BlackBoard> getBlackBoardDAO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public OracleDAO<TeamMember> getTeamMemberDAO() {
 		// TODO Auto-generated method stub
 		return null;
@@ -73,6 +70,36 @@ public class XMLDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	public OracleDAO<Fee> getFeeDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<Vote> getVoteDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<dao.BlackBoard> getBlackBoardDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<BDEActivity> getBDEActivityDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<StaffActivity> getStaffActivityDAO() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OracleDAO<Contact> getContactDAO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

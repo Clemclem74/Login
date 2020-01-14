@@ -37,13 +37,13 @@
          <font>
             <Font size="23.0" />
          </font></Label>
-      <ListView fx:id="tableTeams" layoutX="261.0" layoutY="145.0" prefHeight="376.0" prefWidth="322.0" />
+      <ListView fx:id="tableTeams" layoutX="261.0" layoutY="145.0" onMouseClicked="#displaySelectedList" prefHeight="376.0" prefWidth="322.0" />
       <Text fill="#52abff" layoutX="223.0" layoutY="74.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="My Teams" textAlignment="CENTER" wrappingWidth="715.5625">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
       </Text>
-      <Button layoutX="668.0" layoutY="251.0" mnemonicParsing="false" onAction="#joinTeam" style="-fx-background-color: #151928;" text="Join a Team" textFill="#52abff">
+      <Button layoutX="668.0" layoutY="251.0" mnemonicParsing="false" onAction="#joinTeam" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #151928;" text="Join a Team" textFill="#52abff">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -51,6 +51,11 @@
       <Button fx:id="logoutButton1" layoutX="48.0" layoutY="549.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #2196f3;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Copperplate Gothic Bold" size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="quitButton" layoutX="668.0" layoutY="319.0" mnemonicParsing="false" onAction="#quitTeam" style="-fx-background-color: #151928;" text="Quit this Team" textFill="#52abff">
+         <font>
+            <Font name="System Bold" size="20.0" />
          </font>
       </Button>
    </children>
