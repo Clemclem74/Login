@@ -41,7 +41,7 @@ public abstract class OracleDAO<T> {
   public OracleDAO(Connection conn){
     this.connect = conn;
 
-/*
+
     try {
 		Class.forName("com.mysql.jdbc.Driver");
 	} catch (ClassNotFoundException e) {
@@ -49,7 +49,7 @@ public abstract class OracleDAO<T> {
     e.printStackTrace();
 	}
 
-*/
+
 
 
   }
