@@ -23,7 +23,7 @@ public OracleContactDAO(Connection conn) {
 public int create(Contact obj) {
 	int id = getLastId()+1;
 
-	  String SQL_INSERT = "Insert into CONTACT " + "Values (" + id +",'" + obj.getNameContact()+ "',"
+	  String SQL_INSERT = "Insert into contact " + "Values (" + id +",'" + obj.getNameContact()+ "',"
 			  +"'" + obj.getCompany() + "','"
 					   + obj.getPhoneNumberContact()+ "','" + obj.getInformationsContact()+ "'," + obj.getTeamContact().getIdTeam() + ")";
 	  System.out.println(SQL_INSERT);
@@ -49,7 +49,7 @@ public int create(Contact obj) {
 private int getLastId() {
 	
 	int id_contact=0;
-	String SQL_SELECT = "Select MAX(ID_CONTACT)from CONTACT";
+	String SQL_SELECT = "Select MAX(ID_CONTACT)from contact";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -76,7 +76,7 @@ private int getLastId() {
 @Override
 public boolean delete(Contact contact) {
 	int id = contact.getIdContact();
-	String SQL_DELETE = "DELETE from CONTACT WHERE ID_CONTACT='"+id+"'";
+	String SQL_DELETE = "DELETE from contact WHERE ID_CONTACT='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -105,7 +105,7 @@ public boolean update(Contact obj) {
 		
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE CONTACT SET NAME_CONTACT = ?, COMPANY_CONTACT = ?, PHONENUMBER_CONTACT = ? , INFORMATIONS_CONTACT = ? , ID_TEAM_CONTACT = ? WHERE ID_CONTACT = ? ");
+			      "UPDATE contact SET NAME_CONTACT = ?, COMPANY_CONTACT = ?, PHONENUMBER_CONTACT = ? , INFORMATIONS_CONTACT = ? , ID_TEAM_CONTACT = ? WHERE ID_CONTACT = ? ");
 		  
 			    // set the prepared statement parameters
 			    ps.setString(1,obj.getNameContact());
@@ -137,7 +137,7 @@ public boolean update(Contact obj) {
 public Contact findById(int id) {
 	Contact obj = new Contact();      
     
-	  String SQL_SELECT = "Select * from CONTACT where ID_CONTACT='"+id+"' ";
+	  String SQL_SELECT = "Select * from contact where ID_CONTACT='"+id+"' ";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -192,7 +192,7 @@ public Contact findById(int id) {
 public ArrayList<Contact> findAllContactByTeam(Team team) {
 	ArrayList<Contact> ret = new ArrayList<Contact>();
 	 int id = team.getIdTeam();
-	  String SQL_SELECT = "Select * from CONTACT where ID_TEAM_CONTACT="+id;
+	  String SQL_SELECT = "Select * from contact where ID_TEAM_CONTACT="+id;
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
@@ -240,7 +240,7 @@ public ArrayList<Contact> findAllContactByTeam(Team team) {
 
 
 	public int getNumber() {
-		 String SQL_SELECT = "Select * from CONTACT";
+		 String SQL_SELECT = "Select * from contact";
 		  // auto close connection and preparedStatement
 		
 		  try (Connection conn = DriverManager.getConnection(

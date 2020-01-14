@@ -24,7 +24,7 @@ public OracleFeeDAO(Connection conn) {
 public int create(Fee obj) {
 	int id = getLastId()+1;
 
-	  String SQL_INSERT = "Insert into FEE " + "Values (" + id +",'" + obj.getTitle_fee()+ "',"
+	  String SQL_INSERT = "Insert into fee " + "Values (" + id +",'" + obj.getTitle_fee()+ "',"
 			  +"'" + obj.getComment_fee() + "',"
 					   + obj.getAmount_fee()+ "," + 0 + "," + obj.getId_user_fee()+ ")";
 	  System.out.println(SQL_INSERT);
@@ -50,7 +50,7 @@ public int create(Fee obj) {
 private int getLastId() {
 	
 	int id_fee=0;
-	String SQL_SELECT = "Select MAX(ID_FEE)from FEE";
+	String SQL_SELECT = "Select MAX(ID_FEE)from fee";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -81,7 +81,7 @@ public int join(Fee obj, User user) {
 @Override
 public boolean delete(Fee fee) {
 	int id = fee.getId_fee();
-	String SQL_DELETE = "DELETE from FEE WHERE ID_FEE='"+id+"'";
+	String SQL_DELETE = "DELETE from fee WHERE ID_FEE='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -117,7 +117,7 @@ public boolean update(Fee obj) {
 		
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE FEE SET TITLE_FEE = ?, COMMENT_FEE = ?, AMOUNT_FEE = ? , STATE_FEE = 0 WHERE ID_FEE = ? ");
+			      "UPDATE fee SET TITLE_FEE = ?, COMMENT_FEE = ?, AMOUNT_FEE = ? , STATE_FEE = 0 WHERE ID_FEE = ? ");
 		  
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getTitle_fee());
@@ -146,7 +146,7 @@ public boolean update(Fee obj) {
 public Fee find(String titreFee) {
 	Fee obj = new Fee();      
     
-	  String SQL_SELECT = "Select * from FEE where TITLE_FEE='"+titreFee+"'";
+	  String SQL_SELECT = "Select * from fee where TITLE_FEE='"+titreFee+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(

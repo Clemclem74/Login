@@ -20,7 +20,7 @@ public OracleBDEDAO(Connection conn) {
 public int create(BDE obj) {
 	int id = getLastId()+1;
 
-	  String SQL_INSERT = "Insert into BDE " + "Values (" + id +",'" + obj.getCreator().getId_user() + "',"
+	  String SQL_INSERT = "Insert into bde " + "Values (" + id +",'" + obj.getCreator().getId_user() + "',"
 			  +"'" + obj.getNameBDE() + "',"
 					  +"'" + obj.getSchoolBDE() + "'"+")";
 	  System.out.println(SQL_INSERT);
@@ -47,7 +47,7 @@ public int create(BDE obj) {
 
 public boolean delete(BDE bde) {
 	int id = bde.getIdBDE();
-	String SQL_DELETE = "DELETE from BDE WHERE ID_BDE='"+id+"'";
+	String SQL_DELETE = "DELETE from bde WHERE ID_BDE='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -76,7 +76,7 @@ public boolean update(int idBde, BDE obj) {
 
 
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE BDE SET IDCREATOR = ?, NAMEBDE = ?, SCHOOLBDE= ? WHERE ID_BDE = ? ");
+			      "UPDATE bde SET IDCREATOR = ?, NAMEBDE = ?, SCHOOLBDE= ? WHERE ID_BDE = ? ");
 
 			    // set the prepareddcstatement parameters
 			    ps.setInt(1,obj.getCreator().getId_user());
@@ -102,7 +102,7 @@ public boolean update(int idBde, BDE obj) {
 private int getLastId() {
 
 	int id_bde=0;
-	String SQL_SELECT = "Select MAX(ID_BDE)from BDE";
+	String SQL_SELECT = "Select MAX(ID_BDE)from bde";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -128,7 +128,7 @@ private int getLastId() {
 public BDE findById(int id) {
   BDE obj = new BDE();
 
-  String SQL_SELECT = "Select * from BDE where ID_BDE='"+id+"'";
+  String SQL_SELECT = "Select * from bde where ID_BDE='"+id+"'";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -168,7 +168,7 @@ return obj;
 public BDE findBySchool(String school) {
 	  BDE obj = new BDE();
 
-	  String SQL_SELECT = "Select * from BDE where SCHOOLBDE='"+school+"'";
+	  String SQL_SELECT = "Select * from bde where SCHOOLBDE='"+school+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -208,7 +208,7 @@ public BDE findBySchool(String school) {
 
 public ArrayList<Integer> findTeams(int idBDE){
 
-	  String SQL_SELECT = "Select * from Team where ID_BDE='"+idBDE+"'";
+	  String SQL_SELECT = "Select * from team where ID_BDE='"+idBDE+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -236,7 +236,7 @@ public ArrayList<Integer> findTeams(int idBDE){
 
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from BDE";
+	 String SQL_SELECT = "Select * from bde";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(

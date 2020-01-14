@@ -24,7 +24,7 @@ public class OracleParticipeDAO extends OracleDAO<Participe>{
 		int id = getLastId()+1;
 		System.out.println("Before");
 		
-		 String SQL_INSERT = "Insert into PARTICIPE (ID_PARTICIPE, ID_MEETING, ID_PARTICIPER, CHOICE_PARTICIPE, ID_BDE) " + "Values (" + id +"," + obj.getId_meeting()+ "," + obj.getId_participer() + ",'"
+		 String SQL_INSERT = "Insert into participe (ID_PARTICIPE, ID_MEETING, ID_PARTICIPER, CHOICE_PARTICIPE, ID_BDE) " + "Values (" + id +"," + obj.getId_meeting()+ "," + obj.getId_participer() + ",'"
 				   + obj.getChoice()+ "',"+ obj.getId_bde_participer() + ")";
 		  System.out.println(SQL_INSERT);
 		  // auto close connection and preparedStatement
@@ -48,7 +48,7 @@ public class OracleParticipeDAO extends OracleDAO<Participe>{
 	
 	private int getLastId() {
 		int id_participe = 0;
-		String SQL_SELECT = "Select MAX(ID_PARTICIPE) from PARTICIPE";
+		String SQL_SELECT = "Select MAX(ID_PARTICIPE) from participe";
 		
 		try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -72,7 +72,7 @@ public class OracleParticipeDAO extends OracleDAO<Participe>{
 		ArrayList<Participe> ret = new ArrayList<>();
 		
 	    	int idbde = user.getCurrentBDE();
-		  String SQL_SELECT = "Select * from PARTICIPE where ID_BDE="+idbde;
+		  String SQL_SELECT = "Select * from participe where ID_BDE="+idbde;
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);

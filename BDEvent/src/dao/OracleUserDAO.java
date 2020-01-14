@@ -20,7 +20,7 @@ public int create(User obj) {
 	System.out.println("Before");
 
 	
-	  String SQL_INSERT = "Insert into Users " + "Values (" + id +",'" + obj.getUsername() + "',"
+	  String SQL_INSERT = "Insert into users " + "Values (" + id +",'" + obj.getUsername() + "',"
 			  +"'" + obj.getEmailuser() + "',"
 					  +"'" + obj.getPassworduser() + "',"
 							  +"'" + obj.getFirstname() + "',"
@@ -50,7 +50,7 @@ public int create(User obj) {
 
 public boolean delete(User user) {
 	int id = user.getId_user();
-	String SQL_DELETE = "DELETE from Users WHERE ID_USER='"+id+"'";
+	String SQL_DELETE = "DELETE from users WHERE ID_USER='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -80,7 +80,7 @@ public boolean update(int iduser, User obj) {
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE Users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
+			      "UPDATE users SET USERNAME = ?, EMAILUSER = ?, PASSWORDUSER= ?, FIRSTNAME=?, LASTNAME=?, PHONENUMBERUSER=?, ID_BDE=? WHERE ID_USER = ? ");
 
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getUsername());
@@ -110,7 +110,7 @@ public boolean update(int iduser, User obj) {
 private int getLastId() {
 	
 	int id_user=0;
-	String SQL_SELECT = "Select MAX(ID_USER)from Users";
+	String SQL_SELECT = "Select MAX(ID_USER)from users";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -136,7 +136,7 @@ private int getLastId() {
 public User find(String email) {
   User obj = new User();      
     
-  String SQL_SELECT = "Select * from Users where emailuser='"+email+"'";
+  String SQL_SELECT = "Select * from users where emailuser='"+email+"'";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -182,7 +182,7 @@ return obj;
 public User findById(int id) {
 	  User obj = new User();      
 	    
-	  String SQL_SELECT = "Select * from Users where ID_USER='"+id+"'";
+	  String SQL_SELECT = "Select * from users where ID_USER='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -227,7 +227,7 @@ public User findById(int id) {
 
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from USERS";
+	 String SQL_SELECT = "Select * from users";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(

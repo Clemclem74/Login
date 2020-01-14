@@ -22,7 +22,7 @@ public OracleTeamDAO(Connection conn) {
 public int create(Team obj) {
 	int id = getLastId()+1;
 
-	  String SQL_INSERT = "Insert into Team " + "Values (" + id +",'" + obj.getNameTeam() + "',"
+	  String SQL_INSERT = "Insert into team " + "Values (" + id +",'" + obj.getNameTeam() + "',"
 			  +"'" + obj.getBde().getIdBDE() + "'"
 					  +")";
 	  System.out.println(SQL_INSERT);
@@ -49,7 +49,7 @@ public int create(Team obj) {
 
 public boolean delete(Team team) {
 	int id = team.getIdTeam();
-	String SQL_DELETE = "DELETE from TEAM WHERE ID_TEAM ='"+id+"'";
+	String SQL_DELETE = "DELETE from team WHERE ID_TEAM ='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -78,7 +78,7 @@ public boolean update(int idtTeam, Team obj) {
 private int getLastId() {
 
 	int id_team=0;
-	String SQL_SELECT = "Select MAX(ID_TEAM)from Team";
+	String SQL_SELECT = "Select MAX(ID_TEAM)from team";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -104,7 +104,7 @@ private int getLastId() {
 public Team findById(int id) {
   Team obj = new Team();
 
-  String SQL_SELECT = "Select * from TEAM where ID_TEAM='"+id+"'";
+  String SQL_SELECT = "Select * from team where ID_TEAM='"+id+"'";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -143,7 +143,7 @@ return obj;
 public Team findByName(String name) {
 	  Team obj = new Team();
 
-	  String SQL_SELECT = "Select * from TEAM where NAME_TEAM='"+name+"'";
+	  String SQL_SELECT = "Select * from team where NAME_TEAM='"+name+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -179,7 +179,7 @@ public Team findByName(String name) {
 
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from TEAM";
+	 String SQL_SELECT = "Select * from team";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
@@ -217,7 +217,7 @@ public boolean update(Team obj) {
 		
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE TEAM SET NAME_TEAM = ?, ID_BDE = ? WHERE ID_TEAM = ? ");
+			      "UPDATE team SET NAME_TEAM = ?, ID_BDE = ? WHERE ID_TEAM = ? ");
 		  
 			    // set the prepared statement parameters
 			    ps.setString(1,obj.getNameTeam());

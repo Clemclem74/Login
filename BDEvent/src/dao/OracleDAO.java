@@ -26,10 +26,15 @@ public abstract class OracleDAO<T> {
 
 
 
-  public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
-  public static final String ORACLE_DB_USER = "root";
-  public static final String ORACLE_DB_PASSWORD = "";
+  //public static final String ORACLE_DB_PATH = "jdbc:mysql://localhost/oose";
+  //public static final String ORACLE_DB_USER = "root";
+  //public static final String ORACLE_DB_PASSWORD = "";
 
+  
+  
+  public static final String ORACLE_DB_PATH = "jdbc:mysql://mysql-bdevent.alwaysdata.net/bdevent_oose";
+  public static final String ORACLE_DB_USER = "bdevent";
+  public static final String ORACLE_DB_PASSWORD = "oose_password";
 
 
 

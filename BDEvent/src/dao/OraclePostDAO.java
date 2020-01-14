@@ -26,7 +26,7 @@ public int create(Post obj) {
 	System.out.println("Before");
 
 	
-	  String SQL_INSERT = "Insert into POSTBB " + "Values (" + id +"," + obj.getId_user_publisher() + ","
+	  String SQL_INSERT = "Insert into postbb " + "Values (" + id +"," + obj.getId_user_publisher() + ","
 			  +"'" + obj.getTitle_postBB() + "',"
 					  +"'" + obj.getText_postBB() + "',"+
 					  	+ obj.getId_BDE_postBB() + "," + 0 + ")";
@@ -53,7 +53,7 @@ public int create(Post obj) {
 @Override
 public boolean delete(Post post) {
 	int id = post.getId_postBB();
-	String SQL_DELETE = "DELETE from POSTBB WHERE ID_POSTBB='"+id+"'";
+	String SQL_DELETE = "DELETE from postbb WHERE ID_POSTBB='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -85,7 +85,7 @@ public boolean update(Post obj) {
 		  System.out.println(obj.getTitle_postBB());
 		  System.out.println(obj.getText_postBB());
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE POSTBB SET TITLE_POSTBB = ?, TEXT_POSTBB = ?, STATE = 0 WHERE ID_POSTBB = ? ");
+			      "UPDATE postbb SET TITLE_POSTBB = ?, TEXT_POSTBB = ?, STATE = 0 WHERE ID_POSTBB = ? ");
 		  
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getTitle_postBB());
@@ -113,7 +113,7 @@ public boolean update(Post obj) {
 public Post find(String titrePost) {
 	Post obj = new Post();      
     
-	  String SQL_SELECT = "Select * from POSTBB where TITLE_POSTBB='"+titrePost+"'";
+	  String SQL_SELECT = "Select * from postbb where TITLE_POSTBB='"+titrePost+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -170,7 +170,7 @@ public ArrayList<Integer> findTeams(int idBDE) {
 private int getLastId() {
 	
 	int id_post=0;
-	String SQL_SELECT = "Select MAX(ID_POSTBB)from POSTBB";
+	String SQL_SELECT = "Select MAX(ID_POSTBB)from postbb";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -196,7 +196,7 @@ public ArrayList<Post> findAll() {
 	  
 	ArrayList<Post> ret = new ArrayList<Post>();
     
-  String SQL_SELECT = "Select * from POSTBB";
+  String SQL_SELECT = "Select * from postbb";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -245,7 +245,7 @@ public ArrayList<Post> findAllPostByBDE(User user) {
 	ArrayList<Post> ret = new ArrayList<Post>();
 	
     	int idbde = user.getCurrentBDE();
-	  String SQL_SELECT = "Select * from POSTBB where ID_BDE="+idbde;
+	  String SQL_SELECT = "Select * from postbb where ID_BDE="+idbde;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
 			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -289,7 +289,7 @@ public ArrayList<Post> findAllPostByUser(User user) {
 	ArrayList<Post> ret = new ArrayList<Post>();
 	
     	int iduser = user.getId_user();
-	  String SQL_SELECT = "Select * from POSTBB where ID_USER_PUBLISHER="+iduser;
+	  String SQL_SELECT = "Select * from postbb where ID_USER_PUBLISHER="+iduser;
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
 			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -338,7 +338,7 @@ public boolean acceptPost(Post obj) {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE POSTBB SET STATE = 1 WHERE ID_POSTBB =? ");
+			      "UPDATE postbb SET STATE = 1 WHERE ID_POSTBB =? ");
 		  
 			    // set the preparedstatement parameters
 			    
@@ -362,7 +362,7 @@ public boolean acceptPost(Post obj) {
 }
 
 public int getNumber() {
-	 String SQL_SELECT = "Select * from POSTBB";
+	 String SQL_SELECT = "Select * from postbb";
 	  // auto close connection and preparedStatement
 	
 	  try (Connection conn = DriverManager.getConnection(
