@@ -12,3 +12,8 @@
 /OracleVoteDAO.class
 /OracleMeetingDAO.class
 /OracleParticipeDAO.class
+/AbstractDAOFactory.class
+/OracleDAO.class
+/OracleDAOFactory.class
+/OracleUserDAO.class
+/XMLDAOFactory.class
