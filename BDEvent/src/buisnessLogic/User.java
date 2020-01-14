@@ -125,9 +125,13 @@ public class User {
 		return this.id_user == poll.getId_user_publisher();
 	}
 	
+	public boolean isPublisherMeeting(Meeting meeting) {
+		return this.id_user == meeting.getPublisher_meeting();
+	}
+	
 	public boolean isPartOfTrez() {
 		TeamMemberFacade tmFacade = new TeamMemberFacade();
-		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(4);
+		ArrayList<Integer> idusers =  tmFacade.isPartOfTeam(13);
 		Boolean res = false;
 		for (int i =0 ; i< idusers.size(); i++) {
 			if (this.getId_user() == idusers.get(i)) {

@@ -19,7 +19,7 @@
       </Text>
       <Pane layoutX="4.0" layoutY="-3.0">
          <children>
-            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #403E3E;">
+            <AnchorPane layoutX="-7.0" layoutY="3.0" prefHeight="608.0" prefWidth="168.0" style="-fx-background-color: #2D3447;">
                <effect>
                   <Glow />
                </effect>

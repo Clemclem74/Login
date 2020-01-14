@@ -111,7 +111,7 @@ public class Routing {
 		Routing.currentUser = currentUser;
 	}
 	
-	public Meeting getCurrentMeeting() {
+	public static Meeting getCurrentMeeting() {
 		return currentMeeting;
 	}
 	

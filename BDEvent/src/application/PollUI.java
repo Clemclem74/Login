@@ -185,6 +185,10 @@ public class PollUI extends Routing implements Initializable {
 				if(super.getCurrentUser().isPublisherPoll(Routing.getCurrentPoll()) || super.getCurrentUser().isAdminOfHisBDE()){
 					modifyPoll.setVisible(true);
 					deletePoll.setVisible(true);
+					this.counter1.setVisible(true);
+					this.counter2.setVisible(true);
+					this.counter3.setVisible(true);
+					
 				if(voteFacade.alreadyvoted(super.getCurrentPoll().getId_pollBB(), super.getCurrentUser())) {
 					voteButton.setVisible(false);
 				}
@@ -197,6 +201,11 @@ public class PollUI extends Routing implements Initializable {
 				this.counter2.setText(counter.get(1).toString());
 				this.counter3.setText(counter.get(2).toString());
 					
+				}
+				else {
+					this.counter1.setVisible(false);
+					this.counter2.setVisible(false);
+					this.counter3.setVisible(false);
 				}
 			}
 		}
