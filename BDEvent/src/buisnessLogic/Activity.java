@@ -5,6 +5,7 @@ public class Activity {
 	private int id_activity;
 	private String name_activity;
 	private String description;
+	private int id_bde;
 	
 	//User constructor
 	public Activity() {
@@ -12,6 +13,7 @@ public class Activity {
 		id_activity=0;
 		name_activity="";
 		description="";
+		id_activity=0;
 		
 	}
 
@@ -37,6 +39,14 @@ public class Activity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getId_bde() {
+		return id_bde;
+	}
+
+	public void setId_bde(int id_bde) {
+		this.id_bde = id_bde;
 	}
 
 	

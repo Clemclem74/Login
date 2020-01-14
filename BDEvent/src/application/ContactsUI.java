@@ -162,7 +162,7 @@ public class ContactsUI extends Routing implements Initializable {
 	 			
 	 				}
 	 				
-	 			}
+	 	}
 	   
 	   @FXML	
 		private void deleteSelected(ActionEvent event) {

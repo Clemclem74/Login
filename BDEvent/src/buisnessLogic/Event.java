@@ -8,6 +8,7 @@ public class Event {
 	private String event_date;
 	private String image;
 	private int responsible;
+	private int id_bde;
 	
 	//User constructor
 	public Event(){
@@ -17,6 +18,7 @@ public class Event {
 		this.event_date="";
 		this.setImage("");
 		this.responsible=0;
+		this.id_bde=0;
 	}
 
 	public int getId_event() {
@@ -65,6 +67,14 @@ public class Event {
 
 	public void setResponsible(int responsible) {
 		this.responsible = responsible;
+	}
+
+	public int getId_bde() {
+		return id_bde;
+	}
+
+	public void setId_bde(int id_bde) {
+		this.id_bde = id_bde;
 	}
 	
 }

@@ -76,7 +76,7 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="goToContact" layoutX="21.0" layoutY="480.0" mnemonicParsing="false" onAction="#goToContacts" prefHeight="36.0" prefWidth="144.0" text="Contact" textFill="#52abff">
+                  <Button fx:id="contactButton" layoutX="21.0" layoutY="480.0" mnemonicParsing="false" onAction="#goToContacts" prefHeight="36.0" prefWidth="144.0" text="Contact" textFill="#52abff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -135,7 +135,7 @@
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Label fx:id="BDELabel" layoutX="328.0" layoutY="359.0" prefHeight="27.0" prefWidth="286.0" textFill="#53baff">
+      <Label fx:id="BDELabel" layoutX="328.0" layoutY="359.0" prefHeight="34.0" prefWidth="535.0" textFill="#53baff">
          <font>
             <Font size="23.0" />
          </font></Label>

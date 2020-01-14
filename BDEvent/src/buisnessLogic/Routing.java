@@ -19,12 +19,21 @@ public class Routing {
 	private static Fee currentFee;
 	private static Contact currentContact;
 	private static Meeting currentMeeting;
+	private static Team currentTeam;
 	
 	
 	
 	
 	
 	
+	public static Team getCurrentTeam() {
+		return currentTeam;
+	}
+
+	public static void setCurrentTeam(Team currentTeam) {
+		Routing.currentTeam = currentTeam;
+	}
+
 	public static Contact getCurrentContact() {
 		return currentContact;
 	}

@@ -37,9 +37,9 @@ public class ActivityFacade {
 	}
 
 
-	public ArrayList<BDEActivity> findAll() {
+	public ArrayList<BDEActivity> findAll(int BDE_id) {
 		OracleDAO<BDEActivity> BDEActivityDao = this.adf.getBDEActivityDAO();
-		ArrayList<BDEActivity> acti = BDEActivityDao.findAll();
+		ArrayList<BDEActivity> acti = BDEActivityDao.findAll(BDE_id);
 		if (acti == null) {
 			System.out.println("BDEActivity null facade");
 			return null;
@@ -143,7 +143,7 @@ public class ActivityFacade {
 	
 	public void createStaff(StaffActivity acti,Event event) {
 		OracleDAO<StaffActivity> activityDao = this.adf.getStaffActivityDAO();
-		int bool = activityDao.create(acti,event);
+		int bool = activityDao.create_acti_event(acti,event);
 		if (bool == -1) {
 			System.out.println("event null facade");
 		}
