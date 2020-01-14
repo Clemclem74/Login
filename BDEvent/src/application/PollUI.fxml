@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PollUI">
+<AnchorPane prefHeight="608.0" prefWidth="941.0" style="-fx-background-color: #4b5369;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PollUI">
    <children>
       <Text fill="#53abff" layoutX="434.0" layoutY="41.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="POLL" textAlignment="CENTER" wrappingWidth="328.5625">
          <font>
@@ -31,7 +37,7 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: red;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+                  <Button fx:id="logoutButton" layoutX="37.0" layoutY="567.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="94.0" style="-fx-background-color: #53afbb;" text="Logout" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="10.0" />
                      </font>
@@ -52,20 +58,20 @@
          <font>
             <Font name="System Bold" size="19.0" />
          </font></Label>
-      <Button fx:id="modifyPoll" layoutX="383.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" style="-fx-background-color: #151928;" text="Modify this Poll" textFill="#3ab52c"/>
-      <Button fx:id="deletePoll" layoutX="598.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: #151928;" text="Delete this Poll" textFill="#3ab52c"/>
-      <Text fill="WHITE" fx:id="textName" layoutX="193.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher : "/>
-      <Label fx:id="publisherName" layoutX="261.0" layoutY="372.0" prefHeight="17.0" prefWidth="141.0" textFill="WHITE"/>
+      <Button fx:id="modifyPoll" layoutX="383.0" layoutY="560.0" mnemonicParsing="false" onAction="#modifySelected" style="-fx-background-color: #151928;" text="Modify this Poll" textFill="#3ab52c" />
+      <Button fx:id="deletePoll" layoutX="598.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteSelected" style="-fx-background-color: #151928;" text="Delete this Poll" textFill="#3ab52c" />
+      <Text fx:id="textName" fill="WHITE" layoutX="193.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publisher : " />
+      <Label fx:id="publisherName" layoutX="261.0" layoutY="372.0" prefHeight="17.0" prefWidth="141.0" textFill="WHITE" />
       <Text fill="WHITE" layoutX="289.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choice 1 :" />
       <Text fill="WHITE" layoutX="289.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choice 2 :" />
       <Text fill="WHITE" layoutX="289.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choice 3 :" />
-      <Label fx:id="choices1" layoutX="395.0" layoutY="436.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE"/>
-      <Label fx:id="choices2" layoutX="395.0" layoutY="467.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE"/>
-      <Label fx:id="choices3" layoutX="395.0" layoutY="499.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE"/>
+      <Label fx:id="choices1" layoutX="395.0" layoutY="436.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE" />
+      <Label fx:id="choices2" layoutX="395.0" layoutY="467.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE" />
+      <Label fx:id="choices3" layoutX="395.0" layoutY="499.0" prefHeight="17.0" prefWidth="99.0" textFill="WHITE" />
       <ChoiceBox fx:id="voteCheckbox" layoutX="627.0" layoutY="463.0" prefWidth="150.0" />
       <Button fx:id="voteButton" layoutX="825.0" layoutY="463.0" mnemonicParsing="false" onAction="#createVote" style="-fx-background-color: #151928;" text="Vote" textFill="#53abff" />
-      <Label fx:id="counter1" layoutX="520.0" layoutY="436.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE"/>
-      <Label fx:id="counter2" layoutX="520.0" layoutY="467.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE"/>
-      <Label fx:id="counter3" layoutX="520.0" layoutY="499.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE"/>
+      <Label fx:id="counter1" layoutX="520.0" layoutY="436.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
+      <Label fx:id="counter2" layoutX="520.0" layoutY="467.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
+      <Label fx:id="counter3" layoutX="520.0" layoutY="499.0" prefHeight="17.0" prefWidth="35.0" textFill="WHITE" />
    </children>
 </AnchorPane>
