@@ -23,7 +23,8 @@ public int create(Event obj) {
 			  +"'" + obj.getDescription() + "',"
 					  +"'" + obj.getEvent_date() + "',"
 	  						+"'" + obj.getImage() + "',"
-	  							+"'" + obj.getResponsible() + "')";
+	  							+"'" + obj.getResponsible() + "',"
+	  								+"'" + obj.getId_bde() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -121,11 +122,11 @@ public boolean update(int id_event, Event obj) {
 }
 
  
-public ArrayList<Event> findAll() {
+public ArrayList<Event> findAll(int id_bde) {
   
 	ArrayList<Event> ret = new ArrayList<Event>();
     
-  String SQL_SELECT = "Select * from event";
+  String SQL_SELECT = "Select * from event where ID_BDE="+id_bde;
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -344,11 +345,11 @@ public int join(Event obj,User user) {
 }
 
 
-
+@Override
 public boolean leave(int id,Event obj) {
 	
 
-	String SQL_DELETE = "DELETE from event WHERE ID_USER='"+id+"'" + " AND " + "ID_EVENT=" + "'" + obj.getId_event() + "'";
+	String SQL_DELETE = "DELETE from userevent WHERE ID_EVENT='"+obj.getId_event()+"'" + " AND " + "ID_USER=" + "'" + id + "'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -426,17 +427,10 @@ private int alreadyEventbyUser(int id_event,int id_user) {
 	
 }
 
-
-
 @Override
-public ArrayList<Integer> findTeams(int idBDE) {
+public ArrayList<Event> findAll() {
 	// TODO Auto-generated method stub
 	return null;
 }
 
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
 }

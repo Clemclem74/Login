@@ -140,7 +140,7 @@ public class EventUI extends Routing implements Initializable {
 		list.removeAll(list);
 		EventFacade eventFacade = new EventFacade();
 		
-		list = eventFacade.findAll();
+		list = eventFacade.findAll(super.getCurrentUser().getCurrentBDE());
 		
 		ArrayList<String> eventName = new ArrayList<String>();
 		
@@ -338,6 +338,7 @@ public class EventUI extends Routing implements Initializable {
 	       event1.setDescription(this.descriptionEventField.getText());
 	       event1.setEvent_date(date);
 	       event1.setResponsible(super.getCurrentUser().getId_user());
+	       event1.setId_bde(super.getCurrentUser().getCurrentBDE());
 	       try {
 			event1.setImage(selectedFile.toURI().toURL().toString());
 		} catch (MalformedURLException e) {
@@ -377,6 +378,8 @@ public class EventUI extends Routing implements Initializable {
 	       event1.setDescription(this.descriptionEventField.getText());
 	       event1.setEvent_date(date);
 	       event1.setImage(myImage);
+	       event1.setResponsible(super.getCurrentUser().getId_user());
+	       event1.setId_bde(super.getCurrentUser().getCurrentBDE());
 	       try {
 	    	if(selectedFile.toURI().toURL().toString().endsWith(".jpg") || selectedFile.toURI().toURL().toString().endsWith(".png")) {
 	    		event1.setImage(selectedFile.toURI().toURL().toString());

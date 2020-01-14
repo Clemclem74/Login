@@ -19,39 +19,9 @@ public OracleStaffActivityDAO(Connection conn) {
   super(conn);
 }
 
-public int create(BDEActivity obj) {
 
-	int id = getLastId()+1;
-	
-	  String SQL_INSERT = "Insert into bdeactivity " + "Values (" + id +",'" + obj.getName_activity() + "',"
-			  +"'" + obj.getDescription() + "',"
-					  +"'" + obj.getDate() + "',"
-							  +"'" + obj.getStart_hour() + "',"
-	  								+"'" + obj.getDuration() + "',"
-	  									+"'" + obj.getNb_users() + "')";
-	  System.out.println(SQL_INSERT);
-	  // auto close connection and preparedStatement
-	  try {
-		  
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  Statement st = conn.createStatement();
-
-	      st.executeUpdate(SQL_INSERT);
-		  
-		  conn.close();
-		  return 1;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return -1;
-	
-}
-
-
-public int create(StaffActivity obj,Event event) {
+@Override
+public int create_acti_event(StaffActivity obj,Event event) {
 
 	int id = getLastId()+1;
 	
@@ -60,7 +30,8 @@ public int create(StaffActivity obj,Event event) {
 					  +"'" + obj.getDate() + "',"
 							  +"'" + obj.getStart_hour() + "',"
 	  								+"'" + obj.getDuration() + "',"
-	  									+"'" + obj.getNb_users() + "')";
+	  									+"'" + obj.getNb_users() + "',"
+	  										+"'" + obj.getId_bde() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -78,7 +49,7 @@ public int create(StaffActivity obj,Event event) {
 	      e.printStackTrace();
 	  }
 	  
-	  SQL_INSERT = "Insert into APPLIANCE " + "Values (" + id +"," + event.getId_event() +"," +"0"+ ")";
+	  SQL_INSERT = "Insert into appliance " + "Values (" + id +"," + event.getId_event() +"," +"0"+ ")";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -390,81 +361,6 @@ private int alreadyActibyUser(int id_acti,int id_user) {
 
 
 
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-
-
-
-
-@Override
-public boolean update(int i, BDEActivity obj) {
-	int id = i;
-	  
-	  try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE bdeactivity SET TITLE = ?, DESCRIPTION= ?, DATE=?, START_HOUR=?, DURATION=?, NB_USERS=? WHERE ID_ACTIVITY = ?");
-
-			    // set the preparedstatement parameters
-			    ps.setString(1,obj.getName_activity());
-			    ps.setString(2,obj.getDescription());
-			    ps.setString(3,obj.getDate());
-			    ps.setString(4,obj.getStart_hour());
-			    ps.setString(5,obj.getDuration());
-			    ps.setInt(6,obj.getNb_users());
-			    ps.setInt(7,id);
-
-			    // call executeUpdate to execute our sql update statement
-			    ps.executeUpdate();
-			    ps.close();
-		  
-		  return true;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return false;
-	
-}
-
-@Override
-public boolean update(BDEActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean leave(int id, BDEActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public int create(StaffActivity obj) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public int join(StaffActivity obj, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
 
 @Override
 public boolean update(int i, StaffActivity obj) {
@@ -501,27 +397,9 @@ public boolean update(int i, StaffActivity obj) {
 }
 
 @Override
-public boolean update(StaffActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean leave(int id, StaffActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public ArrayList<StaffActivity> findAll() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
 public int count_users_Staffacti(int id_activity) {
 	int id_event=0;
-	String SQL_SELECT = "Select COUNT(ID_USER) from APPLIANCE WHERE ID_STAFF_ACTIVITY="+id_activity+" AND ID_USER != 0";
+	String SQL_SELECT = "Select COUNT(ID_USER) from appliance WHERE ID_STAFF_ACTIVITY="+id_activity+" AND ID_USER != 0";
 
 	System.out.println(SQL_SELECT);
 	
@@ -550,11 +428,11 @@ public int joinStaff(int id_acti, Event event, User user) {
 	  String SQL_INSERT = "";	
 	  if(!alreadyAppliance(id_acti,event.getId_event())) {
 		  
-		  SQL_INSERT = "UPDATE APPLIANCE SET ID_STAFF_ACTIVITY = "+id_acti+", ID_EVENT= "+event.getId_event()+", ID_USER="+user.getId_user()+" WHERE ID_STAFF_ACTIVITY = "+id_acti+" AND ID_EVENT = "+event.getId_event();
+		  SQL_INSERT = "UPDATE appliance SET ID_STAFF_ACTIVITY = "+id_acti+", ID_EVENT= "+event.getId_event()+", ID_USER="+user.getId_user()+" WHERE ID_STAFF_ACTIVITY = "+id_acti+" AND ID_EVENT = "+event.getId_event();
 		  
 	  }
 	  else {
-		  SQL_INSERT = "Insert into APPLIANCE " + "Values (" + id_acti +"," + event.getId_event() +"," +user.getId_user()+ ")"; 
+		  SQL_INSERT = "Insert into appliance " + "Values (" + id_acti +"," + event.getId_event() +"," +user.getId_user()+ ")"; 
 	  }
 	
 	
@@ -588,7 +466,7 @@ private boolean alreadyAppliance(int id_acti,int id_event) {
 	
 	int count = 0;
 	boolean res = false;
-	String SQL_SELECT = "Select COUNT(ID_USER) from APPLIANCE WHERE ID_STAFF_ACTIVITY="+id_acti+" AND ID_USER = 0";
+	String SQL_SELECT = "Select COUNT(ID_USER) from appliance WHERE ID_STAFF_ACTIVITY="+id_acti+" AND ID_USER = 0";
 
 	System.out.println(SQL_SELECT);
 	
@@ -615,6 +493,30 @@ private boolean alreadyAppliance(int id_acti,int id_event) {
 	  }
 	  return res;
 	
+}
+
+@Override
+public int getNumber() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public int create(StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public boolean update(StaffActivity obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public ArrayList<StaffActivity> findAll() {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 }

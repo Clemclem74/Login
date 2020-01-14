@@ -3,6 +3,7 @@ package application;
 import buisnessLogic.Routing;
 import buisnessLogic.Team;
 import buisnessLogic.TeamFacade;
+import buisnessLogic.TeamMember;
 import buisnessLogic.TeamMemberFacade;
 import buisnessLogic.User;
 import buisnessLogic.UserFacade;
@@ -39,6 +40,8 @@ public class TeamUI extends Routing implements Initializable {
 	 private ListView<String> tableTeams;
 	 @FXML 
 	 private Button editTeam;
+	 @FXML
+	 private Button quitButton;
 	 
 	 
 	 //Modify Team
@@ -54,6 +57,8 @@ public class TeamUI extends Routing implements Initializable {
 		private CheckBox isChief;
 		@FXML
 		private CheckBox isNotChief;
+		@FXML
+		private Label errorMessage;
 	  
 		
 	 
@@ -67,18 +72,30 @@ public class TeamUI extends Routing implements Initializable {
 			 
 		  	}
 		  else if (super.getVue().contentEquals("JoinTeam")) {
-			  //NOTHING TO DO 
+			  BDEFacade bdeFacade = new BDEFacade();
+			  TeamFacade teamFacade = new TeamFacade();
+			  ArrayList<Integer> idteams = bdeFacade.getListTeams(super.getCurrentUser().getCurrentBDE());
+			  ArrayList<String> nameTeams = new ArrayList<String>();
+			  for(Integer idteam:idteams) {
+				  Team team = teamFacade.findById(idteam);
+				  nameTeams.add(team.getIdTeam() + " : " + team.getNameTeam());
+			  }
+			  globalTeamsList.removeAll(globalTeamsList);
+			  tableTeams.getItems().addAll(nameTeams);
+			  
 		  }
 		  else if (super.getVue().contentEquals("ManageMyTeams")) {
 			  TeamMemberFacade teamMemberFacade = new TeamMemberFacade();
 			  TeamFacade teamFacade = new TeamFacade();
 			  ArrayList<Integer> idTeams = teamMemberFacade.findUserTeam(super.getCurrentUser().getId_user());
 			  ArrayList<String> teams = new ArrayList<String>();
-			   for (int team : idTeams) {
-				   teams.add(teamFacade.findById(team).getNameTeam());
+			   for (int idteam : idTeams) {
+				   Team team = teamFacade.findById(idteam);
+				   teams.add(team.getIdTeam() + " : " + team.getNameTeam());
 			   }
 			   globalTeamsList.removeAll(globalTeamsList);
 			   tableTeams.getItems().addAll(teams);
+			   quitButton.setVisible(false);
 			  
 		  }
 		  else if (super.getVue().contentEquals("ManageTeams")) { //Les teams du BDE
@@ -136,18 +153,36 @@ public class TeamUI extends Routing implements Initializable {
 	   }
 	   
 	   
+	   public void displaySelectedList(MouseEvent event) {
+			TeamFacade teamFacade = new TeamFacade();
+			String team1 =tableTeams.getSelectionModel().getSelectedItem();
+			Team teamSelected = teamFacade.findById(Integer.parseInt(team1.split(" : ")[0]));
+			super.setCurrentTeam(teamSelected);
+			quitButton.setVisible(true);
+	   }
+	   
+	   public void displaySelectedListJoin(MouseEvent event) {
+			TeamFacade teamFacade = new TeamFacade();
+			String team1 =tableTeams.getSelectionModel().getSelectedItem();
+			System.out.println(team1);
+			Team teamSelected = teamFacade.findById(Integer.parseInt(team1.split(" : ")[0]));
+			super.setCurrentTeam(teamSelected);
+	   }
+  
+	   
+	   
 	   public void joinAction(ActionEvent event) {
 	       TeamMemberFacade teamMemberFacade = new TeamMemberFacade();
-	       User user = super.getCurrentUser();
-	       int res = teamMemberFacade.add_member(user, Integer.parseInt(idTeamField.getText()), isChief.isSelected());
+	       User user = super.getCurrentUser(); 
+	       int res = teamMemberFacade.add_member(user, super.getCurrentTeam().getIdTeam(), isChief.isSelected());
 	       if (res < 0 ) {
 	    	   //ERROR MESSAGE 
 	       }
 	       else {
 	    	   //Confirm message
 	    	   super.hideConfirmMessage();
-	    	   super.setVue("HomePage");
-	    	   super.goTo("HomePageUI");
+	    	   super.setVue("ManageMyTeams");
+	    	   super.goTo("ManageMyTeamsUI");
 	       }
 	       
 	   }
@@ -155,6 +190,14 @@ public class TeamUI extends Routing implements Initializable {
 	   public void joinTeam(ActionEvent event) {
 		   super.setVue("JoinTeam");
 		   super.goToLittleWindow("JoinTeamUI");
+	   }
+	   
+	   public void quitTeam(ActionEvent event) {
+		   TeamMemberFacade teamMemberFacade = new TeamMemberFacade();
+		   TeamMember tm = teamMemberFacade.findByUserTeam(super.getCurrentUser(), super.getCurrentTeam());
+		   teamMemberFacade.delete(tm);
+		   super.setVue("ManageMyTeams");
+		   super.goTo("ManageMyTeamsUI");
 	   }
 	   
 	   

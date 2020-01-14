@@ -7,10 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import buisnessLogic.BDE;
 import buisnessLogic.BDEActivity;
-import buisnessLogic.Event;
-import buisnessLogic.StaffActivity;
 import buisnessLogic.User;
 
 public class OracleBDEActivityDAO extends OracleDAO<BDEActivity> {
@@ -29,7 +26,8 @@ public int create(BDEActivity obj) {
 					  +"'" + obj.getDate() + "',"
 							  +"'" + obj.getStart_hour() + "',"
 	  								+"'" + obj.getDuration() + "',"
-	  									+"'" + obj.getNb_users() + "')";
+	  									+"'" + obj.getNb_users() + "',"
+	  										+"'" + obj.getId_bde() + "')";
 	  System.out.println(SQL_INSERT);
 	  // auto close connection and preparedStatement
 	  try {
@@ -52,12 +50,12 @@ public int create(BDEActivity obj) {
 }
 
 
- 
-public ArrayList<BDEActivity> findAll() {
+@Override
+public ArrayList<BDEActivity> findAll(int BDE_id) {
   
 	ArrayList<BDEActivity> ret = new ArrayList<BDEActivity>();
     
-  String SQL_SELECT = "Select * from bdeactivity";
+  String SQL_SELECT = "Select * from bdeactivity where id_bde="+BDE_id;
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -324,23 +322,6 @@ private int alreadyActibyUser(int id_acti,int id_user) {
 	
 }
 
-
-
-@Override
-public ArrayList<Integer> findTeams(int idBDE) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public boolean isChief(int id_user) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-
-
-
 @Override
 public boolean delete(BDEActivity acti) {
 	int id = acti.getId_activity();
@@ -418,36 +399,6 @@ public boolean update(int i, BDEActivity obj) {
 	
 }
 
-@Override
-public boolean update(BDEActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-@Override
-public boolean leave(int id, BDEActivity obj) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
-
-@Override
-public ArrayList<Integer> findAllStaff(int id_event) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public int count_users_Staffacti(int id_activity) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public int joinStaff(int acti, Event event, User user) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
 
 public ArrayList<Integer> findCollegue(int id) {
@@ -475,17 +426,22 @@ public ArrayList<Integer> findCollegue(int id) {
 	      e.printStackTrace();
 	  }
 	  return ret;
-
-	
-	
 	
 }
 
 @Override
-public int create(BDEActivity obj, Event event) {
+public boolean update(BDEActivity obj) {
 	// TODO Auto-generated method stub
-	return 0;
+	return false;
 }
+
+@Override
+public ArrayList<BDEActivity> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 
 
 }

@@ -18,12 +18,12 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Label fx:id="idBDELabel" layoutX="191.0" layoutY="54.0" prefHeight="86.0" prefWidth="118.0" style="-fx-background-color: #4b5369;" textFill="WHITE">
+      <Label fx:id="idBDELabel" layoutX="187.0" layoutY="78.0" prefHeight="46.0" prefWidth="118.0" style="-fx-background-color: #4b5369;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="modifyContact" layoutX="337.0" layoutY="97.0" mnemonicParsing="false" onAction="#modifySelected" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="OK" textFill="#52abff">
+      <Button layoutX="337.0" layoutY="97.0" mnemonicParsing="false" onAction="#confirmCreation" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="OK" textFill="#52abff">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
