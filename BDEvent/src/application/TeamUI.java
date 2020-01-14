@@ -106,7 +106,11 @@ public class TeamUI extends Routing implements Initializable {
 		   TeamFacade teamFacade = new TeamFacade();
 		   BDEFacade bdeFacade = new BDEFacade();
 		   BDE bde = bdeFacade.findById(super.getCurrentUser().getCurrentBDE());
+		   System.out.println(bde);
+	       System.out.println(nameTeamField.getText());
 	       int res = teamFacade.create(bde, nameTeamField.getText());
+	       
+
 	       if (res < 0 ) {
 	    	   //ERROR MESSAGE 
 	       }
