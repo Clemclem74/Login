@@ -131,7 +131,7 @@ public class EventUI extends Routing implements Initializable {
 		EventFacade eventFacade = new EventFacade();
 		eventFacade.leave(super.getCurrentUser().getId_user(),this.theEvent);
 		eventList.getItems().removeAll(eventList.getItems()); 
-		loadData();
+		loadDataUser();
 		
 	}
 	

@@ -20,8 +20,6 @@ public class HomePageUI extends Routing implements Initializable {
 	 @FXML
 	 private Button fees_button;
 	 @FXML
-	 private Button communication_button;
-	 @FXML
 	 private Button quitBDEbutton;
 	 @FXML
 	 private Button events_button;
@@ -84,7 +82,6 @@ public class HomePageUI extends Routing implements Initializable {
 			  events_button.setVisible(false);
 			  goToBB.setVisible(false);
 			  quitBDEbutton.setVisible(false);
-			  communication_button.setVisible(false);
 			  BDELabel.setVisible(false);
 			  meeting_button.setVisible(false);
 
