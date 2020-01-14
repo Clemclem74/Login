@@ -22,11 +22,9 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 		}
 	
 	public int create(Meeting obj) {
-		System.out.println("Before");
 		int id = getLastId()+1;
-		System.out.println("Before");
 		
-		 String SQL_INSERT = "Insert into MEETING (ID_MEETING, PUBLISHER_MEETING, TITLE_MEETING, DATE_MEETING, ID_BDE) " + "Values (" + id +"," + obj.getPublisher_meeting() + ",'"
+		 String SQL_INSERT = "Insert into meeting (ID_MEETING, PUBLISHER_MEETING, TITLE_MEETING, DATE_MEETING, ID_BDE) " + "Values (" + id +"," + obj.getPublisher_meeting() + ",'"
 				  + obj.getTitle() + "','" + obj.getMeeting_date() + "',"+
 						  	+ obj.getId_bde_meeting() + ")";
 		  System.out.println(SQL_INSERT);
@@ -52,7 +50,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 	@Override
 	public boolean delete(Meeting meeting) {
 		int id = meeting.getId_meeting();
-		String SQL_DELETE = "DELETE from MEETING WHERE ID_MEETING='"+id+"'";
+		String SQL_DELETE = "DELETE from meeting WHERE ID_MEETING='"+id+"'";
 		 try {
 			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  
@@ -81,7 +79,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 			
 			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  PreparedStatement ps = conn.prepareStatement(
-				      "UPDATE MEETING SET TITLE_MEETING = ?, DATE_MEETING = ? WHERE ID_MEETING = ? ");
+				      "UPDATE meeting SET TITLE_MEETING = ?, DATE_MEETING = ? WHERE ID_MEETING = ? ");
 			  
 				    // set the preparedstatement parameters
 				    ps.setString(1,obj.getTitle());
@@ -105,7 +103,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 
 	private int getLastId() {
 		int id_meeting=0;
-		String SQL_SELECT = "Select MAX(ID_MEETING)from MEETING";
+		String SQL_SELECT = "Select MAX(ID_MEETING)from meeting";
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
@@ -131,7 +129,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 		ArrayList<Meeting> ret = new ArrayList<>();
 		
 		int idbde = user.getCurrentBDE();
-		String SQL_SELECT = "Select * from MEETING where ID_BDE="+idbde;
+		String SQL_SELECT = "Select * from meeting where ID_BDE="+idbde;
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -173,7 +171,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 	public Meeting find(String titreMeeting) {
 		Meeting obj = new Meeting();      
 	    
-		  String SQL_SELECT = "Select * from MEETING where TITLE_MEETING='"+titreMeeting+"'";
+		  String SQL_SELECT = "Select * from meeting where TITLE_MEETING='"+titreMeeting+"'";
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
@@ -210,7 +208,7 @@ public class OracleMeetingDAO extends OracleDAO<Meeting> {
 	}
 	
 	public int getNumber() {
-		 String SQL_SELECT = "Select * from MEETING";
+		 String SQL_SELECT = "Select * from meeting";
 		  // auto close connection and preparedStatement
 		
 		  try (Connection conn = DriverManager.getConnection(

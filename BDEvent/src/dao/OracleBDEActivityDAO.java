@@ -24,7 +24,7 @@ public int create(BDEActivity obj) {
 
 	int id = getLastId()+1;
 	
-	  String SQL_INSERT = "Insert into BDEACTIVITY " + "Values (" + id +",'" + obj.getName_activity() + "',"
+	  String SQL_INSERT = "Insert into bdeactivity " + "Values (" + id +",'" + obj.getName_activity() + "',"
 			  +"'" + obj.getDescription() + "',"
 					  +"'" + obj.getDate() + "',"
 							  +"'" + obj.getStart_hour() + "',"
@@ -51,87 +51,13 @@ public int create(BDEActivity obj) {
 	
 }
 
-public boolean delete(Event event) {
-	int id = event.getId_event();
-	String SQL_DELETE = "DELETE from EVENT WHERE EVENT='"+id+"'";
-	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
-		  // call executeUpdate to execute our sql update statement
-		  ps.executeUpdate(); 
-		  ps.close();
-		  
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	 
-	 SQL_DELETE = "DELETE from USEREVENT WHERE ID_EVENT='"+id+"'";
-	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
-		  // call executeUpdate to execute our sql update statement
-		  ps.executeUpdate(); 
-		  ps.close();
-		  
-		  return true;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	 
-	 
-	return false;
-}
-    
- 
-public boolean update(int id_event, Event obj) {
-	
-	int id = id_event;
-	  
-	  try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE EVENT SET TITLE = ?, DESCRIPTION= ?, DATE=?, IMAGE=? WHERE EVENT = ?");
-
-			    // set the preparedstatement parameters
-			    ps.setString(1,obj.getTitle());
-			    ps.setString(2,obj.getDescription());
-			    ps.setString(3,obj.getEvent_date());
-			    ps.setString(4,obj.getImage());
-			    ps.setInt(5,id);
-
-			    // call executeUpdate to execute our sql update statement
-			    ps.executeUpdate();
-			    ps.close();
-		  
-		  return true;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return false;
-	
-}
 
  
 public ArrayList<BDEActivity> findAll() {
   
 	ArrayList<BDEActivity> ret = new ArrayList<BDEActivity>();
     
-  String SQL_SELECT = "Select * from BDEACTIVITY";
+  String SQL_SELECT = "Select * from bdeactivity";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -178,7 +104,7 @@ return ret;
 public BDEActivity findById(int id) {
 	BDEActivity obj = new BDEActivity();     
 	    
-	  String SQL_SELECT = "Select * from BDEActivity where ID_ACTIVITY='"+id+"'";
+	  String SQL_SELECT = "Select * from bdeactivity where ID_ACTIVITY='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -223,54 +149,13 @@ public BDEActivity findById(int id) {
 
 
 
-@Override
-public BDE find(String id) {
-	Event obj = new Event();      
-    
-	  String SQL_SELECT = "Select * from Event where TITLE='"+id+"'";
-
-	  // auto close connection and preparedStatement
-	  try (Connection conn = DriverManager.getConnection(
-			  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-	       PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
-
-	      ResultSet resultSet = preparedStatement.executeQuery();
-	      
-	      while (resultSet.next()) {
-
-	          int id_event = resultSet.getInt("EVENT");
-	          String title = resultSet.getString("TITLE");
-	          String description = resultSet.getString("DESCRIPTION");
-	          String event_date = resultSet.getString("DATE");
-	          String image = resultSet.getString("IMAGE");
-	          int responsible = resultSet.getInt("RESPONSIBLE");
-
-	          obj.setId_event(id_event);
-	          obj.setTitle(title);
-	          obj.setDescription(description);
-	          obj.setEvent_date(event_date);
-	          obj.setImage(image);
-	          obj.setResponsible(responsible);
-	          
-
-	      }
-		  conn.close();
-	      return obj;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return obj;
-}
 
 
 
 private int getLastId() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select MAX(ID_ACTIVITY) from BDEACTIVITY";
+	String SQL_SELECT = "Select MAX(ID_ACTIVITY) from bdeactivity";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -295,7 +180,7 @@ private int getLastId() {
 public int getNumber() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select COUNT(ID_ACTIVITY) from BDEACTIVITY";
+	String SQL_SELECT = "Select COUNT(ID_ACTIVITY) from bdeactivity";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -321,7 +206,7 @@ public int getNumber() {
 public int count_users_BDEacti(int id) {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select COUNT(ID_USER) from USERBDEACTIVITY WHERE ID_ACTIVITY="+id;
+	String SQL_SELECT = "Select COUNT(ID_USER) from userbdeactivity WHERE ID_ACTIVITY="+id;
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -350,7 +235,7 @@ public int join(BDEActivity obj,User user) {
 
 	if(this.alreadyActibyUser(obj.getId_activity(),user.getId_user())==-1) {
 		
-		String SQL_INSERT = "Insert into USERBDEACTIVITY " + "Values (" + obj.getId_activity() +",'" + user.getId_user() + "')";
+		String SQL_INSERT = "Insert into userbdeactivity " + "Values (" + obj.getId_activity() +",'" + user.getId_user() + "')";
 		  System.out.println(SQL_INSERT);
 		  // auto close connection and preparedStatement
 		  try {
@@ -380,37 +265,13 @@ public int join(BDEActivity obj,User user) {
 
 
 
-public boolean leave(int id,Event obj) {
-	
-
-	String SQL_DELETE = "DELETE from USEREVENT WHERE ID_USER='"+id+"'" + " AND " + "ID_EVENT=" + "'" + obj.getId_event() + "'";
-	 try {
-		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
-		  
-		  
-		  PreparedStatement ps = conn.prepareStatement(SQL_DELETE);
-		  // call executeUpdate to execute our sql update statement
-		  ps.executeUpdate(); 
-		  ps.close();
-		  
-		  return true;
-
-	  } catch (SQLException e) {
-	      System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-	  } catch (Exception e) {
-	      e.printStackTrace();
-	  }
-	return false;
-	
-	
-}
 
 
 
 public ArrayList<Integer> getEventByUser(User user) {
 	ArrayList<Integer> id_list = new ArrayList<Integer>();
     
-	  String SQL_SELECT = "Select * from USERBDEACTIVITY where id_user="+user.getId_user();
+	  String SQL_SELECT = "Select * from userbdeactivity where id_user="+user.getId_user();
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -438,7 +299,7 @@ public ArrayList<Integer> getEventByUser(User user) {
 
 private int alreadyActibyUser(int id_acti,int id_user) {
 	
-	String SQL_SELECT = "Select * from USERBDEACTIVITY where id_activity = "+id_acti+" AND id_user = "+id_user ;
+	String SQL_SELECT = "Select * from userbdeactivity where id_activity = "+id_acti+" AND id_user = "+id_user ;
 
 	System.out.println(SQL_SELECT);
 	
@@ -483,7 +344,7 @@ public boolean isChief(int id_user) {
 @Override
 public boolean delete(BDEActivity acti) {
 	int id = acti.getId_activity();
-	String SQL_DELETE = "DELETE from BDEActivity WHERE ID_ACTIVITY='"+id+"'";
+	String SQL_DELETE = "DELETE from bdeactivity WHERE ID_ACTIVITY='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -500,7 +361,7 @@ public boolean delete(BDEActivity acti) {
 	      e.printStackTrace();
 	  }
 	 
-	 SQL_DELETE = "DELETE from USERBDEACTIVITY WHERE ID_ACTIVITY='"+id+"'";
+	 SQL_DELETE = "DELETE from userbdeactivity WHERE ID_ACTIVITY='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -531,7 +392,7 @@ public boolean update(int i, BDEActivity obj) {
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE BDEACTIVITY SET TITLE = ?, DESCRIPTION= ?, DATE=?, START_HOUR=?, DURATION=?, NB_USERS=? WHERE ID_ACTIVITY = ?");
+			      "UPDATE bdeactivity SET TITLE = ?, DESCRIPTION= ?, DATE=?, START_HOUR=?, DURATION=?, NB_USERS=? WHERE ID_ACTIVITY = ?");
 
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getName_activity());
@@ -569,11 +430,6 @@ public boolean leave(int id, BDEActivity obj) {
 	return false;
 }
 
-@Override
-public int create(StaffActivity acti, Event event) {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
 @Override
 public ArrayList<Integer> findAllStaff(int id_event) {

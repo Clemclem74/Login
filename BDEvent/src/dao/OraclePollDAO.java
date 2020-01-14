@@ -20,11 +20,9 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		}
 	
 	public int create(Poll obj) {
-		System.out.println("Before");
 		int id = getLastId()+1;
-		System.out.println("Before");
 		
-		 String SQL_INSERT = "Insert into POLLBB " + "Values (" + id +"," + obj.getId_user_publisher() + ","
+		 String SQL_INSERT = "Insert into pollbb " + "Values (" + id +"," + obj.getId_user_publisher() + ","
 				  +"'" + obj.getTitle_pollBB() + "',"
 						  +"'" + obj.getchoices_pollBB() + "',"+
 						  	+ obj.getId_BDE_pollBB() + "," + 0 + ")";
@@ -51,7 +49,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	@Override
 	public boolean delete(Poll poll) {
 		int id = poll.getId_pollBB();
-		String SQL_DELETE = "DELETE from POLLBB WHERE ID_POLLBB='"+id+"'";
+		String SQL_DELETE = "DELETE from pollbb WHERE ID_POLLBB='"+id+"'";
 		 try {
 			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  
@@ -79,7 +77,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 			
 			  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 			  PreparedStatement ps = conn.prepareStatement(
-				      "UPDATE POLLBB SET TITLE_POLLBB = ?, CHOICES_POLLBB = ?, STATE = 0 WHERE ID_POLLBB = ? ");
+				      "UPDATE pollbb SET TITLE_POLLBB = ?, CHOICES_POLLBB = ?, STATE = 0 WHERE ID_POLLBB = ? ");
 			  
 				    // set the preparedstatement parameters
 				    ps.setString(1,obj.getTitle_pollBB());
@@ -107,7 +105,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	public Poll find(String titrePoll) {
 		Poll obj = new Poll();      
 	    
-		  String SQL_SELECT = "Select * from POLLBB where TITLE_POLLBB='"+titrePoll+"'";
+		  String SQL_SELECT = "Select * from pollbb where TITLE_POLLBB='"+titrePoll+"'";
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
@@ -155,7 +153,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 	private int getLastId() {
 		
 		int id_poll=0;
-		String SQL_SELECT = "Select MAX(ID_POLLBB)from POLLBB";
+		String SQL_SELECT = "Select MAX(ID_POLLBB)from pollbb";
 
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
@@ -180,7 +178,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		  
 		ArrayList<Poll> ret = new ArrayList<>();
 	    
-	  String SQL_SELECT = "Select * from POLLBB";
+	  String SQL_SELECT = "Select * from pollbb";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -228,7 +226,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		ArrayList<Poll> ret = new ArrayList<Poll>();
 		
 	    	int idbde = user.getCurrentBDE();
-		  String SQL_SELECT = "Select * from POLLBB where ID_BDE="+idbde;
+		  String SQL_SELECT = "Select * from pollbb where ID_BDE="+idbde;
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
@@ -270,7 +268,7 @@ public class OraclePollDAO extends OracleDAO<Poll> {
 		}
 	
 	public int getNumber() {
-		 String SQL_SELECT = "Select * from POLLBB";
+		 String SQL_SELECT = "Select * from pollbb";
 		  // auto close connection and preparedStatement
 		
 		  try (Connection conn = DriverManager.getConnection(

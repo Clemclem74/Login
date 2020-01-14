@@ -19,11 +19,9 @@ public class OracleVoteDAO extends OracleDAO<Vote> {
 		}
 	
 	public int create(Vote obj) {
-		System.out.println("Before");
 		int id = getLastId()+1;
-		System.out.println("Before");
 		
-		 String SQL_INSERT = "Insert into VOTE (ID_VOTE, ID_POLL, ID_VOTER, CHOICE_VOTE, ID_BDE) " + "Values (" + id +"," + obj.getId_poll()+ "," + obj.getId_voter() + ","
+		 String SQL_INSERT = "Insert into vote (ID_VOTE, ID_POLL, ID_VOTER, CHOICE_VOTE, ID_BDE) " + "Values (" + id +"," + obj.getId_poll()+ "," + obj.getId_voter() + ","
 				   + obj.getUserChoice()+ ","+ obj.getId_bde_voter() + ")";
 		  System.out.println(SQL_INSERT);
 		  // auto close connection and preparedStatement
@@ -71,7 +69,7 @@ public class OracleVoteDAO extends OracleDAO<Vote> {
 		ArrayList<Vote> ret = new ArrayList<>();
 		
 	    	int idbde = user.getCurrentBDE();
-		  String SQL_SELECT = "Select * from VOTE where ID_BDE="+idbde;
+		  String SQL_SELECT = "Select * from vote where ID_BDE="+idbde;
 		  // auto close connection and preparedStatement
 		  try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);

@@ -16,11 +16,10 @@ public OracleEventDAO(Connection conn) {
 }
 
 public int create(Event obj) {
-	System.out.println("Before");
 
 	int id = getLastId()+1;
 	
-	  String SQL_INSERT = "Insert into Event " + "Values (" + id +",'" + obj.getTitle() + "',"
+	  String SQL_INSERT = "Insert into event " + "Values (" + id +",'" + obj.getTitle() + "',"
 			  +"'" + obj.getDescription() + "',"
 					  +"'" + obj.getEvent_date() + "',"
 	  						+"'" + obj.getImage() + "',"
@@ -48,7 +47,7 @@ public int create(Event obj) {
 
 public boolean delete(Event event) {
 	int id = event.getId_event();
-	String SQL_DELETE = "DELETE from EVENT WHERE EVENT='"+id+"'";
+	String SQL_DELETE = "DELETE from event WHERE EVENT='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -65,7 +64,7 @@ public boolean delete(Event event) {
 	      e.printStackTrace();
 	  }
 	 
-	 SQL_DELETE = "DELETE from USEREVENT WHERE ID_EVENT='"+id+"'";
+	 SQL_DELETE = "DELETE from userevent WHERE ID_EVENT='"+id+"'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -97,7 +96,7 @@ public boolean update(int id_event, Event obj) {
 		  
 		  
 		  PreparedStatement ps = conn.prepareStatement(
-			      "UPDATE EVENT SET TITLE = ?, DESCRIPTION= ?, DATE=?, IMAGE=? WHERE EVENT = ?");
+			      "UPDATE event SET TITLE = ?, DESCRIPTION= ?, DATE=?, IMAGE=? WHERE EVENT = ?");
 
 			    // set the preparedstatement parameters
 			    ps.setString(1,obj.getTitle());
@@ -126,7 +125,7 @@ public ArrayList<Event> findAll() {
   
 	ArrayList<Event> ret = new ArrayList<Event>();
     
-  String SQL_SELECT = "Select * from EVENT";
+  String SQL_SELECT = "Select * from event";
 
   // auto close connection and preparedStatement
   try (Connection conn = DriverManager.getConnection(
@@ -171,7 +170,7 @@ return ret;
 public Event findById(int id) {
 	  Event obj = new Event();      
 	    
-	  String SQL_SELECT = "Select * from Event where EVENT='"+id+"'";
+	  String SQL_SELECT = "Select * from event where EVENT='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -219,7 +218,7 @@ public boolean update(Event obj) {
 public Event find(String id) {
 	Event obj = new Event();      
     
-	  String SQL_SELECT = "Select * from Event where TITLE='"+id+"'";
+	  String SQL_SELECT = "Select * from event where TITLE='"+id+"'";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -262,7 +261,7 @@ public Event find(String id) {
 private int getLastId() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select MAX(EVENT)from Event";
+	String SQL_SELECT = "Select MAX(EVENT)from event";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -288,7 +287,7 @@ private int getLastId() {
 public int getNumber() {
 	
 	int id_event=0;
-	String SQL_SELECT = "Select COUNT(EVENT) from Event";
+	String SQL_SELECT = "Select COUNT(EVENT) from event";
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -316,7 +315,7 @@ public int join(Event obj,User user) {
 
 	if(this.alreadyEventbyUser(obj.getId_event(),user.getId_user())==-1) {
 		
-		String SQL_INSERT = "Insert into USEREVENT " + "Values (" + obj.getId_event() +",'" + user.getId_user() + "')";
+		String SQL_INSERT = "Insert into userevent " + "Values (" + obj.getId_event() +",'" + user.getId_user() + "')";
 		  System.out.println(SQL_INSERT);
 		  // auto close connection and preparedStatement
 		  try {
@@ -349,7 +348,7 @@ public int join(Event obj,User user) {
 public boolean leave(int id,Event obj) {
 	
 
-	String SQL_DELETE = "DELETE from USEREVENT WHERE ID_USER='"+id+"'" + " AND " + "ID_EVENT=" + "'" + obj.getId_event() + "'";
+	String SQL_DELETE = "DELETE from event WHERE ID_USER='"+id+"'" + " AND " + "ID_EVENT=" + "'" + obj.getId_event() + "'";
 	 try {
 		  Connection conn = DriverManager.getConnection(ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);
 		  
@@ -376,7 +375,7 @@ public boolean leave(int id,Event obj) {
 public ArrayList<Integer> getEventByUser(User user) {
 	ArrayList<Integer> id_list = new ArrayList<Integer>();
     
-	  String SQL_SELECT = "Select * from USEREVENT where id_user="+user.getId_user();
+	  String SQL_SELECT = "Select * from userevent where id_user="+user.getId_user();
 
 	  // auto close connection and preparedStatement
 	  try (Connection conn = DriverManager.getConnection(
@@ -404,7 +403,7 @@ public ArrayList<Integer> getEventByUser(User user) {
 
 private int alreadyEventbyUser(int id_event,int id_user) {
 	
-	String SQL_SELECT = "Select * from USEREVENT where id_user = "+id_user+" AND id_event = "+id_event;
+	String SQL_SELECT = "Select * from userevent where id_user = "+id_user+" AND id_event = "+id_event;
 
 	int id = -1;
 	  // auto close connection and preparedStatement
