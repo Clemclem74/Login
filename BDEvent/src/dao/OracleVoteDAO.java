@@ -44,7 +44,7 @@ public class OracleVoteDAO extends OracleDAO<Vote> {
 
 	private int getLastId() {
 		int id_vote = 0;
-		String SQL_SELECT = "Select MAX(ID_VOTE) from POLLBB";
+		String SQL_SELECT = "Select MAX(ID_VOTE) from vote";
 		
 		try (Connection conn = DriverManager.getConnection(
 				  ORACLE_DB_PATH, ORACLE_DB_USER, ORACLE_DB_PASSWORD);

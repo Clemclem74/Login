@@ -178,8 +178,8 @@ public class MeetingUI extends Routing implements Initializable {
 			String namePublisher = publisher.getFirstname() + " "+publisher.getLastname();
 			this.publisherName.setText(namePublisher);
 			if(super.getCurrentUser().getId_user() == meetingSelected.getPublisher_meeting() || super.getCurrentUser().isAdminOfHisBDE());{
-				this.modifyMeeting.setVisible(true);
-				this.deleteMeeting.setVisible(true);
+				this.modifyMeeting.setVisible(false);
+				this.deleteMeeting.setVisible(false);
 			}
 			if(participeFacade.alreadyParticiped(super.getCurrentMeeting().getId_meeting(), super.getCurrentUser())) {
 				participe_button.setVisible(false);
