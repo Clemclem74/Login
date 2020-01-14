@@ -129,7 +129,7 @@ public class MeetingUI extends Routing implements Initializable {
 	}
 	
 	public void backMeeting(ActionEvent event) {
-		super.setVue("BasicPoll");
+		super.setVue("BasicMeeting");
 		super.goTo("MeetingUI");
 	}
 
