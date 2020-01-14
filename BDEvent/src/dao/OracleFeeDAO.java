@@ -221,7 +221,7 @@ public ArrayList<Fee> findAllFeeByUser(User user) {
 public ArrayList<Fee> findAllFee(User user) {
 	ArrayList<Fee> ret = new ArrayList<Fee>();
     	int idbde = user.getCurrentBDE();
-	  String SQL_SELECT = "Select DISTINCT(ID_FEE),TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from FEE,USERS where ID_USER_FEE = ID_USER AND ID_BDE="+idbde;
+	  String SQL_SELECT = "Select DISTINCT(ID_FEE),TITLE_FEE,COMMENT_FEE,AMOUNT_FEE,STATE_FEE,ID_USER_FEE from fee,users where ID_USER_FEE = ID_USER AND ID_BDE="+idbde;
 	  // auto close connection and preparedStatement
 	  System.out.println("avant try");
 	  try (Connection conn = DriverManager.getConnection(
